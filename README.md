@@ -5,8 +5,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 ## Development Setup
 Clone the repository and run the following commands:
 ```
-flutter pub get
-flutter run
+npm install
 ```
 
 ## Development server
