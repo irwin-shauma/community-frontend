@@ -1,0 +1,21 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+
+*{
+    font-family: 'Poppins';
+}
+
+
+body{
+    background: #c9d6ff;
+    background: -webkit-linear-gradient(to right, #c9d6ff, #e2e2e2);
+    background: linear-gradient(to right, #c9d6ff, #e2e2e2);
+}
+
+
+.glasses{
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.3); 
+}
