@@ -1,0 +1,56 @@
+<div class="flex">
+    <div class="authpicture">
+       
+    </div> 
+    <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
+        <div style="width: 500px; height: 600px;" class="flex flex-column justify-content-around align-items-center">
+            <div class="titlelogin">ACCOUNT DETAIL</div>
+            <div class="flex flex-column">
+                <label for="email">Fullname</label>
+                <span class="p-input-icon-right">
+                    <i class="pi pi-user"></i>
+                    <input type="text" pInputText placeholder="Fullname" class="inputstyle" />
+                </span>
+            </div>
+            <div class="flex flex-column">
+                <label for="email">Company</label>
+                <span class="p-input-icon-right">
+                    <i class="pi pi-globe"></i>
+                    <input type="text" pInputText placeholder="Fullname" class="inputstyle" />
+                </span>
+            </div>
+            <div class="flex flex-column">
+                <label for="email">Industry</label>
+                <span class="p-input-icon-right">
+                    <i class="pi pi-id-card"></i>
+                    <input type="text" pInputText placeholder="Industry" class="inputstyle" />
+                </span>
+            </div>
+            
+            <div class="flex flex-column">
+                <label for="password">Position</label>
+                <span class="p-input-icon-right">
+                    <i class="pi pi-users"></i>
+                    <input type="text" pInputText placeholder="Position" class="inputstyle" />
+                </span>
+            </div>
+
+
+            <div class="w-full">
+                <button pButton pRipple label="Next" class="p-button-rounded button-signin" routerLink="/home"></button>
+            </div>
+                <p-timeline [value]="event" layout="horizontal" align="top" class="w-full">
+                    <ng-template pTemplate="marker" let-event>
+                        <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+                            <i [ngClass]="event.icon"></i>
+                        </span>
+                    </ng-template>
+                    <ng-template pTemplate="content" let-event>
+                        {{event.status}}
+                    </ng-template>
+                </p-timeline>
+        </div>
+       
+       
+    </div>
+</div>
