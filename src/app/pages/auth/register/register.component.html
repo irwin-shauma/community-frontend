@@ -1,0 +1,46 @@
+<div class="flex">
+    <div class="authpicture">
+       
+    </div> 
+    <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
+        <div style="width: 500px; height: 500px;" class="flex flex-column justify-content-around align-items-center">
+            <div class="titlelogin">CREATE ACCOUNT</div>
+           
+            <div class="flex flex-column">
+                <label for="email">Email</label>
+                <span class="p-input-icon-right">
+                    <i class="pi pi-envelope"></i>
+                    <input type="email" pInputText placeholder="Email" class="inputstyle" />
+                </span>
+            </div>
+            
+            <div class="flex flex-column">
+                <label for="password">Password</label>
+                <span class="p-input-icon-right">
+                    <i class="pi pi-lock"></i>
+                    <input type="password" pInputText placeholder="Password" class="inputstyle" />
+                </span>
+            </div>
+
+            <div class="flex justify-content-between w-full">
+                <p>already have an account? <span class="font-bold cursor-pointer" routerLink="/login">Sign In</span></p>
+            </div>
+
+            <div class="w-full">
+                <button pButton pRipple label="Sign Up" class="p-button-rounded button-signin" routerLink="/verification"></button>
+            </div>
+                <p-timeline [value]="event" layout="horizontal" align="top" class="w-full">
+                    <ng-template pTemplate="marker" let-event>
+                        <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+                            <i [ngClass]="event.icon"></i>
+                        </span>
+                    </ng-template>
+                    <ng-template pTemplate="content" let-event>
+                        {{event.status}}
+                    </ng-template>
+                </p-timeline>
+        </div>
+       
+       
+    </div>
+</div>

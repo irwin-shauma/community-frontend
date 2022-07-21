@@ -12,6 +12,7 @@ export class NavbarComponent implements OnInit {
 
   tieredItems!: MenuItem[];
 
+
   constructor(private router: Router) {}
 
   logout(): void {
@@ -26,80 +27,34 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
     this.tieredItems = [
       {
-        label: 'Customers',
-        icon: 'pi pi-fw pi-table',
+        label: 'Master',
+        icon: 'pi pi-fw pi-list',
         items: [
           {
-            label: 'New',
-            icon: 'pi pi-fw pi-plus',
-            items: [
-              {
-                label: 'Customer',
-                icon: 'pi pi-fw pi-plus',
-              },
-              {
-                label: 'Duplicate',
-                icon: 'pi pi-fw pi-copy',
-              },
-            ],
+            label: 'Article',
+            icon: 'pi pi-fw pi-calendar-plus',
+            routerLink: '/article/list',
           },
           {
-            label: 'Edit',
+            label: 'Course',
             icon: 'pi pi-fw pi-user-edit',
-          },
-        ],
-        styleClass: 'navbarmain',
-      },
-      {
-        label: 'Orders',
-        icon: 'pi pi-fw pi-shopping-cart',
-        items: [
-          {
-            label: 'View',
-            icon: 'pi pi-fw pi-list',
-          },
-          {
-            label: 'Search',
-            icon: 'pi pi-fw pi-search',
-          },
-        ],
-      },
-      {
-        label: 'Shipments',
-        icon: 'pi pi-fw pi-envelope',
-        items: [
-          {
-            label: 'Tracker',
-            icon: 'pi pi-fw pi-compass',
-          },
-          {
-            label: 'Map',
-            icon: 'pi pi-fw pi-map-marker',
-          },
-          {
-            label: 'Manage',
-            icon: 'pi pi-fw pi-pencil',
           },
         ],
       },
       {
         label: 'Profile',
-        icon: 'pi pi-fw pi-user',
+        icon: 'pi pi-fw pi-list',
         items: [
           {
-            label: 'Settings',
-            icon: 'pi pi-fw pi-cog',
+            label: 'View Profile',
+            icon: 'pi pi-fw pi-calendar-plus',
           },
           {
-            label: 'Billing',
-            icon: 'pi pi-fw pi-file',
+            label: 'Logout',
+            icon: 'pi pi-fw pi-sign-out',
+            routerLink: '/login',
           },
         ],
-      },
-      { separator: true },
-      {
-        label: 'Quit',
-        icon: 'pi pi-fw pi-sign-out',
       },
     ];
   }
