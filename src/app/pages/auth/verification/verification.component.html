@@ -1,0 +1,33 @@
+<div class="flex">
+    <div class="authpicture">
+       
+    </div> 
+    <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
+        <div style="width: 500px; height: 500px;" class="flex flex-column justify-content-around align-items-center">
+            <div class="titlelogin">VERIFICATION CODE</div>
+            <div class="flex flex-column">
+                <label for="email">Enter your verification code</label>
+                <span class="p-input-icon-right">
+                    <i class="pi pi-lock"></i>
+                    <input type="text" pInputText placeholder="verification code" class="inputstyle" />
+                </span>
+            </div>
+
+            <div class="w-full">
+                <button pButton pRipple label="Send" class="p-button-rounded button-signin" routerLink="/detail"></button>
+            </div>
+                <p-timeline [value]="event" layout="horizontal" align="top" class="w-full">
+                    <ng-template pTemplate="marker" let-event>
+                        <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+                            <i [ngClass]="event.icon"></i>
+                        </span>
+                    </ng-template>
+                    <ng-template pTemplate="content" let-event>
+                        {{event.status}}
+                    </ng-template>
+                </p-timeline>
+        </div>
+       
+       
+    </div>
+</div>
