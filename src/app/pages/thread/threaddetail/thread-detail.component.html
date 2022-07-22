@@ -1,0 +1,33 @@
+<div class="pl-5 mt-6 pr-5">
+    <div class="mt-5">
+        <button pButton pRipple type="button" icon="pi pi-arrow-left" class="p-button-rounded p-button-danger" routerLink="/threads"></button>
+        <div class="mb-5 flex align-items-center justify-content-between w-16rem">
+            <i class="pi pi-bars"></i>
+            <h2>List Thread Detail</h2>
+        </div>
+        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listThreadDetail" class="glasses">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>No</th>
+                    <th>Code</th>
+                    <th>Photo</th>
+                    <th>User</th>
+                    <th>Is Active</th>
+                 
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-list let-i="rowIndex">
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{list.code}}</td>
+                    <td>{{list.photo}}</td>
+                    <td>{{list.user}}</td>
+                    <td>
+                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+
+</div>

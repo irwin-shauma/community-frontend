@@ -21,6 +21,36 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/article/article.module').then((m) => m.ArticleModule),
   },
+  {
+    path: 'payment',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/payment/payment.module').then((m) => m.PaymentModule),
+  },
+  {
+    path: 'users',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/user/user.module').then((m) => m.UserModule),
+  },
+  {
+    path: 'events',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/event/event.module').then((m) => m.EventModule),
+  },
+  {
+    path: 'threads',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/thread/thread.module').then((m) => m.ThreadModule),
+  },
+  {
+    path: 'roles',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/role/role.module').then((m) => m.RoleModule),
+  },
 ];
 
 @NgModule({

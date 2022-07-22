@@ -5,13 +5,12 @@
     </div>
 
     <div class="mt-5">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listArticle" class="glasses">
+        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listRole" class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>
                     <th>Code</th>
-                    <th>Title</th>
-                    <th>Photo</th>
+                    <th>Name Role</th>
                     <th>Is Active</th>
                     <th>Action</th>
                 </tr>
@@ -20,8 +19,7 @@
                 <tr>
                     <td>{{i+1}}</td>
                     <td>{{list.code}}</td>
-                    <td>{{list.title}}</td>
-                    <td>{{list.photo}}</td>
+                    <td>{{list.name}}</td>
                     <td>
                         <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
                     </td>
