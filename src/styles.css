@@ -16,13 +16,16 @@ body{
 
 
 .glasses{
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    /* box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
-    border: 1px solid rgba(255, 255, 255, 0.3); 
-/* 
-    background: linear-gradient(100.1deg, #FFFFFF 2.1%, rgba(255, 255, 255, 0) 101.11%);
+    border: 1px solid rgba(255, 255, 255, 0.3);  */
+
+    background: linear-gradient(131.91deg, #FFFFFF 5.38%, rgba(255, 255, 255, 0.759921) 31.76%, rgba(255, 255, 255, 0.553999) 48.39%, rgba(255, 255, 255, 0.32716) 68.63%, rgba(255, 255, 255, 0) 100%);
 box-shadow: 0px 4px 4px -1px rgba(0, 0, 0, 0.25);
-backdrop-filter: blur(40px); */
+backdrop-filter: blur(40px);
+/* Note: backdrop-filter has minimal browser support */
+
+border-radius: 52px;
 
 }
