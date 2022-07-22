@@ -1,0 +1,38 @@
+<div class="p-8">
+    <div class="mb-5 flex align-items-center justify-content-between w-12rem">
+        <i class="pi pi-bars"></i>
+        <h2>List Payment</h2>
+    </div>
+    <form action="">
+        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listHistoryPayment" class="glasses">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>No</th>
+                    <th>Code</th>
+                    <th>User</th>
+                    <th>Detail</th>
+                    <th>Price</th>
+                    <th>Is Active</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-list let-i="rowIndex">
+                <tr>
+                    <td>{{i+1}}</td>
+                    <td>{{list.code}}</td>
+                    <td>{{list.user}}</td>
+                    <td>
+                      {{list.event}}
+                    </td>
+                    <td>
+                      {{list.price}}
+                    </td>
+                    <td>
+                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        
+    </form>
+
+</div>
