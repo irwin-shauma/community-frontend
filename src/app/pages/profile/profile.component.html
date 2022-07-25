@@ -1,0 +1,57 @@
+<div class="p-8">
+    <div class="card">
+        <p-tabView [style]="{'color':'red'}">
+            <p-tabPanel header="Edit Profiles" leftIcon="pi pi-user-edit" >
+     
+                <div class="flex p-8 justify-content-around">
+                    <div class="profile bg-green-300">
+
+                    </div>
+                    <div class="flex flex-column align-items-center justify-content-around">
+                        <div>
+                            <h3>Fullname</h3>
+                            <input type="text" pInputText class="inputstyle">
+                        </div>
+                        <div>
+                            <h3>Company</h3>
+                            <input type="text" pInputText class="inputstyle">
+                        </div>
+                        <div>
+                            <h3>Industry</h3>
+                            <input type="text" pInputText class="inputstyle">
+                        </div>
+                        <div>
+                            <h3>Position</h3>
+                            <input type="text" pInputText class="inputstyle">
+                        </div>
+                        <div class="flex justify-content-end w-full">
+                            <button pButton label="Save"></button>
+                        </div>
+                    </div>
+                </div>
+          
+            </p-tabPanel>
+            <p-tabPanel header="Change Password" leftIcon="pi pi-unlock">
+                <div class="p-8 flex flex-column justify-content-between h-full align-items-center" >
+                    <div>
+                        <h3>Old Password</h3>
+                        <input type="password" pInputText class="inputpassword">
+                    </div>
+                    <div>
+                        <h3>New Password</h3>
+                        <input type="password" pInputText class="inputpassword">
+                    </div>
+                    <div>
+                        <h3>Confirm Password</h3>
+                        <input type="password" pInputText class="inputpassword">
+                    </div>
+                    <div class="flex w-full justify-content-end">
+                        <button pButton label="Save"></button>
+                    </div>
+                </div>
+
+            
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

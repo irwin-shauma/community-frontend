@@ -52,6 +52,20 @@ const routes: Routes = [
       import('./pages/role/role.module').then((m) => m.RoleModule),
   },
   {
+    path: 'threadtypes',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/threadtype/threadtype.module').then(
+        (m) => m.ThreadTypeModule
+      ),
+  },
+  {
+    path: 'profiles',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then((m) => m.ProfileModule),
+      },
+      {
     path: 'premium-types',
     component: NavbarComponent,
     loadChildren: () =>

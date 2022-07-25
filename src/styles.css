@@ -29,3 +29,7 @@ backdrop-filter: blur(40px);
 border-radius: 52px;
 
 }
+
+.mainhome{
+    width: 200vh;
+}
