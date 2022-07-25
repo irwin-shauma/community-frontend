@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
   tieredItems!: MenuItem[];
   profile!: MenuItem[];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   logout(): void {
     localStorage.clear();
@@ -50,14 +50,23 @@ export class NavbarComponent implements OnInit {
             label: 'Thread Type',
             icon: 'pi pi-fw pi-sort',
             routerLink: '/threadtypes',
-},
-{
+          },
+          {
             label: 'Premium Types',
             icon: 'pi pi-fw pi-bolt',
             routerLink: '/premium-types',
           },
+          {
+            label: 'Event Types',
+            icon: 'pi pi-fw pi-bolt',
+            routerLink: '/event-types'
+          },
         ],
       },
+      {
+        label : 'Premium',
+        routerLink: '/premiums'
+      }
     ];
     this.profile = [
       {
