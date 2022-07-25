@@ -70,12 +70,18 @@ const routes: Routes = [
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/profile/profile.module').then((m) => m.ProfileModule),
-      },
-      {
+  },
+  {
     path: 'premium-types',
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/premium-type/premium-type.module').then((m) => m.PremiumTypeModule),
+  },
+  {
+    path: 'premiums',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/premium/premium.module').then((m) => m.PremiumModule),
   },
 ];
 
