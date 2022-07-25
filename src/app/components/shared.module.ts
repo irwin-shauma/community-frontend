@@ -9,9 +9,10 @@ import { AvatarModule } from 'primeng/avatar';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, FooterComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -25,6 +26,6 @@ import { MenuModule } from 'primeng/menu';
     SplitButtonModule,
     MenuModule,
   ],
-  exports: [NavbarComponent, RouterModule],
+  exports: [NavbarComponent, RouterModule, FooterComponent],
 })
 export class SharedModule {}
