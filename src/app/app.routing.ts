@@ -51,6 +51,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/role/role.module').then((m) => m.RoleModule),
   },
+  {
+    path: 'event-types',
+    component: NavbarComponent,
+    loadChildren: ()=>
+    import('./pages/eventtype/eventtype.module').then((m) => m.EventTypeModule)
+  }
 ];
 
 @NgModule({
