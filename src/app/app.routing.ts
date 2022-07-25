@@ -11,6 +11,11 @@ const routes: Routes = [
       import('./pages/home/home.module').then((m) => m.HomeModule),
   },
   {
+    path: 'homes',
+    component: NavbarComponent,
+    loadChildren: () => import('./pages/homepage/homepage.module').then((m) => m.HomepageModule),
+  },
+  {
     path: '',
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
@@ -54,8 +59,8 @@ const routes: Routes = [
   {
     path: 'event-types',
     component: NavbarComponent,
-    loadChildren: ()=>
-    import('./pages/eventtype/eventtype.module').then((m) => m.EventTypeModule)
+    loadChildren: () =>
+      import('./pages/eventtype/eventtype.module').then((m) => m.EventTypeModule)
   },
   {
     path: 'threadtypes',
@@ -70,8 +75,8 @@ const routes: Routes = [
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/profile/profile.module').then((m) => m.ProfileModule),
-      },
-      {
+  },
+  {
     path: 'premium-types',
     component: NavbarComponent,
     loadChildren: () =>
@@ -83,4 +88,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes), SharedModule],
   exports: [RouterModule],
 })
-export class AppRouting {}
+export class AppRouting { }
