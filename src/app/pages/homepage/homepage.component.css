@@ -1,0 +1,31 @@
+.title {
+    font-size: 64px;
+}
+
+.subtitle {
+    font-size: 20px;
+    color: #2C2A2B;
+    opacity: 0.7;
+    width: 500px;
+}
+
+.list-title {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+.list-see-all{
+    font-size: 20px;
+    font-weight: 300;
+    opacity: 0.8;
+}
+
+.card-title{
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.card-content{
+    font-size: 13px;
+    font-weight: 400;
+}
