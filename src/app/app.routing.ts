@@ -57,7 +57,7 @@ const routes: Routes = [
     loadChildren: ()=>
     import('./pages/eventtype/eventtype.module').then((m) => m.EventTypeModule)
   },
-  }
+  {
     path: 'threadtypes',
     component: NavbarComponent,
     loadChildren: () =>
