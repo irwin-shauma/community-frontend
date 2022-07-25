@@ -51,6 +51,12 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/role/role.module').then((m) => m.RoleModule),
   },
+  {
+    path: 'premium-types',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/premium-type/premium-type.module').then((m) => m.PremiumTypeModule),
+  },
 ];
 
 @NgModule({
