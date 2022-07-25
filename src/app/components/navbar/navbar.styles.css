@@ -5,3 +5,36 @@
 h3{
     color: #FD4848;
 }
+
+.footer{
+    background-color: #F6F9FE;
+}
+
+.company-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #FD4848;
+}
+
+.description{
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.social-media {
+    font-size: 18px;
+    font-weight: 600;
+    color: #595959;
+}
+
+.menu-item {
+    color: #595959;
+}
+
+.company{
+    color: #FD4848;
+}
+
+.year {
+    color: #9E9E9E;
+}
