@@ -11,8 +11,9 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
 import { DividerModule } from 'primeng/divider';
 
+
 @NgModule({
-  declarations: [NavbarComponent],
+  declarations: [NavbarComponent, FooterComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -27,6 +28,6 @@ import { DividerModule } from 'primeng/divider';
     MenuModule,
     DividerModule
   ],
-  exports: [NavbarComponent, RouterModule],
+  exports: [NavbarComponent, RouterModule, FooterComponent],
 })
 export class SharedModule { }
