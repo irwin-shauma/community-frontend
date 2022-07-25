@@ -7,6 +7,8 @@ import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
 import { ToolbarModule } from 'primeng/toolbar';
+import { SplitButtonModule } from 'primeng/splitbutton';
+import { MenuModule } from 'primeng/menu';
 
 @NgModule({
   declarations: [NavbarComponent],
@@ -19,6 +21,9 @@ import { ToolbarModule } from 'primeng/toolbar';
     AvatarModule,
     ButtonModule,
     ToolbarModule,
+    AvatarModule,
+    SplitButtonModule,
+    MenuModule,
   ],
   exports: [NavbarComponent, RouterModule],
 })

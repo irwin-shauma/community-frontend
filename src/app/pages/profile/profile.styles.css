@@ -1,0 +1,28 @@
+.avatar{
+    height: 100px;
+    width: 100px;
+    background-color: aqua;
+}
+
+.profile{
+    background-image: url('./../../../assets/unnamed.png');
+    width: 400px;
+    height: 400px;
+    background-size: cover;
+    border-radius: 50%;
+
+}
+
+.inputstyle{
+    background-color: #CFCFCF;
+    border-radius: 30px;
+    border: #BC7682 1px solid;
+    width: 500px;
+}
+
+.inputpassword{
+    background-color: #CFCFCF;
+    border-radius: 30px;
+    border: #BC7682 1px solid;
+    width:1000px;
+}
