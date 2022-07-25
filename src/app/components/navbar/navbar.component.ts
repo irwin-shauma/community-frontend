@@ -63,6 +63,10 @@ export class NavbarComponent implements OnInit {
           },
         ],
       },
+      {
+        label : 'Premium',
+        routerLink: '/premiums'
+      }
     ];
     this.profile = [
       {

@@ -1,0 +1,59 @@
+<div class="p-8">
+    <div class="card">
+        <p-tabView class="border-circle">
+            <p-tabPanel header="Premium" leftIcon="pi pi-money-bill">
+
+                <div class="flex flex-column justify-content-start">
+                    <div>
+                        <h3>Benefit : </h3>
+                    </div>
+                    <div>
+                        <p>Get Unlock premium thread</p>
+                    </div>
+                </div>
+
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
+<div class="flex flex-row pl-8 pr-8">
+
+    <p-card class="flex flex-column col-4 justify-content-center align-items-center text-center" [style]="{'width': '10rem', 'height' : '10rem'}">
+        Premium 6 Bulan
+    </p-card>
+
+    <p-card class="flex flex-column  col-4 justify-content-center align-items-center text-center" [style]="{'width': '20rem', 'height' : '20rem'}">
+        Premium 12 Bulan
+    </p-card>
+
+    <p-card class="flex flex-column  col-4 justify-content-center align-items-center text-center" [style]="{'width': '10rem', 'height' : '10rem'}">
+        Premium 1 Bulan
+    </p-card>
+
+
+</div>
+
+
+<div class="p-8">
+    <div class="card border-2">
+        <p-tabView class="border-circle">
+            <p-tabPanel header="Form Input" leftIcon="pi pi-list">
+
+                <div class="flex flex-column justify-content-start">
+                    <h4>Premium choose</h4>
+                    <p-dropdown class="w-full mt-3">
+                    </p-dropdown>
+                </div>
+
+                <div class="flex flex-column justify-content-start mt-3">
+                    <h4>Evidence Of Transfer</h4>
+                    <p-fileUpload mode="basic" class="w-full mt-3" chooseLabel="Browse"> </p-fileUpload>
+                </div>
+
+                <div class="flex justify-content-end mt-3">
+                    <button pButton label="Submit"></button>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>
