@@ -11,7 +11,7 @@ export class NavbarComponent implements OnInit {
   dataLogin?: string | null;
 
   tieredItems!: MenuItem[];
-
+  profile!: MenuItem[];
 
   constructor(private router: Router) {}
 
@@ -45,19 +45,32 @@ export class NavbarComponent implements OnInit {
             icon: 'pi pi-fw pi-user',
             routerLink: '/roles',
           },
+          {
+
+            label: 'Thread Type',
+            icon: 'pi pi-fw pi-sort',
+            routerLink: '/threadtypes',
+},
+{
+            label: 'Premium Types',
+            icon: 'pi pi-fw pi-bolt',
+            routerLink: '/premium-types',
+          },
         ],
       },
+    ];
+    this.profile = [
       {
-        label: 'Profile',
-        icon: 'pi pi-fw pi-list',
+        label: 'salman | admin',
         items: [
           {
             label: 'View Profile',
-            icon: 'pi pi-fw pi-calendar-plus',
+            icon: 'pi pi-fw pi-pencil',
+            routerLink: '/profiles',
           },
           {
             label: 'Logout',
-            icon: 'pi pi-fw pi-sign-out',
+            icon: 'pi pi-fw pi-power-off',
             routerLink: '/login',
           },
         ],

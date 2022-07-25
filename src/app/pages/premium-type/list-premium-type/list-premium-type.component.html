@@ -1,16 +1,16 @@
 <div class="pl-5 mt-6 pr-5">
     <div class="flex w-16rem justify-content-between">
-        <button pButton label="new" icon="pi pi-plus" style="background-color: #22C55E;" routerLink="/roles/create"></button>
-        <button pButton label="delete" icon="pi pi-trash" style="background-color: #F38C8D;"></button>
+        <button pButton label="new" icon="pi pi-plus" style="background-color: #22C55E;" routerLink="/premium-types/create"></button>
     </div>
 
     <div class="mt-5">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listRole" class="glasses">
+        <p-table [showCurrentPageReport]="true" responsiveLayout="scroll" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listPremium" class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>
                     <th>Code</th>
-                    <th>Name Role</th>
+                    <th>Price</th>
+                    <th>Duration</th>
                     <th>Is Active</th>
                     <th>Action</th>
                 </tr>
@@ -19,12 +19,13 @@
                 <tr>
                     <td>{{i+1}}</td>
                     <td>{{list.code}}</td>
-                    <td>{{list.name}}</td>
+                    <td>{{list.price}}</td>
+                    <td>{{list.duration}} Month</td>
                     <td>
-                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox [binary]="true" inputId="binary" [disabled]="true"></p-checkbox>
                     </td>
                     <td class="flex">
-                        <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" routerLink="/roles/edit"></button>
+                        <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" routerLink="/premium-types/edit"></button>
                         <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm()"></button>
                     </td>
                 </tr>

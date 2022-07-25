@@ -56,7 +56,27 @@ const routes: Routes = [
     component: NavbarComponent,
     loadChildren: ()=>
     import('./pages/eventtype/eventtype.module').then((m) => m.EventTypeModule)
+  },
   }
+    path: 'threadtypes',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/threadtype/threadtype.module').then(
+        (m) => m.ThreadTypeModule
+      ),
+  },
+  {
+    path: 'profiles',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/profile/profile.module').then((m) => m.ProfileModule),
+      },
+      {
+    path: 'premium-types',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/premium-type/premium-type.module').then((m) => m.PremiumTypeModule),
+  },
 ];
 
 @NgModule({

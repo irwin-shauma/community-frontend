@@ -1,0 +1,31 @@
+<div class="p-5">
+    <div>
+        <h2 class="font-medium">Edit Premium Type</h2>
+    </div>
+    <div class="glasses p-5 border-round h-30rem">
+        <button pButton pRipple label="back" icon="pi pi-arrow-left" class="bg-red-500" styleClass="p-button-sm"
+            routerLink="/premium-types"></button>
+
+        <form class="pt-5 h-20rem">
+            <div class="grid">
+                <div class="md:col-4">
+                    <div class="flex flex-column mb-4">
+                        <label for="">Price <span class="text-red-500">*</span></label>
+                        <input pInputText class="inputstyle">
+                    </div>
+                    <div class="flex flex-column mb-4">
+                        <label for="">Duration(Month) <span class="text-red-500">*</span></label>
+                        <input pInputText class="inputstyle">
+                    </div>
+                    <div class="flex flex-column">
+                        <label>Is Active <span class="text-red-500">*</span></label>
+                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                    </div>
+                </div>
+            </div>
+            <div class="flex justify-content-end">
+                <p-button label="Submit" styleClass="p-button-sm"></p-button>
+            </div>
+        </form>
+    </div>
+</div>
