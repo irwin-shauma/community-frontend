@@ -45,6 +45,11 @@ export class NavbarComponent implements OnInit {
             icon: 'pi pi-fw pi-user',
             routerLink: '/roles',
           },
+          {
+            label: 'Premium Types',
+            icon: 'pi pi-fw pi-bolt',
+            routerLink: '/premium-types',
+          },
         ],
       },
       {
