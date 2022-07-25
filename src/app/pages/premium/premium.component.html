@@ -23,7 +23,7 @@
     </p-card>
 
     <p-card class="flex flex-column  col-4 justify-content-center align-items-center text-center" [style]="{'width': '20rem', 'height' : '20rem'}">
-        Premium 12 Bulan
+        <p class="border-2" >Premium 12 Bulan</p>
     </p-card>
 
     <p-card class="flex flex-column  col-4 justify-content-center align-items-center text-center" [style]="{'width': '10rem', 'height' : '10rem'}">
@@ -35,14 +35,17 @@
 
 
 <div class="p-8">
-    <div class="card border-2">
+    <div class="card">
         <p-tabView class="border-circle">
             <p-tabPanel header="Form Input" leftIcon="pi pi-list">
 
                 <div class="flex flex-column justify-content-start">
-                    <h4>Premium choose</h4>
-                    <p-dropdown class="w-full mt-3">
-                    </p-dropdown>
+                    <div class="">
+                        <h4>Premium choose</h4>
+                        <p-dropdown class="w-full mt-3" [style]="{'width': '60rem'}">
+                        </p-dropdown>
+                    </div>
+
                 </div>
 
                 <div class="flex flex-column justify-content-start mt-3">
