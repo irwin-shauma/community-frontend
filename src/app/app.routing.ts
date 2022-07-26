@@ -106,6 +106,16 @@ const routes: Routes = [
     path: '**',
     component: NotFoundComponent,
   },
+{
+    path: 'article-members',
+    loadChildren: () =>
+    import('./pages/articlemember/article-member.module').then((m) => m.ArticleMemberModule)
+  },
+  {
+    path: 'event-members',
+    loadChildren: () =>
+    import('./pages/eventmember/event-member.module').then((m) => m.EventMemberModule)
+  }
 ];
 
 @NgModule({
