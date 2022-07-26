@@ -1,0 +1,22 @@
+.inputstyle{
+    background-color: #CFCFCF;
+    border-radius: 50px;
+    border: #BC7682 1px solid;
+    width: 500px;
+}
+
+#card-article{
+    border-radius: 20px;
+}
+
+#card-image img{
+    border-radius: 20px;
+    object-fit: cover;
+}
+
+#icon{
+    color: rgb(180, 19, 19);
+}
+#article{
+    color: black;
+}
