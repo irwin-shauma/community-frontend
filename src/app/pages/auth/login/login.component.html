@@ -3,32 +3,36 @@
        
     </div> 
     <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
+
         <div style="width: 500px; height: 400px;" class="flex flex-column justify-content-around align-items-center">
-            <div class="titlelogin">WELCOME BACK</div>
-            <div class="flex flex-column">
-                <label for="email">Email</label>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-envelope"></i>
-                    <input type="text" pInputText placeholder="Email" class="inputstyle" />
-                </span>
-            </div>
-            
-            <div class="flex flex-column">
-                <label for="password">Password</label>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-lock"></i>
-                    <input type="password" pInputText placeholder="Password" class="inputstyle" />
-                </span>
-            </div>
-
-            <div class="flex justify-content-between w-full">
-                <p>don't have an account? <span class="font-bold cursor-pointer " routerLink="/register">Sign Up</span></p>
-                <p>forget password?</p>
-            </div>
-
-            <div class="w-full">
-                <button pButton pRipple label="Sign In" class="p-button-rounded button-signin" routerLink="/home"></button>
-            </div>
+            <form (ngSubmit)="onlogin()">
+                <div class="titlelogin">WELCOME BACK</div>
+                <div class="flex flex-column">
+                    <label for="email">Email</label>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-envelope"></i>
+                        <input type="email" [(ngModel)]="loginReq.email" pInputText placeholder="Email" name="email" class="inputstyle" />
+                    </span>
+                </div>
+                
+                <div class="flex flex-column">
+                    <label for="password">Password</label>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-lock"></i>
+                        <input type="password" pInputText placeholder="Password" name="password" [(ngModel)] = "loginReq.password" class="inputstyle" />
+                    </span>
+                </div>
+    
+                <div class="flex justify-content-between w-full">
+                    <p>don't have an account? <span class="font-bold cursor-pointer " routerLink="/register">Sign Up</span></p>
+                    <p>forget password?</p>
+                </div>
+    
+                <div class="w-full">
+                    <button pButton pRipple label="Sign In" class="p-button-rounded button-signin" type="submit"></button>
+                </div>
+            </form>
+ 
         </div>
        
        

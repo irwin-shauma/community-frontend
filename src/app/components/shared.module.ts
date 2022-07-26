@@ -13,7 +13,7 @@ import { DividerModule } from 'primeng/divider';
 
 
 @NgModule({
-  declarations: [NavbarComponent, FooterComponent],
+  declarations: [NavbarComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -26,8 +26,8 @@ import { DividerModule } from 'primeng/divider';
     AvatarModule,
     SplitButtonModule,
     MenuModule,
-    DividerModule
+    DividerModule,
   ],
-  exports: [NavbarComponent, RouterModule, FooterComponent],
+  exports: [NavbarComponent, RouterModule],
 })
-export class SharedModule { }
+export class SharedModule {}

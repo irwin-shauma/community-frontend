@@ -8,6 +8,11 @@ import { BlockUIModule } from 'primeng/blockui';
 import { PanelModule } from 'primeng/panel';
 import { ThreadMemberDetailComponent } from './threaddetail/thread-detail.component';
 import { InputTextareaModule } from 'primeng/inputtextarea';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { InputTextModule } from 'primeng/inputtext';
+import { CalendarModule } from 'primeng/calendar';
+import { FileUploadModule } from 'primeng/fileupload';
 
 @NgModule({
   imports: [
@@ -18,6 +23,12 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
     BlockUIModule,
     PanelModule,
     InputTextareaModule,
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    InputTextModule,
+    CalendarModule,
+    FileUploadModule,
   ],
   declarations: [ThreadMemberComponent, ThreadMemberDetailComponent],
   exports: [ThreadMemberComponent, ThreadMemberDetailComponent],
