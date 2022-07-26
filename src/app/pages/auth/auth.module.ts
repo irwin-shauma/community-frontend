@@ -10,6 +10,7 @@ import { TimelineModule } from 'primeng/timeline';
 import { CommonModule } from '@angular/common';
 import { DetailComponent } from './detail/detail.component';
 import { VerificationComponent } from './verification/verification.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { VerificationComponent } from './verification/verification.component';
     RippleModule,
     TimelineModule,
     CommonModule,
+    FormsModule,
   ],
   declarations: [
     LoginComponent,

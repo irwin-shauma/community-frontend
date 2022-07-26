@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'primeng/api';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { NotFoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
   {
@@ -13,7 +14,8 @@ const routes: Routes = [
   {
     path: 'homes',
     component: NavbarComponent,
-    loadChildren: () => import('./pages/homepage/homepage.module').then((m) => m.HomepageModule),
+    loadChildren: () =>
+      import('./pages/homepage/homepage.module').then((m) => m.HomepageModule),
   },
   {
     path: '',
@@ -60,7 +62,9 @@ const routes: Routes = [
     path: 'event-types',
     component: NavbarComponent,
     loadChildren: () =>
-      import('./pages/eventtype/eventtype.module').then((m) => m.EventTypeModule)
+      import('./pages/eventtype/eventtype.module').then(
+        (m) => m.EventTypeModule
+      ),
   },
   {
     path: 'threadtypes',
@@ -99,6 +103,10 @@ const routes: Routes = [
       import('./pages/premium/premium.module').then((m) => m.PremiumModule),
   },
   {
+    path: '**',
+    component: NotFoundComponent,
+  },
+{
     path: 'article-members',
     loadChildren: () =>
     import('./pages/articlemember/article-member.module').then((m) => m.ArticleMemberModule)

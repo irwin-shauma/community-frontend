@@ -16,19 +16,24 @@
         </p-tabView>
     </div>
 </div>
-<div class="flex flex-row pl-8 pr-8">
+<div class="flex justify-content-around align-items-center pl-8 pr-8">
 
-    <p-card class="flex flex-column col-4 justify-content-center align-items-center text-center" [style]="{'width': '10rem', 'height' : '10rem'}">
-        Premium 6 Bulan
-    </p-card>
+   <div class="w-15rem h-15rem glasses flex flex-column justify-content-center align-items-center text-red-500">
+    <i class="pi pi-star-fill"></i>
+        <h3>600k/3 Month</h3>
+   </div>
 
-    <p-card class="flex flex-column  col-4 justify-content-center align-items-center text-center" [style]="{'width': '20rem', 'height' : '20rem'}">
-        <p class="border-2" >Premium 12 Bulan</p>
-    </p-card>
+   <div class="w-20rem h-20rem glasses flex flex-column justify-content-center align-items-center text-red-500">
+    <i class="pi pi-star-fill"></i>
+        <h3>1200k/36 Month</h3>
+   </div>
 
-    <p-card class="flex flex-column  col-4 justify-content-center align-items-center text-center" [style]="{'width': '10rem', 'height' : '10rem'}">
-        Premium 1 Bulan
-    </p-card>
+   <div class="w-15rem h-15rem glasses flex flex-column justify-content-center align-items-center text-red-500">
+    <i class="pi pi-star-fill"></i>
+        <h3>300k/1 Month</h3>
+   </div>
+
+
 
 
 </div>
@@ -39,12 +44,10 @@
         <p-tabView class="border-circle">
             <p-tabPanel header="Form Input" leftIcon="pi pi-list">
 
-                <div class="flex flex-column justify-content-start">
-                    <div class="">
-                        <h4>Premium choose</h4>
-                        <p-dropdown class="w-full mt-3" [style]="{'width': '60rem'}">
-                        </p-dropdown>
-                    </div>
+                <div class="flex flex-column justify-content-start w-full">
+                    <h4>Premium choose</h4>
+                    <p-dropdown class="wdrop mt-3" [style]="{'width':'1300px'}">
+                    </p-dropdown>
 
                 </div>
 
@@ -54,7 +57,7 @@
                 </div>
 
                 <div class="flex justify-content-end mt-3">
-                    <button pButton label="Submit"></button>
+                    <button pButton label="Submit" class="bg-red-500"></button>
                 </div>
             </p-tabPanel>
         </p-tabView>
