@@ -1,23 +1,39 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ConfirmationService } from 'primeng/api';
+import { Subscription } from 'rxjs';
+import { RoleData } from 'src/app/dto/Role/role-data';
+import { RoleFindAllRes } from 'src/app/dto/Role/role-find-all';
+import { RoleService } from 'src/app/service/role.service';
 
 @Component({
   selector: 'app-role-list',
   templateUrl: './role.component.html',
 })
-export class RoleListComponent {
-  constructor(private confirmationService: ConfirmationService) {}
+export class RoleListComponent implements OnInit {
+  idDeleted!: number;
+  roles: RoleFindAllRes = {} as RoleFindAllRes;
+  roleData: RoleData[] = [];
+  deleteSubsciption?: Subscription;
 
-  listRole = [
-    {
-      code: '213213',
-      name: 'Admin',
-    },
-    {
-      code: '213213',
-      name: 'Member',
-    },
-  ];
+  constructor(
+    private confirmationService: ConfirmationService,
+    private roleService: RoleService
+  ) {}
+
+  ngOnInit(): void {
+    this.roles.data = [];
+    this.initData();
+  }
+
+  initData(): void {
+    this.roleService.showAllRole().subscribe((result) => {
+      this.roles = result;
+    });
+  }
+
+  ondelete(id: number): void {
+    this.idDeleted = id;
+  }
 
   confirm() {
     this.confirmationService.confirm({
