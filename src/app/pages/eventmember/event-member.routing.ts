@@ -11,10 +11,6 @@ const routes: Routes = [
     component: EventHeaderComponent,
   },
   {
-    path: 'course',
-    component: CourseMemberComponent,
-  },
-  {
     path: 'details',
     component: EventDetailCompoenent,
   },
