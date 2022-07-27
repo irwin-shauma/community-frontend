@@ -20,11 +20,11 @@
                     <td>{{list.roleCode}}</td>
                     <td>{{list.roleName}}</td>
                     <td>
-                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary" [disabled]="true"></p-checkbox>
                     </td>
                     <td class="flex">
-                        <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" routerLink="/roles/edit"></button>
-                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm()"></button>
+                        <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" (click)="onUpdateById(list.id)"></button>
+                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm(list.id)"></button>
                     </td>
                 </tr>
             </ng-template>

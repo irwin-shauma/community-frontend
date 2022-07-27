@@ -14,7 +14,7 @@ const routes: Routes = [
     component: RoleCreateComponent,
   },
   {
-    path: 'edit',
+    path: ':id',
     component: RoleEditComponent,
   },
 ];

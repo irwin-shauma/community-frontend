@@ -7,15 +7,15 @@
         <button pButton label="back" icon="pi pi-arrow-left" class="bg-red-500" styleClass="p-button-sm" routerLink="/roles"></button>
         <div>
    <form class=" pt-5 h-10rem" (ngSubmit)="onsubmitrole()">
-    <div class="grid">
+    <div class="grid flex flex-column">
         <div class="col-6">
-            <div class="flex flex-column mb-4">
+            <div class="flex flex-column">
                 <label for="name">Name Role <span class="text-red-500">*</span></label>
                 <input pInputText class="inputstyle" id="name" name="roleName" [(ngModel)]="insertRoleReq.roleName">
             </div>
         </div>
         <div class="col-6">
-            <div class="flex flex-column mb-4">
+            <div class="flex flex-column">
                 <label for="code">Code Role <span class="text-red-500">*</span></label>
                 <input pInputText class="inputstyle" id="code" name="roleCode" [(ngModel)]="insertRoleReq.roleCode">
             </div>
@@ -23,8 +23,7 @@
     </div>
             <div  class="flex justify-content-end">
                 <p-button label="Submit" styleClass="p-button-sm" type="submit"></p-button>
-            </div>
-            {{insertRoleReq | json}}   
+            </div> 
         </form>
         </div>
      

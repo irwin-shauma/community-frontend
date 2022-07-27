@@ -11,11 +11,11 @@
         <div class="col-6">
             <div class="flex flex-column mb-4">
                 <label for="">Name Role <span class="text-red-500">*</span></label>
-                <input pInputText class="inputstyle">
+                <input pInputText name="roleName" class="inputstyle" [(ngModel)]="data.roleName">
             </div>
             <div class="flex flex-column">
-                <label>Is Active <span class="text-red-500">*</span></label>
-                <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                <label for="isActive">Is Active <span class="text-red-500">*</span></label>
+                <p-checkbox value="true" id="isActive" [binary]="true" name="isActive" [(ngModel)]="data.isActive"></p-checkbox>
             </div>
         </div>
     </div>

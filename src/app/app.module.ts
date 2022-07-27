@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppComponent } from './app.component';
 import { AppRouting } from './app.routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CommonModule } from '@angular/common';
 import { SharedModule } from './components/shared.module';
+import { CustomInterceptor } from './interceptor/custom.interceptor';
+import { MessageService } from 'primeng/api';
+import { ToastModule } from 'primeng/toast';
+import { ToastrModule } from 'ngx-toastr';
 
 @NgModule({
   declarations: [AppComponent],
@@ -16,10 +20,16 @@ import { SharedModule } from './components/shared.module';
     FormsModule,
     CommonModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
+    ToastrModule,
     BrowserAnimationsModule,
     SharedModule,
+    ToastModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi: true },
+    MessageService,
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
