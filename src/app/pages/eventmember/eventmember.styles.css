@@ -7,3 +7,17 @@
     font-size: 12px;
     font-weight: 400;
 }
+
+.card-title-detail{
+    font-size: 28px;
+    font-weight: 700;
+}
+
+.card-content-detail{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+#button{
+    size: 50px;
+}
