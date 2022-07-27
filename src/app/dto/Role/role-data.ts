@@ -2,6 +2,6 @@ export interface RoleData {
   id: string;
   roleName: string;
   roleCode: string;
-  isActive: string;
+  isActive: boolean;
   version: string;
 }

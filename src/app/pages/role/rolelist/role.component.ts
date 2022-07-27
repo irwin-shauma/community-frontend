@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { RoleData } from 'src/app/dto/Role/role-data';
@@ -12,12 +13,13 @@ import { RoleService } from 'src/app/service/role.service';
 export class RoleListComponent implements OnInit {
   idDeleted!: number;
   roles: RoleFindAllRes = {} as RoleFindAllRes;
-  roleData: RoleData[] = [];
+  roleData!: RoleData[];
   deleteSubsciption?: Subscription;
 
   constructor(
     private confirmationService: ConfirmationService,
-    private roleService: RoleService
+    private roleService: RoleService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -28,6 +30,7 @@ export class RoleListComponent implements OnInit {
   initData(): void {
     this.roleService.showAllRole().subscribe((result) => {
       this.roles = result;
+      this.roleData = result.data!;
     });
   }
 
@@ -35,10 +38,25 @@ export class RoleListComponent implements OnInit {
     this.idDeleted = id;
   }
 
-  confirm() {
+  delete(): void {
+    this.deleteSubsciption = this.roleService
+      .deleteRole(this.idDeleted)
+      .subscribe((result) => {
+        this.initData();
+      });
+  }
+
+  confirm(id: number): void {
+    this.idDeleted = id;
     this.confirmationService.confirm({
       message: 'Are you sure that you want to perform this action?',
-      accept: () => {},
+      accept: () => {
+        this.delete();
+      },
     });
+  }
+
+  onUpdateById(id: number): void {
+    this.router.navigateByUrl(`/roles/${id}`);
   }
 }
