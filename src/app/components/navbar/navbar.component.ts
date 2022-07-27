@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
+import { Role } from 'src/app/constant/role-constant';
+import { LoginService } from 'src/app/service/login.service';
 
 @Component({
   selector: 'app-navbar',
@@ -13,7 +15,7 @@ export class NavbarComponent implements OnInit {
   tieredItems!: MenuItem[];
   profile!: MenuItem[];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private loginService: LoginService) {}
 
   logout(): void {
     localStorage.clear();
@@ -25,6 +27,7 @@ export class NavbarComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.dataLogin = this.loginService.getRole();
     this.tieredItems = [
       {
         label: 'Master',
@@ -46,7 +49,6 @@ export class NavbarComponent implements OnInit {
             routerLink: '/roles',
           },
           {
-
             label: 'Thread Type',
             icon: 'pi pi-fw pi-sort',
             routerLink: '/threadtypes',
@@ -59,14 +61,42 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Event Types',
             icon: 'pi pi-fw pi-bolt',
-            routerLink: '/event-types'
+            routerLink: '/event-types',
           },
         ],
+        visible: this.dataLogin === Role.SUPERADMIN,
+      },
+
+      {
+        label: 'Home',
+        icon: 'pi pi-fw pi-home text-red-500',
+        routerLink: '/homes',
+        visible: this.dataLogin === Role.MEMBER,
       },
       {
-        label : 'Premium',
-        routerLink: '/premiums'
-      }
+        label: 'Article',
+        icon: 'pi pi-fw pi-book text-red-500',
+        routerLink: '/article-members',
+        visible: this.dataLogin == Role.MEMBER,
+      },
+      {
+        label: 'Thread',
+        icon: 'pi pi-fw pi-comments text-red-500',
+        routerLink: '/threads-main',
+        visible: this.dataLogin == Role.MEMBER,
+      },
+      {
+        label: 'Event',
+        icon: 'pi pi-fw pi-calendar text-red-500',
+        routerLink: '/event-members',
+        visible: this.dataLogin == Role.MEMBER,
+      },
+      {
+        label: 'Premium',
+        icon: 'pi pi-fw pi-star-fill text-red-500',
+        routerLink: '/premiums',
+        visible: this.dataLogin == Role.MEMBER,
+      },
     ];
     this.profile = [
       {
@@ -81,6 +111,9 @@ export class NavbarComponent implements OnInit {
             label: 'Logout',
             icon: 'pi pi-fw pi-power-off',
             routerLink: '/login',
+            command: () => {
+              this.logout();
+            },
           },
         ],
       },

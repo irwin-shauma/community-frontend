@@ -6,20 +6,19 @@ import { EventDetailCompoenent } from "./eventdetail/event-detail.component";
 import { EventHeaderComponent } from "./eventheader/event-header.component";
 
 const routes: Routes = [
-    {
-        path: 'event',
-        component: EventHeaderComponent
-    },
-    {
-        path: 'course',
-        component: CourseMemberComponent
-    },
-    {
-        path: 'details',
-        component: EventDetailCompoenent
-    },
-
-]
+  {
+    path: '',
+    component: EventHeaderComponent,
+  },
+  {
+    path: 'course',
+    component: CourseMemberComponent,
+  },
+  {
+    path: 'details',
+    component: EventDetailCompoenent,
+  },
+];
 
 @NgModule({
     imports: [RouterModule.forChild(routes)],

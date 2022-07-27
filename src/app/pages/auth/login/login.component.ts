@@ -1,6 +1,7 @@
 import { Component, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Role } from 'src/app/constant/role-constant';
 import { LoginReq } from 'src/app/dto/user/login-req';
 import { LoginService } from 'src/app/service/login.service';
 
@@ -19,7 +20,12 @@ export class LoginComponent implements OnDestroy {
       .login(this.loginReq)
       .subscribe((result) => {
         this.loginService.save(result);
-        this.router.navigateByUrl('/home');
+        console.log(result.data?.roleCode);
+        if (result.data?.roleCode == Role.SUPERADMIN) {
+          this.router.navigateByUrl('/home');
+        } else {
+          this.router.navigateByUrl('/homes');
+        }
       });
   }
 

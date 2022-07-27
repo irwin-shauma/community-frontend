@@ -9,27 +9,17 @@ import { ButtonModule } from 'primeng/button';
 import {ImageModule} from 'primeng/image';
 import { ArticleDetailComponent } from './articledetail/article-detail.component';
 
-
-
-
-
 @NgModule({
-    imports: [
-        CardModule,
-        ArticleMemberRouting,
-        TabViewModule,
-        AvatarModule,
-        InputTextModule,
-        ButtonModule,
-        ImageModule,
-
-
-    ],
-    declarations: [
-        ArticleHeaderComponent,
-        ArticleDetailComponent
-    ],
-    exports: [ArticleHeaderComponent,ArticleDetailComponent],
-
+  imports: [
+    ArticleMemberRouting,
+    CardModule,
+    TabViewModule,
+    AvatarModule,
+    InputTextModule,
+    ButtonModule,
+    ImageModule,
+  ],
+  declarations: [ArticleHeaderComponent, ArticleDetailComponent],
+  exports: [ArticleHeaderComponent, ArticleDetailComponent],
 })
-export class ArticleMemberModule{}
+export class ArticleMemberModule {}
