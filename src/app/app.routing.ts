@@ -103,19 +103,25 @@ const routes: Routes = [
       import('./pages/premium/premium.module').then((m) => m.PremiumModule),
   },
   {
-    path: '**',
-    component: NotFoundComponent,
-  },
-{
     path: 'article-members',
+    component: NavbarComponent,
     loadChildren: () =>
-    import('./pages/articlemember/article-member.module').then((m) => m.ArticleMemberModule)
+      import('./pages/articlemember/article-member.module').then(
+        (m) => m.ArticleMemberModule
+      ),
   },
   {
     path: 'event-members',
+    component: NavbarComponent,
     loadChildren: () =>
-    import('./pages/eventmember/event-member.module').then((m) => m.EventMemberModule)
-  }
+      import('./pages/eventmember/event-member.module').then(
+        (m) => m.EventMemberModule
+      ),
+  },
+  {
+    path: '**',
+    component: NotFoundComponent,
+  },
 ];
 
 @NgModule({

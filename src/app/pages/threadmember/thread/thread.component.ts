@@ -7,9 +7,7 @@ import { FormArray, FormControl, Validators } from '@angular/forms';
   styleUrls: ['./../thread.style.css'],
 })
 export class ThreadMemberComponent {
-  blocked: boolean = true;
   polling: boolean = false;
-  blockedDocument: boolean = true;
 
   pollingArray = new FormArray([new FormControl('', Validators.required)]);
 
