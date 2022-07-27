@@ -11,7 +11,7 @@ export class LoginService {
   constructor(private http: HttpClient) {}
 
   login(data: LoginReq): Observable<LoginRes> {
-    return this.http.post<LoginRes>('http://localhost:1234/users', data);
+    return this.http.post<LoginRes>('http://localhost:1234/login', data);
   }
 
   save(data: LoginRes): void {
