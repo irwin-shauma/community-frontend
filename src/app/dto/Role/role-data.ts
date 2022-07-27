@@ -1,7 +1,7 @@
-export interface RoleData{
-    id? : string
-    roleName? : string
-    roleCode? : string
-    isActive? : string
-    version? : string
+export interface RoleData {
+  id: string;
+  roleName: string;
+  roleCode: string;
+  isActive: string;
+  version: string;
 }

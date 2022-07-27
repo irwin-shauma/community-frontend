@@ -1,11 +1,10 @@
-<div class="pl-5 mt-6 pr-5">
+<div class="p-8 mt-6">
     <div class="flex w-16rem justify-content-between">
         <button pButton label="new" icon="pi pi-plus" style="background-color: #22C55E;" routerLink="/roles/create"></button>
-        <button pButton label="delete" icon="pi pi-trash" style="background-color: #F38C8D;"></button>
     </div>
 
     <div class="mt-5">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listRole" class="glasses">
+        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [value]="roleData" [rows]="10"  class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>
@@ -18,8 +17,8 @@
             <ng-template pTemplate="body" let-list let-i="rowIndex">
                 <tr>
                     <td>{{i+1}}</td>
-                    <td>{{list.code}}</td>
-                    <td>{{list.name}}</td>
+                    <td>{{list.roleCode}}</td>
+                    <td>{{list.roleName}}</td>
                     <td>
                         <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
                     </td>
