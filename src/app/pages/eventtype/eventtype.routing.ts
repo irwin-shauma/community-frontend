@@ -6,7 +6,7 @@ import { ListEventTypeComponent } from "./listeventtype/list-eventtype.component
 
 const routes: Routes = [
     {
-        path: 'list',
+        path: '',
         component: ListEventTypeComponent,
     },
     {

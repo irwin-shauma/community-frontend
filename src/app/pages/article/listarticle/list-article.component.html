@@ -5,11 +5,11 @@
     </div>
 
     <div class="mt-5">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listArticle" class="glasses">
+        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="articleHeaderData" class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>
-                    <th>Code</th>
+                    <!-- <th>Code</th> -->
                     <th>Title</th>
                     <th>Photo</th>
                     <th>Is Active</th>
@@ -19,15 +19,15 @@
             <ng-template pTemplate="body" let-list let-i="rowIndex">
                 <tr>
                     <td>{{i+1}}</td>
-                    <td>{{list.code}}</td>
+                    <!-- <td>{{list.articleHeaderCode}}</td> -->
                     <td>{{list.title}}</td>
                     <td>{{list.photo}}</td>
                     <td>
-                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary"></p-checkbox>
                     </td>
                     <td class="flex">
                         <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" routerLink="/article/edit"></button>
-                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm()"></button>
+                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm(list.id)"></button>
                     </td>
                 </tr>
             </ng-template>

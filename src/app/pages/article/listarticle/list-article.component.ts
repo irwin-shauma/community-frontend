@@ -1,50 +1,62 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ConfirmationService } from 'primeng/api';
+import { Subscription } from 'rxjs';
+import { ArticleHeaderData } from 'src/app/dto/article/article-data';
+import { ArticleHeaderFindAll } from 'src/app/dto/article/article-find-all';
+import { ArticleHeaderService } from 'src/app/service/article.service';
 
 @Component({
   selector: 'app-list-article',
   templateUrl: './list-article.component.html',
 })
-export class ListArticleComponent {
-  constructor(private confirmationService: ConfirmationService) {}
+export class ArticleHeaderListComponent implements OnInit{
+  idDeleted!: number;
+  articleHeaders: ArticleHeaderFindAll = {} as ArticleHeaderFindAll;
+  articleHeaderData!: ArticleHeaderData[];
+  deleteSubscription?: Subscription;
 
-  listArticle = [
-    {
-      code: '2321312',
-      title: 'example1',
-      photo: 'test',
-      isActive: 'true',
-    },
-    {
-      code: '2321312',
-      title: 'example2',
-      photo: 'test2',
-      isActive: 'true',
-    },
-    {
-      code: '2321312',
-      title: 'example3',
-      photo: 'test3',
-      isActive: 'true',
-    },
-    {
-      code: '2321312',
-      title: 'example4',
-      photo: 'test4',
-      isActive: 'true',
-    },
-    {
-      code: '2324141',
-      title: 'example5',
-      photo: 'test5',
-      isActive: 'true',
-    },
-  ];
+  constructor(
+    private confirmationService: ConfirmationService,
+    private articleHeaderService: ArticleHeaderService,
+    private router: Router) {}
 
-  confirm() {
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to perform this action?',
-      accept: () => {},
+  ngOnInit(): void{
+    this.articleHeaders.data = [];
+    this.initData();
+    
+  }
+
+  initData(): void{
+    this.articleHeaderService.showAllArticle().subscribe((result)=>{
+      this.articleHeaders = result;
+      this.articleHeaderData = result.data!;
     });
   }
+
+  ondelete(id: number): void{
+    this.idDeleted = id;
+  }
+
+  delete(): void{
+    this.deleteSubscription= this.articleHeaderService
+    .deleteArticle(this.idDeleted)
+    .subscribe((result) => {
+      this.initData
+    });
+  }
+
+  confirm(id: number): void {
+    this.idDeleted = id;
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to perform this action?',
+      accept: () => {
+        this.delete();
+      },
+    });
+  }
+
+  onUpdateById(id: number): void{
+    this.router.navigateByUrl(`/article-headers/${id}`);
+   }
 }

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ArticleRouting } from './article.routing';
-import { ListArticleComponent } from './listarticle/list-article.component';
+import { ArticleHeaderListComponent} from './listarticle/list-article.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -19,6 +19,8 @@ import { CreateArticleComponent } from './createarticle/create-article.component
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { EditArticleComponent } from './editarticle/edit-article.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   imports: [
@@ -38,13 +40,15 @@ import { EditArticleComponent } from './editarticle/edit-article.component';
     CheckboxModule,
     InputTextModule,
     InputTextareaModule,
+    FormsModule,
+    CommonModule
   ],
   declarations: [
-    ListArticleComponent,
+    ArticleHeaderListComponent,
     CreateArticleComponent,
     EditArticleComponent,
   ],
-  exports: [ListArticleComponent, CreateArticleComponent, EditArticleComponent],
+  exports: [ArticleHeaderListComponent , CreateArticleComponent, EditArticleComponent],
   providers: [ConfirmationService],
 })
 export class ArticleModule {}
