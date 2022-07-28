@@ -1,0 +1,39 @@
+<div class="p-8">
+    <div class="card">
+        <p-tabView [style]="{'color':'red'}">
+            <p-tabPanel header="View Profiles" leftIcon="pi pi-user-edit" >
+            
+                    <div class="flex p-8 justify-content-center gap-8">
+                        <div *ngIf="data.fileId === null">
+                            <img src="./../../../../assets/unnamed.png" alt="profile" width="400" height="400" class="border-round">
+                        </div>
+                        <div *ngIf="data.fileId !== null">
+                            <img src="http://localhost:1234/files/{{data.fileId}}" alt="profile" width="400" height="400" class="border-round">
+                        </div>
+                        <div class="flex flex-column glasses p-8 border-1  justify-content-around">
+                            <button pButton pRipple type="button" icon="pi pi-pencil" (click)="updateById(data.id!)" class="p-button-rounded p-button-warning p-button-outlined editprofile"></button>
+                            <div class="flex gap-3">
+                                <h3 class="font-normal">Fullname:</h3>
+                                <h3>{{data.fullName}}</h3>
+                            </div>
+                            <div class="flex gap-3">
+                                <h3 class="font-normal">Company:</h3>
+                               <h3>{{data.company}}</h3>
+                            </div>
+                            <div class="flex gap-3">
+                                <h3 class="font-normal">Industry :</h3>
+                               <h3>{{data.industry}}</h3>
+                            </div>
+                            <div class="flex gap-3">
+                                <h3 class="font-normal">Position :</h3>
+                               <h3>{{data.position}}</h3>
+                            </div>
+                        </div>
+                    </div>
+             
+              
+          
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+</div>

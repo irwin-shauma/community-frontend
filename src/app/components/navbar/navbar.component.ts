@@ -26,6 +26,10 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
+  updateById(id: string): void {
+    this.router.navigateByUrl(`/profiles/view/${id}`);
+  }
+
   ngOnInit(): void {
     this.dataLogin = this.loginService.getRole();
     this.tieredItems = [
@@ -100,12 +104,15 @@ export class NavbarComponent implements OnInit {
     ];
     this.profile = [
       {
-        label: 'salman | admin',
+        label: this.loginService.getData()?.data?.email,
         items: [
           {
             label: 'View Profile',
             icon: 'pi pi-fw pi-pencil',
-            routerLink: '/profiles',
+            routerLink: '/profiles/view',
+            command: () => {
+              this.updateById(this.loginService.getData()?.data?.id!);
+            },
           },
           {
             label: 'Logout',

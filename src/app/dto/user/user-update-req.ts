@@ -1,7 +1,10 @@
 export interface UserUpdateReq {
   id?: string;
-  userId?: string;
-  roleId?: string;
-  verificationId?: string;
-  password?: string;
+  fullName?: string;
+  company?: string;
+  industry?: string;
+  position?: string;
+  fileId?: string;
+  fileName?: string;
+  fileExtension?: string;
 }
