@@ -1,4 +1,6 @@
+import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { FormsModule } from "@angular/forms";
 import { ConfirmationService } from "primeng/api";
 import { ButtonModule } from "primeng/button";
 import { CheckboxModule } from "primeng/checkbox";
@@ -37,6 +39,8 @@ import { ListEventTypeComponent } from "./listeventtype/list-eventtype.component
         ConfirmDialogModule,
         CheckboxModule,
         InputTextModule,
+        FormsModule,
+        CommonModule
     ],
     declarations: [
         ListEventTypeComponent,
