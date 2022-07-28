@@ -21,7 +21,8 @@
                     <td>{{i+1}}</td>
                     <!-- <td>{{list.articleHeaderCode}}</td> -->
                     <td>{{list.title}}</td>
-                    <td>{{list.photo}}</td>
+                    <td> <img src="http://localhost:1234/files/{{list.fileId}}" alt="profile" width="50" height="50" class="border-round"></td>
+                    
                     <td>
                         <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary"></p-checkbox>
                     </td>
