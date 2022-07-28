@@ -27,7 +27,8 @@
                     <div class="col-6 flex flex-column">
                         <div class="flex flex-column mb-4">
                             <label for="">File <span class="text-red-500">*</span></label>
-                            <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*"
+                            <p-fileUpload #fubauto mode="basic" type="file" name="file" [customUpload]="true" id="file" (uploadHandler)="onInsertFile($event)
+                            " accept="image/*"
                                 [auto]="true" chooseLabel="Browse" class="bg-#6366F1"></p-fileUpload>
                         </div>
                         <!-- <div class="flex flex-column">
