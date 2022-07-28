@@ -22,6 +22,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
   },
+
   {
     path: 'article',
     component: NavbarComponent,
@@ -118,6 +119,11 @@ const routes: Routes = [
         (m) => m.EventMemberModule
       ),
   },
+  {
+    path : '',
+    redirectTo : "/login",
+    pathMatch : "full"
+},
   {
     path: '**',
     component: NotFoundComponent,
