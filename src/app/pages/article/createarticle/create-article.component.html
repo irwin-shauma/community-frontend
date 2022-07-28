@@ -15,7 +15,12 @@
                         </div>
                         <div class="flex flex-column">
                             <label for="">Content <span class="text-red-500">*</span></label>
-                            <textarea rows="6" pInputTextarea class="inputstyle" name="content" [(ngModel)]="insertArticleHeaderReq.contents"></textarea>
+                            <!-- <textarea rows="6" pInputTextarea class="inputstyle" name="content" [(ngModel)]="insertArticleHeaderReq.contents"></textarea> -->
+                            <pre>
+                                {{data | json}} 
+                            </pre>
+                            <ckeditor [editor]="editor" [(ngModel)]="data"></ckeditor>
+                            
                         </div>
                     </div>
 

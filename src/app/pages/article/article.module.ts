@@ -21,6 +21,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { EditArticleComponent } from './editarticle/edit-article.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 
 @NgModule({
   imports: [
@@ -41,7 +42,8 @@ import { CommonModule } from '@angular/common';
     InputTextModule,
     InputTextareaModule,
     FormsModule,
-    CommonModule
+    CommonModule,
+    CKEditorModule
   ],
   declarations: [
     ArticleHeaderListComponent,
