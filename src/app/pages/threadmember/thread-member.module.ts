@@ -14,6 +14,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DropdownModule } from 'primeng/dropdown';
+import { TimeAgoPipe } from 'src/app/pipe/time-ago.pipe';
 
 @NgModule({
   imports: [
@@ -32,7 +33,11 @@ import { DropdownModule } from 'primeng/dropdown';
     FileUploadModule,
     DropdownModule,
   ],
-  declarations: [ThreadMemberComponent, ThreadMemberDetailComponent],
+  declarations: [
+    ThreadMemberComponent,
+    ThreadMemberDetailComponent,
+    TimeAgoPipe,
+  ],
   exports: [ThreadMemberComponent, ThreadMemberDetailComponent],
 })
 export class ThreadMemberModule {}
