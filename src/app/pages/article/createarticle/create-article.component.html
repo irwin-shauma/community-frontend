@@ -17,9 +17,9 @@
                             <label for="">Content <span class="text-red-500">*</span></label>
                             <!-- <textarea rows="6" pInputTextarea class="inputstyle" name="content" [(ngModel)]="insertArticleHeaderReq.contents"></textarea> -->
                             <pre>
-                                {{data | json}} 
+                                {{retrieveData | json}} 
                             </pre>
-                            <ckeditor [editor]="editor" [(ngModel)]="data"></ckeditor>
+                            <ckeditor [editor]="editor" [data]="data" [(ngModel)]="data" (change)="onChange($event)"></ckeditor>
                             
                         </div>
                     </div>
