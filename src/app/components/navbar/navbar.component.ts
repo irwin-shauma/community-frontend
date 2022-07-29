@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     localStorage.clear();
-    this.router.navigateByUrl('/login');
+    this.router.navigateByUrl('/auth/login');
   }
 
   home(): void {
@@ -40,7 +40,7 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Article',
             icon: 'pi pi-fw pi-calendar-plus',
-            routerLink: '/article/list',
+            routerLink: '/article',
           },
           {
             label: 'Approval Payment',
@@ -117,7 +117,6 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Logout',
             icon: 'pi pi-fw pi-power-off',
-            routerLink: '/login',
             command: () => {
               this.logout();
             },

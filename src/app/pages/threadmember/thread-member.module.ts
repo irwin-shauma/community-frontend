@@ -13,6 +13,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     InputTextModule,
     CalendarModule,
     FileUploadModule,
+    DropdownModule,
   ],
   declarations: [ThreadMemberComponent, ThreadMemberDetailComponent],
   exports: [ThreadMemberComponent, ThreadMemberDetailComponent],

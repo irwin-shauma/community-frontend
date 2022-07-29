@@ -209,52 +209,65 @@
                 Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
         </p-tabPanel>
         <p-tabPanel header="Create Thread" leftIcon="pi pi-file">
-           <div>
-            <h3>Title</h3>
-            <div class="w-full">
-                <textarea pInputTextarea rows="5" cols="10" class="w-full"></textarea>
-            </div>
-           </div>
-           <div>
-            <h3>Description</h3>
-            <div class="w-full">
-                <textarea pInputTextarea rows="10" cols="10" class="w-full"></textarea>
-            </div>
-           </div>
-           <div *ngIf="polling" class="glasses border-round mb-3 flex flex-column justify-content-center">
-            <div class="w-full flex justify-content-end">
-                <button icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined" pButton (click)="exitPolling()"></button>
-            </div>
-            <div class="w-full flex  justify-content-center">
-                <input type="text" pInputText class="inputstyle" placeholder="your question">
-            </div>
-            <div *ngFor="let polling of pollingArray.controls; last as isLast; index as idx;let i = index " class="flex justify-content-center">
-            
-                <div class="w-30rem p-3 flex flex-column">
-                    <div>
-                        <label>Input {{i+1}}</label>
+            <form (ngSubmit)="onsubmit()">
+                <div>
+                    <h3>Title</h3>
+                    <div class="w-full">
+                        <textarea pInputTextarea rows="5" cols="10" class="w-full" name="title" [(ngModel)]="data.title"></textarea>
                     </div>
-                  <div class="flex gap-2">
-                    <input type="text" pInputText [formControl]="polling" class="inputstyle" >
-                    <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="removeInputControl(idx)" *ngIf="pollingArray.length > 1"></button>
-                    <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" *ngIf="isLast && pollingArray.length < 4" (click)="addInputControl()"></button>
-                  </div>
-                 
+                   </div>
+                   <div>
+                    <h3>Description</h3>
+                    <div class="w-full">
+                        <textarea pInputTextarea rows="10" cols="10" class="w-full" name="contentHeader" [(ngModel)]="data.contentHeader"></textarea>
+                    </div>
+                   </div>
+                   <div>
+                    <p-dropdown [options]="threadType.data!" [(ngModel)]="data.threadTypeId" class="w-30rem" [style]="{'width':'100vh'}" placeholder="threadType" optionLabel="threadType" optionValue="id"  name="threadTypeId" [showClear]="true">
+                        <ng-template pTemplate="item" let-threadType>
+                          <div>
+                            {{threadType.threadType}}
+                          </div>
+                        </ng-template>
+                    </p-dropdown>
+                   </div>
+                   <div *ngIf="polling" class="glasses border-round mb-3 flex flex-column justify-content-center">
+                    <div class="w-full flex justify-content-end">
+                        <button icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined" pButton (click)="exitPolling()"></button>
+                    </div>
+                    <div class="w-full flex  justify-content-center">
+                        <input type="text" pInputText class="inputstyle" placeholder="your question">
+                    </div>
+                    <div *ngFor="let polling of pollingArray.controls; last as isLast; index as idx;let i = index " class="flex justify-content-center">
+                    
+                        <div class="w-30rem p-3 flex flex-column">
+                            <div>
+                                <label>Input {{i+1}}</label>
+                            </div>
+                          <div class="flex gap-2">
+                            <input type="text" pInputText [formControl]="polling" class="inputstyle" >
+                            <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="removeInputControl(idx)" *ngIf="pollingArray.length > 1"></button>
+                            <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" *ngIf="isLast && pollingArray.length < 4" (click)="addInputControl()"></button>
+                          </div>
+                         
+                        </div>
+                   </div>
+                   <div class="field col-12 md:col-4 flex flex-column align-items-center  w-full">
+                    <label for="icon">Input Poll Length</label>
+                    <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
                 </div>
-           </div>
-           <div class="field col-12 md:col-4 flex flex-column align-items-center  w-full">
-            <label for="icon">Input Poll Length</label>
-            <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
-        </div>
-           </div>
-        
-           <div class="flex justify-content-between">
-            <div class="flex gap-2">
-                <p-fileUpload mode="basic" chooseIcon="pi pi-image"></p-fileUpload>
-                <button pButton pRipple type="button" icon="pi pi-chart-bar" class="p-button-rounded bg-red-500" (click)="clickPolling()"></button>
-            </div>
-            <button pButton label="create thread" icon="pi pi-book" class="bg-red-500"></button>
-           </div>
+                   </div>
+                
+                   <div class="flex justify-content-between">
+                    <div class="flex gap-2">
+                        <p-fileUpload mode="basic" chooseIcon="pi pi-image" name="file" [customUpload]="true" id="file" (uploadHandler)="onInsertFile($event)" [auto]="true"></p-fileUpload>
+                        <button pButton pRipple type="button" icon="pi pi-chart-bar" class="p-button-rounded bg-red-500" (click)="clickPolling()"></button>
+                    </div>
+                    <button pButton label="create thread" icon="pi pi-book" class="bg-red-500"></button>
+                   </div>
+            </form>
+      
+         
 
         </p-tabPanel>
     </p-tabView>

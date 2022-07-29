@@ -25,7 +25,7 @@ export class CreateArticleComponent implements OnDestroy{
     this.articleHeaderSubscription = this.articleHeaderService
     .addArticle(this.insertArticleHeaderReq)
     .subscribe((result)=> {
-
+      this.router.navigateByUrl('/article');
     });
   }
 
