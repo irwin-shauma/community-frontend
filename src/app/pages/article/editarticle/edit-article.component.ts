@@ -23,9 +23,11 @@ export class EditArticleComponent implements OnDestroy, OnInit{
 
   ngOnInit(): void {
     this.activateRoute.params.subscribe((result) => {
+      console.log(result)
       const resultTemp: any = result;
       this.idParam = resultTemp.id;
 
+      console.log(this.idParam);
       this.articleHeaderService.findById(this.idParam).subscribe((res) => {
         this.data.id = res.data?.id;
         this.data.title = res.data?.title;
