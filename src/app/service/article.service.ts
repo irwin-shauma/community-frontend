@@ -26,15 +26,14 @@ export class ArticleHeaderService{
       }
     
       findById(id: number): Observable<ArticleHedaerFindById> {
-        return this.http.get<ArticleHedaerFindById>('http://localhost:1234/Article-headers/' + id);
+        return this.http.get<ArticleHedaerFindById>('http://localhost:1234/article-headers/' + id);
       }
     
       editArticle(data: ArticleUpdateReq): Observable<UpdateRes> {
-        return this.http.put<UpdateRes>('http://localhost:1234/Article-headers', data);
+        return this.http.put<UpdateRes>('http://localhost:1234/article-headers', data);
       }
     
       deleteArticle(id: number): Observable<DeleteRes> {
-        return this.http.delete<DeleteRes>('http://localhost:1234/Article-headers/' + id);
+        return this.http.delete<DeleteRes>('http://localhost:1234/article-headers/' + id);
       }
     }
-    
