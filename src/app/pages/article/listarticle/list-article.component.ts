@@ -28,7 +28,7 @@ export class ArticleHeaderListComponent implements OnInit{
   }
 
   initData(): void{
-    this.articleHeaderService.showAllArticle().subscribe((result)=>{
+    this.articleHeaderService.showAllArticle(0,5).subscribe((result)=>{
       this.articleHeaders = result;
       this.articleHeaderData = result.data!;
     });
