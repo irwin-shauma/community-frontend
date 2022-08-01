@@ -19,8 +19,7 @@ import { InsertDataRes } from '../../dto/insert-data-res';
 })
 export class RegisterMainComponent implements OnInit, OnDestroy {
   event!: any[];
-  mainRegister = true;
-  createAccount = true;
+  registerSwitch = 1;
   dataRegister: Register = {} as Register;
   insertRes: InsertDataRes = {} as InsertDataRes;
   verificationSubscription?: Subscription;
@@ -59,12 +58,12 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
       .addVerification(insertVerification)
       .subscribe((result) => {
         this.verificationId = result.data.id;
-        this.mainRegister = false;
+        this.registerSwitch = 2;
       });
   }
 
   onSubmit(): void {
-    this.createAccount = false;
+    this.registerSwitch = 3;
   }
 
   finalSubmit(): void {
@@ -80,7 +79,6 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
         insertUser.fullName = this.dataRegister.fullName;
         insertUser.industry = this.dataRegister.industry;
         insertUser.position = this.dataRegister.position;
-
         this.userSubscription = this.userService
           .addUser(insertUser)
           .subscribe((result) => {
