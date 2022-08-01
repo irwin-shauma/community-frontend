@@ -26,7 +26,7 @@ export class ArticleHeaderService{
       }
     
       findById(id: number): Observable<ArticleHedaerFindById> {
-        return this.http.get<ArticleHedaerFindById>('http://localhost:1234/article-headers/' + id);
+        return this.http.get<ArticleHedaerFindById>(`http://localhost:1234/article-headers/${id}`);
       }
     
       editArticle(data: ArticleUpdateReq): Observable<UpdateRes> {
@@ -34,6 +34,6 @@ export class ArticleHeaderService{
       }
     
       deleteArticle(id: number): Observable<DeleteRes> {
-        return this.http.delete<DeleteRes>('http://localhost:1234/article-headers/' + id);
+        return this.http.delete<DeleteRes>(`http://localhost:1234/article-headers/${id}`);
       }
     }

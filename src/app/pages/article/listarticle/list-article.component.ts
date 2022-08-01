@@ -42,7 +42,7 @@ export class ArticleHeaderListComponent implements OnInit{
     this.deleteSubscription= this.articleHeaderService
     .deleteArticle(this.idDeleted)
     .subscribe((result) => {
-      this.initData
+      this.initData()
     });
   }
 
