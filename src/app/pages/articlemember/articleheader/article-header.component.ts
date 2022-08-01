@@ -37,9 +37,6 @@ export class ArticleHeaderComponent implements OnInit {
     this.initData(this.startPage, this.maxPage+5)
     this.maxPage += this.maxPage;
   }
-  onExpandText(evt:any): void{
-    this.router.navigateByUrl('home');
-  }
 
   initData(startPage: number, maxPage : number): void {
     this.articleHeaderService.showAllArticle(startPage,maxPage).subscribe((result) => {
