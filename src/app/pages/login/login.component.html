@@ -4,10 +4,10 @@
     </div> 
     <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
 
-        <div style="width: 500px; height: 400px;" class="flex flex-column justify-content-around align-items-center">
-            <form (ngSubmit)="onlogin()">
-                <div class="titlelogin">WELCOME BACK</div>
-                <div class="flex flex-column">
+        <div style="width: 500px; height: 500px;" class="flex flex-column justify-content-around align-items-center">
+            <div class="titlelogin">WELCOME BACK</div>
+            <form (ngSubmit)="onlogin()" class="justify-content-between">
+                <div class="flex flex-column ">
                     <label for="email">Email</label>
                     <span class="p-input-icon-right">
                         <i class="pi pi-envelope"></i>
@@ -27,7 +27,7 @@
                     <p>don't have an account? <span class="font-bold cursor-pointer " routerLink="/register">Sign Up</span></p>
                     <p>forget password?</p>
                 </div>
-    
+                
                 <div class="w-full">
                     <button pButton pRipple label="Sign In" class="p-button-rounded button-signin" type="submit"></button>
                 </div>

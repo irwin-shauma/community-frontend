@@ -1,4 +1,4 @@
-<div class="flex" *ngIf="mainRegister === true">
+<div class="flex" *ngIf="registerSwitch === 1">
     <div class="authpicture">
        
     </div> 
@@ -49,7 +49,7 @@
     </div>
 </div>
 
-<div class="flex" *ngIf="createAccount === true">
+<div class="flex" *ngIf="registerSwitch === 2">
     <div class="authpicture">
        
     </div> 
@@ -102,15 +102,11 @@
                         {{event.status}}
                     </ng-template>
                 </p-timeline>
-        </div>
-       <pre>
-        {{dataRegister | json}}
-       </pre>
-       
+        </div>     
     </div>
 </div>
 
-<div class="flex">
+<div class="flex" *ngIf="registerSwitch === 3">
     <div class="authpicture">
        
     </div> 
@@ -141,12 +137,6 @@
                     </p-timeline>
             </div>
 
-        </form>
-        <pre>
-            {{dataRegister.verification | json}}
-        </pre>
-      
-       
-       
+        </form>     
     </div>
 </div>
