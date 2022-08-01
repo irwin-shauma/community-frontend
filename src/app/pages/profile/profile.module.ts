@@ -9,6 +9,7 @@ import { CommonModule } from '@angular/common';
 import { ProfileComponent } from './editprofile/profile.component';
 import { ProfileViewComponent } from './profileview/profile-view.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import {PasswordModule} from 'primeng/password';
 
 @NgModule({
   imports: [
@@ -20,6 +21,7 @@ import { FileUploadModule } from 'primeng/fileupload';
     FormsModule,
     CommonModule,
     FileUploadModule,
+    PasswordModule
   ],
   declarations: [ProfileComponent, ProfileViewComponent],
   exports: [ProfileComponent, ProfileViewComponent],
