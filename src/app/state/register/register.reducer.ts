@@ -1,7 +1,8 @@
 import { createReducer, on } from '@ngrx/store';
 import { addAction } from './register.action';
+import { Register } from './register.model';
 
-const data: string[] = [];
+const data: Register[] = [];
 
 const initState = {
   data,
