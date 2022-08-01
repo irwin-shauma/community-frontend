@@ -5,20 +5,21 @@
     <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
         <div style="width: 500px; height: 500px;" class="flex flex-column justify-content-around align-items-center">
             <div class="titlelogin">CREATE ACCOUNT</div>
-           
+           <form (ngSubmit)="onSubmitRegis()">
             <div class="flex flex-column">
                 <label for="email">Email</label>
                 <span class="p-input-icon-right">
                     <i class="pi pi-envelope"></i>
-                    <input type="email" pInputText placeholder="Email" class="inputstyle" />
+                    <input type="email" [(ngModel)]="dataRegister.email" name="email" pInputText placeholder="Email" class="inputstyle" />
                 </span>
             </div>
+         
             
             <div class="flex flex-column">
                 <label for="password">Password</label>
                 <span class="p-input-icon-right">
                     <i class="pi pi-lock"></i>
-                    <input type="password" pInputText placeholder="Password" class="inputstyle" />
+                    <input type="password" [(ngModel)]="dataRegister.password" name="password" pInputText placeholder="Password" class="inputstyle" />
                 </span>
             </div>
 
@@ -27,8 +28,11 @@
             </div>
 
             <div class="w-full">
-                <button pButton pRipple label="Sign Up" class="p-button-rounded button-signin" (click)="nextRegister()"></button>
+                <button pButton pRipple label="Sign Up" type="submit" class="p-button-rounded button-signin" ></button>
             </div>
+
+
+        </form>
                 <p-timeline [value]="event" layout="horizontal" align="top" class="w-full">
                     <ng-template pTemplate="marker" let-event>
                         <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
@@ -52,40 +56,42 @@
     <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
         <div style="width: 500px; height: 600px;" class="flex flex-column justify-content-around align-items-center">
             <div class="titlelogin">ACCOUNT DETAIL</div>
-            <div class="flex flex-column">
-                <label for="email">Fullname</label>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-user"></i>
-                    <input type="text" pInputText placeholder="Fullname" class="inputstyle" />
-                </span>
-            </div>
-            <div class="flex flex-column">
-                <label for="email">Company</label>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-globe"></i>
-                    <input type="text" pInputText placeholder="Fullname" class="inputstyle" />
-                </span>
-            </div>
-            <div class="flex flex-column">
-                <label for="email">Industry</label>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-id-card"></i>
-                    <input type="text" pInputText placeholder="Industry" class="inputstyle" />
-                </span>
-            </div>
-            
-            <div class="flex flex-column">
-                <label for="password">Position</label>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-users"></i>
-                    <input type="text" pInputText placeholder="Position" class="inputstyle" />
-                </span>
-            </div>
-
-
-            <div class="w-full">
-                <button pButton pRipple label="Next" class="p-button-rounded button-signin" (click)="nextCreateAccount()"></button>
-            </div>
+            <form (ngSubmit)="onSubmit()">
+                <div class="flex flex-column">
+                    <label for="email">Fullname</label>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-user"></i>
+                        <input type="text" name="fullName" [(ngModel)]="dataRegister.fullName" pInputText placeholder="Fullname" class="inputstyle" />
+                    </span>
+                </div>
+                <div class="flex flex-column">
+                    <label for="email">Company</label>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-globe"></i>
+                        <input type="text" name="company" [(ngModel)]="dataRegister.company" pInputText placeholder="Fullname" class="inputstyle" />
+                    </span>
+                </div>
+                <div class="flex flex-column">
+                    <label for="email">Industry</label>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-id-card"></i>
+                        <input type="text" name="industry" [(ngModel)]="dataRegister.industry" pInputText placeholder="Industry" class="inputstyle" />
+                    </span>
+                </div>
+                
+                <div class="flex flex-column">
+                    <label for="password">Position</label>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-users"></i>
+                        <input type="text" name="position" [(ngModel)]="dataRegister.position" pInputText placeholder="Position" class="inputstyle" />
+                    </span>
+                </div>
+    
+    
+                <div class="w-full">
+                    <button type="submit" pButton pRipple label="Next" class="p-button-rounded button-signin"></button>
+                </div>
+            </form>
                 <p-timeline [value]="event" layout="horizontal" align="top" class="w-full">
                     <ng-template pTemplate="marker" let-event>
                         <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
@@ -97,7 +103,9 @@
                     </ng-template>
                 </p-timeline>
         </div>
-       
+       <pre>
+        {{dataRegister | json}}
+       </pre>
        
     </div>
 </div>
@@ -107,30 +115,37 @@
        
     </div> 
     <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
-        <div style="width: 500px; height: 500px;" class="flex flex-column justify-content-around align-items-center">
-            <div class="titlelogin">VERIFICATION CODE</div>
-            <div class="flex flex-column">
-                <label for="email">Enter your verification code</label>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-lock"></i>
-                    <input type="text" pInputText placeholder="verification code" class="inputstyle" />
-                </span>
+        <form (ngSubmit)="finalSubmit()">
+            <div style="width: 500px; height: 500px;" class="flex flex-column justify-content-around align-items-center">
+                <div class="titlelogin">VERIFICATION CODE</div>
+                <div class="flex flex-column">
+                    <label for="email">Enter your verification code</label>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-lock"></i>
+                        <input type="text" name="verification" [(ngModel)]="dataRegister.verification" pInputText placeholder="verification code" class="inputstyle" />
+                    </span>
+                </div>
+    
+                <div class="w-full">
+                    <button pButton pRipple label="Send" class="p-button-rounded button-signin"></button>
+                </div>
+                    <p-timeline [value]="event" layout="horizontal" align="top" class="w-full">
+                        <ng-template pTemplate="marker" let-event>
+                            <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
+                                <i [ngClass]="event.icon"></i>
+                            </span>
+                        </ng-template>
+                        <ng-template pTemplate="content" let-event>
+                            {{event.status}}
+                        </ng-template>
+                    </p-timeline>
             </div>
 
-            <div class="w-full">
-                <button pButton pRipple label="Send" class="p-button-rounded button-signin" routerLink="/detail"></button>
-            </div>
-                <p-timeline [value]="event" layout="horizontal" align="top" class="w-full">
-                    <ng-template pTemplate="marker" let-event>
-                        <span class="custom-marker shadow-2" [style.backgroundColor]="event.color">
-                            <i [ngClass]="event.icon"></i>
-                        </span>
-                    </ng-template>
-                    <ng-template pTemplate="content" let-event>
-                        {{event.status}}
-                    </ng-template>
-                </p-timeline>
-        </div>
+        </form>
+        <pre>
+            {{dataRegister.verification | json}}
+        </pre>
+      
        
        
     </div>

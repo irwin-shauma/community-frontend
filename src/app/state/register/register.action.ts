@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { Register } from './register.model';
 
 enum RegisterAction {
   ADD_ACTION = '[ADD Action]',
@@ -6,7 +7,7 @@ enum RegisterAction {
 
 const addAction = createAction(
   RegisterAction.ADD_ACTION,
-  props<{ payload: string }>()
+  props<{ payload: Register }>()
 );
 
 export { addAction };

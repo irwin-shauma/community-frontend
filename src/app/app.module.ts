@@ -11,6 +11,8 @@ import { CustomInterceptor } from './interceptor/custom.interceptor';
 import { MessageService } from 'primeng/api';
 import { ToastModule } from 'primeng/toast';
 import { ToastrModule } from 'ngx-toastr';
+import { StoreModule } from '@ngrx/store';
+import { registerReducer } from './state/register/register.reducer';
 
 @NgModule({
   declarations: [AppComponent],
@@ -22,6 +24,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ToastrModule.forRoot(),
     ToastrModule,
+    StoreModule.forRoot({ register: registerReducer }),
     BrowserAnimationsModule,
     SharedModule,
     ToastModule,
