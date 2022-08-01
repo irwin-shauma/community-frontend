@@ -3,7 +3,9 @@ export interface ThreadHeaderData {
   threadTypeId: string;
   threadHeaderCode: string;
   title: string;
-  contentHeader: string;
+  fileId: string;
+  contentThread: string;
   version: number;
   isActive: boolean;
+  createdAt: string;
 }

@@ -7,6 +7,7 @@ import { NotFoundComponent } from './pages/notfound/notfound.component';
 const routes: Routes = [
   {
     path: 'home',
+
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
@@ -18,7 +19,7 @@ const routes: Routes = [
       import('./pages/homepage/homepage.module').then((m) => m.HomepageModule),
   },
   {
-    path: '',
+    path: 'auth',
     loadChildren: () =>
       import('./pages/auth/auth.module').then((m) => m.AuthModule),
   },
@@ -120,10 +121,10 @@ const routes: Routes = [
       ),
   },
   {
-    path : '',
-    redirectTo : "/login",
-    pathMatch : "full"
-},
+    path: '',
+    redirectTo: '/homes',
+    pathMatch: 'full',
+  },
   {
     path: '**',
     component: NotFoundComponent,

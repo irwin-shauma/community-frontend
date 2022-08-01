@@ -8,6 +8,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import {ImageModule} from 'primeng/image';
 import { ArticleDetailComponent } from './articledetail/article-detail.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {ScrollTopModule} from 'primeng/scrolltop';
 
 @NgModule({
   imports: [
@@ -18,6 +22,10 @@ import { ArticleDetailComponent } from './articledetail/article-detail.component
     InputTextModule,
     ButtonModule,
     ImageModule,
+    FormsModule,
+    CommonModule,
+    InfiniteScrollModule,
+    ScrollTopModule
   ],
   declarations: [ArticleHeaderComponent, ArticleDetailComponent],
   exports: [ArticleHeaderComponent, ArticleDetailComponent],

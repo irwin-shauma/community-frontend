@@ -6,7 +6,7 @@
     <div class="glasses p-5 border-round h-30rem">
         <button pButton label="back" icon="pi pi-arrow-left" class="bg-red-500" styleClass="p-button-sm" routerLink="/article"></button>
         <div>
-   <form class=" pt-5 h-20rem">
+   <form class=" pt-5 h-20rem" (ngSubmit)="update()">
     <div class="grid">
         <div class="col-6">
             <div class="flex flex-column mb-4">

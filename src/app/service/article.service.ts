@@ -17,8 +17,8 @@ export class ArticleHeaderService{
 
     constructor(private http: HttpClient){}
 
-    showAllArticle(): Observable<ArticleHeaderFindAll>{
-        return this.http.get<ArticleHeaderFindAll>('http://localhost:1234/article-headers');
+    showAllArticle(startPage: number, maxPage: number): Observable<ArticleHeaderFindAll>{
+        return this.http.get<ArticleHeaderFindAll>(`http://localhost:1234/article-headers?startPage=${startPage}&maxPage=${maxPage}`);
     }
 
     addArticle(data: ArticleInsertReq): Observable<InsertRes> {
@@ -26,7 +26,7 @@ export class ArticleHeaderService{
       }
     
       findById(id: number): Observable<ArticleHedaerFindById> {
-        return this.http.get<ArticleHedaerFindById>('http://localhost:1234/article-headers/' + id);
+        return this.http.get<ArticleHedaerFindById>(`http://localhost:1234/article-headers/${id}`);
       }
     
       editArticle(data: ArticleUpdateReq): Observable<UpdateRes> {
@@ -34,6 +34,6 @@ export class ArticleHeaderService{
       }
     
       deleteArticle(id: number): Observable<DeleteRes> {
-        return this.http.delete<DeleteRes>('http://localhost:1234/article-headers/' + id);
+        return this.http.delete<DeleteRes>(`http://localhost:1234/article-headers/${id}`);
       }
     }
