@@ -40,9 +40,11 @@ export class EditArticleComponent implements OnDestroy, OnInit{
     this.articleHeaderSubscription?.unsubscribe();
   }
 
-  onSubmit(): void{
+  update(): void{
     this.articleHeaderService.editArticle(this.data).subscribe((result) => {
       this.router.navigateByUrl('/article');
     });
   }
+
+
 }

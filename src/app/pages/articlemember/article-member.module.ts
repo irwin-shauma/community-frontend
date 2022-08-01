@@ -10,6 +10,8 @@ import {ImageModule} from 'primeng/image';
 import { ArticleDetailComponent } from './articledetail/article-detail.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import {ScrollTopModule} from 'primeng/scrolltop';
 
 @NgModule({
   imports: [
@@ -22,6 +24,8 @@ import { CommonModule } from '@angular/common';
     ImageModule,
     FormsModule,
     CommonModule,
+    InfiniteScrollModule,
+    ScrollTopModule
   ],
   declarations: [ArticleHeaderComponent, ArticleDetailComponent],
   exports: [ArticleHeaderComponent, ArticleDetailComponent],

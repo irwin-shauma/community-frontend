@@ -28,7 +28,7 @@ export class ArticleHeaderListComponent implements OnInit{
   }
 
   initData(): void{
-    this.articleHeaderService.showAllArticle().subscribe((result)=>{
+    this.articleHeaderService.showAllArticle(0,5).subscribe((result)=>{
       this.articleHeaders = result;
       this.articleHeaderData = result.data!;
     });
@@ -42,7 +42,7 @@ export class ArticleHeaderListComponent implements OnInit{
     this.deleteSubscription= this.articleHeaderService
     .deleteArticle(this.idDeleted)
     .subscribe((result) => {
-      this.initData
+      this.initData()
     });
   }
 
@@ -57,6 +57,6 @@ export class ArticleHeaderListComponent implements OnInit{
   }
 
   onUpdateById(id: number): void{
-    this.router.navigateByUrl(`/article-headers/${id}`);
+    this.router.navigateByUrl(`/article/${id}`);
    }
 }

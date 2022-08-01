@@ -22,6 +22,7 @@ import { EditArticleComponent } from './editarticle/edit-article.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -43,7 +44,8 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
     InputTextareaModule,
     FormsModule,
     CommonModule,
-    CKEditorModule
+    CKEditorModule,
+    HttpClientModule
   ],
   declarations: [
     ArticleHeaderListComponent,

@@ -6,13 +6,14 @@
     <div class="glasses p-5 border-round h-30rem">
         <button pButton label="back" icon="pi pi-arrow-left" class="bg-red-500" styleClass="p-button-sm" routerLink="/article"></button>
         <div>
-   <form class=" pt-5 h-20rem">
+   <form class=" pt-5 h-20rem" (ngSubmit)="update()">
     <div class="grid">
         <div class="col-6">
             <div class="flex flex-column mb-4">
                 <label for="">Title <span class="text-red-500">*</span></label>
                 <input pInputText class="inputstyle" name="title" [(ngModel)]="data.title">
             </div>
+            <pre>cek {{data.title | json}}</pre>
             <div class="flex flex-column">
                 <label for="">Content <span class="text-red-500">*</span></label>
                 <textarea rows="6" pInputTextarea class="inputstyle" name="content" [(ngModel)]="data.contents"></textarea>
