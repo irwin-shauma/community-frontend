@@ -55,14 +55,6 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     });
     this.threadService.showAllThread().subscribe((result) => {
       this.threadHeader = result;
-      for (let i = 0; i < result.data.length; i++) {
-        this.threadLikeService
-          .findAllByThread(result.data[i].id)
-          .subscribe((result) => {
-            this.threadLikes = result;
-            console.log(this.threadLikes);
-          });
-      }
     });
     this.premiumPaymentHistoryService
       .showAllPremiumPaymentHistory()

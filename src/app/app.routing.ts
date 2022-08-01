@@ -19,11 +19,15 @@ const routes: Routes = [
       import('./pages/homepage/homepage.module').then((m) => m.HomepageModule),
   },
   {
-    path: 'auth',
+    path: 'login',
     loadChildren: () =>
-      import('./pages/auth/auth.module').then((m) => m.AuthModule),
+      import('./pages/login/login.module').then((m) => m.LoginModule),
   },
-
+  {
+    path: 'register',
+    loadChildren: () =>
+      import('./pages/register/auth.module').then((m) => m.AuthModule),
+  },
   {
     path: 'article',
     component: NavbarComponent,

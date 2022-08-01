@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { AuthRouting } from './auth.routing';
-import { LoginComponent } from './login/login.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { ButtonModule } from 'primeng/button';
 import { RippleModule } from 'primeng/ripple';
-import { RegisterComponent } from './register/register.component';
 import { TimelineModule } from 'primeng/timeline';
 import { CommonModule } from '@angular/common';
-import { DetailComponent } from './detail/detail.component';
-import { VerificationComponent } from './verification/verification.component';
 import { FormsModule } from '@angular/forms';
+import { RegisterComponent } from './register.component';
+import { DetailComponent } from './detail.component';
+import { VerificationComponent } from './verification.component';
+import { RegisterMainComponent } from './register-main.component';
 
 @NgModule({
   imports: [
@@ -24,13 +24,13 @@ import { FormsModule } from '@angular/forms';
     FormsModule,
   ],
   declarations: [
-    LoginComponent,
+    RegisterMainComponent,
     RegisterComponent,
     DetailComponent,
     VerificationComponent,
   ],
   exports: [
-    LoginComponent,
+    RegisterMainComponent,
     RegisterComponent,
     DetailComponent,
     VerificationComponent,

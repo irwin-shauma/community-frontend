@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex" *ngIf="mainRegister === true">
     <div class="authpicture">
        
     </div> 
@@ -27,7 +27,7 @@
             </div>
 
             <div class="w-full">
-                <button pButton pRipple label="Sign Up" class="p-button-rounded button-signin" routerLink="/verification"></button>
+                <button pButton pRipple label="Sign Up" class="p-button-rounded button-signin" (click)="nextRegister()"></button>
             </div>
                 <p-timeline [value]="event" layout="horizontal" align="top" class="w-full">
                     <ng-template pTemplate="marker" let-event>
