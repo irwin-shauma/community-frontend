@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { InsertRes } from '../dto/insert-res';
 import { UpdateRes } from '../dto/update-res';
 import { UpdatePhotoProfileReq } from '../dto/user/update-photo-profile-req';
+import { UserChangePasswordReq } from '../dto/user/user-change-password-req';
 import { UserFindByIdRes } from '../dto/user/user-find-by-id-res';
 import { UserInsertReq } from '../dto/user/user-insert-req';
 import { UserUpdateReq } from '../dto/user/user-update-req';
@@ -24,7 +25,7 @@ export class UserService {
   }
 
   findById(id: string): Observable<UserFindByIdRes> {
-    return this.http.get<UserFindByIdRes>('http://localhost:1234/users/' + id);
+    return this.http.get<UserFindByIdRes>(`http://localhost:1234/users/${id}`);
   }
 
   updatePhotoProfile(data: UpdatePhotoProfileReq): Observable<UpdateRes> {
@@ -32,5 +33,9 @@ export class UserService {
       'http://localhost:1234/users/profile-pictures',
       data
     );
+  }
+
+  changePassword(data : UserChangePasswordReq) : Observable<UpdateRes> {
+    return this.http.put<UpdateRes>('http://localhost:1234/users/change-password', data);
   }
 }
