@@ -1,12 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
 @Component({
-  selector: 'app-detail-root',
-  templateUrl: 'detail.component.html',
-  styleUrls: ['./../auth.style.css'],
+  selector: 'app-detail-register',
+  templateUrl: './detail.component.html',
+  styleUrls: ['./auth.style.css'],
 })
-export class DetailComponent {
+export class DetailComponent implements OnInit {
   event!: any[];
 
   ngOnInit(): void {

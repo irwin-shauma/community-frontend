@@ -8,4 +8,7 @@ export interface ThreadHeaderData {
   version: number;
   isActive: boolean;
   createdAt: string;
+  createdBy: string;
+  fullName: string;
+  countLike: number;
 }

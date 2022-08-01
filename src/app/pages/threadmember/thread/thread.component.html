@@ -7,7 +7,7 @@
                         <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
                     </div>
                     <div>
-                        <h4>salman</h4>
+                        <h4>{{thread.fullName}}</h4>
                         <p>{{thread.createdAt | timeAgo}}</p>
                     </div>
                 </div>
@@ -28,7 +28,7 @@
                             <div class="flex w-1 justify-content-around">
                                 <div class="flex">
                                     <i class="pi pi-heart-fill"></i>
-                                    <p>{{threadLikes.count}}</p>
+                                    <p>{{thread.countLike}}</p>
                                 </div>
                                 <div class="flex">
                                     <i class="pi pi-comment"></i>
@@ -45,6 +45,7 @@
                         </div>
                     </div>
                 </div>
+               
             </div>
             <div class="glasses p-3 border-round mb-8 cursor-pointer" routerLink="/threads-main/detail">
                 <div class="flex">

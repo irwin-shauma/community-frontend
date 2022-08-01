@@ -1,0 +1,44 @@
+.authpicture{
+    height: 100vh;
+    width: 100vh;
+    background-image: url(./../../../assets/login.png);
+    background-size: cover;
+}
+
+.inputstyle{
+    background-color: #CFCFCF;
+    border-radius: 30px;
+    border: #BC7682 1px solid;
+    width: 500px;
+}
+
+.titlelogin{
+    font-size: 30px;
+    font-weight: bold;
+    color: #FD4848;
+}
+
+p{
+    color: #FD4848;
+}
+
+.button-signin{
+    width: 100%;
+    background-color: #FD4848;
+}
+
+.button-signin:hover{
+    background-color: #D02D2D;
+}
+
+.custom-marker {
+    display: flex;
+    width: 2rem;
+    height: 2rem;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    border-radius: 50%;
+    z-index: 1;
+}
+

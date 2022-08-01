@@ -8,7 +8,7 @@ import { LoginService } from 'src/app/service/login.service';
 @Component({
   selector: 'app-login-auth',
   templateUrl: './login.component.html',
-  styleUrls: ['./../auth.style.css'],
+  styleUrls: ['./auth.style.css'],
 })
 export class LoginComponent implements OnDestroy {
   loginSubsription?: Subscription;

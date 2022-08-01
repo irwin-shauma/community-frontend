@@ -2,12 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
 @Component({
-  selector: 'app-verification-auth',
-  templateUrl: './verification.component.html',
-  styleUrls: ['./../auth.style.css'],
+  selector: 'app-register-auth',
+  templateUrl: './register.component.html',
+  styleUrls: ['./auth.style.css'],
 })
-export class VerificationComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   event!: any[];
+  mainRegister = true;
 
   ngOnInit(): void {
     this.event = [
@@ -23,5 +24,9 @@ export class VerificationComponent implements OnInit {
         color: '#FD4848',
       },
     ];
+  }
+
+  nextRegister(): void {
+    this.mainRegister = false;
   }
 }

@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { PrimeIcons } from 'primeng/api';
 
 @Component({
-  selector: 'app-register-auth',
-  templateUrl: './register.component.html',
-  styleUrls: ['./../auth.style.css'],
+  selector: 'app-verification-register',
+  templateUrl: './verification.component.html',
+  styleUrls: ['./auth.style.css'],
 })
-export class RegisterComponent implements OnInit {
+export class VerificationComponent implements OnInit {
   event!: any[];
 
   ngOnInit(): void {
