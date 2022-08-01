@@ -1,65 +1,87 @@
 <div class="p-8">
     <div class="card">
         <p-tabView [style]="{'color':'red'}">
-            <p-tabPanel header="Edit Profiles" leftIcon="pi pi-user-edit" >
-                <form  (ngSubmit)="onSubmit()">
+            <p-tabPanel header="Edit Profiles" leftIcon="pi pi-user-edit">
+
+                <form (ngSubmit)="onSubmit()">
                     <div class="flex p-8 justify-content-around">
                         <div class="flex flex-column gap-2">
                             <div *ngIf="data.fileId === null">
-                                <img src="./../../../../assets/unnamed.png" alt="profile" width="400" height="400" class="border-round">
+                                <img src="./../../../../assets/unnamed.png" alt="profile" width="400" height="400"
+                                    class="border-round">
                             </div>
                             <div *ngIf="data.fileId !== null">
-                                <img src="http://localhost:1234/files/{{data.fileId}}" alt="profile" width="400" height="400" class="border-round">
+                                <img src="http://localhost:1234/files/{{data.fileId}}" alt="profile" width="400"
+                                    height="400" class="border-round">
                             </div>
-                            <div class="glasses cursor-pointer text-center border-1"><p class="photochoose">Choose Photo</p> <p-fileUpload type="file" class="opacity-0 z-2 relative" name="file" mode="basic" [customUpload]="true" id="file" name="file" (uploadHandler)="onChangeFile($event)" [auto]="true"></p-fileUpload></div>
-  
+                            <div class="glasses cursor-pointer text-center border-1">
+                                <p class="photochoose">Choose Photo</p>
+                                <p-fileUpload type="file" class="opacity-0 z-2 relative" name="file" mode="basic"
+                                    [customUpload]="true" id="file" name="file" (uploadHandler)="onChangeFile($event)"
+                                    [auto]="true"></p-fileUpload>
+                            </div>
+
                         </div>
                         <div class="flex flex-column align-items-center justify-content-around">
-                            <div >
+                            <div>
                                 <h3>Fullname</h3>
-                                <input type="text" pInputText class="inputstyle" name="fullName" [(ngModel)]="data.fullName">
+                                <input type="text" pInputText class="inputstyle" name="fullName"
+                                    [(ngModel)]="data.fullName">
                             </div>
                             <div *ngIf="login.getRole">
                                 <h3>Company</h3>
-                                <input type="text" pInputText class="inputstyle" name="company" [(ngModel)]="data.company">
+                                <input type="text" pInputText class="inputstyle" name="company"
+                                    [(ngModel)]="data.company">
                             </div>
                             <div>
                                 <h3>Industry</h3>
-                                <input type="text" pInputText class="inputstyle" name="industry" [(ngModel)]="data.industry">
+                                <input type="text" pInputText class="inputstyle" name="industry"
+                                    [(ngModel)]="data.industry">
                             </div>
                             <div>
                                 <h3>Position</h3>
-                                <input type="text" pInputText class="inputstyle" name="position" [(ngModel)]="data.position">
+                                <input type="text" pInputText class="inputstyle" name="position"
+                                    [(ngModel)]="data.position">
                             </div>
-                            <div class="flex justify-content-end w-full" >
+                            <div class="flex justify-content-end w-full">
                                 <button pButton label="Save"></button>
                             </div>
                         </div>
                     </div>
-                    
-                </form>  
-          
+
+                </form>
+
             </p-tabPanel>
             <p-tabPanel header="Change Password" leftIcon="pi pi-unlock">
-                <div class="p-8 flex flex-column justify-content-between h-full align-items-center" >
-                    <div>
-                        <h3>Old Password</h3>
-                        <input type="password" pInputText class="inputpassword">
-                    </div>
-                    <div>
-                        <h3>New Password</h3>
-                        <input type="password" pInputText class="inputpassword">
-                    </div>
-                    <div>
-                        <h3>Confirm Password</h3>
-                        <input type="password" pInputText class="inputpassword">
-                    </div>
-                    <div class="flex w-full justify-content-end">
-                        <button pButton label="Save"></button>
-                    </div>
-                </div>
 
-            
+                <form (ngSubmit)="changePasswordSubmit()">
+                    <div class="p-8 flex flex-column justify-content-between h-full align-items-center border-2">
+                        <div>
+                            <h3>Old Password</h3>
+                            <input type="password" pInputText class="inputpassword md:col-6"
+                                [(ngModel)]="userChangePasswordReq.oldPassword" name="oldPassword" >
+                        </div>
+                        <div>
+                            <h3>New Password</h3>
+                            <input type="password" pInputText class="inputpassword"
+                                [(ngModel)]="userChangePasswordReq.newPassword" name="newPassword" >
+                        </div>
+                        <div>
+                            <h3>Confirm Password</h3>
+                            <input type="password" pInputText class="inputpassword" [(ngModel)]="confirmedNewPassword"
+                                (keyup)="validatePassword()" name="confirmedNewPassword" >
+                                <div *ngIf="isValidNewPassword">
+                                    <p class="text-red-500">New password didn't match!</p>
+                                </div>
+                        </div>
+                        <div class="flex w-full justify-content-end">
+                            <button pButton label="Change Password"></button>
+                        </div>
+                    </div>
+
+                </form>
+
+
             </p-tabPanel>
         </p-tabView>
     </div>
