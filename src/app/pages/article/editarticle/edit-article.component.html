@@ -13,6 +13,7 @@
                 <label for="">Title <span class="text-red-500">*</span></label>
                 <input pInputText class="inputstyle" name="title" [(ngModel)]="data.title">
             </div>
+            <pre>cek {{data.title | json}}</pre>
             <div class="flex flex-column">
                 <label for="">Content <span class="text-red-500">*</span></label>
                 <textarea rows="6" pInputTextarea class="inputstyle" name="content" [(ngModel)]="data.contents"></textarea>

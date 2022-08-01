@@ -57,6 +57,6 @@ export class ArticleHeaderListComponent implements OnInit{
   }
 
   onUpdateById(id: number): void{
-    this.router.navigateByUrl(`/article-headers/${id}`);
+    this.router.navigateByUrl(`/article/${id}`);
    }
 }
