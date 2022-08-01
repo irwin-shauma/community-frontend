@@ -1,4 +1,4 @@
-<div class="pt-8 pr-8 pl-8 border-2" infinite-scroll (scrolled)="onScroll()">
+<div class="pt-8 pr-8 pl-8" infinite-scroll (scrolled)="onScroll()">
     <div class="grid">
     <div class="p-card col-12 mb-3" id="card-article" *ngFor="let data of articleHeaderData;">
             <div class="grid" >
@@ -13,7 +13,7 @@
                             <p class="text-2xl ">{{data.title}}</p>
                         </div>
                         <div class="flex h-6rem  text-black border-round m-2">
-                            <p class="text-sm ">{{data.contents | slice:sliceOptions.start:sliceOptions.end}} ... <a href="#" (click)="onExpandText($event)">See More</a></p>
+                            <p class="text-sm ">{{data.contents | slice:sliceOptions.start:sliceOptions.end}} ... <a routerLink="/article-members/details/{{data.id}}">See More</a></p>
                             
                         </div>
                       
@@ -25,8 +25,6 @@
 </div>
 </div>
 <p-scrollTop></p-scrollTop>
-
-
 
 
 
