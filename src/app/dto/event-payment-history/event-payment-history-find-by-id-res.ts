@@ -1,5 +1,5 @@
 import { EventPaymentHistoryData } from "./event-payment-history-data";
 
-export interface EventPaymentFindByIdRes{
+export interface EventPaymentHistoryFindByIdRes{
     data?: EventPaymentHistoryData
 }

@@ -125,6 +125,22 @@ const routes: Routes = [
       ),
   },
   {
+    path: 'event-payment-histories',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/event-payment-history/event-payment-history.module').then(
+        (m) => m.EventPaymentHistoryModule
+      ),
+  },
+  {
+    path: 'premium-payment-histories',
+    component: NavbarComponent,
+    loadChildren: () =>
+      import('./pages/premium-payment-history/premium-payment-history.module').then(
+        (m) => m.PremiumPaymentHistoryModule
+      ),
+  },
+  {
     path: '',
     redirectTo: '/homes',
     pathMatch: 'full',
