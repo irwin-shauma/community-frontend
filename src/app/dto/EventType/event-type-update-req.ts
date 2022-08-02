@@ -1,5 +1,6 @@
 export interface EventTypeUpdateReq{
-    id?: string
-    type?: string
-    isActive?: boolean
+    id?: string;
+    type?: string;
+    isActive?: boolean;
+    version?: number;
 }

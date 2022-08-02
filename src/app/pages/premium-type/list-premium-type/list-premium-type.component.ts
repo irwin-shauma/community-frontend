@@ -12,7 +12,7 @@ import { PremiumTypeService } from 'src/app/service/premium-type.service';
   templateUrl: './list-premium-type.component.html'
 })
 export class ListPremiumTypeComponent implements OnInit {
-  idDeleted!: number;
+  idDeleted!: string;
   premiumTypes: PremiumTypeFindAllRes = {} as PremiumTypeFindAllRes;
   premiumTypeData!: PremiumTypeData[];
   deleteSubscription?: Subscription;
@@ -35,7 +35,7 @@ export class ListPremiumTypeComponent implements OnInit {
     });
   }
 
-  ondelete(id: number): void{
+  ondelete(id: string): void{
     this.idDeleted = id;
   }
 
@@ -47,7 +47,7 @@ export class ListPremiumTypeComponent implements OnInit {
     });
   }
 
-  confirm(id: number): void{
+  confirm(id: string): void{
     this.idDeleted = id;
     this.confirmationService.confirm({
       message: 'Are you sure that you want to perform this action?',
