@@ -4,7 +4,10 @@ import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { ArticleHeaderData } from 'src/app/dto/article/article-data';
 import { ArticleHeaderFindAll } from 'src/app/dto/article/article-find-all';
+import { LoginRes } from 'src/app/dto/user/login-res';
 import { ArticleHeaderService } from 'src/app/service/article.service';
+import { LoginService } from 'src/app/service/login.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-list-article',
@@ -19,7 +22,11 @@ export class ArticleHeaderListComponent implements OnInit{
   constructor(
     private confirmationService: ConfirmationService,
     private articleHeaderService: ArticleHeaderService,
+    private userService : UserService,
+    private loginService : LoginService,
     private router: Router) {}
+
+    private loginRes : LoginRes = {} as LoginRes
 
   ngOnInit(): void{
     this.articleHeaders.data = [];
@@ -32,6 +39,14 @@ export class ArticleHeaderListComponent implements OnInit{
       this.articleHeaders = result;
       this.articleHeaderData = result.data!;
     });
+
+    console.log(this.loginService.getData()?.data?.id);
+    
+    
+
+    this.userService.findById( String(this.loginService.getData()?.data?.id)).subscribe((result) => {
+      console.log(result)
+    })
   }
 
   ondelete(id: number): void{

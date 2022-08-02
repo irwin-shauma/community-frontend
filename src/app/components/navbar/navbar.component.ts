@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { MenuItem } from 'primeng/api';
 import { Role } from 'src/app/constant/role-constant';
 import { LoginService } from 'src/app/service/login.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,8 +15,11 @@ export class NavbarComponent implements OnInit {
 
   tieredItems!: MenuItem[];
   profile!: MenuItem[];
+  userName! : string;
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private router: Router,
+     private loginService: LoginService,
+     private userService : UserService) {}
 
   logout(): void {
     localStorage.clear();
@@ -30,7 +34,26 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl(`/profiles/view/${id}`);
   }
 
+  getUsername() {
+    this.userService.findById( this.loginService.getData()?.data?.id!).subscribe((result) => {
+      this.userName = result.data?.fullName!
+    })
+
+  }
+
   ngOnInit(): void {
+    this.getUsername()
+    // console.log(this.userName + "--> Here")
+    this.userService.findById( this.loginService.getData()?.data?.id!).subscribe((result) => {
+      console.log(result.data?.fullName)
+      this.userName = result.data?.fullName!
+      this.initData()
+    })
+
+    // this.initData()
+  }
+
+  initData() : void {
     this.dataLogin = this.loginService.getRole();
     this.tieredItems = [
       {
@@ -102,9 +125,12 @@ export class NavbarComponent implements OnInit {
         visible: this.dataLogin == Role.MEMBER,
       },
     ];
+    
+    console.log(this.userName  + "Hereee")
     this.profile = [
       {
-        label: this.loginService.getData()?.data?.email,
+        label: this.userName,
+        // label: this.loginService.getData()?.data?.email,
         items: [
           {
             label: 'View Profile',
