@@ -3,24 +3,24 @@
         <h2 class="font-medium">Create Premium Type</h2>
     </div>
     <div class="glasses p-5 border-round h-30rem">
-        <button pButton pRipple label="back" icon="pi pi-arrow-left" class="bg-red-500" styleClass="p-button-sm"
+        <button pButton pRipple label="back" icon="pi pi-arrow-left" class="bg-red-500" routerLink="/premium-types" styleClass="p-button-sm"
             routerLink="/premium-types"></button>
 
-        <form class="pt-5 h-20rem">
+        <form class="pt-5 h-20rem" (ngSubmit)="onsubmitpremiumType()">
             <div class="grid">
                 <div class="md:col-4">
                     <div class="flex flex-column mb-4">
                         <label for="">Price <span class="text-red-500">*</span></label>
-                        <input pInputText class="inputstyle">
+                        <input pInputText class="inputstyle" name="price" [(ngModel)] = "insertPremiumTypeReq.price">
                     </div>
                     <div class="flex flex-column">
                         <label for="">Duration(Month) <span class="text-red-500">*</span></label>
-                        <input pInputText class="inputstyle">
+                        <input pInputText class="inputstyle" name="duration" [(ngModel)]="insertPremiumTypeReq.duration">
                     </div>
                 </div>
             </div>
             <div class="flex justify-content-end">
-                <p-button label="Submit" styleClass="p-button-sm"></p-button>
+                <p-button label="Submit" styleClass="p-button-sm" type="submit"></p-button>
             </div>
         </form>
     </div>

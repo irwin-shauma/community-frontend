@@ -4,7 +4,7 @@
     </div>
 
     <div class="mt-5">
-        <p-table [showCurrentPageReport]="true" responsiveLayout="scroll" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listPremium" class="glasses">
+        <p-table [showCurrentPageReport]="true" responsiveLayout="scroll" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="premiumTypeData" class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>
@@ -22,11 +22,11 @@
                     <td>{{list.price}}</td>
                     <td>{{list.duration}} Month</td>
                     <td>
-                        <p-checkbox [binary]="true" inputId="binary" [disabled]="true"></p-checkbox>
+                        <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary" [disabled]="true"></p-checkbox>
                     </td>
                     <td class="flex">
-                        <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" routerLink="/premium-types/edit"></button>
-                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm()"></button>
+                        <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" (click)="onUpdateById(list.id)"></button>
+                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm(list.id)"></button>
                     </td>
                 </tr>
             </ng-template>

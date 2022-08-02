@@ -20,13 +20,10 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { ConfirmationService } from 'primeng/api';
 import { PremiumTypeRouting } from './premium-type.routing';
 import { EditPremiumTypeComponent } from './edit-premium-type/edit-premium-type.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    CreatePremiumTypeComponent,
-    ListPremiumTypeComponent,
-    EditPremiumTypeComponent
-  ],
+ 
   imports: [
     CommonModule,
     PremiumTypeRouting,
@@ -44,7 +41,14 @@ import { EditPremiumTypeComponent } from './edit-premium-type/edit-premium-type.
     ConfirmDialogModule,
     CheckboxModule,
     InputTextModule,
-    InputTextareaModule
+    InputTextareaModule,
+    FormsModule,
+    CommonModule,
+  ],
+  declarations: [
+    CreatePremiumTypeComponent,
+    ListPremiumTypeComponent,
+    EditPremiumTypeComponent
   ],
   exports: [
     CreatePremiumTypeComponent,
