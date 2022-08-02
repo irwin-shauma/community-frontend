@@ -1,5 +1,5 @@
 import { EventHeaderData } from "./event-header-data";
 
-export interface EventHEaderFindAllRes{
+export interface EventHeaderFindAllRes{
     data?: EventHeaderData[]
 }
