@@ -12,6 +12,7 @@ export interface ThreadHeaderData {
   createdAt: string;
   createdBy: string;
   fullName: string;
+  userPhoto: string;
   countLike: number;
   countComment: number;
   threadDetail: ThreadDetailData[];

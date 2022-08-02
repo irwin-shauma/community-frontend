@@ -46,13 +46,17 @@ export class CustomInterceptor implements HttpInterceptor {
                 detail: result.body.message,
                 life: 1000,
               });
-              this.toastService.success(result.body.message);
             }
           }
         },
         error: (result) => {
           if (result instanceof HttpErrorResponse) {
-            this.toastService.error(result.error.message);
+            this.messageService.add({
+              severity: 'error',
+              summary: 'Error',
+              detail: result.error.message,
+              life: 1000,
+            });
             if (result.status == 401) {
               if (!isLoginReq) {
                 this.router.navigateByUrl('/login');

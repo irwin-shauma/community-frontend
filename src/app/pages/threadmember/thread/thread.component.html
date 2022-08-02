@@ -4,7 +4,8 @@
             <div class="glasses p-3 border-round mb-8 cursor-pointer" *ngFor="let thread of threadHeader.data; let i = index">
                 <div class="flex">
                     <div>
-                        <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                        <p-avatar *ngIf="thread.userPhoto === null" icon="pi pi-user" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
+                        <p-avatar *ngIf="thread.userPhoto !== null" image="http://localhost:1234/files/{{thread.userPhoto}}" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
                     </div>
                     <div>
                         <h4>{{thread.fullName}}</h4>
