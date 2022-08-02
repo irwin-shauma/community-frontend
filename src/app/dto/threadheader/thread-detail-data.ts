@@ -3,6 +3,7 @@ export interface ThreadDetailData {
   threadHeaderId: string;
   userId: string;
   fullName: string;
+  userPhoto: string;
   commentThread: string;
   createdAt: string;
 }
