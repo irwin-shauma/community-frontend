@@ -10,7 +10,7 @@ import { PremiumTypeService } from 'src/app/service/premium-type.service';
   styleUrls: ['./edit-premium-type.component.css']
 })
 export class EditPremiumTypeComponent implements OnDestroy, OnInit {
-  idParam!: number
+  idParam!: string
   premiumTypeSubscription?: Subscription;
   data: PremiumTypeData= {} as PremiumTypeData;
 

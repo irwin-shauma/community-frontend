@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { PremiumPaymentHistoryComponent } from "./premium-payment-history.component";
-import { PremiumPaymentHistoryModule } from "./premium-payment-history.module";
 
 const routes: Routes = [
     {
@@ -14,7 +13,4 @@ const routes: Routes = [
     imports: [RouterModule.forChild(routes)],
     exports: [RouterModule]
 })
-export class PremiumPaymentHistoryRouting{
-
-
-}
+export class PremiumPaymentHistoryRouting{}

@@ -15,14 +15,19 @@
                                 <tr>
                                     <th>No</th>
                                     <th>TrxNo</th>
-                                    <th>Event</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th>Duration</th>
                                 </tr>
                             </ng-template>
                             <ng-template pTemplate="body" let-list let-i="rowIndex">
                                 <tr>
+
                                     <td>{{i+1}}</td>
-                                    <td>{{list.TrxNo}}</td>
-                                    <td></td>
+                              
+                                    <td>{{list.trxNo}}</td>
+                                    <!-- <td>{{}}</td> -->
+                                    <
                                 </tr>
                             </ng-template>
                         </p-table>
