@@ -55,7 +55,7 @@ export class CustomInterceptor implements HttpInterceptor {
             this.toastService.error(result.error.message);
             if (result.status == 401) {
               if (!isLoginReq) {
-                this.router.navigateByUrl('/auth/login');
+                this.router.navigateByUrl('/login');
               }
               localStorage.clear();
             }

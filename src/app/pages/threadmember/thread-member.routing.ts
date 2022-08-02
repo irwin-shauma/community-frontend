@@ -9,7 +9,7 @@ const routes: Routes = [
     component: ThreadMemberComponent,
   },
   {
-    path: 'detail',
+    path: ':id',
     component: ThreadMemberDetailComponent,
   },
 ];

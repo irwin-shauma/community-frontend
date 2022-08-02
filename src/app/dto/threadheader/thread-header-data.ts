@@ -1,3 +1,5 @@
+import { ThreadDetailData } from './thread-detail-data';
+
 export interface ThreadHeaderData {
   id: string;
   threadTypeId: string;
@@ -11,4 +13,6 @@ export interface ThreadHeaderData {
   createdBy: string;
   fullName: string;
   countLike: number;
+  countComment: number;
+  threadDetail: ThreadDetailData[];
 }

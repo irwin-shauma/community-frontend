@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { InsertRes } from '../dto/insert-res';
 import { ThreadHeaderData } from '../dto/threadheader/thread-header-data';
 import { ThreadHeaderFindAll } from '../dto/threadheader/thread-header-find-all';
+import { ThreadHeaderFindByIdRes } from '../dto/threadheader/thread-header-find-by-id-res';
 import { ThreadHeaderInsertReq } from '../dto/threadheader/thread-header-insert-req';
 
 @Injectable({
@@ -16,6 +17,12 @@ export class ThreadService {
     return this.http.post<InsertRes>(
       'http://localhost:1234/thread-headers',
       data
+    );
+  }
+
+  findById(id: string): Observable<ThreadHeaderFindByIdRes> {
+    return this.http.get<ThreadHeaderFindByIdRes>(
+      'http://localhost:1234/thread-headers/' + id
     );
   }
 
