@@ -1,7 +1,7 @@
 <div class="p-8">
     <p-tabView>
         <p-tabPanel header="Thread" leftIcon="pi pi-book" >
-            <div class="glasses p-3 border-round mb-8 cursor-pointer" *ngFor="let thread of threadHeader.data; let i = index" routerLink="/threads-main/detail" >
+            <div class="glasses p-3 border-round mb-8 cursor-pointer" *ngFor="let thread of threadHeader.data; let i = index">
                 <div class="flex">
                     <div>
                         <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
@@ -16,7 +16,7 @@
                        {{thread.title}}
                     </p>
                     <p>
-                       {{thread.contentThread}}
+                       {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} ... <a  (click)="onExpandText($event, thread.id)">See More</a>
                     </p>
                 </div>
                 <div *ngIf="thread.fileId != null"> 
@@ -32,7 +32,7 @@
                                 </div>
                                 <div class="flex">
                                     <i class="pi pi-comment"></i>
-                                    <p>2</p>
+                                    <p>{{thread.countComment}}</p>
                                 </div>
                             </div>
                             <div>

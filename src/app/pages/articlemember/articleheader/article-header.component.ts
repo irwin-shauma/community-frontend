@@ -14,14 +14,14 @@ export class ArticleHeaderComponent implements OnInit {
   articleHeaderData!: ArticleHeaderData[];
 
   // start page mulai dari 0, max page untuk maksimum querynya yang ingin ditampilkan.
-  startPage : number = 0
-  maxPage : number = 5;
+  startPage: number = 0;
+  maxPage: number = 5;
 
   sliceOptions = {
-    start : 0,
-    end : 200,
-    default : 200
-  }
+    start: 0,
+    end: 200,
+    default: 200,
+  };
 
   constructor(
     private articleHeaderService: ArticleHeaderService,
@@ -33,15 +33,22 @@ export class ArticleHeaderComponent implements OnInit {
     this.initData(this.startPage, this.maxPage);
   }
 
-  onScroll() : void {
-    this.initData(this.startPage, this.maxPage+5)
+  onScroll(): void {
+    this.initData(this.startPage, this.maxPage + 5);
     this.maxPage += this.maxPage;
   }
 
-  initData(startPage: number, maxPage : number): void {
-    this.articleHeaderService.showAllArticle(startPage,maxPage).subscribe((result) => {
-      this.articleHeaders = result;
-      this.articleHeaderData = result.data!;
-    });
+  onExpandText(evt: any): void {
+    this.router.navigateByUrl('/home');
+  }
+
+
+  initData(startPage: number, maxPage: number): void {
+    this.articleHeaderService
+      .showAllArticle(startPage, maxPage)
+      .subscribe((result) => {
+        this.articleHeaders = result;
+        this.articleHeaderData = result.data!;
+      });
   }
 }

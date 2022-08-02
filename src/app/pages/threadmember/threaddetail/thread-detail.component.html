@@ -10,16 +10,16 @@
                 <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
             </div>
             <div>
-                <h4>Salman Faris Siddiq</h4>
-                <p>Upload 1 hour ago</p>
+                <h4>{{threadData.data.fullName}}</h4>
+                <p>{{threadData.data.createdAt | timeAgo}}</p>
             </div>
         </div>
         <div class="mt-3">
             <p class="font-bold">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate rerum nihil, non eveniet facere aliquid obcaecati.
+                {{threadData.data.title}}
             </p>
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat et ipsum inventore quis fugit optio tenetur repudiandae laudantium ea, distinctio doloremque voluptates facilis tempora ut, recusandae reprehenderit error adipisci ducimus deserunt rerum excepturi maxime libero. Quod recusandae hic harum aliquam, fugiat quos, eveniet molestiae iure explicabo facilis totam exercitationem odit mollitia laboriosam ab facere earum dolorum nihil accusamus veritatis, excepturi molestias? Tenetur, tempora laboriosam. Voluptates pariatur debitis, nemo tempore obcaecati, inventore autem dolores enim, in dolore quisquam. Hic aspernatur recusandae architecto facilis, accusantium excepturi cum, qui iusto ipsum sapiente eaque ad inventore labore impedit quia cupiditate quibusdam quaerat deleniti debitis rerum deserunt nam et rem magnam? Vitae iste nemo omnis explicabo architecto labore natus facere provident vel modi neque laborum molestias ullam, a eos atque quaerat ex in, beatae libero aliquid eaque esse. Eligendi aperiam cum iure porro quo quibusdam vero sed, minus quis officiis pariatur delectus voluptatem corporis distinctio labore quia nobis totam, soluta quos magnam a odio minima quam? Voluptatem excepturi deserunt, vero ipsum facere, distinctio explicabo quae ex doloremque accusantium aut a repellendus numquam possimus, dicta doloribus dolores? Libero dolore, enim facilis laudantium nemo id officia illo ab in ex! Error nam ea quia temporibus fugit est beatae laboriosam aspernatur eaque deserunt, facilis atque nobis autem dignissimos doloribus mollitia eveniet veritatis enim quisquam ipsum consequuntur alias fuga? Totam delectus iure culpa suscipit dolore quae consectetur accusantium officia assumenda libero reiciendis officiis necessitatibus id, cupiditate porro corrupti eveniet nobis? Tempore debitis id non itaque molestias. Dicta iste nihil dolorum fuga deleniti alias excepturi laborum nemo mollitia aspernatur quo nisi, vero suscipit numquam commodi, impedit maiores facere hic. Similique magnam quod quibusdam accusantium obcaecati nesciunt sint possimus sunt iure laudantium sapiente consequuntur minus iste molestiae officia ab laborum libero debitis delectus cupiditate, excepturi, porro error? Repudiandae nesciunt totam ipsam quod quaerat magnam aliquid qui repellendus officia accusamus, voluptates pariatur explicabo ad? Saepe quos nulla reprehenderit nihil eius, ut quo? Eius assumenda aspernatur accusamus autem sequi nihil non nulla cum nesciunt inventore, illum officiis consequuntur iure fuga, ab impedit aperiam modi, possimus provident! Iure, non voluptates perferendis laboriosam minima quo voluptate, atque necessitatibus doloribus illo, delectus ab. Porro, aliquid rem. Aperiam deleniti harum vel omnis ipsam, ratione necessitatibus aliquam quos quisquam cupiditate dolore voluptate illum earum porro at culpa neque expedita aliquid quod voluptatem temporibus voluptatibus accusamus. Dolorum repellendus ullam expedita eveniet, enim numquam nulla, impedit itaque vero veniam molestiae quas odio esse corrupti exercitationem mollitia? Consequuntur odio quae ea quia delectus veniam accusamus repudiandae porro molestiae quibusdam praesentium, cupiditate sunt ut minus harum incidunt autem, deleniti tempore hic? Dicta ratione fugit ea dignissimos magnam explicabo ut asperiores tempore tempora beatae, aspernatur maiores reiciendis itaque nisi cupiditate consectetur velit autem libero! Accusamus aperiam dicta, exercitationem illo fugiat, architecto repellendus cum numquam omnis commodi dolor molestiae beatae autem cumque ullam id. Vitae veniam ex nesciunt similique. Nihil consectetur dolor neque aperiam dolore commodi ratione maiores. Dolores culpa qui ullam tempore voluptatibus nemo placeat debitis. Corrupti sint consectetur fugiat repellat, magnam dolorem.
+               {{threadData.data.contentThread}}
             </p>
         </div>
         <div>
@@ -28,11 +28,7 @@
                     <div class="flex w-1 justify-content-around">
                         <div class="flex">
                             <i class="pi pi-heart-fill"></i>
-                            <p>5</p>
-                        </div>
-                        <div class="flex">
-                            <i class="pi pi-comment"></i>
-                            <p>2</p>
+                            <p>{{threadData.data.countLike}}</p>
                         </div>
                     </div>
                     <div>
@@ -45,6 +41,7 @@
                 </div>
             </div>
         </div>
+        
     </div>
 
     <div class="glasses p-3 border-round mb-8">
@@ -80,6 +77,8 @@
         </div>
     </div>
 
-
+    <pre>
+        {{threadData | json}}
+    </pre>
 
 </div>

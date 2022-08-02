@@ -13,7 +13,9 @@
                             <p class="text-2xl ">{{data.title}}</p>
                         </div>
                         <div class="flex h-6rem  text-black border-round m-2">
-                            <p class="text-sm ">{{data.contents | slice:sliceOptions.start:sliceOptions.end}} ... <a routerLink="/article-members/details/{{data.id}}">See More</a></p>
+                            <p class="text-sm ">{{data.contents | slice:sliceOptions.start:sliceOptions.end}} ... <a (click)="onExpandText($event)">See More</a></p>
+
+
                             
                         </div>
                       

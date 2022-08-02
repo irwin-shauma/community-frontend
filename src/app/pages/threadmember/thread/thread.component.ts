@@ -24,22 +24,27 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadSubscription?: Subscription;
   threadTypeShow = true;
   polling: boolean = false;
+  premiumShow: boolean = false;
   insertThreadReq: ThreadHeaderInsertReq = {} as ThreadHeaderInsertReq;
 
   data: ThreadHeaderData = {} as ThreadHeaderData;
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
   threadType: ThreadTypeFindAll = {} as ThreadTypeFindAll;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
-  threadLikes: ThreadLikeFindAllRes = {} as ThreadLikeFindAllRes;
   premiumHistory: PremiumPaymentHistoryFindAll =
     {} as PremiumPaymentHistoryFindAll;
+
+  sliceOptions = {
+    start: 0,
+    end: 2,
+    default: 2,
+  };
 
   constructor(
     private threadService: ThreadService,
     private router: Router,
     private threadTypeService: ThreadTypeService,
     private fileService: FileService,
-    private threadLikeService: ThreadLikeService,
     private premiumPaymentHistoryService: PremiumPaymentHistoryService
   ) {}
 
@@ -98,6 +103,10 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       this.insertThreadReq.fileName = res[0];
       this.insertThreadReq.fileExtension = res[1];
     });
+  }
+
+  onExpandText(evt: any, id: string): void {
+    this.router.navigateByUrl(`/threads-main/${id}`);
   }
 
   ngOnDestroy(): void {
