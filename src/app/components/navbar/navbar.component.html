@@ -1,56 +1,60 @@
 <div class="col-12 px-8">
   <div class="card card-w-title">
-      <p-menubar [model]="tieredItems" [style]="{'background-color':'transparent','border':'none'}" >
-        <ng-template pTemplate="start">
-          <div class="flex justify-content-center align-items-center" routerLink="/home">
-            <img src="./../../../assets/logo.png" alt="" width="30x" height="30px">
-            <h3>Communify</h3>
-          </div>
-        </ng-template>
-        <ng-template pTemplate="end">
-          <button type="button" class="p-button-outlined p-button-rounded" pButton icon="pi pi-user" (click)="menu.toggle($event)"></button>
-          <p-menu #menu [popup]="true" [model]="profile"></p-menu>
+    <p-menubar [model]="tieredItems" [style]="{'background-color':'transparent','border':'none'}">
+      <ng-template pTemplate="start">
+        <div class="flex justify-content-center align-items-center" routerLink="/home">
+          <img src="./../../../assets/logo.png" alt="" width="30x" height="30px">
+          <h3>Communify</h3>
+        </div>
       </ng-template>
-      </p-menubar>
+      <ng-template pTemplate="end">
+        <button type="button" class="p-button-outlined p-button-rounded" pButton icon="pi pi-user"
+          (click)="menu.toggle($event)"></button>
+        <p-menu #menu [popup]="true" [model]="profile"></p-menu>
+      </ng-template>
+    </p-menubar>
   </div>
 </div>
-  <router-outlet></router-outlet>
-  <footer class="footer mt-8">
-    <div class="flex flex-row justify-content-between px-8 py-4">
-      <div class="md:col-4">
-        <div class="flex align-items-center mb-2">
-          <img src="../../../assets/logo.png" width="50px" alt="">
-          <span class="company-name">Communify</span>
-        </div>
-        <span class="description text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-          Aliquam modi in delectus labore nisi rem odit iusto laboriosam 
-          asperiores saepe.</span>
-        <div class="mt-6">
-          <span class="mr-2 social-media">Social Media</span>
-          <a href="https://youtube.com"><i class="pi pi-youtube social-media"></i></a>
-          <a href="https://youtube.com"><i class="pi pi-instagram social-media mx-2"></i></a>
-          <a href="https://youtube.com"><i class="pi pi-facebook social-media"></i></a>
-        </div>
+
+<router-outlet></router-outlet>
+
+
+<footer class="footer mt-8">
+  <div class="flex flex-row justify-content-between px-8 py-4">
+    <div class="md:col-4">
+      <div class="flex align-items-center mb-2">
+        <img src="../../../assets/logo.png" width="50px" alt="">
+        <span class="company-name">Communify</span>
       </div>
-      <div class="flex flex-row justify-content-between w-5">
-        <div class="flex flex-column gap-2">
-          <span class="social-media">Main Menu</span>
-          <p class="menu-item">Event</p>
-          <p class="menu-item">Course</p>
-          <p class="menu-item">Thread</p>
-          <p class="menu-item">Article</p>
-        </div>
-        <div class="flex flex-column gap-2 w-5">
-          <span class="social-media">Contact</span>
-          <span class="menu-item"><i class="pi pi-phone"></i> +6285157554036</span>
-          <span class="menu-item"><i class="pi pi-map-marker"></i> Jl. Menteng Dalem, Pakuwon Tower Lt.22</span>
-        </div>
+      <span class="description text-justify">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+        Aliquam modi in delectus labore nisi rem odit iusto laboriosam
+        asperiores saepe.</span>
+      <div class="mt-6">
+        <span class="mr-2 social-media">Social Media</span>
+        <a href="https://youtube.com"><i class="pi pi-youtube social-media"></i></a>
+        <a href="https://youtube.com"><i class="pi pi-instagram social-media mx-2"></i></a>
+        <a href="https://youtube.com"><i class="pi pi-facebook social-media"></i></a>
       </div>
     </div>
-    <p-divider></p-divider>
-    <div class="flex justify-content-between px-8 pb-2">
-      <span class="company">Communify,<span class="year"> 2022</span></span>
-      <span class=" year">Privacy Policy</span>
+    <div class="flex flex-row justify-content-between w-5">
+      <div class="flex flex-column gap-2">
+        <span class="social-media">Main Menu</span>
+        <p class="menu-item">Event</p>
+        <p class="menu-item">Course</p>
+        <p class="menu-item">Thread</p>
+        <p class="menu-item">Article</p>
+      </div>
+      <div class="flex flex-column gap-2 w-5">
+        <span class="social-media">Contact</span>
+        <span class="menu-item"><i class="pi pi-phone"></i> +6285157554036</span>
+        <span class="menu-item"><i class="pi pi-map-marker"></i> Jl. Menteng Dalem, Pakuwon Tower Lt.22</span>
+      </div>
     </div>
-    
-  </footer>
+  </div>
+  <p-divider></p-divider>
+  <div class="flex justify-content-between px-8 pb-2">
+    <span class="company">Communify,<span class="year"> 2022</span></span>
+    <span class=" year">Privacy Policy</span>
+  </div>
+
+</footer>
