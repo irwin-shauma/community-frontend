@@ -1,3 +1,3 @@
 export interface ThreadPollingDetailInsertReq {
-  question: string;
+  pollingChoice: string;
 }
