@@ -11,15 +11,20 @@ import { RoleService } from 'src/app/service/role.service';
 export class RoleCreateComponent implements OnDestroy {
   roleSubscription?: Subscription;
   insertRoleReq: RoleInsertReq = {} as RoleInsertReq;
+  loading: boolean = false;
 
   constructor(private roleService: RoleService, private router: Router) {}
 
   onsubmitrole(): void {
-    this.roleSubscription = this.roleService
+    this.loading = true;
+    setTimeout(() => {
+      this.roleSubscription = this.roleService
       .addRole(this.insertRoleReq)
       .subscribe((result) => {
-        // this.router.navigateByUrl('/roles');
+        this.router.navigateByUrl('/roles');
       });
+      this.loading = false;
+    }, 2000);
   }
 
   ngOnDestroy(): void {

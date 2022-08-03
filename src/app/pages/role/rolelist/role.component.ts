@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { RoleData } from 'src/app/dto/Role/role-data';
 import { RoleFindAllRes } from 'src/app/dto/Role/role-find-all';
@@ -15,6 +15,7 @@ export class RoleListComponent implements OnInit {
   roles: RoleFindAllRes = {} as RoleFindAllRes;
   roleData!: RoleData[];
   deleteSubsciption?: Subscription;
+  loading!: boolean;
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -24,7 +25,7 @@ export class RoleListComponent implements OnInit {
 
   ngOnInit(): void {
     this.roles.data = [];
-    this.initData();
+    this.loadRoles
   }
 
   initData(): void {
@@ -33,6 +34,15 @@ export class RoleListComponent implements OnInit {
       this.roleData = result.data!;
     });
   }
+
+  loadRoles(event: LazyLoadEvent) {
+    this.loading = true;
+
+    setTimeout(() => {
+      this.initData()
+      this.loading = false;
+    }, 2000);
+}
 
   ondelete(id: number): void {
     this.idDeleted = id;
