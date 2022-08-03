@@ -11,6 +11,7 @@ export interface ThreadHeaderData {
   contentThread: string;
   version: number;
   isActive: boolean;
+  isLike: boolean;
   createdAt: string;
   createdBy: string;
   fullName: string;

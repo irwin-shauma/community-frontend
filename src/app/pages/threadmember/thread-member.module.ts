@@ -15,6 +15,7 @@ import { CalendarModule } from 'primeng/calendar';
 import { FileUploadModule } from 'primeng/fileupload';
 import { DropdownModule } from 'primeng/dropdown';
 import { TimeAgoPipe } from 'src/app/pipe/time-ago.pipe';
+import { BadgeModule } from 'primeng/badge';
 
 @NgModule({
   imports: [
@@ -32,6 +33,7 @@ import { TimeAgoPipe } from 'src/app/pipe/time-ago.pipe';
     CalendarModule,
     FileUploadModule,
     DropdownModule,
+    BadgeModule
   ],
   declarations: [
     ThreadMemberComponent,
@@ -40,4 +42,4 @@ import { TimeAgoPipe } from 'src/app/pipe/time-ago.pipe';
   ],
   exports: [ThreadMemberComponent, ThreadMemberDetailComponent],
 })
-export class ThreadMemberModule {}
+export class ThreadMemberModule { }
