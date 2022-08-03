@@ -14,7 +14,7 @@ import { UserService } from "src/app/service/user.service";
 export class PremiumPaymentHistoryComponent implements OnInit{
     premiumPaymentHistories: PremiumPaymentHistoryFindAll = {} as PremiumPaymentHistoryFindAll;
     premiumPaymentHistoryData!: PremiumPaymentHistoryData [];
-    private userId: string[] = []
+    userId: string[] = []
     private premiumTypeId: string[] = []
 
     constructor(
@@ -36,22 +36,19 @@ export class PremiumPaymentHistoryComponent implements OnInit{
            
             for(let i = 0; i< this.premiumPaymentHistoryData.length; i++){
                 this.userService.findById(String(this.premiumPaymentHistoryData[i].userId)).subscribe((result) => {
-                    this.userId.push(String(result.data?.fullName))
+                    this.userId.push(String(result.data?.fullName!))
                     // console.log(result.data?.fullName!)
                 })
             }
+            console.log(this.userId)
 
             for(let j = 0; j< this.premiumPaymentHistoryData.length; j++){
                 this.premiumTypeService.findById(String(this.premiumPaymentHistoryData[j].premiumTypeId)).subscribe((result) => {
                     this.premiumTypeId.push(String(result.data?.price))
                     this.premiumTypeId.push(String(result.data?.duration))
-                    console.log(result.data?.price)
-                    console.log(result.data?.duration)
 
                 })
             }
-
-            console.log(this.userId.length)
             
         });
 
