@@ -3,6 +3,7 @@ import { FormArray, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PremiumPaymentHistoryFindById } from 'src/app/dto/premium-payment-history/premium-payment-history-find-by-id-res';
+import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
 import { ThreadHeaderData } from 'src/app/dto/threadheader/thread-header-data';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
 import { ThreadHeaderInsertReq } from 'src/app/dto/threadheader/thread-header-insert-req';
@@ -13,6 +14,7 @@ import { ThreadPollingDetailData } from 'src/app/dto/threadpollingdetail/thread-
 import { ThreadTypeFindAll } from 'src/app/dto/threadtype/thread-type-find-all';
 import { FileService } from 'src/app/service/file.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
+import { ThreadLikeService } from 'src/app/service/thread-like.service';
 import { ThreadPollingService } from 'src/app/service/thread-polling.service';
 import { ThreadTypeService } from 'src/app/service/thread-type.service';
 import { ThreadService } from 'src/app/service/thread.service';
@@ -25,6 +27,7 @@ import { ThreadService } from 'src/app/service/thread.service';
 export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadSubscription?: Subscription;
   pollingSubscription?: Subscription;
+  threadLikeSubs?: Subscription;
   threadTypeShow = true;
   polling: boolean = false;
   premiumShow: boolean = false;
@@ -39,6 +42,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   premiumHistory: PremiumPaymentHistoryFindById =
     {} as PremiumPaymentHistoryFindById;
+  likeInsert: ThreadLikeInsertReq = {} as ThreadHeaderData;
 
   sliceOptions = {
     start: 0,
@@ -52,7 +56,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     private threadTypeService: ThreadTypeService,
     private fileService: FileService,
     private premiumPaymentHistoryService: PremiumPaymentHistoryService,
-    private pollingService: ThreadPollingService
+    private pollingService: ThreadPollingService,
+    private threadLikeService: ThreadLikeService
   ) {}
 
   pollingArray = new FormArray([new FormControl('')]);
@@ -156,7 +161,20 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     this.router.navigateByUrl(`/premiums`);
   }
 
+  like(threadId: string): void {
+    this.likeInsert.threadId = threadId;
+    this.threadLikeSubs = this.threadLikeService.insert(this.likeInsert).subscribe(result => {
+      this.onInitData();
+    })
+  }
+
+  unLike(threadId: string): void {
+    this.threadLikeService.delete(threadId).subscribe(res => {this.onInitData();})
+  }
+
   ngOnDestroy(): void {
     this.threadSubscription?.unsubscribe();
+    this.pollingSubscription?.unsubscribe();
+    this.threadLikeSubs?.unsubscribe();
   }
 }
