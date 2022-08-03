@@ -14,14 +14,9 @@ import { UserService } from "src/app/service/user.service";
 export class PremiumPaymentHistoryComponent implements OnInit{
     premiumPaymentHistories: PremiumPaymentHistoryFindAll = {} as PremiumPaymentHistoryFindAll;
     premiumPaymentHistoryData!: PremiumPaymentHistoryData [];
-    private userId: string[] = []
-    private premiumTypeId: string[] = []
 
     constructor(
         private premiumPaymentHistoryService: PremiumPaymentHistoryService,
-        private userService: UserService,
-        private premiumTypeService: PremiumTypeService,
-        private router: Router
     ){}
 
     ngOnInit(): void{
@@ -33,27 +28,6 @@ export class PremiumPaymentHistoryComponent implements OnInit{
         this.premiumPaymentHistoryService.showAllPremiumPaymentHistory().subscribe((result) => {
             this.premiumPaymentHistories = result;
             this.premiumPaymentHistoryData = result.data!;
-           
-            for(let i = 0; i< this.premiumPaymentHistoryData.length; i++){
-                this.userService.findById(String(this.premiumPaymentHistoryData[i].userId)).subscribe((result) => {
-                    this.userId.push(String(result.data?.fullName))
-                    // console.log(result.data?.fullName!)
-                })
-            }
-
-            for(let j = 0; j< this.premiumPaymentHistoryData.length; j++){
-                this.premiumTypeService.findById(String(this.premiumPaymentHistoryData[j].premiumTypeId)).subscribe((result) => {
-                    this.premiumTypeId.push(String(result.data?.price))
-                    this.premiumTypeId.push(String(result.data?.duration))
-                    console.log(result.data?.price)
-                    console.log(result.data?.duration)
-
-                })
-            }
-
-            console.log(this.userId.length)
-            
         });
-
     }
 }
