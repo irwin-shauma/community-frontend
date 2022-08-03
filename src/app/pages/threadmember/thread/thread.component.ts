@@ -8,6 +8,7 @@ import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find
 import { ThreadHeaderInsertReq } from 'src/app/dto/threadheader/thread-header-insert-req';
 import { ThreadHeaderPollingData } from 'src/app/dto/threadheaderpolling/thread-header-polling-data';
 import { ThreadHeaderPollingInsertReq } from 'src/app/dto/threadheaderpolling/thread-header-polling-insert-req';
+import { ThreadPollingDetailData } from 'src/app/dto/threadpollingdetail/thread-polling-detail-data';
 import { ThreadTypeFindAll } from 'src/app/dto/threadtype/thread-type-find-all';
 import { FileService } from 'src/app/service/file.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
@@ -28,6 +29,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   premiumShow: boolean = false;
   insertThreadReq: ThreadHeaderInsertReq = {} as ThreadHeaderInsertReq;
   insertPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
+  threadPollingDetail!: ThreadPollingDetailData[];
   regularCheck: string = '';
   showType: boolean = true;
   data: ThreadHeaderData = {} as ThreadHeaderData;
@@ -52,12 +54,12 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     private pollingService: ThreadPollingService
   ) {}
 
-  pollingArray = new FormArray([new FormControl('', Validators.required)]);
+  pollingArray = new FormArray([new FormControl('')]);
 
-  finalResultPolling: any = [];
+  finalResultPolling: any = '';
 
   addInputControl() {
-    this.pollingArray.push(new FormControl('', Validators.required));
+    this.pollingArray.push(new FormControl(''));
   }
 
   ngOnInit(): void {
@@ -119,10 +121,11 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
         });
     } else {
       const insertThreadPolling = {} as ThreadHeaderPollingInsertReq;
-      insertThreadPolling.titlePolling = this.insertPolling.titlePolling;
-      insertThreadPolling.contentPolling = this.insertPolling.contentPolling;
-      this.finalResultPolling.push(this.pollingArray.value);
+      insertThreadPolling.titlePolling = this.data.title;
+      insertThreadPolling.contentPolling = this.data.contentThread;
+      this.finalResultPolling = this.pollingArray.value;
       insertThreadPolling.threadPollingDetail = this.finalResultPolling;
+
       this.pollingSubscription = this.pollingService
         .addThreadPolling(insertThreadPolling)
         .subscribe((result) => {

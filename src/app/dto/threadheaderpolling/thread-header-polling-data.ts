@@ -2,6 +2,8 @@ import { ThreadPollingDetailData } from '../threadpollingdetail/thread-polling-d
 
 export interface ThreadHeaderPollingData {
   id: string;
+  pollingQuestion: string;
+  duration: string;
   titlePolling: string;
   contentPolling: string;
   isActive: boolean;

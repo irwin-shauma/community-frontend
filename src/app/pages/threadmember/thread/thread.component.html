@@ -195,9 +195,9 @@
                     <div class="w-full flex justify-content-end">
                         <button icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined" pButton (click)="exitPolling()"></button>
                     </div>
-                    <!-- <div class="w-full flex  justify-content-center">
-                        <input type="text" pInputText class="inputstyle" placeholder="your question">
-                    </div> -->
+                    <div class="w-full flex  justify-content-center">
+                        <input type="text" name="pollingQuestion" [(ngModel)]="insertPolling.pollingQuestion" pInputText class="inputstyle" placeholder="your question">
+                    </div>
                     <div *ngFor="let polling of pollingArray.controls; last as isLast; index as idx;let i = index " class="flex justify-content-center">
                     
                         <div class="w-30rem p-3 flex flex-column">
@@ -205,7 +205,7 @@
                                 <label>Input {{i+1}}</label>
                             </div>
                           <div class="flex gap-2">
-                            <input type="text" [(ngModel)]="insertPolling.threadDtlPolling" pInputText [formControl]="polling" class="inputstyle" >
+                            <input type="text" name="pollingChoice"  pInputText [formControl]="polling" class="inputstyle" >
                             <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="removeInputControl(idx)" *ngIf="pollingArray.length > 1"></button>
                             <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" *ngIf="isLast && pollingArray.length < 4" (click)="addInputControl()"></button>
                           </div>
@@ -214,7 +214,7 @@
                    </div>
                    <div class="field col-12 md:col-4 flex flex-column align-items-center  w-full">
                     <label for="icon">Input Poll Length</label>
-                    <p-calendar [showIcon]="true" inputId="icon"></p-calendar>
+                    <p-calendar [showIcon]="true" inputId="icon" name="duration" [(ngModel)]="insertPolling.duration"></p-calendar>
                 </div>
                    </div>
                 
@@ -226,7 +226,9 @@
                     <button pButton label="create thread" icon="pi pi-book" class="bg-red-500"></button>
                    </div>
             </form>
-          
+                <pre>
+                    {{insertPolling |json}}
+                </pre>
         </p-tabPanel>
     </p-tabView>
 </div>
