@@ -8,6 +8,7 @@ import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find
 import { ThreadHeaderInsertReq } from 'src/app/dto/threadheader/thread-header-insert-req';
 import { ThreadHeaderPollingData } from 'src/app/dto/threadheaderpolling/thread-header-polling-data';
 import { ThreadHeaderPollingInsertReq } from 'src/app/dto/threadheaderpolling/thread-header-polling-insert-req';
+import { ThreadPollingDetailInsertReq } from 'src/app/dto/threadheaderpolling/thread-polling-detail-insert-req';
 import { ThreadPollingDetailData } from 'src/app/dto/threadpollingdetail/thread-polling-detail-data';
 import { ThreadTypeFindAll } from 'src/app/dto/threadtype/thread-type-find-all';
 import { FileService } from 'src/app/service/file.service';
@@ -56,7 +57,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
   pollingArray = new FormArray([new FormControl('')]);
 
-  finalResultPolling: any = '';
+  finalResultPolling: ThreadPollingDetailInsertReq[] = [];
 
   addInputControl() {
     this.pollingArray.push(new FormControl(''));
@@ -77,7 +78,6 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       if (result.data == null) {
         this.showType = false;
       }
-      console.log(this.showType);
     });
     this.threadTypeService.findByRegularType().subscribe((result) => {
       this.regularCheck = result.data.id;
@@ -123,13 +123,20 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       const insertThreadPolling = {} as ThreadHeaderPollingInsertReq;
       insertThreadPolling.titlePolling = this.data.title;
       insertThreadPolling.contentPolling = this.data.contentThread;
-      this.finalResultPolling = this.pollingArray.value;
+      insertThreadPolling.duration = this.insertPolling.duration;
+      insertThreadPolling.pollingQuestion = this.insertPolling.pollingQuestion;
+      for (let i = 0; i < this.pollingArray.length; i++) {
+        const insertThreadDetailPolling = {} as ThreadPollingDetailInsertReq;
+        insertThreadDetailPolling.pollingChoice = this.pollingArray.value[i]!;
+        this.finalResultPolling.push(insertThreadDetailPolling);
+      }
       insertThreadPolling.threadPollingDetail = this.finalResultPolling;
 
       this.pollingSubscription = this.pollingService
         .addThreadPolling(insertThreadPolling)
         .subscribe((result) => {
           this.onInitData();
+          this.pollingArray.reset();
         });
     }
   }
