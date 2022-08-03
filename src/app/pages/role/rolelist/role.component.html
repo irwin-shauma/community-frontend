@@ -4,7 +4,8 @@
     </div>
 
     <div class="mt-5">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [value]="roleData" [rows]="10"  class="glasses">
+        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" 
+                [value]="roleData" [rows]="10" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadRoles($event)" [loading]="loading"  class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>

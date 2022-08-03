@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { PremiumTypeData } from 'src/app/dto/premium-type/premium-type-data';
 import { PremiumTypeFindAllRes } from 'src/app/dto/premium-type/premium-type-find-all-res';
@@ -16,6 +16,7 @@ export class ListPremiumTypeComponent implements OnInit {
   premiumTypes: PremiumTypeFindAllRes = {} as PremiumTypeFindAllRes;
   premiumTypeData!: PremiumTypeData[];
   deleteSubscription?: Subscription;
+  loading!: boolean;
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -24,7 +25,7 @@ export class ListPremiumTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.premiumTypes.data= [];
-    this.initData();
+    this.loadTypes
 
   }
 
@@ -33,6 +34,15 @@ export class ListPremiumTypeComponent implements OnInit {
       this.premiumTypes = result;
       this.premiumTypeData = result.data!;
     });
+  }
+
+  loadTypes(event: LazyLoadEvent) {
+    this.loading = true;
+
+    setTimeout(() => {
+      this.initData()
+      this.loading = false;
+    }, 1000);
   }
 
   ondelete(id: string): void{

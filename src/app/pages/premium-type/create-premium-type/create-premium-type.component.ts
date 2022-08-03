@@ -12,22 +12,27 @@ import { PremiumTypeService } from 'src/app/service/premium-type.service';
 export class CreatePremiumTypeComponent implements OnDestroy {
   premiumTypeSubscription?: Subscription;
   insertPremiumTypeReq: PremiumTypeInsertReq = {} as PremiumTypeInsertReq;
+  loading: boolean = false;
 
   constructor(
     private premiumTypeService: PremiumTypeService,
     private router: Router
   ) { }
 
-  onsubmitpremiumType() : void{
-    this.premiumTypeSubscription = this.premiumTypeService
-    .addPremiumType(this.insertPremiumTypeReq)
-    .subscribe((result) => {
-      this.router.navigateByUrl('/premium-types');
-    });
+  onSubmitPremiumType(): void {
+    this.loading = true;
+    setTimeout(() => {
+      this.premiumTypeSubscription = this.premiumTypeService
+        .addPremiumType(this.insertPremiumTypeReq)
+        .subscribe((result) => {
+          this.router.navigateByUrl('/premium-types');
+        });
+      this.loading = false;
+    }, 2000);
   }
 
-  ngOnDestroy(): void{
-    this.premiumTypeSubscription?. unsubscribe();
+  ngOnDestroy(): void {
+    this.premiumTypeSubscription?.unsubscribe();
   }
 
 
