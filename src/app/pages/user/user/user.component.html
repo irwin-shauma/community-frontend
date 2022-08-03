@@ -4,7 +4,7 @@
         <h2>List Users</h2>
     </div>
     <form action="">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listUser" class="glasses">
+        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="userData" class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>
@@ -16,14 +16,16 @@
             </ng-template>
             <ng-template pTemplate="body" let-list let-i="rowIndex">
                 <tr>
+
+                    <pre>cek</pre>
                     <td>{{i+1}}</td>
                     <td>{{list.email}}</td>
                     <td>{{list.role}}</td>
                     <td>
-                        <i class="pi pi-download"></i>
+                        <img src="http://localhost:1234/files/{{list.fileId}}" alt="profile" width="50" height="50" class="border-round">
                     </td>
                     <td>
-                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary" [disabled]="true"></p-checkbox>
                     </td>
                 </tr>
             </ng-template>
