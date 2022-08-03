@@ -9,7 +9,8 @@ import { FileUploadModule } from "primeng/fileupload";
 import { InputTextModule } from "primeng/inputtext";
 import { InputTextareaModule } from "primeng/inputtextarea";
 import { TableModule } from "primeng/table";
-import { PremiumPaymentHistoryComponent } from "./premium-payment-history.component";
+import { PremiumPaymentHistoryComponent } from "./premium-payment-history-component";
+
 import { PremiumPaymentHistoryRouting } from "./premium-payment-history.routing";
 
 @NgModule({
