@@ -1,6 +1,6 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { PremiumPaymentHistoryComponent } from "./premium-payment-history.component";
+import { PremiumPaymentHistoryComponent } from "./premium-payment-history-component";
 
 const routes: Routes = [
     {
