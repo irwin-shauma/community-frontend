@@ -7,12 +7,15 @@
           <h3>Communify</h3>
         </div>
       </ng-template>
-      <ng-template pTemplate="end">
-        <button type="button" class="p-button-outlined p-button-rounded" pButton icon="pi pi-user"
+
+      <ng-template pTemplate="end" >
+        <button type="button" class="p-button-outlined p-button-rounded" *ngIf="loginStatus" pButton icon="pi pi-user"
           (click)="menu.toggle($event)"></button>
         <p-menu #menu [popup]="true" [model]="profile"></p-menu>
+        <button pButton label="login" routerLink="/login" *ngIf="!loginStatus"></button>
       </ng-template>
     </p-menubar>
+
   </div>
 </div>
 

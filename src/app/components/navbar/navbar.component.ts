@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { MenuItem } from 'primeng/api';
 import { Role } from 'src/app/constant/role-constant';
 import { LoginService } from 'src/app/service/login.service';
@@ -15,15 +16,24 @@ export class NavbarComponent implements OnInit {
 
   tieredItems!: MenuItem[];
   profile!: MenuItem[];
-  userName! : string;
+  loginMenu!: MenuItem[];
+  userName!: string;
+  loginStatus: boolean = false;
 
   constructor(private router: Router,
-     private loginService: LoginService,
-     private userService : UserService) {}
+    private loginService: LoginService,
+    private userService: UserService,
+    private spinner : NgxSpinnerService) { }
 
   logout(): void {
     localStorage.clear();
-    this.router.navigateByUrl('/login');
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
+
+    this.checkLoginStatus();
   }
 
   home(): void {
@@ -35,25 +45,34 @@ export class NavbarComponent implements OnInit {
   }
 
   getUsername() {
-    this.userService.findById( this.loginService.getData()?.data?.id!).subscribe((result) => {
+    this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
       this.userName = result.data?.fullName!
     })
-
   }
 
   ngOnInit(): void {
-    this.getUsername()
-    // console.log(this.userName + "--> Here")
-    this.userService.findById( this.loginService.getData()?.data?.id!).subscribe((result) => {
-      console.log(result.data?.fullName)
-      this.userName = result.data?.fullName!
-      this.initData()
-    })
+   this.checkLoginStatus();
 
-    // this.initData()
   }
 
-  initData() : void {
+  checkLoginStatus() : void {
+    if (this.loginService.getData() != null) {
+      this.loginStatus = true
+      console.log(this.loginStatus)
+      this.getUsername()
+      this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
+        this.userName = result.data?.fullName!
+        this.initData()
+      })
+    } else {
+      this.loginStatus = false
+      console.log(this.loginStatus)
+      this.initData()
+
+    }
+  }
+
+  initData(): void {
     this.dataLogin = this.loginService.getRole();
     this.tieredItems = [
       {
@@ -125,8 +144,7 @@ export class NavbarComponent implements OnInit {
         visible: this.dataLogin == Role.MEMBER,
       },
     ];
-    
-    console.log(this.userName  + "Hereee")
+
     this.profile = [
       {
         label: this.userName,
@@ -150,5 +168,14 @@ export class NavbarComponent implements OnInit {
         ],
       },
     ];
+
+    this.loginMenu = [
+      {
+        label: 'Login',
+        icon: 'pi pi-fw pi-home text-red-500',
+        routerLink: '/login',
+      },
+
+    ]
   }
 }
