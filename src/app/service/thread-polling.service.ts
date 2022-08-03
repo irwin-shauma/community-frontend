@@ -10,7 +10,7 @@ import { ThreadHeaderPollingInsertReq } from '../dto/threadheaderpolling/thread-
 export class ThreadPollingService {
   constructor(private http: HttpClient) {}
 
-  addThread(data: ThreadHeaderPollingInsertReq): Observable<InsertRes> {
+  addThreadPolling(data: ThreadHeaderPollingInsertReq): Observable<InsertRes> {
     return this.http.post<InsertRes>(
       'http://localhost:1234/thread-header-pollings',
       data

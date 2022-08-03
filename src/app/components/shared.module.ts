@@ -11,7 +11,6 @@ import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
 import { DividerModule } from 'primeng/divider';
 
-
 @NgModule({
   declarations: [NavbarComponent],
   imports: [

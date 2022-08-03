@@ -17,7 +17,7 @@
                        {{thread.title}}
                     </p>
                     <p>
-                       {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} ... <a  (click)="onExpandText($event, thread.id)">See More</a>
+                       {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} ... <a *ngIf="thread.threadType === 'Regular'" (click)="onExpandText($event, thread.id)">See More </a> <a *ngIf="thread.threadType === 'Premium'" (click)="onExpandTextPremium($event)">See More <i class="pi pi-fw pi-lock text-red-500"></i> </a>
                     </p>
                 </div>
                 <div *ngIf="thread.fileId != null"> 
@@ -182,7 +182,7 @@
                         <textarea pInputTextarea rows="10" cols="10" class="w-full" name="contentHeader" [(ngModel)]="data.contentThread"></textarea>
                     </div>
                    </div>
-                   <div *ngIf="threadTypeShow && !premiumHistory.data">
+                   <div *ngIf="threadTypeShow && showType === true">
                     <p-dropdown [options]="threadType.data!" [(ngModel)]="data.threadTypeId" class="w-30rem" [style]="{'width':'100vh'}" placeholder="threadType" optionLabel="threadType" optionValue="id"  name="threadTypeId" [showClear]="true">
                         <ng-template pTemplate="item" let-threadType>
                           <div>
@@ -195,9 +195,9 @@
                     <div class="w-full flex justify-content-end">
                         <button icon="pi pi-times" class="p-button-rounded p-button-danger p-button-outlined" pButton (click)="exitPolling()"></button>
                     </div>
-                    <div class="w-full flex  justify-content-center">
+                    <!-- <div class="w-full flex  justify-content-center">
                         <input type="text" pInputText class="inputstyle" placeholder="your question">
-                    </div>
+                    </div> -->
                     <div *ngFor="let polling of pollingArray.controls; last as isLast; index as idx;let i = index " class="flex justify-content-center">
                     
                         <div class="w-30rem p-3 flex flex-column">
@@ -205,7 +205,7 @@
                                 <label>Input {{i+1}}</label>
                             </div>
                           <div class="flex gap-2">
-                            <input type="text" pInputText [formControl]="polling" class="inputstyle" >
+                            <input type="text" [(ngModel)]="insertPolling.threadDtlPolling" pInputText [formControl]="polling" class="inputstyle" >
                             <button pButton pRipple type="button" icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="removeInputControl(idx)" *ngIf="pollingArray.length > 1"></button>
                             <button pButton pRipple type="button" icon="pi pi-plus" class="p-button-rounded" *ngIf="isLast && pollingArray.length < 4" (click)="addInputControl()"></button>
                           </div>
@@ -226,9 +226,7 @@
                     <button pButton label="create thread" icon="pi pi-book" class="bg-red-500"></button>
                    </div>
             </form>
-      
-         
-
+          
         </p-tabPanel>
     </p-tabView>
 </div>

@@ -1,7 +1,8 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { EventDetailCompoenent } from "./eventdetail/event-detail.component";
-import { EventHeaderComponent } from "./eventheader/event-header.component";
+import { EventCreateComponent } from './eventcreate/event-create.component';
+import { EventDetailCompoenent } from './eventdetail/event-detail.component';
+import { EventHeaderComponent } from './eventheader/event-header.component';
 
 const routes: Routes = [
   {
@@ -11,6 +12,10 @@ const routes: Routes = [
   {
     path: 'details',
     component: EventDetailCompoenent,
+  },
+  {
+    path: 'create',
+    component: EventCreateComponent,
   },
 ];
 
