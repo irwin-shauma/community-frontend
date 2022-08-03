@@ -2,16 +2,16 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { PremiumPaymentHistoryFindAll } from 'src/app/dto/premium-payment-history/premium-payment-history-find-all';
+import { PremiumPaymentHistoryFindById } from 'src/app/dto/premium-payment-history/premium-payment-history-find-by-id-res';
 import { ThreadHeaderData } from 'src/app/dto/threadheader/thread-header-data';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
 import { ThreadHeaderInsertReq } from 'src/app/dto/threadheader/thread-header-insert-req';
 import { ThreadHeaderPollingData } from 'src/app/dto/threadheaderpolling/thread-header-polling-data';
-import { ThreadLikeFindAllRes } from 'src/app/dto/threadlike/thread-like-find-all-res';
+import { ThreadHeaderPollingInsertReq } from 'src/app/dto/threadheaderpolling/thread-header-polling-insert-req';
 import { ThreadTypeFindAll } from 'src/app/dto/threadtype/thread-type-find-all';
 import { FileService } from 'src/app/service/file.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
-import { ThreadLikeService } from 'src/app/service/thread-like.service';
+import { ThreadPollingService } from 'src/app/service/thread-polling.service';
 import { ThreadTypeService } from 'src/app/service/thread-type.service';
 import { ThreadService } from 'src/app/service/thread.service';
 
@@ -22,17 +22,20 @@ import { ThreadService } from 'src/app/service/thread.service';
 })
 export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadSubscription?: Subscription;
+  pollingSubscription?: Subscription;
   threadTypeShow = true;
   polling: boolean = false;
   premiumShow: boolean = false;
   insertThreadReq: ThreadHeaderInsertReq = {} as ThreadHeaderInsertReq;
-
+  insertPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
+  regularCheck: string = '';
+  showType: boolean = true;
   data: ThreadHeaderData = {} as ThreadHeaderData;
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
   threadType: ThreadTypeFindAll = {} as ThreadTypeFindAll;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
-  premiumHistory: PremiumPaymentHistoryFindAll =
-    {} as PremiumPaymentHistoryFindAll;
+  premiumHistory: PremiumPaymentHistoryFindById =
+    {} as PremiumPaymentHistoryFindById;
 
   sliceOptions = {
     start: 0,
@@ -45,27 +48,38 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     private router: Router,
     private threadTypeService: ThreadTypeService,
     private fileService: FileService,
-    private premiumPaymentHistoryService: PremiumPaymentHistoryService
+    private premiumPaymentHistoryService: PremiumPaymentHistoryService,
+    private pollingService: ThreadPollingService
   ) {}
 
   pollingArray = new FormArray([new FormControl('', Validators.required)]);
+
+  finalResultPolling: any = [];
 
   addInputControl() {
     this.pollingArray.push(new FormControl('', Validators.required));
   }
 
   ngOnInit(): void {
+    this.onInitData();
+  }
+
+  onInitData(): void {
     this.threadTypeService.showAllThreadType().subscribe((result) => {
       this.threadType = result;
     });
     this.threadService.showAllThread().subscribe((result) => {
       this.threadHeader = result;
     });
-    this.premiumPaymentHistoryService
-      .showAllPremiumPaymentHistory()
-      .subscribe((result) => {
-        this.premiumHistory = result;
-      });
+    this.premiumPaymentHistoryService.findByUser().subscribe((result) => {
+      if (result.data == null) {
+        this.showType = false;
+      }
+      console.log(this.showType);
+    });
+    this.threadTypeService.findByRegularType().subscribe((result) => {
+      this.regularCheck = result.data.id;
+    });
   }
 
   removeInputControl(idx: number) {
@@ -84,18 +98,37 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   }
 
   onsubmit(): void {
-    const insertThreadHeader = {} as ThreadHeaderInsertReq;
-    insertThreadHeader.title = this.data.title;
-    insertThreadHeader.contentThread = this.data.contentThread;
-    insertThreadHeader.threadTypeId = this.data.threadTypeId;
-    insertThreadHeader.fileName = this.insertThreadReq.fileName;
-    insertThreadHeader.fileExtension = this.insertThreadReq.fileExtension;
+    if (this.pollingArray.value === null) {
+      const insertThreadHeader = {} as ThreadHeaderInsertReq;
+      insertThreadHeader.title = this.data.title;
+      insertThreadHeader.contentThread = this.data.contentThread;
+      if (this.data.threadTypeId === undefined) {
+        insertThreadHeader.threadTypeId = this.regularCheck;
+        this.threadTypeService.findByRegularType();
+      } else {
+        insertThreadHeader.threadTypeId = this.data.threadTypeId;
+      }
 
-    this.threadSubscription = this.threadService
-      .addThread(insertThreadHeader)
-      .subscribe((result) => {
-        this.router.navigateByUrl('/threads-main');
-      });
+      insertThreadHeader.fileName = this.insertThreadReq.fileName;
+      insertThreadHeader.fileExtension = this.insertThreadReq.fileExtension;
+
+      this.threadSubscription = this.threadService
+        .addThread(insertThreadHeader)
+        .subscribe((result) => {
+          this.onInitData();
+        });
+    } else {
+      const insertThreadPolling = {} as ThreadHeaderPollingInsertReq;
+      insertThreadPolling.titlePolling = this.insertPolling.titlePolling;
+      insertThreadPolling.contentPolling = this.insertPolling.contentPolling;
+      this.finalResultPolling.push(this.pollingArray.value);
+      insertThreadPolling.threadPollingDetail = this.finalResultPolling;
+      this.pollingSubscription = this.pollingService
+        .addThreadPolling(insertThreadPolling)
+        .subscribe((result) => {
+          this.onInitData();
+        });
+    }
   }
   onInsertFile(event: any): void {
     const file = event.files[0];
@@ -107,6 +140,10 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
   onExpandText(evt: any, id: string): void {
     this.router.navigateByUrl(`/threads-main/${id}`);
+  }
+
+  onExpandTextPremium(evt: any): void {
+    this.router.navigateByUrl(`/premiums`);
   }
 
   ngOnDestroy(): void {

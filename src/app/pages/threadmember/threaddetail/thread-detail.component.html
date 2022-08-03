@@ -25,6 +25,10 @@
             <p>
                 {{threadData.data.contentThread}}
             </p>
+            <div *ngIf="threadData.data.fileId != null"> 
+                <img src="http://localhost:1234/files/{{threadData.data.fileId}}" alt="" width="400px" height="200px">
+            </div>
+
         </div>
         <div>
             <div>

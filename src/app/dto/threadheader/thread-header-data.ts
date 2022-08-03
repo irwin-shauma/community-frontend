@@ -3,6 +3,8 @@ import { ThreadDetailData } from './thread-detail-data';
 export interface ThreadHeaderData {
   id: string;
   threadTypeId: string;
+  threadType: string;
+  userId: string;
   threadHeaderCode: string;
   title: string;
   fileId: string;

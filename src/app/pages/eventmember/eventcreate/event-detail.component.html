@@ -1,0 +1,21 @@
+<div class="p-8">
+    <div class="glasses py-2 px-4">
+        <div class="flex gap-3">
+            <h3><i class="pi pi-pw pi-eject text-red-500 pl-5 pt-3 mr-2"></i>Create Event</h3>
+        </div>
+        <div>
+            <h5>Title Event</h5>
+            <input type="text" pInputText class="inputstyle">
+        </div>
+       <div>
+            <h5>Type Event</h5>
+            <p-dropdown placeholder="Type Event" [options]="eventType.data!" optionLabel="type" name="eventType" [showClear]="true" ></p-dropdown>
+       </div>
+       <div>
+            <h5>Photo Upload</h5>
+            <p-fileUpload mode="basic" chooseIcon="pi pi-image" name="file" [customUpload]="true" id="file"  [auto]="true"></p-fileUpload>
+       </div>
+
+      
+    </div>
+</div>

@@ -91,8 +91,18 @@ export class NavbarComponent implements OnInit {
       },
       {
         label: 'Event',
+        items: [
+          {
+            label: 'Create Event',
+            icon: 'pi pi-fw pi-plus text-red-500',
+            routerLink: '/event-members/create',
+          },
+          {
+            label: 'See All Event',
+            icon: 'pi pi-fw pi-book text-red-500',
+          },
+        ],
         icon: 'pi pi-fw pi-calendar text-red-500',
-        routerLink: '/event-members',
         visible: this.dataLogin == Role.MEMBER,
       },
       {
