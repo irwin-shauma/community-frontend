@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { MenuItem } from 'primeng/api';
 import { Role } from 'src/app/constant/role-constant';
 import { LoginService } from 'src/app/service/login.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-navbar',
@@ -14,12 +16,24 @@ export class NavbarComponent implements OnInit {
 
   tieredItems!: MenuItem[];
   profile!: MenuItem[];
+  loginMenu!: MenuItem[];
+  userName!: string;
+  loginStatus: boolean = false;
 
-  constructor(private router: Router, private loginService: LoginService) {}
+  constructor(private router: Router,
+    private loginService: LoginService,
+    private userService: UserService,
+    private spinner : NgxSpinnerService) { }
 
   logout(): void {
     localStorage.clear();
-    this.router.navigateByUrl('/login');
+    this.spinner.show();
+
+    setTimeout(() => {
+      this.spinner.hide();
+    }, 1000);
+
+    this.checkLoginStatus();
   }
 
   home(): void {
@@ -30,7 +44,33 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl(`/profiles/view/${id}`);
   }
 
+  getUsername() {
+    this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
+      this.userName = result.data?.fullName!
+    })
+  }
+
   ngOnInit(): void {
+   this.checkLoginStatus();
+
+  }
+
+  checkLoginStatus() : void {
+    if (this.loginService.getData() != null) {
+      this.loginStatus = true
+      this.getUsername()
+      this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
+        this.userName = result.data?.fullName!
+        this.initData()
+      })
+    } else {
+      this.loginStatus = false
+      this.initData()
+
+    }
+  }
+
+  initData(): void {
     this.dataLogin = this.loginService.getRole();
     this.tieredItems = [
       {
@@ -112,9 +152,11 @@ export class NavbarComponent implements OnInit {
         visible: this.dataLogin == Role.MEMBER,
       },
     ];
+
     this.profile = [
       {
-        label: this.loginService.getData()?.data?.email,
+        label: this.userName,
+        // label: this.loginService.getData()?.data?.email,
         items: [
           {
             label: 'View Profile',
@@ -134,5 +176,14 @@ export class NavbarComponent implements OnInit {
         ],
       },
     ];
+
+    this.loginMenu = [
+      {
+        label: 'Login',
+        icon: 'pi pi-fw pi-home text-red-500',
+        routerLink: '/login',
+      },
+
+    ]
   }
 }

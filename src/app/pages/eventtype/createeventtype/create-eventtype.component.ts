@@ -19,7 +19,7 @@ export class CreateEventTypeComponent implements OnDestroy{
         this.eventTypeSubscription = this.eventTypeService
         .addEventType(this.insertEventTypeReq)
         .subscribe((result)=>{
-            // this.router.navigateByUrl('/event-types')
+            this.router.navigateByUrl('/event-types')
         });
     }
 

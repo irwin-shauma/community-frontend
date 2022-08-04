@@ -23,7 +23,6 @@ import { EditPremiumTypeComponent } from './edit-premium-type/edit-premium-type.
 import { FormsModule } from '@angular/forms';
 
 @NgModule({
- 
   imports: [
     CommonModule,
     PremiumTypeRouting,
@@ -46,13 +45,14 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
   ],
   declarations: [
-    CreatePremiumTypeComponent,
     ListPremiumTypeComponent,
+    CreatePremiumTypeComponent,
     EditPremiumTypeComponent
   ],
   exports: [
+    ListPremiumTypeComponent,
     CreatePremiumTypeComponent,
-    ListPremiumTypeComponent
+    EditPremiumTypeComponent
   ],
   providers: [
     ConfirmationService

@@ -17,22 +17,22 @@ export class PremiumTypeService{
     constructor(private http: HttpClient){}
 
     showAllPremiumType(): Observable<PremiumTypeFindAllRes> {
-        return this.http.get<PremiumTypeFindAllRes>('http://localhost:1234/premium-types')
+        return this.http.get<PremiumTypeFindAllRes>('http://localhost:1234/premium-types');
     }
 
-    addPremiumType(data: PremiumTypeInsertReq){
+    addPremiumType(data: PremiumTypeInsertReq): Observable<InsertRes>{
         return this.http.post<InsertRes>('http://localhost:1234/premium-types', data);
     }
 
-    findById(id: number): Observable<PremiumTypeFindById>{
-        return this.http.get<PremiumTypeFindById>('http://localhost:1234/premium-types' + id);
+    findById(id: string): Observable<PremiumTypeFindById>{
+        return this.http.get<PremiumTypeFindById>('http://localhost:1234/premium-types/' + id);
     }
 
     editPremiumType(data: PremiumTypeUpdateReq): Observable<UpdateRes>{
         return this.http.put<UpdateRes>('http://localhost:1234/premium-types', data);
     }
 
-    deletePremiumType(id: number): Observable<DeleteRes> {
-        return this.http.delete<DeleteRes>('http://localhost/premium-types' +id);
+    deletePremiumType(id: string): Observable<DeleteRes> {
+        return this.http.delete<DeleteRes>('http://localhost:1234/premium-types/' +id);
     }
 }

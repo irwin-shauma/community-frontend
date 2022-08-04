@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ConfirmationService } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { PremiumTypeData } from 'src/app/dto/premium-type/premium-type-data';
 import { PremiumTypeFindAllRes } from 'src/app/dto/premium-type/premium-type-find-all-res';
@@ -12,10 +12,11 @@ import { PremiumTypeService } from 'src/app/service/premium-type.service';
   templateUrl: './list-premium-type.component.html'
 })
 export class ListPremiumTypeComponent implements OnInit {
-  idDeleted!: number;
+  idDeleted!: string;
   premiumTypes: PremiumTypeFindAllRes = {} as PremiumTypeFindAllRes;
   premiumTypeData!: PremiumTypeData[];
   deleteSubscription?: Subscription;
+  loading!: boolean;
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -24,7 +25,7 @@ export class ListPremiumTypeComponent implements OnInit {
 
   ngOnInit(): void {
     this.premiumTypes.data= [];
-    this.initData();
+    this.loadTypes
 
   }
 
@@ -35,7 +36,16 @@ export class ListPremiumTypeComponent implements OnInit {
     });
   }
 
-  ondelete(id: number): void{
+  loadTypes(event: LazyLoadEvent) {
+    this.loading = true;
+
+    setTimeout(() => {
+      this.initData()
+      this.loading = false;
+    }, 1000);
+  }
+
+  ondelete(id: string): void{
     this.idDeleted = id;
   }
 
@@ -47,7 +57,7 @@ export class ListPremiumTypeComponent implements OnInit {
     });
   }
 
-  confirm(id: number): void{
+  confirm(id: string): void{
     this.idDeleted = id;
     this.confirmationService.confirm({
       message: 'Are you sure that you want to perform this action?',
