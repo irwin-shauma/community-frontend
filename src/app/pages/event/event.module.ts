@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
@@ -14,7 +15,8 @@ import { EventComponent } from './event/event.component';
      TableModule,
       CheckboxModule,
       ConfirmDialogModule,
-      FormsModule
+      FormsModule,
+      CommonModule
     ],
   declarations: [EventComponent, CourseComponent],
   exports: [EventComponent, CourseComponent],

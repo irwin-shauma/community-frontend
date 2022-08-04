@@ -59,7 +59,6 @@ export class ArticleHeaderListComponent implements OnInit{
             this.articleHeaderData = resultData.data
             this.loading = false
             this.totalData = resultData.count
-            console.log(result)
         },
     )
 }
@@ -98,9 +97,9 @@ export class ArticleHeaderListComponent implements OnInit{
     })
   }
 
-  ondelete(id: number): void{
-    this.idDeleted = id;
-  }
+  // ondelete(id: number): void{
+  //   this.idDeleted = id;
+  // }
 
   delete(): void{
     this.deleteSubscription= this.articleHeaderService
