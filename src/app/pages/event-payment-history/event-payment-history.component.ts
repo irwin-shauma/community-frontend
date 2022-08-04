@@ -26,6 +26,7 @@ export class EventPaymentHsitoryComponent implements OnInit{
         this.eventPaymentHistoryService.showAllEventPaymentHistory().subscribe((result) => {
             this.eventPaymentHistories = result;
             this.eventPaymentHistoryData = result.data!;
+            console.log(result)
         })
     }
 }

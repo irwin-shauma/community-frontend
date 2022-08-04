@@ -5,7 +5,10 @@
                 <div class="col-12">
 
                     <div class="mt-5 ml-5 mr-5">
-                        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [value]="premiumPaymentHistoryData" [rows]="8"  class="glasses">
+                        <!-- <p-table [value]="premiumPaymentHistoryData" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadData($event)" responsiveLayout="scroll" [paginator]="true" [rows]="maxPage" [totalRecords]="totalData" [loading]="loading" [rowsPerPageOptions]="[5,10]" class="glasses"> -->
+
+
+                        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[5,10,25]" [value]="premiumPaymentHistoryData" [rows]="5"  class="glasses">
                             <ng-template pTemplate="caption">
                                 <div class="table-header">
                                     <h3>Premium Payment Histories</h3>
