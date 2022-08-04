@@ -19,11 +19,11 @@
             <ng-template pTemplate="body" let-list let-i="rowIndex">
                 <tr>
                     <td>{{i+1}}</td>
-                    <td>{{list.code}}</td>
+                    <td>{{list.threadHeaderCode}}</td>
                     <td>{{list.title}}</td>
-                    <td>{{list.type}}</td>
+                    <td>{{list.threadType}}</td>
                     <td>
-                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary" [disabled]="true"></p-checkbox>
                     </td>
                     <td routerLink="/threads/detail"><i class="pi pi-exclamation-circle"></i></td>
                 </tr>

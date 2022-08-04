@@ -10,7 +10,7 @@ import { PremiumPaymentHistoryFindById } from '../dto/premium-payment-history/pr
 export class PremiumPaymentHistoryService {
   constructor(private http: HttpClient) {}
 
-  showAllPremiumPaymentHistory(): Observable<PremiumPaymentHistoryFindAll> {
+  showAllPremiumPaymentHistory(startPage: number, maxPage: number): Observable<PremiumPaymentHistoryFindAll> {
     return this.http.get<PremiumPaymentHistoryFindAll>(
       'http://localhost:1234/premium-payment-histories'
     );

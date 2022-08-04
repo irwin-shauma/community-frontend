@@ -5,7 +5,7 @@
                 <div class="col-12">
 
                     <div class="mt-5 ml-5 mr-5">
-                        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [value]="eventPaymentHistoryData" [rows]="8"  class="glasses">
+                        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[5,10,25]" [value]="eventPaymentHistoryData" [rows]="5"  class="glasses">
                             <ng-template pTemplate="caption">
                                 <div class="table-header">
                                     <h3>Event Payment Histories</h3>
@@ -23,7 +23,7 @@
                             <ng-template pTemplate="body" let-list let-i="rowIndex">
                                 <tr>
                                     <td>{{i+1}}</td>
-                                    <td>{{list.TrxNo}}</td>
+                                    <td>{{list.trxNo}}</td>
                                     <td>{{list.email}}</td>
                                     <td>{{list.fullname}}</td>
                                     <td>{{list.title}}</td>
