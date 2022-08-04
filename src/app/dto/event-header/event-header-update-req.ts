@@ -1,9 +1,11 @@
-export interface EventHeaderUpdateReq{
-    id?: string
-    eventTypeId?: string
-    fileId?: string
-    title?: string
-    fileName?: string
-    fileExtension?: string
-    isActive?: boolean
+export interface EventHeaderUpdateReq {
+  title?: string;
+  eventTypeId?: string;
+  fileName?: string;
+  fileExtension?: string;
+  starts: string;
+  ends: string;
+  provider: string;
+  location: string;
+  price: string;
 }

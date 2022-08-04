@@ -1,7 +1,10 @@
-import { NgModule } from "@angular/core";
-import { AvatarModule } from "primeng/avatar";
-import { ButtonModule } from "primeng/button";
-import { CardModule } from "primeng/card";
+import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { AvatarModule } from 'primeng/avatar';
+import { ButtonModule } from 'primeng/button';
+import { CalendarModule } from 'primeng/calendar';
+import { CardModule } from 'primeng/card';
 import { DropdownModule } from 'primeng/dropdown';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ImageModule } from 'primeng/image';
@@ -23,6 +26,9 @@ import { EventHeaderComponent } from './eventheader/event-header.component';
     ImageModule,
     DropdownModule,
     FileUploadModule,
+    CalendarModule,
+    CommonModule,
+    FormsModule,
   ],
   declarations: [
     EventHeaderComponent,

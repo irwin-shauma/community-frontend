@@ -17,7 +17,7 @@
                        {{thread.title}}
                     </p>
                     <p>
-                       {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} ... <a *ngIf="thread.threadType === 'Regular'" (click)="onExpandText($event, thread.id)" class="cursor-pointer">See More </a> <a *ngIf="thread.threadType === 'Premium'" (click)="onExpandTextPremium($event)">See More <i class="pi pi-fw pi-lock text-red-500cursor-pointer"></i> </a>
+                       {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} ... <a *ngIf="thread.threadType === 'Regular'" (click)="onExpandText($event, thread.id)" class="cursor-pointer">See More </a> <a *ngIf="thread.threadType === 'Premium' && showType === false" (click)="onExpandTextPremium($event)">See More <i class="pi pi-fw pi-lock text-red-500cursor-pointer"></i> </a>
                     </p>
                 </div>
                 <div *ngIf="thread.fileId != null"> 
@@ -76,10 +76,10 @@
                     </p> 
                     <div class="mt-5" *ngFor="let answer of polling.threadDtlPolling">
                         <div>
-                            <button *ngIf="pollingPresentasion === false" pButton [label]="answer.pollingChoice" (click)="chooseAnswer(answer.id)"  class="w-full"></button>
-                            <div>
-                                <button *ngIf="pollingPresentasion === true" pButton class="w-full bg-blue-900 buttonAnswer" ><p>{{(answer.countAnswer / polling.countAllAnswer) * 100}}%</p></button>
-                            </div>
+                            <button pButton *ngIf="polling.isChoice === false" [label]="answer.pollingChoice" (click)="chooseAnswer(answer.id)"  class="w-full"></button>
+                        
+                                <button *ngIf="polling.isChoice === true"   pButton class="w-full bg-blue-900 buttonAnswer" ><p>{{(answer.countAnswer / polling.countAllAnswer) * 100}}%</p></button>
+                       
                            
                         </div> 
                     </div>
@@ -93,10 +93,7 @@
                                     <i class="pi pi-heart-fill"></i>
                                     <p>5</p>
                                 </div>
-                                <div class="flex">
-                                    <i class="pi pi-comment"></i>
-                                    <p>2</p>
-                                </div>
+                           
                             </div>
                             <div>
                                 <i class="pi pi-bookmark-fill"></i>
@@ -178,9 +175,7 @@
                     <button pButton label="create thread" icon="pi pi-book" class="bg-red-500"></button>
                    </div>
             </form>
-                <pre>
-                    {{insertPolling.duration |json}}
-                </pre>
+           
         </p-tabPanel>
     </p-tabView>
 </div>
