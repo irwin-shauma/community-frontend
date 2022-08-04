@@ -41,6 +41,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
   regularCheck: string = '';
   pollingPresentasion: boolean = false;
+  pollingTypeChoose: boolean = false;
   showType: boolean = true;
   data: ThreadHeaderData = {} as ThreadHeaderData;
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
@@ -112,16 +113,19 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   exitPolling() {
     this.polling = false;
     this.threadTypeShow = true;
+    this.pollingTypeChoose = false;
   }
 
   clickPolling() {
     this.polling = true;
+    this.pollingTypeChoose = true;
     this.pollingArray.reset();
     this.threadTypeShow = false;
   }
 
   onsubmit(): void {
-    if (this.pollingArray.value === null) {
+    if (this.pollingTypeChoose === false) {
+      console.log(this.pollingArray.value);
       const insertThreadHeader = {} as ThreadHeaderInsertReq;
       insertThreadHeader.title = this.data.title;
       insertThreadHeader.contentThread = this.data.contentThread;
