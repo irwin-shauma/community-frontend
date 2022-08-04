@@ -87,6 +87,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       this.regularCheck = result.data.id;
     });
     this.pollingService.showAllPolling().subscribe((result) => {
+      console.log(result.data);
+      
       this.threadPollingHeader = result;
     });
   }
