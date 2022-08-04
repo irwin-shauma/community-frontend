@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PremiumPaymentHistoryFindById } from 'src/app/dto/premium-payment-history/premium-payment-history-find-by-id-res';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
+import { ThreadPollingAnswerInsertReq } from 'src/app/dto/thread-polling-answer/thread-polling-answer-insert-req';
 import { ThreadHeaderData } from 'src/app/dto/threadheader/thread-header-data';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
 import { ThreadHeaderInsertReq } from 'src/app/dto/threadheader/thread-header-insert-req';
@@ -29,6 +30,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadSubscription?: Subscription;
   pollingSubscription?: Subscription;
   threadLikeSubs?: Subscription;
+  answerPollingSubscription?: Subscription;
   threadTypeShow = true;
   polling: boolean = false;
   premiumShow: boolean = false;
@@ -36,6 +38,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   insertPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
 
   regularCheck: string = '';
+  pollingPresentasion: boolean = false;
   showType: boolean = true;
   data: ThreadHeaderData = {} as ThreadHeaderData;
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
@@ -47,6 +50,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   premiumHistory: PremiumPaymentHistoryFindById =
     {} as PremiumPaymentHistoryFindById;
   likeInsert: ThreadLikeInsertReq = {} as ThreadHeaderData;
+  answerInsert: ThreadPollingAnswerInsertReq =
+    {} as ThreadPollingAnswerInsertReq;
 
   sliceOptions = {
     start: 0,
@@ -170,13 +175,27 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
   like(threadId: string): void {
     this.likeInsert.threadId = threadId;
-    this.threadLikeSubs = this.threadLikeService.insert(this.likeInsert).subscribe(result => {
-      this.onInitData();
-    })
+    this.threadLikeSubs = this.threadLikeService
+      .insert(this.likeInsert)
+      .subscribe((result) => {
+        this.onInitData();
+      });
+  }
+
+  chooseAnswer(answerId: string): void {
+    this.answerInsert.threadPollingId = answerId;
+    this.answerPollingSubscription = this.pollingService
+      .addPollingAnswer(this.answerInsert)
+      .subscribe((result) => {
+        this.pollingPresentasion = true;
+        this.onInitData();
+      });
   }
 
   unLike(threadId: string): void {
-    this.threadLikeService.delete(threadId).subscribe(res => {this.onInitData();})
+    this.threadLikeService.delete(threadId).subscribe((res) => {
+      this.onInitData();
+    });
   }
 
   ngOnDestroy(): void {

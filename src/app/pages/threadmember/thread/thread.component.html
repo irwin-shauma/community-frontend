@@ -66,22 +66,22 @@
                     <p>
                         {{polling.titlePolling}}
                     </p>
+                    <p class="font-bold">
+                        {{polling.contentPolling}}
+                     </p> 
                 </div>
                 <div class="border-1 border-solid p-3 border-round">
                     <p class="font-bold">
-                       {{polling.contentPolling}}
+                       {{polling.pollingQuestion}}
                     </p> 
-                    <div class="h-12rem flex flex-column justify-content-between mt-5">
+                    <div class="mt-5" *ngFor="let answer of polling.threadDtlPolling">
                         <div>
-                            <button pButton label="Salman" class="w-full"></button>
-                        </div>
-                       <div>
-                        <button pButton label="Faris" class="w-full"></button>
-                       </div>
-                      <div>
-                        <button pButton label="Siddiq" class="w-full"></button>
-                      </div>
-                     
+                            <button *ngIf="pollingPresentasion === false" pButton [label]="answer.pollingChoice" (click)="chooseAnswer(answer.id)"  class="w-full"></button>
+                            <div>
+                                <button *ngIf="pollingPresentasion === true" pButton class="w-full bg-blue-900 buttonAnswer" ><p>{{(answer.countAnswer / polling.countAllAnswer) * 100}}%</p></button>
+                            </div>
+                           
+                        </div> 
                     </div>
                    
                 </div>
