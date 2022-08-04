@@ -42,7 +42,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   premiumHistory: PremiumPaymentHistoryFindById =
     {} as PremiumPaymentHistoryFindById;
-  likeInsert: ThreadLikeInsertReq = {} as ThreadHeaderData;
+  likeInsert: ThreadLikeInsertReq = {} as ThreadLikeInsertReq;
 
   sliceOptions = {
     start: 0,
