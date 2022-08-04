@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
 import { PremiumPaymentHistoryFindById } from 'src/app/dto/premium-payment-history/premium-payment-history-find-by-id-res';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
 import { ThreadPollingAnswerInsertReq } from 'src/app/dto/thread-polling-answer/thread-polling-answer-insert-req';
@@ -14,6 +15,7 @@ import { ThreadHeaderPollingInsertReq } from 'src/app/dto/threadheaderpolling/th
 import { ThreadPollingDetailData } from 'src/app/dto/threadheaderpolling/thread-polling-detail-data';
 import { ThreadPollingDetailInsertReq } from 'src/app/dto/threadheaderpolling/thread-polling-detail-insert-req';
 import { ThreadTypeFindAll } from 'src/app/dto/threadtype/thread-type-find-all';
+import { BookmarkService } from 'src/app/service/bookmark.service';
 import { FileService } from 'src/app/service/file.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
@@ -49,9 +51,10 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadPollingDetail: ThreadPollingDetailData = {} as ThreadPollingDetailData;
   premiumHistory: PremiumPaymentHistoryFindById =
     {} as PremiumPaymentHistoryFindById;
-  likeInsert: ThreadLikeInsertReq = {} as ThreadHeaderData;
+  likeInsert: ThreadLikeInsertReq = {} as ThreadLikeInsertReq;
   answerInsert: ThreadPollingAnswerInsertReq =
     {} as ThreadPollingAnswerInsertReq;
+  bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
 
   sliceOptions = {
     start: 0,
@@ -66,7 +69,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     private fileService: FileService,
     private premiumPaymentHistoryService: PremiumPaymentHistoryService,
     private pollingService: ThreadPollingService,
-    private threadLikeService: ThreadLikeService
+    private threadLikeService: ThreadLikeService,
+    private bookmarkService: BookmarkService
   ) {}
 
   pollingArray = new FormArray([new FormControl('')]);
@@ -196,6 +200,19 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     this.threadLikeService.delete(threadId).subscribe((res) => {
       this.onInitData();
     });
+  }
+
+  bookmark(threadId: string): void {
+    this.bookmarkInsert.threadId = threadId
+    this.bookmarkService.insert(this.bookmarkInsert).subscribe(result => {
+      this.onInitData();
+    })
+  }
+
+  unBookmark(threadId: string): void {
+    this.bookmarkService.delete(threadId).subscribe(result => {
+      this.onInitData();
+    })
   }
 
   ngOnDestroy(): void {

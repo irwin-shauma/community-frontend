@@ -3,7 +3,7 @@ import { ConfirmationService } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { EventHeaderData } from 'src/app/dto/event-header/event-header-data';
 import { EventHeaderFindAllRes } from 'src/app/dto/event-header/event-header-find-all-res';
-import { EventHeaderService } from 'src/app/service/event-header-service';
+import { EventHeaderService } from 'src/app/service/event-header.service';
 
 @Component({
   selector: 'app-event-list',
