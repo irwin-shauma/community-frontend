@@ -2,40 +2,43 @@
     <div>
         <h2 class="font-medium">Edit Article</h2>
     </div>
-   
+
     <div class="glasses p-5 border-round h-30rem">
-        <button pButton label="back" icon="pi pi-arrow-left" class="bg-red-500" styleClass="p-button-sm" routerLink="/article"></button>
+        <button pButton label="back" icon="pi pi-arrow-left" class="bg-red-500" styleClass="p-button-sm"
+            routerLink="/article"></button>
         <div>
-   <form class=" pt-5 h-20rem" (ngSubmit)="update()">
-    <div class="grid">
-        <div class="col-6">
-            <div class="flex flex-column mb-4">
-                <label for="">Title <span class="text-red-500">*</span></label>
-                <input pInputText class="inputstyle" name="title" [(ngModel)]="data.title">
-            </div>
-            <pre>cek {{data.title | json}}</pre>
-            <div class="flex flex-column">
-                <label for="">Content <span class="text-red-500">*</span></label>
-                <textarea rows="6" pInputTextarea class="inputstyle" name="content" [(ngModel)]="data.contents"></textarea>
-            </div>
+            <form class=" pt-5 h-20rem" (ngSubmit)="update()">
+                <div class="grid">
+                    <div class="col-6">
+                        <div class="flex flex-column mb-4">
+                            <label for="">Title <span class="text-red-500">*</span></label>
+                            <input pInputText class="inputstyle" name="title" [(ngModel)]="data.title">
+                        </div>
+                        <div class="flex flex-column">
+                            <label for="">Content <span class="text-red-500">*</span></label>
+                            <textarea rows="6" pInputTextarea class="inputstyle" name="content"
+                                [(ngModel)]="data.contents"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-6 flex flex-column">
+                        <div class="flex flex-column mb-4">
+                            <label for="">File <span class="text-red-500">*</span></label>
+                            <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*"
+                                [auto]="true" chooseLabel="Browse" class="bg-#6366F1"></p-fileUpload>
+                        </div>
+                        <div class="flex flex-column">
+                            <label>Is Active <span class="text-red-500">*</span></label>
+                            <p-checkbox [binary]="true" inputId="binary" name="isActive" [(ngModel)]="data.isActive">
+                            </p-checkbox>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex justify-content-end">
+                    <p-button label="Save" styleClass="p-button-sm" type="submit"></p-button>
+                </div>
+            </form>
         </div>
 
-        <div class="col-6 flex flex-column">
-            <div class="flex flex-column mb-4">
-                <label for="">File <span class="text-red-500">*</span></label>
-                <p-fileUpload #fubauto mode="basic" name="demo[]" url="./upload.php" accept="image/*" [auto]="true" chooseLabel="Browse" class="bg-#6366F1"></p-fileUpload>
-            </div>
-            <div class="flex flex-column">
-                <label>Is Active <span class="text-red-500">*</span></label>
-                <p-checkbox [binary]="true" inputId="binary" name="isActive" [(ngModel)]="data.isActive"></p-checkbox>
-            </div>
-        </div>
-    </div>
-            <div  class="flex justify-content-end">
-                <p-button label="Save" styleClass="p-button-sm" type="submit"></p-button>
-            </div>      
-        </form>
-        </div>
-     
     </div>
 </div>

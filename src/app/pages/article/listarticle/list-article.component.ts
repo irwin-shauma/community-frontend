@@ -29,6 +29,7 @@ export class ArticleHeaderListComponent implements OnInit{
   loading: boolean = true
   articleSubscription? : Subscription
 
+  checkboxDisabled : boolean = true
 
   constructor(
     private confirmationService: ConfirmationService,
