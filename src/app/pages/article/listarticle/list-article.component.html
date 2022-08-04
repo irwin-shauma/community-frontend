@@ -31,7 +31,7 @@
                     <td> <img src="http://localhost:1234/files/{{list.fileId}}" alt="profile" width="50" height="50" class="border-round"></td>
                     
                     <td>
-                        <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary"></p-checkbox>
+                        <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary"  [disabled]="checkboxDisabled"></p-checkbox>
                     </td>
                     <td>
                         <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" routerLink="/article/edit/{{list.id}}"></button>

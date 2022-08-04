@@ -45,7 +45,8 @@ import {HttpClientModule} from '@angular/common/http';
     FormsModule,
     CommonModule,
     CKEditorModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
   ],
   declarations: [
     ArticleHeaderListComponent,
