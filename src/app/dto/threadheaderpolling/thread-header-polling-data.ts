@@ -8,5 +8,6 @@ export interface ThreadHeaderPollingData {
   contentPolling: string;
   isActive: boolean;
   version: number;
+  countAllAnswer: number;
   threadDtlPolling: ThreadPollingDetailData[];
 }
