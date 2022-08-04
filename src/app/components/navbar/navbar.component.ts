@@ -58,7 +58,6 @@ export class NavbarComponent implements OnInit {
   checkLoginStatus() : void {
     if (this.loginService.getData() != null) {
       this.loginStatus = true
-      console.log(this.loginStatus)
       this.getUsername()
       this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
         this.userName = result.data?.fullName!
@@ -66,7 +65,6 @@ export class NavbarComponent implements OnInit {
       })
     } else {
       this.loginStatus = false
-      console.log(this.loginStatus)
       this.initData()
 
     }

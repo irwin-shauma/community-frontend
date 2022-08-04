@@ -3,8 +3,16 @@
         <button pButton label="new" icon="pi pi-plus" style="background-color: #22C55E;" routerLink="/article/create"></button>
     </div>
 
+    
+
+
+
+
     <div class="mt-5">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="articleHeaderData" class="glasses">
+        <p-table [value]="articleHeaderData" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadData($event)" responsiveLayout="scroll" [paginator]="true" [rows]="maxPage" [totalRecords]="totalData" [loading]="loading" [rowsPerPageOptions]="[5,10]" class="glasses">
+
+            
+        <!-- <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="articleHeaderData" class="glasses"> -->
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>
@@ -23,7 +31,7 @@
                     <td> <img src="http://localhost:1234/files/{{list.fileId}}" alt="profile" width="50" height="50" class="border-round"></td>
                     
                     <td>
-                        <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary"></p-checkbox>
+                        <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary"  [disabled]="checkboxDisabled"></p-checkbox>
                     </td>
                     <td>
                         <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" routerLink="/article/edit/{{list.id}}"></button>

@@ -1,4 +1,4 @@
-import { ThreadPollingDetailData } from '../threadpollingdetail/thread-polling-detail-data';
+import { ThreadPollingDetailData } from './thread-polling-detail-data';
 
 export interface ThreadHeaderPollingData {
   id: string;
@@ -8,5 +8,6 @@ export interface ThreadHeaderPollingData {
   contentPolling: string;
   isActive: boolean;
   version: number;
+  countAllAnswer: number;
   threadDtlPolling: ThreadPollingDetailData[];
 }
