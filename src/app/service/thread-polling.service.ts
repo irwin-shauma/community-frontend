@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InsertRes } from '../dto/insert-res';
+import { ThreadHeaderPollingFindAll } from '../dto/threadheaderpolling/thread-header-polling-find-all-res';
 import { ThreadHeaderPollingInsertReq } from '../dto/threadheaderpolling/thread-header-polling-insert-req';
 
 @Injectable({
@@ -16,4 +17,13 @@ export class ThreadPollingService {
       data
     );
   }
+
+  showAllPolling(): Observable<ThreadHeaderPollingFindAll>{
+    return this.http.get<ThreadHeaderPollingFindAll>(
+      'http://localhost:1234/th'
+    )
+  }
+
+
+
 }

@@ -8,9 +8,10 @@ import { ThreadHeaderData } from 'src/app/dto/threadheader/thread-header-data';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
 import { ThreadHeaderInsertReq } from 'src/app/dto/threadheader/thread-header-insert-req';
 import { ThreadHeaderPollingData } from 'src/app/dto/threadheaderpolling/thread-header-polling-data';
+import { ThreadHeaderPollingFindAll } from 'src/app/dto/threadheaderpolling/thread-header-polling-find-all-res';
 import { ThreadHeaderPollingInsertReq } from 'src/app/dto/threadheaderpolling/thread-header-polling-insert-req';
+import { ThreadPollingDetailData } from 'src/app/dto/threadheaderpolling/thread-polling-detail-data';
 import { ThreadPollingDetailInsertReq } from 'src/app/dto/threadheaderpolling/thread-polling-detail-insert-req';
-import { ThreadPollingDetailData } from 'src/app/dto/threadpollingdetail/thread-polling-detail-data';
 import { ThreadTypeFindAll } from 'src/app/dto/threadtype/thread-type-find-all';
 import { FileService } from 'src/app/service/file.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
@@ -33,13 +34,16 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   premiumShow: boolean = false;
   insertThreadReq: ThreadHeaderInsertReq = {} as ThreadHeaderInsertReq;
   insertPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
-  threadPollingDetail!: ThreadPollingDetailData[];
+
   regularCheck: string = '';
   showType: boolean = true;
   data: ThreadHeaderData = {} as ThreadHeaderData;
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
   threadType: ThreadTypeFindAll = {} as ThreadTypeFindAll;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  threadPollingHeader: ThreadHeaderPollingFindAll =
+    {} as ThreadHeaderPollingFindAll;
+  threadPollingDetail: ThreadPollingDetailData = {} as ThreadPollingDetailData;
   premiumHistory: PremiumPaymentHistoryFindById =
     {} as PremiumPaymentHistoryFindById;
   likeInsert: ThreadLikeInsertReq = {} as ThreadHeaderData;
@@ -86,6 +90,9 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     });
     this.threadTypeService.findByRegularType().subscribe((result) => {
       this.regularCheck = result.data.id;
+    });
+    this.pollingService.showAllPolling().subscribe((result) => {
+      this.threadPollingHeader = result;
     });
   }
 

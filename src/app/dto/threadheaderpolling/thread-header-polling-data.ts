@@ -1,4 +1,4 @@
-import { ThreadPollingDetailData } from '../threadpollingdetail/thread-polling-detail-data';
+import { ThreadPollingDetailData } from './thread-polling-detail-data';
 
 export interface ThreadHeaderPollingData {
   id: string;

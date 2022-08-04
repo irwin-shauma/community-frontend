@@ -49,7 +49,7 @@
                 </div>
                
             </div>
-            <div class="glasses p-3 border-round mb-8 cursor-pointer" routerLink="/threads-main/detail">
+            <div class="glasses p-3 border-round mb-8 cursor-pointer" *ngFor="let polling of threadPollingHeader.data">
                 <div class="flex">
                     <div>
                         <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
@@ -61,15 +61,15 @@
                 </div>
                 <div class="mt-3 mb-3">
                     <p class="font-bold">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate rerum nihil, non eveniet facere aliquid obcaecati.
+                       
                     </p>
                     <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis nulla laboriosam libero voluptatum quo consequuntur facere perspiciatis ipsum sit pariatur minus perferendis quaerat impedit officiis distinctio error explicabo cupiditate possimus, saepe sint recusandae itaque delectus. Sint aliquid magnam id error voluptatem? Veritatis, deleniti recusandae voluptatum laboriosam eveniet ex asperiores inventore!
+                        {{polling.titlePolling}}
                     </p>
                 </div>
                 <div class="border-1 border-solid p-3 border-round">
                     <p class="font-bold">
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. In recusandae repellat modi cum rerum quos consequuntur culpa dolorum inventore eligendi repellendus sunt necessitatibus vitae fugiat, tempore, rem quo voluptates ducimus?
+                       {{polling.contentPolling}}
                     </p> 
                     <div class="h-12rem flex flex-column justify-content-between mt-5">
                         <div>
@@ -106,55 +106,6 @@
                         <div>
 
                         </div>
-                    </div>
-                </div>
-            </div>
-            <div class="glasses p-3 mt-3 border-round cursor-pointer" routerLink="/threads-main/detail">
-                <div class="flex">
-                    <div>
-                        <p-avatar icon="pi pi-user" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
-                    </div>
-                    <div>
-                        <h4>Salman Faris Siddiq</h4>
-                        <p>Upload 1 hour ago</p>
-                    </div>
-                </div>
-                <div class="mt-3 mb-3">
-                    <p-blockUI [target]="pnl">
-                        <div class="flex">
-                            <button pButton label="Premium Only" icon="pi pi-lock"></button>
-                        </div>
-                    
-                    </p-blockUI>
-                    <p class="font-bold">
-                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate rerum nihil, non eveniet facere aliquid obcaecati.
-                    </p>
-                    <p #pnl>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Corporis nulla laboriosam libero voluptatum quo consequuntur facere perspiciatis ipsum sit pariatur minus perferendis quaerat impedit officiis distinctio error explicabo cupiditate possimus, saepe sint recusandae itaque delectus. Sint aliquid magnam id error voluptatem? Veritatis, deleniti recusandae voluptatum laboriosam eveniet ex asperiores inventore!
-                    </p>
-                </div>
-                <div>
-                    <div>
-                        <div>
-                         
-                        </div>
-                        <div class="flex justify-content-between mt-8 align-items-center">
-                            <div class="flex w-1 justify-content-around">
-                                <div class="flex">
-                                    <i class="pi pi-heart-fill"></i>
-                                    <p>5</p>
-                                </div>
-                                <div class="flex">
-                                    <i class="pi pi-comment"></i>
-                                    <p>2</p>
-                                </div>
-                            </div>
-                            <div>
-                                <i class="pi pi-bookmark-fill"></i>
-                            </div>
-                          
-                        </div>
-                      
                     </div>
                 </div>
             </div>
