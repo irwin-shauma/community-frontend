@@ -10,28 +10,46 @@ import { InsertRes } from "../dto/insert-res";
 import { UpdateRes } from "../dto/update-res";
 
 @Injectable({
-    providedIn: 'root',
-  })
-export class EventHeaderService{
-    constructor(private http: HttpClient){}
+  providedIn: 'root',
+})
+export class EventHeaderService {
+  constructor(private http: HttpClient) {}
 
-    showAllEventHeader(startPage : number, maxPage : number) : Observable<EventHeaderFindAllRes>{
-        return this.http.get<EventHeaderFindAllRes>(`http://localhost:1234/event-headers?startPage=${startPage}&maxPage=${maxPage}`);
-    }
+  showAllEventHeader(
+    startPage: number,
+    maxPage: number
+  ): Observable<EventHeaderFindAllRes> {
+    return this.http.get<EventHeaderFindAllRes>(
+      `http://localhost:1234/event-headers?startPage=${startPage}&maxPage=${maxPage}`
+    );
+  }
 
-    addEventHeader(data : EventHeaderInsertReq) : Observable<InsertRes>{
-        return this.http.post<InsertRes>('http://localhost:1234/event-headers', data);
-    }
+  showAllEventHeaderMember(): Observable<EventHeaderFindAllRes> {
+    return this.http.get<EventHeaderFindAllRes>(
+      'http://localhost:1234/event-headers'
+    );
+  }
 
-    findById(id: number) : Observable<EventHeaderFindById>{
-        return this.http.get<EventHeaderFindById>(`http://localhost:1234/event-headers/${id}`);
-    }
+  addEventHeader(data: EventHeaderInsertReq): Observable<InsertRes> {
+    return this.http.post<InsertRes>(
+      'http://localhost:1234/event-headers',
+      data
+    );
+  }
 
-    editEventHeader(data : EventHeaderUpdateReq) : Observable<UpdateRes>{
-        return this.http.put<UpdateRes>('http://localhost:1234/event-types', data);
-    }
+  findById(id: number): Observable<EventHeaderFindById> {
+    return this.http.get<EventHeaderFindById>(
+      `http://localhost:1234/event-headers/${id}`
+    );
+  }
 
-    deleteEventHeader(id : number) : Observable<DeleteRes>{
-        return this.http.delete<DeleteRes>(`http://localhost:1234/event-headers/${id}`);
-    }
+  editEventHeader(data: EventHeaderUpdateReq): Observable<UpdateRes> {
+    return this.http.put<UpdateRes>('http://localhost:1234/event-types', data);
+  }
+
+  deleteEventHeader(id: number): Observable<DeleteRes> {
+    return this.http.delete<DeleteRes>(
+      `http://localhost:1234/event-headers/${id}`
+    );
+  }
 }

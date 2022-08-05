@@ -28,3 +28,7 @@
     border: #BC7682 1px solid;
     width: 500px;
 }
+
+.imgEvent{
+    object-fit: cover;
+}
