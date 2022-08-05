@@ -9,7 +9,7 @@ import { RoleService } from 'src/app/service/role.service';
   templateUrl: './role-edit.component.html',
 })
 export class RoleEditComponent implements OnDestroy, OnInit {
-  idParam!: number;
+  idParam!: string;
   roleSubscrption?: Subscription;
   data: RoleUpdateReq = {} as RoleUpdateReq;
 

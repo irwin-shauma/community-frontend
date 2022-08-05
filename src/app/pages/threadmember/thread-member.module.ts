@@ -17,6 +17,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TimeAgoPipe } from 'src/app/pipe/time-ago.pipe';
 import { BadgeModule } from 'primeng/badge';
 
+
 @NgModule({
   imports: [
     ThreadMemberRouting,

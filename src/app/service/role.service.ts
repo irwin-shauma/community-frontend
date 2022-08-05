@@ -23,7 +23,7 @@ export class RoleService {
     return this.http.post<InsertRes>('http://localhost:1234/roles', data);
   }
 
-  findById(id: number): Observable<RoleFindByIdRes> {
+  findById(id: string): Observable<RoleFindByIdRes> {
     return this.http.get<RoleFindByIdRes>('http://localhost:1234/roles/' + id);
   }
 
@@ -31,7 +31,7 @@ export class RoleService {
     return this.http.put<UpdateRes>('http://localhost:1234/roles', data);
   }
 
-  deleteRole(id: number): Observable<DeleteRes> {
+  deleteRole(id: string): Observable<DeleteRes> {
     return this.http.delete<DeleteRes>('http://localhost:1234/roles/' + id);
   }
 }

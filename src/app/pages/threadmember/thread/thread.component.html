@@ -160,7 +160,7 @@
             </div>
         </p-tabPanel>
         <p-tabPanel header="Bookmark" leftIcon="pi pi-bookmark-fill">
-            <div class="glasses p-3 border-round mb-8" *ngFor="let threadBookmark of threadHeaderBookmark.data; let i = index">
+            <div class="glasses p-3 border-round mb-8 " *ngFor="let threadBookmark of threadHeaderBookmark.data; let i = index">
                 <div class="flex">
                     <div>
                         <p-avatar *ngIf="threadBookmark.userPhoto === null" icon="pi pi-user" styleClass="mr-2" size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}" shape="circle"></p-avatar>
