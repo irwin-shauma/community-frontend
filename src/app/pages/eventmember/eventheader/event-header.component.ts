@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EventHeaderData } from 'src/app/dto/event-header/event-header-data';
 import { EventHeaderService } from 'src/app/service/event-header.service';
@@ -12,7 +13,10 @@ export class EventHeaderComponent implements OnInit {
   eventHeader: EventHeaderData[] = [];
   eventSubscription?: Subscription;
 
-  constructor(private eventHeaderService: EventHeaderService) {}
+  constructor(
+    private eventHeaderService: EventHeaderService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.onInitData();
@@ -31,5 +35,9 @@ export class EventHeaderComponent implements OnInit {
         this.eventHeader[j].endDate = event.toLocaleString();
       }
     });
+  }
+
+  clickToDetail(id: string): void {
+    this.router.navigateByUrl(`/event-members/detail/${id}`);
   }
 }

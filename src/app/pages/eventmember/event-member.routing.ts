@@ -10,7 +10,7 @@ const routes: Routes = [
     component: EventHeaderComponent,
   },
   {
-    path: 'details',
+    path: 'detail/:id',
     component: EventDetailCompoenent,
   },
   {

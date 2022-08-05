@@ -1,3 +1,5 @@
-export interface PaymentInsertReq{
-    userId?: string
+export interface PaymentInsertReq {
+  userId?: string;
+  fileName: string;
+  fileExtension: string;
 }

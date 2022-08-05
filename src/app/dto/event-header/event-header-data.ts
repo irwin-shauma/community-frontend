@@ -5,7 +5,7 @@ export interface EventHeaderData {
   eventTypeId: string;
   fileId: string;
   createdBy: string;
-  fullName: string;
+  fullName?: string;
   isActive: boolean;
   version: number;
   price: number;
