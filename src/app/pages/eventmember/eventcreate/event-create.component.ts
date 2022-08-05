@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EventHeaderInsertReq } from 'src/app/dto/event-header/event-header-insert-req';
 import { EventTypeFindAll } from 'src/app/dto/EventType/event-type-find-all';
-import { EventHeaderService } from 'src/app/service/event-header-service';
+import { EventHeaderService } from 'src/app/service/event-header.service';
 import { EventTypeService } from 'src/app/service/event-type.service';
 import { FileService } from 'src/app/service/file.service';
 
