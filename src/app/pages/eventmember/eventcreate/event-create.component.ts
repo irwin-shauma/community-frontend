@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EventHeaderInsertReq } from 'src/app/dto/event-header/event-header-insert-req';
@@ -12,7 +12,7 @@ import { FileService } from 'src/app/service/file.service';
   templateUrl: './event-create.component.html',
   styleUrls: ['./../eventmember.styles.css'],
 })
-export class EventCreateComponent implements OnInit {
+export class EventCreateComponent implements OnInit, OnDestroy {
   eventHeaderSubscription?: Subscription;
   insertEvent: EventHeaderInsertReq = {} as EventHeaderInsertReq;
 
@@ -48,5 +48,9 @@ export class EventCreateComponent implements OnInit {
       this.insertEvent.fileName = res[0];
       this.insertEvent.fileExtension = res[1];
     });
+  }
+
+  ngOnDestroy(): void {
+    this.eventHeaderSubscription?.unsubscribe();
   }
 }

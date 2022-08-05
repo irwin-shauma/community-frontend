@@ -1,13 +1,13 @@
 export interface EventHeaderData {
-  id?: string;
-  eventHeaderCode?: string;
-  title?: string;
-  eventTypeId?: string;
-  fileId?: string;
+  id: string;
+  eventHeaderCode: string;
+  title: string;
+  eventTypeId: string;
+  fileId: string;
   createdBy: string;
   fullName: string;
-  isActive?: boolean;
-  version?: number;
+  isActive: boolean;
+  version: number;
   price: number;
   startDate: string;
   endDate: string;

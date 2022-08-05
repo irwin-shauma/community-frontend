@@ -140,6 +140,7 @@ export class NavbarComponent implements OnInit {
           {
             label: 'See All Event',
             icon: 'pi pi-fw pi-book text-red-500',
+            routerLink: '/event-members',
           },
         ],
         icon: 'pi pi-fw pi-calendar text-red-500',

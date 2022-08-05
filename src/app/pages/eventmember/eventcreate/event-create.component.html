@@ -17,7 +17,7 @@
                    </div>
                    <div>
                         <h5>Photo Upload</h5>
-                        <p-fileUpload mode="basic" chooseIcon="pi pi-image" name="file" [customUpload]="true" id="file"  [auto]="true"></p-fileUpload>
+                        <p-fileUpload mode="basic" chooseIcon="pi pi-image" name="file" [customUpload]="true" id="file"  [auto]="true" (uploadHandler)="onInsertFile($event)"></p-fileUpload>
                    </div>
                    <div>
                     <h5>Price</h5>
@@ -51,9 +51,6 @@
             <button pButton label="Submit" type="submit" class="bg-red-500 border-round"></button>
         </div>
     </form>
-    <pre>
-        {{insertEvent | json}}
-    </pre>
     
     </div>
 </div>

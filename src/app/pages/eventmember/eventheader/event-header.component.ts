@@ -1,21 +1,35 @@
-import { Component } from "@angular/core";
-import { EventHeaderData } from "src/app/dto/event-header/event-header-data";
-import { EventHeaderService } from "src/app/service/event-header-service";
+import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { EventHeaderData } from 'src/app/dto/event-header/event-header-data';
+import { EventHeaderService } from 'src/app/service/event-header.service';
 
 @Component({
-    selector: 'app-eventheader',
-    templateUrl: './event-header.component.html',
-    styleUrls: ['./../eventmember.styles.css']
+  selector: 'app-eventheader',
+  templateUrl: './event-header.component.html',
+  styleUrls: ['./../eventmember.styles.css'],
 })
-export class EventHeaderComponent{
+export class EventHeaderComponent implements OnInit {
+  eventHeader: EventHeaderData[] = [];
+  eventSubscription?: Subscription;
 
-    eventHeaderData : EventHeaderData = {} as EventHeaderData;
+  constructor(private eventHeaderService: EventHeaderService) {}
 
-    data : number = 12;
+  ngOnInit(): void {
+    this.onInitData();
+  }
 
-    constructor(private eventHeaderService : EventHeaderService ){
+  onInitData(): void {
+    this.eventHeaderService.showAllEventHeaderMember().subscribe((result) => {
+      this.eventHeader = result.data;
 
-    }
-
-
+      for (let i = 0; i < result.data.length; i++) {
+        let event = new Date();
+        this.eventHeader[i].startDate = event.toLocaleString();
+      }
+      for (let j = 0; j < result.data.length; j++) {
+        let event = new Date();
+        this.eventHeader[j].endDate = event.toLocaleString();
+      }
+    });
+  }
 }
