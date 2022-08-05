@@ -47,6 +47,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
   threadType: ThreadTypeFindAll = {} as ThreadTypeFindAll;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  threadHeaderLike: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  threadHeaderBookmark: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadPollingHeader: ThreadHeaderPollingFindAll =
     {} as ThreadHeaderPollingFindAll;
   threadPollingDetail: ThreadPollingDetailData = {} as ThreadPollingDetailData;
@@ -103,6 +105,14 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     });
     this.pollingService.showAllPolling().subscribe((result) => {
       this.threadPollingHeader = result;
+    });
+
+    this.threadService.showAllByUserLike().subscribe((result) => {
+      this.threadHeaderLike = result;
+    });
+
+    this.threadService.showAllByUserBookmark().subscribe((result) => {
+      this.threadHeaderBookmark = result;
     });
   }
 
