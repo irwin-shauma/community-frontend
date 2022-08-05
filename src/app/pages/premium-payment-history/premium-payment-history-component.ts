@@ -29,11 +29,7 @@ export class PremiumPaymentHistoryComponent implements OnInit{
 
     ngOnInit(): void{
         this.premiumPaymentHistories.data = [];
-        this.initData();
-    }
-
-    loadData(event: LazyLoadEvent){
-        this.getData
+        this.loadPremiumPaymentHistories
     }
 
     getData(startPage: number = this.startPage, maxPage: number = this.maxPage): void{
@@ -58,5 +54,14 @@ export class PremiumPaymentHistoryComponent implements OnInit{
             this.premiumPaymentHistories = result;
             this.premiumPaymentHistoryData = result.data!;
         });
+    }
+
+    loadPremiumPaymentHistories(event : LazyLoadEvent){
+        this.loading = true;
+
+        setTimeout(() => {
+            this.initData()
+            this.loading = false;
+        }, 2000)
     }
 }

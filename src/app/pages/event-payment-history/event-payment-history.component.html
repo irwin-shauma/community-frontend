@@ -5,7 +5,7 @@
                 <div class="col-12">
 
                     <div class="mt-5 ml-5 mr-5">
-                        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[5,10,25]" [value]="eventPaymentHistoryData" [rows]="5"  class="glasses">
+                        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[5,10,25]" [value]="eventPaymentHistoryData" [rows]="5" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadEventPaymentHistoryData($event)" [loading]="loading" class="glasses">
                             <ng-template pTemplate="caption">
                                 <div class="table-header">
                                     <h3>Event Payment Histories</h3>
