@@ -13,6 +13,7 @@ export class EditEventTypeComponent implements OnDestroy, OnInit{
     idParam!: number;
     eventTypeSubscription?: Subscription;
     data: EventTypeUpdateReq = {} as EventTypeUpdateReq;
+    loading!: boolean
 
     constructor(
         private eventTypeService: EventTypeService,
@@ -26,10 +27,9 @@ export class EditEventTypeComponent implements OnDestroy, OnInit{
             this.idParam = resultTemp.id;
 
             this.eventTypeService.findById(this.idParam).subscribe((res) => {
-                this.data.id = res.data?.id;
-                this.data.type = res.data?.type;
-                // this.data.type = res.data?.threadTypeCode;
-                this.data.isActive = res.data?.isActive;
+                this.data.id = res.data!.id;
+                this.data.type = res.data!.type;
+                this.data.isActive = res.data!.isActive;
             });
         });
     }
@@ -39,7 +39,9 @@ export class EditEventTypeComponent implements OnDestroy, OnInit{
     }
 
     onSubmit(): void {
+        this.loading = true;
         this.eventTypeService.editEventType(this.data).subscribe((result) => {
+            this.loading = false;
             this.router.navigateByUrl('/event-types')
         });
     }

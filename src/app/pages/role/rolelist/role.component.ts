@@ -11,11 +11,11 @@ import { RoleService } from 'src/app/service/role.service';
   templateUrl: './role.component.html',
 })
 export class RoleListComponent implements OnInit {
-  idDeleted!: number;
+  idDeleted!: string;
   roles: RoleFindAllRes = {} as RoleFindAllRes;
   roleData!: RoleData[];
   deleteSubsciption?: Subscription;
-  loading!: boolean;
+  loading: boolean = true;
 
   constructor(
     private confirmationService: ConfirmationService,
@@ -32,19 +32,16 @@ export class RoleListComponent implements OnInit {
     this.roleService.showAllRole().subscribe((result) => {
       this.roles = result;
       this.roleData = result.data!;
+      this.loading = false;
     });
   }
 
   loadRoles(event: LazyLoadEvent) {
-    this.loading = true;
 
-    setTimeout(() => {
-      this.initData()
-      this.loading = false;
-    }, 2000);
+    this.initData();
 }
 
-  ondelete(id: number): void {
+  ondelete(id: string): void {
     this.idDeleted = id;
   }
 
@@ -56,7 +53,7 @@ export class RoleListComponent implements OnInit {
       });
   }
 
-  confirm(id: number): void {
+  confirm(id: string): void {
     this.idDeleted = id;
     this.confirmationService.confirm({
       message: 'Are you sure that you want to perform this action?',
@@ -66,7 +63,7 @@ export class RoleListComponent implements OnInit {
     });
   }
 
-  onUpdateById(id: number): void {
+  onUpdateById(id: string): void {
     this.router.navigateByUrl(`/roles/${id}`);
   }
 }

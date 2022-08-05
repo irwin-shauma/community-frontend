@@ -1,4 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { ConfirmationService } from 'primeng/api';
 import { ButtonModule } from 'primeng/button';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -19,6 +21,8 @@ import { ThreadTypeRouting } from './threadtype.routing';
     ConfirmDialogModule,
     CheckboxModule,
     InputTextModule,
+    CommonModule,
+    FormsModule
   ],
   declarations: [
     ListThreadTypeComponent,
