@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { EventHeaderData } from 'src/app/dto/event-header/event-header-data';
-import { EventHeaderFindAllRes } from 'src/app/dto/event-header/event-header-find-all-res';
-import { EventHeaderService } from 'src/app/service/event-header-service';
-import { FileService } from 'src/app/service/file.service';
+import { EventHeaderService } from 'src/app/service/event-header.service';
 
 @Component({
   selector: 'app-eventheader',
