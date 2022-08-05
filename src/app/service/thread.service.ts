@@ -11,7 +11,7 @@ import { ThreadHeaderInsertReq } from '../dto/threadheader/thread-header-insert-
   providedIn: 'root',
 })
 export class ThreadService {
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   addThread(data: ThreadHeaderInsertReq): Observable<InsertRes> {
     return this.http.post<InsertRes>(
@@ -30,5 +30,12 @@ export class ThreadService {
     return this.http.get<ThreadHeaderFindAll>(
       'http://localhost:1234/thread-headers'
     );
+  }
+  showAllByUserLike(): Observable<ThreadHeaderFindAll> {
+    return this.http.get<ThreadHeaderFindAll>('http://localhost:1234/thread-headers/likes');
+  }
+
+  showAllByUserBookmark(): Observable<ThreadHeaderFindAll> {
+    return this.http.get<ThreadHeaderFindAll>('http://localhost:1234/thread-headers/bookmarks');
   }
 }
