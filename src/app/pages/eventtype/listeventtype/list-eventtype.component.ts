@@ -1,6 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { ConfirmationService } from "primeng/api";
+import { ConfirmationService, LazyLoadEvent } from "primeng/api";
 import { Subscription } from "rxjs";
 import { EventTypeData } from "src/app/dto/EventType/event-type-data";
 import { EventTypeFindAll } from "src/app/dto/EventType/event-type-find-all";
@@ -17,6 +17,7 @@ export class ListEventTypeComponent implements OnInit{
     eventTypes : EventTypeFindAll = {} as EventTypeFindAll;
     eventTypeData!: EventTypeData[];
     deleteSubscription?: Subscription;
+    loading: boolean= true;
 
     constructor(
         private confirmationService: ConfirmationService,
@@ -34,7 +35,13 @@ export class ListEventTypeComponent implements OnInit{
         this.eventTypeService.showAllEventType().subscribe((result) =>{
             this.eventTypes = result;
             this.eventTypeData = result.data!;
+            
+            this.loading = false;
         });
+    }
+
+    loadEventType(event: LazyLoadEvent){
+        this.initData();
     }
 
     ondelete(id: number): void{

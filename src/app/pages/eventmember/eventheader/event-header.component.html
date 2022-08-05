@@ -12,15 +12,20 @@
                                 </div>
                             </ng-template>
                             <span class="card-title text-center mt-0">{{event.title}}</span>
-                            <div class="flex flex-row justify-content-between mt-2">
-                                <span class="card-content"><i class="pi pi-clock text-red-400"></i>start: {{event.startDate}}
+                            <div class="flex flex-row justify-content-between mt-2 ">
+                                <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i>start: {{event.startDate}}
                                     </span>
-                                    <span class="card-content"><i class="pi pi-tag text-red-400"></i>Rp.{{event.price}}</span>
+                                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>Rp.{{event.price}}</span>
                                    
                             </div>
                             <div class="flex flex-row justify-content-between mt-3">
-                                <span class="card-content"><i class="pi pi-clock text-red-400"></i>end: {{event.endDate}}
+                                <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i>end: {{event.endDate}}
                                 </span>
+                                <span>
+                                  
+                                    <div class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" (click)="clickToDetail(event.id)">Buy <i class="pi pi-fw pi-shopping-cart"></i></div>
+                                </span>
+                        
                               
                              
                             </div>

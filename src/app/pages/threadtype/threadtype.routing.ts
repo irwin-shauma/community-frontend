@@ -14,7 +14,7 @@ const routes: Routes = [
     component: CreateThreadTypeComponent,
   },
   {
-    path: 'edit',
+    path: ':id',
     component: EditThreadTypeComponent,
   },
 ];

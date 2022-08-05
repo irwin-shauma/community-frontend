@@ -69,8 +69,6 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
   finalSubmit(): void {
     this.store.dispatch(addAction({ payload: this.dataRegister }));
     this.verificationService.findById(this.verificationId).subscribe((res) => {
-      console.log(this.insertRes.id);
-
       if (this.dataRegister.verification == res.data?.verification) {
         const insertUser = {} as UserInsertReq;
         insertUser.email = this.dataRegister.email;

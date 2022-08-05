@@ -8,6 +8,7 @@ import { ThreadDetailData } from 'src/app/dto/threadheader/thread-detail-data';
 import { ThreadHeaderData } from 'src/app/dto/threadheader/thread-header-data';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
 import { ThreadHeaderFindByIdRes } from 'src/app/dto/threadheader/thread-header-find-by-id-res';
+import { EventHeaderService } from 'src/app/service/event-header.service';
 import { ThreadDetailService } from 'src/app/service/thread-detail.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
 import { ThreadService } from 'src/app/service/thread.service';
@@ -45,26 +46,31 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
         this.threadData.data = res.data;
       });
     });
-    this.insertComment.commentThread = "";
+    this.insertComment.commentThread = '';
   }
 
   submit(): void {
-    this.insertComment.threadHeaderId = this.threadData.data.id
-    this.threadDetailSubs = this.threadDetailService.insert(this.insertComment)
-        .subscribe(result => {
-          this.initData();
-        })
+    this.insertComment.threadHeaderId = this.threadData.data.id;
+    this.threadDetailSubs = this.threadDetailService
+      .insert(this.insertComment)
+      .subscribe((result) => {
+        this.initData();
+      });
   }
 
   like(threadId: string): void {
     this.likeInsert.threadId = threadId;
-    this.threadLikeSubs = this.threadLikeService.insert(this.likeInsert).subscribe(result => {
-      this.initData();
-    })
+    this.threadLikeSubs = this.threadLikeService
+      .insert(this.likeInsert)
+      .subscribe((result) => {
+        this.initData();
+      });
   }
 
   unLike(threadId: string): void {
-    this.threadLikeService.delete(threadId).subscribe(res => {this.initData();})
+    this.threadLikeService.delete(threadId).subscribe((res) => {
+      this.initData();
+    });
   }
 
   ngOnDestroy(): void {

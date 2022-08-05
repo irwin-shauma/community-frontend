@@ -14,7 +14,7 @@ const routes: Routes = [
         component: CreateEventTypeComponent,
     },
     {
-        path: 'edit',
+        path: ':id',
         component: EditEventTypeComponent
     }
 ];

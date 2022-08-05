@@ -1,11 +1,12 @@
 <div class="pl-5 mt-6 pr-5">
     <div class="flex w-16rem justify-content-between">
         <button pButton label="new" icon="pi pi-plus" style="background-color: #22C55E;" routerLink="/threadtypes/create"></button>
-        <button pButton label="delete" icon="pi pi-trash" style="background-color: #F38C8D;"></button>
     </div>
 
     <div class="mt-5">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listThreadType" class="glasses">
+        <p-table responsiveLayout="scroll" [showCurrentPageReport]="true" [paginator]="true" 
+                [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="threadTypeData" class="glasses"
+                [loading]="loading" [lazy]="true" (onLazyLoad)="loadThreadType($event)">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>
@@ -15,17 +16,17 @@
                     <th>Action</th>
                 </tr>
             </ng-template>
-            <ng-template pTemplate="body" let-list let-i="rowIndex">
+            <ng-template pTemplate="body" let-data let-i="rowIndex">
                 <tr>
                     <td>{{i+1}}</td>
-                    <td>{{list.code}}</td>
-                    <td>{{list.threadtype}}</td>
+                    <td>{{data.threadTypeCode}}</td>
+                    <td>{{data.threadType}}</td>
                     <td>
-                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox [binary]="true" inputId="binary" [disabled]="true" [(ngModel)]="data.isActive"></p-checkbox>
                     </td>
                     <td class="flex">
-                        <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" routerLink="/threadtypes/edit"></button>
-                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm()"></button>
+                        <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" (click)="update(data.id)"></button>
+                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm(data.id)"></button>
                     </td>
                 </tr>
             </ng-template>

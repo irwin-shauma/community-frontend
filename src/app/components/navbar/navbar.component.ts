@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MenuItem } from 'primeng/api';
 import { Role } from 'src/app/constant/role-constant';
+import { LogoutReq } from 'src/app/dto/user/logout-req';
 import { LoginService } from 'src/app/service/login.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -20,6 +21,8 @@ export class NavbarComponent implements OnInit {
   userName!: string;
   loginStatus: boolean = false;
 
+  logoutReq : LogoutReq = {} as LogoutReq;
+
   constructor(private router: Router,
     private loginService: LoginService,
     private userService: UserService,
@@ -27,6 +30,10 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     localStorage.clear();
+    // this.logoutReq.id = this.loginService.getData()?.data?.id
+    console.log(this.logoutReq.id);
+    this.userService.logout(this.logoutReq)
+    console.log("a")
     this.spinner.show();
 
     setTimeout(() => {
@@ -52,6 +59,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
    this.checkLoginStatus();
+   this.logoutReq.id =String(this.loginService.getData()?.data?.id)
 
   }
 

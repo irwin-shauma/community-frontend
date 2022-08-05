@@ -9,21 +9,26 @@ import { DropdownModule } from "primeng/dropdown";
 import {FileUploadModule} from 'primeng/fileupload';
 import {HttpClientModule} from '@angular/common/http';
 import {CardModule} from 'primeng/card';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
-    imports : [
-        PremiumRouting,
-        TabViewModule,
-        AvatarModule,
-        InputTextModule,
-        ButtonModule,
-        DropdownModule,
-        FileUploadModule,
-        HttpClientModule,
-        CardModule
-        
-    ],
-    declarations : [PremiumComponent],
-    exports: [PremiumComponent]
+  imports: [
+    PremiumRouting,
+    TabViewModule,
+    AvatarModule,
+    InputTextModule,
+    ButtonModule,
+    DropdownModule,
+    FileUploadModule,
+    HttpClientModule,
+    CardModule,
+    FormsModule,
+    CommonModule,
+    DialogModule,
+  ],
+  declarations: [PremiumComponent],
+  exports: [PremiumComponent],
 })
-export class PremiumModule{}
+export class PremiumModule {}
