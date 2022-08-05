@@ -8,7 +8,7 @@
                         <!-- <p-table [value]="premiumPaymentHistoryData" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadData($event)" responsiveLayout="scroll" [paginator]="true" [rows]="maxPage" [totalRecords]="totalData" [loading]="loading" [rowsPerPageOptions]="[5,10]" class="glasses"> -->
 
 
-                        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[5,10,25]" [value]="premiumPaymentHistoryData" [rows]="5"  class="glasses">
+                        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[5,10,25]" [value]="premiumPaymentHistoryData" [rows]="5" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadPremiumPaymentHistories($event)" [loading]="loading"  class="glasses">
                             <ng-template pTemplate="caption">
                                 <div class="table-header">
                                     <h3>Premium Payment Histories</h3>
