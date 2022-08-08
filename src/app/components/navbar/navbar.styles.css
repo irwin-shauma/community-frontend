@@ -48,3 +48,7 @@ h3{
 .main-menu{
     padding-top: 100px;
 }
+
+a {
+    text-decoration: none;
+}

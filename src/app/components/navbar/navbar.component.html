@@ -9,9 +9,18 @@
       </ng-template>
 
       <ng-template pTemplate="end" >
-        <button type="button" class="p-button-outlined p-button-rounded" *ngIf="loginStatus" pButton icon="pi pi-user"
-          (click)="menu.toggle($event)"></button>
-        <p-menu #menu [popup]="true" [model]="profile"></p-menu>
+
+          <p-avatar image="http://www.rw-designer.com/icon-image/21509-256x256x32.png" *ngIf="loginStatus" class="mt-1" size="large" shape="circle" ng-mouseover="hoverActive=true"
+          ng-mouseleave="hoverActive=false"
+          ng-style="hoverActive ? {'border-style' : solid} : {}"(click)="menu.toggle($event)"></p-avatar>
+
+
+        <!-- <button type="button" class="p-button-outlined p-button-rounded" *ngIf="loginStatus" pButton icon="pi pi-user"
+          (click)="menu.toggle($event)">
+        </button> -->
+        <p-menu #menu [popup]="true" [model]="profile">
+          <img id="logo" src="https://www.primefaces.org/wp-content/uploads/fbrfg/favicon-32x32.png"/> 
+        </p-menu>
         <button pButton label="login" routerLink="/login" *ngIf="!loginStatus"></button>
       </ng-template>
     </p-menubar>
@@ -45,10 +54,11 @@
     <div class="flex flex-row justify-content-between w-5">
       <div class="flex flex-column gap-2">
         <span class="social-media">Main Menu</span>
-        <p class="menu-item">Event</p>
-        <p class="menu-item">Course</p>
-        <p class="menu-item">Thread</p>
-        <p class="menu-item">Article</p>
+
+        <a class="menu-item" routerLink="/event-members">Event</a>
+        <a class="menu-item" routerLink="/">Course</a>
+        <a class="menu-item" routerLink="/threads-main">Thread</a>
+        <a class="menu-item" routerLink="/article-members">Article</a>
       </div>
       <div class="flex flex-column gap-2 w-5">
         <span class="social-media">Contact</span>

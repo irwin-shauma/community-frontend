@@ -1,14 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { ThreadDetailFindAllRes } from 'src/app/dto/thread-detail/thread-detail-find-all-res';
 import { ThreadDetailInsertReq } from 'src/app/dto/thread-detail/thread-detail-insert-req';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
-import { ThreadDetailData } from 'src/app/dto/threadheader/thread-detail-data';
-import { ThreadHeaderData } from 'src/app/dto/threadheader/thread-header-data';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
 import { ThreadHeaderFindByIdRes } from 'src/app/dto/threadheader/thread-header-find-by-id-res';
-import { EventHeaderService } from 'src/app/service/event-header.service';
+import { LoginService } from 'src/app/service/login.service';
 import { ThreadDetailService } from 'src/app/service/thread-detail.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
 import { ThreadService } from 'src/app/service/thread.service';
@@ -25,12 +22,15 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
   threadData: ThreadHeaderFindByIdRes = {} as ThreadHeaderFindByIdRes;
   insertComment: ThreadDetailInsertReq = {} as ThreadDetailInsertReq;
   likeInsert: ThreadLikeInsertReq = {} as ThreadLikeInsertReq;
+  showEdit: boolean = false;
 
   constructor(
     private threadService: ThreadService,
     private activateRoute: ActivatedRoute,
     private threadDetailService: ThreadDetailService,
-    private threadLikeService: ThreadLikeService
+    private threadLikeService: ThreadLikeService,
+    private loginService: LoginService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -43,6 +43,9 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
       this.idParam = resultTemp.id;
 
       this.threadService.findById(this.idParam).subscribe((res) => {
+        if (this.loginService.getData()?.data?.id === res.data.userId) {
+          this.showEdit = true;
+        }
         this.threadData.data = res.data;
       });
     });
@@ -71,6 +74,10 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
     this.threadLikeService.delete(threadId).subscribe((res) => {
       this.initData();
     });
+  }
+
+  updateThread(id: string): void {
+    this.router.navigateByUrl(`threads-main/edit/${id}`);
   }
 
   ngOnDestroy(): void {

@@ -18,6 +18,7 @@ import { TimeAgoPipe } from 'src/app/pipe/time-ago.pipe';
 import { BadgeModule } from 'primeng/badge';
 import { DividerModule } from 'primeng/divider';
 import { CheckboxModule } from 'primeng/checkbox';
+import { ThreadEditComponent } from './threadedit/thread-edit.component';
 
 @NgModule({
   imports: [
@@ -42,8 +43,13 @@ import { CheckboxModule } from 'primeng/checkbox';
   declarations: [
     ThreadMemberComponent,
     ThreadMemberDetailComponent,
+    ThreadEditComponent,
     TimeAgoPipe,
   ],
-  exports: [ThreadMemberComponent, ThreadMemberDetailComponent],
+  exports: [
+    ThreadMemberComponent,
+    ThreadMemberDetailComponent,
+    ThreadEditComponent,
+  ],
 })
 export class ThreadMemberModule {}

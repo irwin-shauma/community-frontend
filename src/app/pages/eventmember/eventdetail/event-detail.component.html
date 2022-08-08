@@ -3,10 +3,16 @@
     <div class="p-card col-8 col-offset-2" id="card-article">
             <div class="grid">
                 <div class="col-12">
+                    <div class="flex justify-content-between"> 
                         <div class="flex align-items-center gap-2">
                             <i class="pi pi-fw pi-qrcode text-red-500"></i>
-                            <h2>Detail Pembayaran</h2>
+                            <h2>Detail Event</h2>
                         </div>
+                        <div *ngIf="showEdit === true">
+                            <button pButton pRipple type="button" icon="pi pi-pencil" class="p-button-rounded p-button-warning" (click)="updateThread(eventData.data!.id)"></button>
+                        </div>
+                    </div>
+                       
                         
                         <h4 class="mt-8 font-medium px-2">Event / Course yang dibeli:</h4>
                         <div class="flex gap-5  w-full justify-content-center">
