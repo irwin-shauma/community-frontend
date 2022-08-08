@@ -5,6 +5,7 @@ import { EventHeaderFindById } from 'src/app/dto/event-header/event-header-find-
 import { PaymentInsertReq } from 'src/app/dto/payment/payment-insert-req';
 import { EventHeaderService } from 'src/app/service/event-header.service';
 import { FileService } from 'src/app/service/file.service';
+import { LoginService } from 'src/app/service/login.service';
 import { PaymentService } from 'src/app/service/payment.service';
 
 @Component({
@@ -13,9 +14,10 @@ import { PaymentService } from 'src/app/service/payment.service';
   styleUrls: ['./../eventmember.styles.css'],
 })
 export class EventDetailCompoenent implements OnInit {
-  idParam!: number;
+  idParam!: string;
   eventDetailSubscription?: Subscription;
   eventPaymentSubscription?: Subscription;
+  showEdit: boolean = false;
   eventData: EventHeaderFindById = {} as EventHeaderFindById;
   insertPayment: PaymentInsertReq = {} as PaymentInsertReq;
   displayMaximizable!: boolean;
@@ -24,7 +26,8 @@ export class EventDetailCompoenent implements OnInit {
     private eventService: EventHeaderService,
     private fileService: FileService,
     private paymentService: PaymentService,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
@@ -37,6 +40,9 @@ export class EventDetailCompoenent implements OnInit {
       this.idParam = resultTemp.id;
 
       this.eventService.findById(this.idParam).subscribe((res) => {
+        if (this.loginService.getData()?.data?.id === res.data?.userId) {
+          this.showEdit = true;
+        }
         this.eventData.data = res.data;
       });
     });
@@ -60,5 +66,9 @@ export class EventDetailCompoenent implements OnInit {
 
   showMaximizableDialog() {
     this.displayMaximizable = true;
+  }
+
+  updateThread(id: string): void {
+    this.router.navigateByUrl(`/event-members/edit/${id}`);
   }
 }

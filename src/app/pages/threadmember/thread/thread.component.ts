@@ -21,6 +21,7 @@ import { EventHeaderService } from 'src/app/service/event-header.service';
 import { FileService } from 'src/app/service/file.service';
 import { LoginService } from 'src/app/service/login.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
+import { ThreadHeaderService } from 'src/app/service/thread-header.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
 import { ThreadPollingService } from 'src/app/service/thread-polling.service';
 import { ThreadTypeService } from 'src/app/service/thread-type.service';
@@ -64,6 +65,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   data: ThreadHeaderData = {} as ThreadHeaderData;
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
   threadType: ThreadTypeFindAll = {} as ThreadTypeFindAll;
+  threadSelf: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeaderLike: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeaderBookmark: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
@@ -86,6 +88,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
   constructor(
     private threadService: ThreadService,
+    private threadHeaderService: ThreadHeaderService,
     private router: Router,
     private threadTypeService: ThreadTypeService,
     private fileService: FileService,
@@ -114,6 +117,10 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     this.threadTypeService.showAllThreadType().subscribe((result) => {
       this.threadType = result;
     });
+    this.threadHeaderService.findAllByUser().subscribe((result) => {
+      this.threadSelf.data = result.data;
+    });
+
     this.threadService.showAllThread().subscribe((result) => {
       this.threadHeader = result;
     });
