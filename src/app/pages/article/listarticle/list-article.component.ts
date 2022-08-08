@@ -59,6 +59,7 @@ export class ArticleHeaderListComponent implements OnInit {
         this.articleHeaderData = resultData.data
         this.loading = false
         this.totalData = resultData.count
+    
       },
     )
   }
@@ -69,7 +70,7 @@ export class ArticleHeaderListComponent implements OnInit {
       this.articleHeaderData = result.data!;
     });
 
-
+    
 
 
     this.userService.findById(String(this.loginService.getData()?.data?.id)).subscribe((result) => {
