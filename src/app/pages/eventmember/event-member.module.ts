@@ -14,6 +14,7 @@ import { EventMemberrouting } from './event-member.routing';
 import { EventCreateComponent } from './eventcreate/event-create.component';
 import { EventDetailCompoenent } from './eventdetail/event-detail.component';
 import { EventHeaderComponent } from './eventheader/event-header.component';
+import { DialogModule } from 'primeng/dialog';
 
 @NgModule({
   imports: [
@@ -29,6 +30,7 @@ import { EventHeaderComponent } from './eventheader/event-header.component';
     CalendarModule,
     CommonModule,
     FormsModule,
+    DialogModule,
   ],
   declarations: [
     EventHeaderComponent,

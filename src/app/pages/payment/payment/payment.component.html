@@ -4,7 +4,7 @@
         <h2>List Approval Payment</h2>
     </div>
     <form action="">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="listApprovalPayment" class="glasses">
+        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="paymentData" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadPayments($event)" [loading]="loading" class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>
@@ -20,7 +20,7 @@
                     <td>{{list.name}}</td>
                     <td>{{list.event}}</td>
                     <td>
-                        <i class="pi pi-download"></i>
+                        <i class="pi pi-download" routerLink="http://localhost:1234/files/{{list.fileId}}"></i>
                     </td>
                     <td>
                         <p-checkbox [binary]="true" inputId="binary"></p-checkbox>

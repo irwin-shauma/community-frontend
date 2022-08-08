@@ -12,6 +12,7 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {ScrollTopModule} from 'primeng/scrolltop';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   imports: [
@@ -25,7 +26,8 @@ import {ScrollTopModule} from 'primeng/scrolltop';
     FormsModule,
     CommonModule,
     InfiniteScrollModule,
-    ScrollTopModule
+    ScrollTopModule,
+    DividerModule,
   ],
   declarations: [ArticleHeaderComponent, ArticleDetailComponent],
   exports: [ArticleHeaderComponent, ArticleDetailComponent],

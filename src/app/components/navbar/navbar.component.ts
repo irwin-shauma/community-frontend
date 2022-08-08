@@ -4,6 +4,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Role } from 'src/app/constant/role-constant';
+import { LogoutReq } from 'src/app/dto/user/logout-req';
 import { LoginService } from 'src/app/service/login.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -21,6 +22,8 @@ export class NavbarComponent implements OnInit {
   userName!: string;
   loginStatus: boolean = false;
 
+  logoutReq : LogoutReq = {} as LogoutReq;
+
   constructor(private router: Router,
     private loginService: LoginService,
     private userService: UserService,
@@ -29,6 +32,10 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     localStorage.clear();
+    // this.logoutReq.id = this.loginService.getData()?.data?.id
+    console.log(this.logoutReq.id);
+    this.userService.logout(this.logoutReq)
+    console.log("a")
     this.spinner.show();
 
     setTimeout(() => {
@@ -54,6 +61,7 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
    this.checkLoginStatus();
+   this.logoutReq.id =String(this.loginService.getData()?.data?.id)
 
   }
 
@@ -112,13 +120,6 @@ export class NavbarComponent implements OnInit {
         ],
         visible: this.dataLogin === Role.SUPERADMIN,
       },
-
-      {
-        label: 'Home',
-        icon: 'pi pi-fw pi-home text-red-500',
-        routerLink: '/homes',
-        visible: this.dataLogin === Role.MEMBER,
-      },
       {
         label: 'Article',
         icon: 'pi pi-fw pi-book text-red-500',
@@ -158,8 +159,8 @@ export class NavbarComponent implements OnInit {
 
     this.profile = [
       {
-        label: this.userName,
-        // label: this.loginService.getData()?.data?.email,
+        label:
+          this.userName + ' | ' + this.loginService.getRole()?.toLowerCase(),
         items: [
           {
             label: 'View Profile',

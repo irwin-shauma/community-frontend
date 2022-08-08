@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { LazyLoadEvent } from "primeng/api";
 import { EventPaymentHistoryData } from "src/app/dto/event-payment-history/event-payment-history-data";
 import { EventPaymentHistoryFindAllRes } from "src/app/dto/event-payment-history/event-payment-history-find-all-res";
 import { EventPaymentHistoryService } from "src/app/service/event-payment-history.service";
@@ -11,6 +12,7 @@ import { EventPaymentHistoryService } from "src/app/service/event-payment-histor
 export class EventPaymentHsitoryComponent implements OnInit{
     eventPaymentHistories: EventPaymentHistoryFindAllRes = {} as EventPaymentHistoryFindAllRes;
     eventPaymentHistoryData!: EventPaymentHistoryData[];
+    loading! : boolean
 
     constructor(
         private eventPaymentHistoryService: EventPaymentHistoryService,
@@ -19,7 +21,7 @@ export class EventPaymentHsitoryComponent implements OnInit{
 
     ngOnInit(): void {
         this.eventPaymentHistories.data = [];
-        this.initData();
+        this.loadEventPaymentHistoryData
     }
 
     initData(): void{
@@ -28,5 +30,14 @@ export class EventPaymentHsitoryComponent implements OnInit{
             this.eventPaymentHistoryData = result.data!;
             console.log(result)
         })
+    }
+
+    loadEventPaymentHistoryData(event: LazyLoadEvent){
+        this.loading= true;
+
+        setTimeout(() => {
+            this.initData()
+            this.loading = false;
+        }, 2000);
     }
 }

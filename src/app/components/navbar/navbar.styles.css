@@ -38,3 +38,13 @@ h3{
 .year {
     color: #9E9E9E;
 }
+
+.navbar-position{
+    position: fixed;
+    z-index: 1;
+   
+}
+
+.main-menu{
+    padding-top: 100px;
+}

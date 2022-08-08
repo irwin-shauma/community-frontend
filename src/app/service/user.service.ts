@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { InsertRes } from '../dto/insert-res';
 import { UpdateRes } from '../dto/update-res';
+import { LogoutReq } from '../dto/user/logout-req';
 import { UpdatePhotoProfileReq } from '../dto/user/update-photo-profile-req';
 import { UserChangePasswordReq } from '../dto/user/user-change-password-req';
 import { UserFindAllRes } from '../dto/user/user-find-all-res';
@@ -42,6 +43,10 @@ export class UserService {
 
   changePassword(data : UserChangePasswordReq) : Observable<UpdateRes> {
     return this.http.put<UpdateRes>('http://localhost:1234/users/change-password', data);
+  }
+
+  logout(data : LogoutReq) : Observable<UpdateRes> {
+    return this.http.put<UpdateRes>('http://localhost:1234/users/logout', data);
   }
 
  
