@@ -18,6 +18,7 @@ export class PremiumComponent implements OnInit {
   insertPayment: PaymentInsertReq = {} as PaymentInsertReq;
   dataPremium: PremiumTypeFindAllRes = {} as PremiumTypeFindAllRes;
   choosePremium: [] = [];
+  dropPremium: string[] = []
   constructor(
     private premiumService: PremiumTypeService,
     private paymentService: PaymentService,

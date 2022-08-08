@@ -3,6 +3,7 @@ export interface PaymentData{
     paymentCode?: string
     fileId?: string
     userId?: string
+    fullName?: string
     isActive?: boolean
     version?: number
 }
