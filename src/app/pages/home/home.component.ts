@@ -2,11 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 import { TotalCountData } from 'src/app/dto/total-count-data';
-import { UserData } from 'src/app/dto/user/user-data';
-import { UserFindAllRes } from 'src/app/dto/user/user-find-all-res';
 import { TotalService } from 'src/app/service/total.service';
-import { UserService } from 'src/app/service/user.service';
-=======
 
 @Component({
   selector: 'app-home',
@@ -24,9 +20,7 @@ export class HomeComponent implements OnInit {
   constructor(private totalService: TotalService) {}
 
   ngOnInit(): void {
- 
     this.initData();
-
   }
 
   initData(): void {
@@ -38,8 +32,4 @@ export class HomeComponent implements OnInit {
 
     })
   }
-
-
-
-
 }
