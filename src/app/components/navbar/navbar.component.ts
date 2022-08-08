@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MenuItem } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { Role } from 'src/app/constant/role-constant';
 import { LogoutReq } from 'src/app/dto/user/logout-req';
 import { LoginService } from 'src/app/service/login.service';
@@ -14,7 +15,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class NavbarComponent implements OnInit {
   dataLogin?: string | null;
-
+  subcription?: Subscription;
   tieredItems!: MenuItem[];
   profile!: MenuItem[];
   loginMenu!: MenuItem[];
@@ -26,7 +27,8 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router,
     private loginService: LoginService,
     private userService: UserService,
-    private spinner : NgxSpinnerService) { }
+    private spinner : NgxSpinnerService,
+    private activateRoute: ActivatedRoute) { }
 
   logout(): void {
     localStorage.clear();
@@ -47,8 +49,8 @@ export class NavbarComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
-  updateById(id: string): void {
-    this.router.navigateByUrl(`/profiles/view/${id}`);
+  updateById(): void {
+    this.router.navigateByUrl(`/profiles/view`);
   }
 
   getUsername() {
@@ -163,10 +165,7 @@ export class NavbarComponent implements OnInit {
           {
             label: 'View Profile',
             icon: 'pi pi-fw pi-pencil',
-            routerLink: '/profiles/view',
-            command: () => {
-              this.updateById(this.loginService.getData()?.data?.id!);
-            },
+            routerLink: '/profiles',
           },
           {
             label: 'Logout',

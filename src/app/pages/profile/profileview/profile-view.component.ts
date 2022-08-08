@@ -13,6 +13,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ProfileViewComponent implements OnInit {
   idParam!: string;
+  id!: string | any;
   data: UserData = {} as UserData;
 
   userSubscription?: Subscription;
@@ -25,6 +26,25 @@ export class ProfileViewComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.viewProfile();
+  }
+
+  // view using loginService
+  viewProfile(): void {
+    this.id = this.loginService.getData()!.data!.id;
+
+    this.userService.findById(this.id).subscribe((res) => {
+      this.data.id = res.data?.id;
+      this.data.fullName = res.data?.fullName;
+      this.data.company = res.data?.company;
+      this.data.industry = res.data?.industry;
+      this.data.position = res.data?.position;
+      this.data.fileId = res.data?.fileId;
+    });
+  }
+
+  // path params
+  findById(): void {
     this.activateRoute.params.subscribe((result) => {
       const resultTemp: any = result;
       this.idParam = resultTemp.id;
@@ -40,7 +60,7 @@ export class ProfileViewComponent implements OnInit {
     });
   }
 
-  updateById(id: string): void {
-    this.router.navigateByUrl(`/profiles/edit/${id}`);
+  updateById(): void {
+    this.router.navigateByUrl(`/profiles/edit`);
   }
 }
