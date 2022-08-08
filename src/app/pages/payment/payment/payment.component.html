@@ -11,6 +11,7 @@
                     <th>Name</th>
                     <th>File</th>
                     <th>Approve</th>
+                    <th>Action</th>
                 </tr>
             </ng-template>
             <ng-template pTemplate="body" let-list let-i="rowIndex">
@@ -18,20 +19,18 @@
                     <td>{{i+1}}</td>
                     <td>{{list.fullName}}</td>
                     <td>
-                        <a class="pi pi-download" href="http://localhost:1234/files/{{list.fileId}}"></a>
+                        <a pButton pRipple href="http://localhost:1234/files/{{list.fileId}}" icon="pi pi-download" class="p-button-rounded p-button-primary p-button-text no-underline"></a>
                     </td>
                     <td>
                         <p-checkbox [binary]="true" [(ngModel)]="list.isApprove" name="isApprove" inputId="binary" [disabled]="true"></p-checkbox>
                     </td>
+                    <td>
+                        <button pButton icon="pi pi-check" class="p-button-outlined p-button-rounded p-button-success mr-3" (click)="confirm(list.id)"></button>
+                        <button pButton icon="pi pi-times" class="p-button-outlined p-button-rounded p-button-danger" (click)="confirmReject(list.id)"></button>
+                    </td>
                 </tr>
             </ng-template>
         </p-table>
-        <pre>
-            {{payments.data}}
-        </pre>
-        <div class="mt-2 flex justify-content-end">
-            <button pButton label="Submit" icon="pi pi-check" styleClass="p-button-sm"></button>
-        </div>
     </form>
-
 </div>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

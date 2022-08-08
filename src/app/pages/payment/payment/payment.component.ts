@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { LazyLoadEvent } from 'primeng/api';
+import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { PaymentData } from 'src/app/dto/payment/payment-data';
 import { PaymentFindAllRes } from 'src/app/dto/payment/payment-find-all-res';
+import { PaymentUpdateReq } from 'src/app/dto/payment/payment-update-req';
 import { PaymentService } from 'src/app/service/payment.service';
 
 @Component({
@@ -12,8 +13,9 @@ import { PaymentService } from 'src/app/service/payment.service';
 export class PaymentComponent implements OnInit{
   payments : PaymentFindAllRes= {} as PaymentFindAllRes
   paymentData!: PaymentData [];
+  updateData: PaymentUpdateReq = {} as PaymentUpdateReq;
   
-
+  idPayment!: string;
   startPage: number = 0;
   maxPage: number = 5;
   totalData: number = 0;
@@ -23,11 +25,13 @@ export class PaymentComponent implements OnInit{
 
   constructor(
     private paymentService:PaymentService,
+    private confirmationService: ConfirmationService
   ){}
 
   ngOnInit(): void{
     this.payments.data =[];
     this.initData();
+    
   }
 
   loadData(event: LazyLoadEvent){
@@ -53,15 +57,59 @@ export class PaymentComponent implements OnInit{
     this.paymentService.showAllPayment().subscribe((result) => {
       this.payments = result;
       this.paymentData = result.data!;
+      this.loading = false;
     });
   }
 
   loadPayments(event: LazyLoadEvent){
     this.loading = true;
 
-    setTimeout(() => {
-      this.initData()
-      this.loading = false;
-    }, 2000);
+    this.initData();
+  }
+
+  approve(): void {
+    this.updateData.id = this.idPayment;
+    this.updateData.isApprove = true
+    this.paymentService.approve(this.updateData).subscribe(res => {
+      this.initData();
+    })
+  }
+
+  reject(): void {
+    this.updateData.id = this.idPayment;
+    this.updateData.isApprove = false
+    this.paymentService.approve(this.updateData).subscribe(res => {
+      this.initData();
+    })
+  }
+
+
+  confirm(id: string): void {
+    this.loading = true
+    this.idPayment = id;
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to approve this payment?',
+      accept: () => {
+        this.approve();
+        
+      },
+      reject: ()=> {
+        this.loading = false
+      }
+    });
+  }
+
+  confirmReject(id: string): void {
+    this.loading = true
+    this.idPayment = id;
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to reject this payment?',
+      accept: () => {
+        this.reject();
+      },
+      reject: ()=> {
+        this.loading = false
+      }
+    });
   }
 }
