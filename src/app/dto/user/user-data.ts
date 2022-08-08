@@ -16,4 +16,5 @@ export interface UserData {
   statusDuration?: string;
   isActive?: boolean;
   version?: number;
+  premiumHistory?: string;
 }

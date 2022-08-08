@@ -39,7 +39,7 @@ export class PaymentComponent implements OnInit{
     this.startPage = startPage;
     this.maxPage = maxPage;
 
-    this.paymentSubscription = this.paymentService.showAllPayment(startPage, maxPage).subscribe(
+    this.paymentSubscription = this.paymentService.showAllPayment().subscribe(
       result => {
         const resultData: any = result
         this.paymentData = resultData.data
@@ -50,7 +50,7 @@ export class PaymentComponent implements OnInit{
   }
 
   initData(): void{
-    this.paymentService.showAllPayment(0, 10).subscribe((result) => {
+    this.paymentService.showAllPayment().subscribe((result) => {
       this.payments = result;
       this.paymentData = result.data!;
     });

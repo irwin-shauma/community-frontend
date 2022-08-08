@@ -28,11 +28,15 @@ export class EventHeaderComponent implements OnInit {
 
       for (let i = 0; i < result.data.length; i++) {
         let event = new Date();
-        this.eventHeader[i].startDate = event.toLocaleString();
+        this.eventHeader[i].startDate = event.toLocaleString(
+          result.data[i].startDate
+        );
       }
       for (let j = 0; j < result.data.length; j++) {
         let event = new Date();
-        this.eventHeader[j].endDate = event.toLocaleString();
+        this.eventHeader[j].endDate = event.toLocaleString(
+          result.data[j].endDate
+        );
       }
     });
   }

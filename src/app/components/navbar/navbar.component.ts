@@ -118,13 +118,6 @@ export class NavbarComponent implements OnInit {
         ],
         visible: this.dataLogin === Role.SUPERADMIN,
       },
-
-      {
-        label: 'Home',
-        icon: 'pi pi-fw pi-home text-red-500',
-        routerLink: '/homes',
-        visible: this.dataLogin === Role.MEMBER,
-      },
       {
         label: 'Article',
         icon: 'pi pi-fw pi-book text-red-500',
@@ -164,8 +157,8 @@ export class NavbarComponent implements OnInit {
 
     this.profile = [
       {
-        label: this.userName,
-        // label: this.loginService.getData()?.data?.email,
+        label:
+          this.userName + ' | ' + this.loginService.getRole()?.toLowerCase(),
         items: [
           {
             label: 'View Profile',

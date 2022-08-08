@@ -7,6 +7,12 @@ export interface ThreadHeaderPollingData {
   titlePolling: string;
   contentPolling: string;
   isActive: boolean;
+  fullName: string;
+  fileId: string;
+  userId: string;
+  userPhoto: string;
+  createdAt: string;
+  createdBy: string;
   isChoice: boolean;
   version: number;
   countAllAnswer: number;

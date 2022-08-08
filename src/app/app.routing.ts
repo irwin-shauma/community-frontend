@@ -136,13 +136,13 @@ const routes: Routes = [
     path: 'premium-payment-histories',
     component: NavbarComponent,
     loadChildren: () =>
-      import('./pages/premium-payment-history/premium-payment-history.module').then(
-        (m) => m.PremiumPaymentHistoryModule
-      ),
+      import(
+        './pages/premium-payment-history/premium-payment-history.module'
+      ).then((m) => m.PremiumPaymentHistoryModule),
   },
   {
     path: '',
-    redirectTo: '/homes',
+    redirectTo: '/threads-main',
     pathMatch: 'full',
   },
   {
