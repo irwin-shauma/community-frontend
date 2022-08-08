@@ -28,8 +28,14 @@
                     <td>{{i+1}}</td>
                     <!-- <td>{{list.articleHeaderCode}}</td> -->
                     <td>{{list.title}}</td>
-                    <td> <img src="http://localhost:1234/files/{{list.fileId}}" alt="profile" width="50" height="50" class="border-round"></td>
-                    
+                    <td> 
+                        <div *ngIf = "list.fileId === null">
+                            <img src="./../../../../assets/logo.png" alt="profile" width="50" height="50" class="border-round">
+                        </div>
+                        <div *ngIf = "list.fileId !== null">
+                            <img src="http://localhost:1234/files/{{list.fileId}}" alt="profile" width="50" height="50" class="border-round">
+                        </div>
+                    </td>
                     <td>
                         <p-checkbox [binary]="true" [(ngModel)]="list.isActive" inputId="binary"  [disabled]="checkboxDisabled"></p-checkbox>
                     </td>
