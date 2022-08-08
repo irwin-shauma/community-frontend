@@ -30,9 +30,9 @@
         <p-tabView class="border-circle">
             <p-tabPanel header="Form Input" leftIcon="pi pi-list">
 
-                <div class="flex flex-column justify-content-start w-100%">
+                <div class="flex flex-column justify-content-start w-full">
                     <h4>Premium choose</h4>
-                    <p-dropdown [options]="dataPremium.data!" [(ngModel)]="choosePremium" placeholder="premium type" optionLabel='price' optionValue="price" name="price" class="wdrop mt-3"  [style]="{'width':'1300px'}">
+                    <p-dropdown [options]="dataPremium.data!" [(ngModel)]="choosePremium" placeholder="premium type" optionLabel='duration' optionValue="price" name="duration" class="wdrop mt-3">
                     </p-dropdown>
 
                 </div>
@@ -58,7 +58,7 @@
         <ng-template pTemplate="footer" class="flex gap-5">
             <form (ngSubmit)="onsubmit()">
                 <div class="flex gap-2">
-                    <p-fileUpload mode="basic"  chooseIcon="pi pi-upload" name="file" [customUpload]="true" id="file"  [auto]="true" chooseLabel="avidence of transfer" (uploadHandler)="onInsertFile($event)" [style]="{'background-color':'red'}"></p-fileUpload>
+                    <p-fileUpload mode="basic"  chooseIcon="pi pi-upload" name="file" [customUpload]="true" id="file"  [auto]="true" chooseLabel="Proof of payment" (uploadHandler)="onInsertFile($event)" [style]="{'background-color':'red'}"></p-fileUpload>
                     <button pButton pRipple type="submit" label="Pay" class="p-button-outlined p-button-danger"></button>
                 </div>
 

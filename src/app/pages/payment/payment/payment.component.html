@@ -9,7 +9,6 @@
                 <tr>
                     <th>No</th>
                     <th>Name</th>
-                    <th>Event</th>
                     <th>File</th>
                     <th>Approve</th>
                 </tr>
@@ -17,13 +16,12 @@
             <ng-template pTemplate="body" let-list let-i="rowIndex">
                 <tr>
                     <td>{{i+1}}</td>
-                    <td>{{list.name}}</td>
-                    <td>{{list.event}}</td>
+                    <td>{{list.fullName}}</td>
                     <td>
-                        <i class="pi pi-download" routerLink="http://localhost:1234/files/{{list.fileId}}"></i>
+                        <a class="pi pi-download" href="http://localhost:1234/files/{{list.fileId}}"></a>
                     </td>
                     <td>
-                        <p-checkbox [binary]="true" inputId="binary"></p-checkbox>
+                        <p-checkbox [binary]="true" [(ngModel)]="list.isApprove" name="isApprove" inputId="binary" [disabled]="true"></p-checkbox>
                     </td>
                 </tr>
             </ng-template>
@@ -31,7 +29,6 @@
         <div class="mt-2 flex justify-content-end">
             <button pButton label="Submit" icon="pi pi-check" styleClass="p-button-sm"></button>
         </div>
-        
     </form>
 
 </div>

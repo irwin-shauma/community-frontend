@@ -15,6 +15,7 @@ import { EventCreateComponent } from './eventcreate/event-create.component';
 import { EventDetailCompoenent } from './eventdetail/event-detail.component';
 import { EventHeaderComponent } from './eventheader/event-header.component';
 import { DialogModule } from 'primeng/dialog';
+import { InputNumberModule } from 'primeng/inputnumber';
 
 @NgModule({
   imports: [
@@ -31,6 +32,7 @@ import { DialogModule } from 'primeng/dialog';
     CommonModule,
     FormsModule,
     DialogModule,
+    InputNumberModule
   ],
   declarations: [
     EventHeaderComponent,
@@ -39,4 +41,4 @@ import { DialogModule } from 'primeng/dialog';
   ],
   exports: [EventHeaderComponent, EventDetailCompoenent, EventCreateComponent],
 })
-export class EventMemberModule {}
+export class EventMemberModule { }
