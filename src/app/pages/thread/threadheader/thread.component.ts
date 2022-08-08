@@ -24,7 +24,6 @@ export class ThreadComponent implements OnInit{
     this.threadHeaderService.showAllThreadHeader().subscribe((result) => {
       this.threadsHeaders = result;
       this.threadHeaderData = result.data!;
-      console.log(result)
     });
   }
 

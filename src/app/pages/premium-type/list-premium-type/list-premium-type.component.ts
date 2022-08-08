@@ -33,16 +33,13 @@ export class ListPremiumTypeComponent implements OnInit {
     this.premiumTypeService.showAllPremiumType().subscribe((result) => {
       this.premiumTypes = result;
       this.premiumTypeData = result.data!;
+      this.loading = false;
     });
   }
 
   loadTypes(event: LazyLoadEvent) {
     this.loading = true;
-
-    setTimeout(() => {
-      this.initData()
-      this.loading = false;
-    }, 1000);
+    this.initData()
   }
 
   ondelete(id: string): void{

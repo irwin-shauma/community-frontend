@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit, OnDestroy {
           setTimeout(() => {
             /** spinner ends after 5 seconds */
             this.spinner.hide();
-            this.router.navigateByUrl('/homes');
+            this.router.navigateByUrl('/threads-main');
           }, 1000);
         }
       });

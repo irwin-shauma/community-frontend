@@ -24,3 +24,7 @@
 .imgCover{
     object-fit: cover;
 }
+
+.profile{
+    border-radius: 50%;
+}

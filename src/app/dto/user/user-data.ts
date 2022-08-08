@@ -11,8 +11,10 @@ export interface UserData {
   industry?: string;
   position?: string;
   status?: string;
+  roleName?: string;
   fileId?: string;
   statusDuration?: string;
   isActive?: boolean;
   version?: number;
+  premiumHistory?: string;
 }

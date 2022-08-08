@@ -3,6 +3,7 @@ import { FormArray, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
+import { EventHeaderFindAllRes } from 'src/app/dto/event-header/event-header-find-all-res';
 import { PremiumPaymentHistoryFindById } from 'src/app/dto/premium-payment-history/premium-payment-history-find-by-id-res';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
 import { ThreadPollingAnswerInsertReq } from 'src/app/dto/thread-polling-answer/thread-polling-answer-insert-req';
@@ -16,12 +17,15 @@ import { ThreadPollingDetailData } from 'src/app/dto/threadheaderpolling/thread-
 import { ThreadPollingDetailInsertReq } from 'src/app/dto/threadheaderpolling/thread-polling-detail-insert-req';
 import { ThreadTypeFindAll } from 'src/app/dto/threadtype/thread-type-find-all';
 import { BookmarkService } from 'src/app/service/bookmark.service';
+import { EventHeaderService } from 'src/app/service/event-header.service';
 import { FileService } from 'src/app/service/file.service';
+import { LoginService } from 'src/app/service/login.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
 import { ThreadPollingService } from 'src/app/service/thread-polling.service';
 import { ThreadTypeService } from 'src/app/service/thread-type.service';
 import { ThreadService } from 'src/app/service/thread.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-thread-member',
@@ -38,7 +42,21 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   premiumShow: boolean = false;
   insertThreadReq: ThreadHeaderInsertReq = {} as ThreadHeaderInsertReq;
   insertPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
-
+  username: string = '';
+  file: string = '';
+  fileEvent: string = '';
+  titleEvent: string = '';
+  startEvent: string = '';
+  endEvent: string = '';
+  location: string = '';
+  provider: string = '';
+  position: string = '';
+  price: number = 0;
+  idEvent: string = '';
+  allThreadShow: boolean = true;
+  pollingThreadShow: boolean = false;
+  regularThreadShow: boolean = false;
+  premiumThreadShow: boolean = false;
   regularCheck: string = '';
   pollingPresentasion: boolean = false;
   pollingTypeChoose: boolean = false;
@@ -47,6 +65,9 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
   threadType: ThreadTypeFindAll = {} as ThreadTypeFindAll;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  threadHeaderLike: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  threadHeaderBookmark: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  eventHeader: EventHeaderFindAllRes = {} as EventHeaderFindAllRes;
   threadPollingHeader: ThreadHeaderPollingFindAll =
     {} as ThreadHeaderPollingFindAll;
   threadPollingDetail: ThreadPollingDetailData = {} as ThreadPollingDetailData;
@@ -71,7 +92,10 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     private premiumPaymentHistoryService: PremiumPaymentHistoryService,
     private pollingService: ThreadPollingService,
     private threadLikeService: ThreadLikeService,
-    private bookmarkService: BookmarkService
+    private bookmarkService: BookmarkService,
+    private loginService: LoginService,
+    private userService: UserService,
+    private eventService: EventHeaderService
   ) {}
 
   pollingArray = new FormArray([new FormControl('')]);
@@ -104,6 +128,35 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     this.pollingService.showAllPolling().subscribe((result) => {
       this.threadPollingHeader = result;
     });
+
+    this.threadService.showAllByUserLike().subscribe((result) => {
+      this.threadHeaderLike = result;
+    });
+
+    this.threadService.showAllByUserBookmark().subscribe((result) => {
+      this.threadHeaderBookmark = result;
+    });
+
+    this.eventService.showAllEventHeader(0, 10).subscribe((result) => {
+      this.fileEvent = result.data[result.data.length - 1].fileId;
+      this.titleEvent = result.data[result.data.length - 1].title;
+      let event = new Date();
+      this.startEvent = result.data[result.data.length - 1].startDate;
+      this.startEvent = result.data[result.data.length - 1].startDate;
+      this.endEvent = result.data[result.data.length - 1].endDate;
+      this.location = result.data[result.data.length - 1].location;
+      this.provider = result.data[result.data.length - 1].provider;
+      this.price = result.data[result.data.length - 1].price;
+      this.idEvent = result.data[result.data.length - 1].id;
+    });
+
+    this.userService
+      .findById(this.loginService.getData()?.data?.id!)
+      .subscribe((result) => {
+        this.username = result.data?.fullName!;
+        this.file = result.data?.fileId!;
+        this.position = result.data?.position!;
+      });
   }
 
   removeInputControl(idx: number) {
@@ -162,6 +215,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
         .subscribe((result) => {
           this.onInitData();
           this.pollingArray.reset();
+          this.data.title = '';
+          this.data.contentThread = '';
         });
     }
   }
@@ -207,16 +262,20 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   }
 
   bookmark(threadId: string): void {
-    this.bookmarkInsert.threadId = threadId
-    this.bookmarkService.insert(this.bookmarkInsert).subscribe(result => {
+    this.bookmarkInsert.threadId = threadId;
+    this.bookmarkService.insert(this.bookmarkInsert).subscribe((result) => {
       this.onInitData();
-    })
+    });
   }
 
   unBookmark(threadId: string): void {
-    this.bookmarkService.delete(threadId).subscribe(result => {
+    this.bookmarkService.delete(threadId).subscribe((result) => {
       this.onInitData();
-    })
+    });
+  }
+
+  clickToDetail(id: string): void {
+    this.router.navigateByUrl(`/event-members/detail/${id}`);
   }
 
   ngOnDestroy(): void {
