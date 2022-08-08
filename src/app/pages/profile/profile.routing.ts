@@ -5,11 +5,11 @@ import { ProfileViewComponent } from './profileview/profile-view.component';
 
 const routes: Routes = [
   {
-    path: 'edit/:id',
+    path: 'edit',
     component: ProfileComponent,
   },
   {
-    path: 'view/:id',
+    path: '',
     component: ProfileViewComponent,
   },
 ];

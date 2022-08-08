@@ -15,6 +15,7 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ProfileComponent implements OnDestroy, OnInit {
   idParam!: string;
+  id!: string | any;
   userSubscription?: Subscription;
   data: UserUpdateReq = {} as UserUpdateReq;
   editProfile: UpdatePhotoProfileReq = {} as UpdatePhotoProfileReq;
@@ -28,10 +29,24 @@ export class ProfileComponent implements OnDestroy, OnInit {
     private activateRoute: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private fileService: FileService
+    private fileService: FileService, 
+    private loginService: LoginService
   ) {}
 
   ngOnInit(): void {
+    this.id = this.loginService.getData()!.data!.id;
+
+    this.userService.findById(this.id).subscribe((res) => {
+      this.data.id = res.data?.id;
+      this.data.fullName = res.data?.fullName;
+      this.data.company = res.data?.company;
+      this.data.industry = res.data?.industry;
+      this.data.position = res.data?.position;
+      this.data.fileId = res.data?.fileId;
+    });
+  }
+
+  getById(): void {
     this.activateRoute.params.subscribe((result) => {
       const resultTemp: any = result;
       this.idParam = resultTemp.id;
@@ -49,7 +64,7 @@ export class ProfileComponent implements OnDestroy, OnInit {
 
   onSubmit(): void {
     this.userService.editUser(this.data).subscribe((result) => {
-      this.router.navigateByUrl(`/profiles/view/${this.data.id}`);
+      this.router.navigateByUrl(`/profiles`);
     });
   }
 
