@@ -4,6 +4,7 @@ export interface PaymentData{
     fileId?: string
     userId?: string
     fullName?: string
+    isApprove?: boolean
     isActive?: boolean
     version?: number
 }
