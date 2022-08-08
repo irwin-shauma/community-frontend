@@ -1,6 +1,6 @@
 export interface UserInsertReq {
   roleId?: string;
-  verificationId?: string;
+  // verificationId?: string;
   email?: string;
   password?: string;
   fullName?: string;

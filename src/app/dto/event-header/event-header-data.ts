@@ -13,4 +13,5 @@ export interface EventHeaderData {
   endDate: string;
   provider: string;
   location: string;
+  userId: string;
 }

@@ -37,14 +37,17 @@ export class EventHeaderService {
     );
   }
 
-  findById(id: number): Observable<EventHeaderFindById> {
+  findById(id: string): Observable<EventHeaderFindById> {
     return this.http.get<EventHeaderFindById>(
       `http://localhost:1234/event-headers/${id}`
     );
   }
 
   editEventHeader(data: EventHeaderUpdateReq): Observable<UpdateRes> {
-    return this.http.put<UpdateRes>('http://localhost:1234/event-types', data);
+    return this.http.put<UpdateRes>(
+      'http://localhost:1234/event-headers',
+      data
+    );
   }
 
   deleteEventHeader(id: number): Observable<DeleteRes> {
