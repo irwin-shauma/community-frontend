@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { NgxSpinnerService } from "ngx-spinner";
+
 import { Subscription } from 'rxjs';
 import { TotalCountData } from 'src/app/dto/total-count-data';
 import { UserData } from 'src/app/dto/user/user-data';
 import { UserFindAllRes } from 'src/app/dto/user/user-find-all-res';
 import { TotalService } from 'src/app/service/total.service';
 import { UserService } from 'src/app/service/user.service';
+=======
 
 @Component({
   selector: 'app-home',
@@ -20,16 +21,12 @@ export class HomeComponent implements OnInit {
   totalThread: number = 0;
   totalArticle: number = 0;
 
-  constructor(private spinner: NgxSpinnerService, private totalService: TotalService) {}
+  constructor(private totalService: TotalService) {}
 
   ngOnInit(): void {
-    this.spinner.show();
+ 
     this.initData();
 
-    setTimeout(() => {
-      /** spinner ends after 5 seconds */
-      this.spinner.hide();
-    }, 1000);
   }
 
   initData(): void {

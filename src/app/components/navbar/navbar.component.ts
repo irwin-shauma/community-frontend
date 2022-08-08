@@ -27,7 +27,7 @@ export class NavbarComponent implements OnInit {
   constructor(private router: Router,
     private loginService: LoginService,
     private userService: UserService,
-    private spinner : NgxSpinnerService,
+    // private spinner : NgxSpinnerService,
     private activateRoute: ActivatedRoute) { }
 
   logout(): void {
@@ -35,12 +35,11 @@ export class NavbarComponent implements OnInit {
     // this.logoutReq.id = this.loginService.getData()?.data?.id
     console.log(this.logoutReq.id);
     this.userService.logout(this.logoutReq)
-    console.log("a")
-    this.spinner.show();
+    // this.spinner.show();
 
-    setTimeout(() => {
-      this.spinner.hide();
-    }, 1000);
+    // setTimeout(() => {
+    //   this.spinner.hide();
+    // }, 1000);
 
     this.checkLoginStatus();
   }
@@ -75,7 +74,8 @@ export class NavbarComponent implements OnInit {
       })
     } else {
       this.loginStatus = false
-      this.initData()
+      this.router.navigateByUrl('/homes');
+      // this.initData()
 
     }
   }

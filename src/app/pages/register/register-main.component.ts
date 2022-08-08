@@ -11,6 +11,7 @@ import { addAction } from 'src/app/state/register/register.action';
 import { Register } from 'src/app/state/register/register.model';
 import { getAll } from 'src/app/state/register/register.selector';
 import { InsertDataRes } from '../../dto/insert-data-res';
+import { RegistrationReq } from 'src/app/dto/registration-req';
 
 @Component({
   selector: 'app-main-register',
@@ -27,11 +28,14 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
   verificationId: string = '';
   insertVerificationReq: VerificationInsertData = {} as VerificationInsertData;
   data$!: Observable<Register[]>;
+
+  registerReq : RegistrationReq = {} as RegistrationReq;
+
   constructor(
     private store: Store,
     private verificationService: VerificationService,
     private router: Router,
-    private userService: UserService
+    private userService: UserService,
   ) {}
 
   ngOnInit(): void {
@@ -57,7 +61,7 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
     this.verificationSubscription = this.verificationService
       .addVerification(insertVerification)
       .subscribe((result) => {
-        this.verificationId = result.data.id;
+        // this.verificationId = result.data.id;
         this.registerSwitch = 2;
       });
   }
@@ -68,8 +72,10 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
 
   finalSubmit(): void {
     this.store.dispatch(addAction({ payload: this.dataRegister }));
-    this.verificationService.findById(this.verificationId).subscribe((res) => {
-      if (this.dataRegister.verification == res.data?.verification) {
+    this.registerReq.email = this.dataRegister.email;
+    this.registerReq.verificationCode = this.dataRegister.verification;
+    this.verificationService.register(this.registerReq).subscribe((res) => {
+      if(res.data == true){
         const insertUser = {} as UserInsertReq;
         insertUser.email = this.dataRegister.email;
         insertUser.password = this.dataRegister.password;
@@ -83,7 +89,31 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
             this.router.navigateByUrl('/login');
           });
       }
-    });
+    })
+
+
+
+
+
+    // this.verificationService.findById(this.verificationId).subscribe((res) => {
+    //   if (this.dataRegister.verification == res.data?.verification) {
+    //     const insertUser = {} as UserInsertReq;
+    //     insertUser.email = this.dataRegister.email;
+    //     insertUser.password = this.dataRegister.password;
+    //     insertUser.company = this.dataRegister.company;
+    //     insertUser.fullName = this.dataRegister.fullName;
+    //     insertUser.industry = this.dataRegister.industry;
+    //     insertUser.position = this.dataRegister.position;
+    //     this.userSubscription = this.userService
+    //       .addUser(insertUser)
+    //       .subscribe((result) => {
+    //         this.router.navigateByUrl('/login');
+    //       });
+    //   }
+    // });
+
+
+
   }
 
   ngOnDestroy(): void {
