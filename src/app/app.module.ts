@@ -13,7 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { StoreModule } from '@ngrx/store';
 import { registerReducer } from './state/register/register.reducer';
 import { CustomInterceptor } from './interceptor/custom.interceptor';
-import { NgxSpinnerModule } from "ngx-spinner";
+// import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({
   declarations: [AppComponent],
@@ -29,8 +29,8 @@ import { NgxSpinnerModule } from "ngx-spinner";
     BrowserAnimationsModule,
     SharedModule,
     ToastModule,
-    NgxSpinnerModule,
-    NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
+    // NgxSpinnerModule,
+    // NgxSpinnerModule.forRoot({ type: 'ball-scale-multiple' })
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: CustomInterceptor, multi: true },
