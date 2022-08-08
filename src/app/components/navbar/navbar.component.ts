@@ -74,7 +74,8 @@ export class NavbarComponent implements OnInit {
       })
     } else {
       this.loginStatus = false
-      this.initData()
+      this.router.navigateByUrl('/homes');
+      // this.initData()
 
     }
   }

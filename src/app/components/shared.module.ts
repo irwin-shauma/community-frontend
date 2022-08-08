@@ -6,6 +6,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { MenubarModule } from 'primeng/menubar';
 import { ButtonModule } from 'primeng/button';
 import { AvatarModule } from 'primeng/avatar';
+import { AvatarGroupModule } from 'primeng/avatargroup';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { MenuModule } from 'primeng/menu';
@@ -22,10 +23,11 @@ import { DividerModule } from 'primeng/divider';
     AvatarModule,
     ButtonModule,
     ToolbarModule,
-    AvatarModule,
+    AvatarGroupModule,
     SplitButtonModule,
     MenuModule,
     DividerModule,
+    
   ],
   exports: [NavbarComponent, RouterModule],
 })
