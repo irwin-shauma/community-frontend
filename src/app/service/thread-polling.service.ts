@@ -19,18 +19,22 @@ export class ThreadPollingService {
     );
   }
 
-  showAllPolling(): Observable<ThreadHeaderPollingFindAll>{
+  showAllPolling(): Observable<ThreadHeaderPollingFindAll> {
     return this.http.get<ThreadHeaderPollingFindAll>(
       'http://localhost:1234/thread-header-pollings'
     );
   }
 
-  addPollingAnswer(data: ThreadPollingAnswerInsertReq): Observable<InsertRes>{
+  addPollingAnswer(data: ThreadPollingAnswerInsertReq): Observable<InsertRes> {
     return this.http.post<InsertRes>(
-      'http://localhost:1234/thread-polling-answers', data
-    )
+      'http://localhost:1234/thread-polling-answers',
+      data
+    );
   }
 
-
-
+  findByUserId(): Observable<ThreadHeaderPollingFindAll> {
+    return this.http.get<ThreadHeaderPollingFindAll>(
+      'http://localhost:1234/thread-header-pollings/users'
+    );
+  }
 }

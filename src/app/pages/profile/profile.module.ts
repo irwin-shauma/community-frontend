@@ -10,6 +10,9 @@ import { ProfileComponent } from './editprofile/profile.component';
 import { ProfileViewComponent } from './profileview/profile-view.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import {PasswordModule} from 'primeng/password';
+import { TableModule } from 'primeng/table';
+import { TimeAgoPipe } from 'src/app/pipe/time-ago.pipe';
+import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
 
 @NgModule({
   imports: [
@@ -21,7 +24,9 @@ import {PasswordModule} from 'primeng/password';
     FormsModule,
     CommonModule,
     FileUploadModule,
-    PasswordModule
+    PasswordModule,
+    TableModule,
+    SharedPipeModule,
   ],
   declarations: [ProfileComponent, ProfileViewComponent],
   exports: [ProfileComponent, ProfileViewComponent],

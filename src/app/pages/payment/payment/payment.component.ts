@@ -70,9 +70,9 @@ export class PaymentComponent implements OnInit{
   approve(): void {
     this.updateData.id = this.idPayment;
     this.updateData.isApprove = true
-    this.paymentService.approve(this.updateData).subscribe(res => {
+    this.paymentService.approve(this.updateData).subscribe((res) => {
       this.initData();
-    })
+    });
   }
 
   reject(): void {

@@ -22,7 +22,9 @@
                         <a pButton pRipple href="http://localhost:1234/files/{{list.fileId}}" icon="pi pi-download" class="p-button-rounded p-button-primary p-button-text no-underline"></a>
                     </td>
                     <td>
-                        <p-checkbox [binary]="true" [(ngModel)]="list.isApprove" name="isApprove" inputId="binary" [disabled]="true"></p-checkbox>
+                        
+                        <p-checkbox *ngIf="list.isApprove === true" [binary]="true" [(ngModel)]="list.isApprove" name="isApprove" inputId="binary" [disabled]="true"></p-checkbox>
+                        <p-checkbox *ngIf="list.isApprove === null" [binary]="false" [(ngModel)]="list.isApprove" name="isApprove" inputId="binary" [disabled]="true"></p-checkbox>
                     </td>
                     <td>
                         <button pButton icon="pi pi-check" class="p-button-outlined p-button-rounded p-button-success mr-3" (click)="confirm(list.id)"></button>

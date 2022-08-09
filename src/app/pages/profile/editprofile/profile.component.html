@@ -16,7 +16,7 @@
                             </div>
                             <div class="glasses cursor-pointer text-center border-1">
                                 <p class="photochoose">Choose Photo</p>
-                                <p-fileUpload type="file" class="opacity-0 z-2 relative" name="file" mode="basic"
+                                <p-fileUpload type="file" class="opacity-0 z-2 relative" [style]="{'width':'100%'}" name="file" mode="basic"
                                     [customUpload]="true" id="file" name="file" (uploadHandler)="onChangeFile($event)"
                                     [auto]="true"></p-fileUpload>
                             </div>
@@ -55,7 +55,7 @@
             <p-tabPanel header="Change Password" leftIcon="pi pi-unlock">
 
                 <form (ngSubmit)="changePasswordSubmit()">
-                    <div class="p-8 flex flex-column justify-content-between h-full align-items-center border-2">
+                    <div class="p-8 flex flex-column justify-content-between h-full align-items-center">
                         <div>
                             <h3>Old Password</h3>
                             <input type="password" pInputText class="inputpassword md:col-6"
@@ -74,7 +74,7 @@
                                     <p class="text-red-500">New password didn't match!</p>
                                 </div>
                         </div>
-                        <div class="flex w-full justify-content-end">
+                        <div class="flex w-full justify-content-end mt-5">
                             <button pButton label="Change Password"></button>
                         </div>
                     </div>
