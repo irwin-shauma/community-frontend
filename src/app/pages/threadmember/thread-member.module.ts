@@ -52,5 +52,6 @@ import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
     ThreadMemberDetailComponent,
     ThreadEditComponent,
   ],
+
 })
 export class ThreadMemberModule {}

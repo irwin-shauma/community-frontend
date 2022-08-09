@@ -1,10 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
 import { ThreadDetailInsertReq } from 'src/app/dto/thread-detail/thread-detail-insert-req';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
 import { ThreadHeaderFindByIdRes } from 'src/app/dto/threadheader/thread-header-find-by-id-res';
+import { BookmarkService } from 'src/app/service/bookmark.service';
 import { LoginService } from 'src/app/service/login.service';
 import { ThreadDetailService } from 'src/app/service/thread-detail.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
@@ -23,6 +25,7 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
   insertComment: ThreadDetailInsertReq = {} as ThreadDetailInsertReq;
   likeInsert: ThreadLikeInsertReq = {} as ThreadLikeInsertReq;
   showEdit: boolean = false;
+  bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
 
   constructor(
     private threadService: ThreadService,
@@ -30,7 +33,8 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
     private threadDetailService: ThreadDetailService,
     private threadLikeService: ThreadLikeService,
     private loginService: LoginService,
-    private router: Router
+    private router: Router,
+    private bookmarkService: BookmarkService
   ) {}
 
   ngOnInit(): void {
@@ -72,6 +76,19 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
 
   unLike(threadId: string): void {
     this.threadLikeService.delete(threadId).subscribe((res) => {
+      this.initData();
+    });
+  }
+
+  bookmark(threadId: string): void {
+    this.bookmarkInsert.threadId = threadId;
+    this.bookmarkService.insert(this.bookmarkInsert).subscribe((result) => {
+      this.initData();
+    });
+  }
+
+  unBookmark(threadId: string): void {
+    this.bookmarkService.delete(threadId).subscribe((result) => {
       this.initData();
     });
   }

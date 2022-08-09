@@ -45,7 +45,8 @@
                         <p>{{threadData.data.countLike}}</p>
                     </div>
                     <div>
-                        <i class="pi pi-bookmark-fill"></i>
+                        <a (click)="bookmark(threadData.data.id)" *ngIf="threadData.data.isBookmark === false" class="cursor-pointer"><i class="pi pi-bookmark"></i></a>
+                        <a (click)="unBookmark(threadData.data.id)" *ngIf="threadData.data.isBookmark === true" class="cursor-pointer"><i class="pi pi-bookmark-fill text-yellow-400"></i></a>
                     </div>
 
                 </div>
