@@ -20,6 +20,7 @@ export class NavbarComponent implements OnInit {
   profile!: MenuItem[];
   loginMenu!: MenuItem[];
   userName!: string;
+  fileId! : string;
   loginStatus: boolean = false;
 
   logoutReq : LogoutReq = {} as LogoutReq;
@@ -32,15 +33,7 @@ export class NavbarComponent implements OnInit {
 
   logout(): void {
     localStorage.clear();
-    // this.logoutReq.id = this.loginService.getData()?.data?.id
-    console.log(this.logoutReq.id);
     this.userService.logout(this.logoutReq)
-    // this.spinner.show();
-
-    // setTimeout(() => {
-    //   this.spinner.hide();
-    // }, 1000);
-
     this.checkLoginStatus();
   }
 
@@ -55,6 +48,7 @@ export class NavbarComponent implements OnInit {
   getUsername() {
     this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
       this.userName = result.data?.fullName!
+      this.fileId = result.data?.fileId!
     })
   }
 

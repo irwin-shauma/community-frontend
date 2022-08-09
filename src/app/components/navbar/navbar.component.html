@@ -10,7 +10,7 @@
 
       <ng-template pTemplate="end" >
         <!-- <a href=""> -->
-          <p-avatar image="http://www.rw-designer.com/icon-image/21509-256x256x32.png" *ngIf="loginStatus" class="mt-1" size="large" shape="circle" ng-mouseover="hoverActive=true"
+          <p-avatar image="http://localhost:1234/files/{{fileId}}" *ngIf="loginStatus" class="mt-1" size="large" shape="circle" ng-mouseover="hoverActive=true"
           ng-mouseleave="hoverActive=false"
           ng-style="hoverActive ? {'border-style' : solid} : {}"(click)="menu.toggle($event)" [style]="{'cursor' : 'pointer'}"></p-avatar>
         <!-- </a> -->
