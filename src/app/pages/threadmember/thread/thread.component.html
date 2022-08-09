@@ -133,7 +133,9 @@
                                {{thread.title}}
                             </p>
                             <p>
-                               {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} ... <a  (click)="onExpandText($event, thread.id)" class="cursor-pointer">See More </a>
+                               {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} ... <a *ngIf="thread.threadType === 'Regular'" (click)="onExpandText($event, thread.id)" class="cursor-pointer">See More </a> 
+                               <a *ngIf="thread.threadType === 'Premium' && showType === false" (click)="onExpandTextPremium($event)" class="cursor-pointer">See More <i class="pi pi-fw pi-lock text-red-500 cursor-pointer"></i> </a>
+                               <a *ngIf="thread.threadType === 'Premium' && showType === true" (click)="onExpandText($event, thread.id)" class="cursor-pointer">See More </a>
                             </p>
                         </div>
                         <div *ngIf="thread.fileId != null"> 
@@ -245,7 +247,9 @@
                                {{thread.title}}
                             </p>
                             <p>
-                               {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} .. <a (click)="onExpandTextPremium($event)">See More <i class="pi pi-fw pi-lock text-red-500 cursor-pointer"></i> </a>
+                               {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} ..
+                               <a *ngIf="thread.threadType === 'Premium' && showType === false" (click)="onExpandTextPremium($event)" class="cursor-pointer">See More <i class="pi pi-fw pi-lock text-red-500 cursor-pointer"></i> </a>
+                               <a *ngIf="thread.threadType === 'Premium' && showType === true" (click)="onExpandText($event, thread.id)" class="cursor-pointer">See More </a>
                             </p>
                         </div>
                         <div *ngIf="thread.fileId != null"> 
@@ -480,9 +484,9 @@
                     <span class="flex gap-1"><i class="pi pi-map-marker text-red-500"></i><h5 class="font-normal">{{location}}</h5> </span>
                 </div>
                 <div class="flex flex-row justify-content-between mt-2 ">
-                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i><h5 class="font-normal">start: {{startEvent}}</h5>
+                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i><h5 class="font-normal">start: {{startEvent | date: "medium"}}</h5>
                         </span>
-                        <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i><h5 class="font-normal">Rp.{{price}}</h5></span>
+                        <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i><h5 class="font-normal">{{price | currency:"IDR":"symbol-narrow"}}</h5></span>
                        
                 </div>
                 <div class="flex flex-row justify-content-between mt-3">

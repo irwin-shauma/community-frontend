@@ -51,5 +51,6 @@ import { ThreadEditComponent } from './threadedit/thread-edit.component';
     ThreadMemberDetailComponent,
     ThreadEditComponent,
   ],
+
 })
 export class ThreadMemberModule {}

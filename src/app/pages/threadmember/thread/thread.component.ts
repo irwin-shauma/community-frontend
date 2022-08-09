@@ -203,6 +203,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
         .addThread(insertThreadHeader)
         .subscribe((result) => {
           this.onInitData();
+          this.data.title = '';
+          this.data.contentThread = '';
         });
     } else {
       const insertThreadPolling = {} as ThreadHeaderPollingInsertReq;
