@@ -1,9 +1,22 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
+import { PremiumPaymentHistoryData } from 'src/app/dto/premium-payment-history/premium-payment-history-data';
+import { PremiumPaymentHistoryFindAll } from 'src/app/dto/premium-payment-history/premium-payment-history-find-all';
+import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
+import { ThreadPollingAnswerInsertReq } from 'src/app/dto/thread-polling-answer/thread-polling-answer-insert-req';
+import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
+import { ThreadHeaderPollingData } from 'src/app/dto/threadheaderpolling/thread-header-polling-data';
+import { ThreadHeaderPollingFindAll } from 'src/app/dto/threadheaderpolling/thread-header-polling-find-all-res';
 import { UserData } from 'src/app/dto/user/user-data';
 import { UserFindByIdRes } from 'src/app/dto/user/user-find-by-id-res';
+import { BookmarkService } from 'src/app/service/bookmark.service';
 import { LoginService } from 'src/app/service/login.service';
+import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
+import { ThreadHeaderService } from 'src/app/service/thread-header.service';
+import { ThreadLikeService } from 'src/app/service/thread-like.service';
+import { ThreadPollingService } from 'src/app/service/thread-polling.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -13,8 +26,20 @@ import { UserService } from 'src/app/service/user.service';
 })
 export class ProfileViewComponent implements OnInit {
   idParam!: string;
+  threadLikeSubs?: Subscription;
+  answerPollingSubscription?: Subscription;
   id!: string | any;
   data: UserData = {} as UserData;
+  threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  threadPolling: ThreadHeaderPollingFindAll = {} as ThreadHeaderPollingFindAll;
+  premiumPaymentHistory!: PremiumPaymentHistoryData[];
+  likeInsert: ThreadLikeInsertReq = {} as ThreadLikeInsertReq;
+  premiumHistory: PremiumPaymentHistoryFindAll =
+    {} as PremiumPaymentHistoryFindAll;
+  pollingPresentasion: boolean = false;
+  answerInsert: ThreadPollingAnswerInsertReq =
+    {} as ThreadPollingAnswerInsertReq;
+  bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
 
   userSubscription?: Subscription;
 
@@ -22,11 +47,23 @@ export class ProfileViewComponent implements OnInit {
     private activateRoute: ActivatedRoute,
     private router: Router,
     private userService: UserService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private threadService: ThreadHeaderService,
+    private threadPollingService: ThreadPollingService,
+    private threadLikeService: ThreadLikeService,
+    private bookmarkService: BookmarkService,
+    private premiumPaymentHistoryService: PremiumPaymentHistoryService
   ) {}
+
+  sliceOptions = {
+    start: 0,
+    end: 100,
+    default: 100,
+  };
 
   ngOnInit(): void {
     this.viewProfile();
+    this.initData();
   }
 
   // view using loginService
@@ -41,6 +78,23 @@ export class ProfileViewComponent implements OnInit {
       this.data.position = res.data?.position;
       this.data.fileId = res.data?.fileId;
     });
+  }
+
+  initData(): void {
+    this.threadService.findAllByUser().subscribe((result) => {
+      this.threadHeader = result;
+    });
+    this.threadPollingService.findByUserId().subscribe((result) => {
+      this.threadPolling = result;
+    });
+    this.premiumPaymentHistoryService.findByUser().subscribe((result) => {
+      this.premiumHistory = result;
+      this.premiumPaymentHistory = result.data;
+    });
+  }
+
+  onExpandText(evt: any, id: string): void {
+    this.router.navigateByUrl(`/threads-main/${id}`);
   }
 
   // path params
@@ -62,5 +116,43 @@ export class ProfileViewComponent implements OnInit {
 
   updateById(): void {
     this.router.navigateByUrl(`/profiles/edit`);
+  }
+
+  like(threadId: string): void {
+    this.likeInsert.threadId = threadId;
+    this.threadLikeSubs = this.threadLikeService
+      .insert(this.likeInsert)
+      .subscribe((result) => {
+        this.initData();
+      });
+  }
+
+  chooseAnswer(answerId: string): void {
+    this.answerInsert.threadPollingId = answerId;
+    this.answerPollingSubscription = this.threadPollingService
+      .addPollingAnswer(this.answerInsert)
+      .subscribe((result) => {
+        this.pollingPresentasion = true;
+        this.initData();
+      });
+  }
+
+  unLike(threadId: string): void {
+    this.threadLikeService.delete(threadId).subscribe((res) => {
+      this.initData();
+    });
+  }
+
+  bookmark(threadId: string): void {
+    this.bookmarkInsert.threadId = threadId;
+    this.bookmarkService.insert(this.bookmarkInsert).subscribe((result) => {
+      this.initData();
+    });
+  }
+
+  unBookmark(threadId: string): void {
+    this.bookmarkService.delete(threadId).subscribe((result) => {
+      this.initData();
+    });
   }
 }

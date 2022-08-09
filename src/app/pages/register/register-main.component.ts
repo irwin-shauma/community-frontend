@@ -42,13 +42,13 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
     this.event = [
       { status: 'Sign Up', icon: PrimeIcons.SIGN_IN, color: '#FD4848' },
       {
-        status: 'Verification',
-        icon: PrimeIcons.BOOK,
+        status: 'Detail',
+        icon: PrimeIcons.CODE,
         color: '#FD4848',
       },
       {
-        status: 'Detail',
-        icon: PrimeIcons.CODE,
+        status: 'Verification',
+        icon: PrimeIcons.BOOK,
         color: '#FD4848',
       },
     ];

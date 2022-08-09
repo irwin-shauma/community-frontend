@@ -19,6 +19,7 @@ import { BadgeModule } from 'primeng/badge';
 import { DividerModule } from 'primeng/divider';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ThreadEditComponent } from './threadedit/thread-edit.component';
+import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
 
 @NgModule({
   imports: [
@@ -39,12 +40,12 @@ import { ThreadEditComponent } from './threadedit/thread-edit.component';
     BadgeModule,
     DividerModule,
     CheckboxModule,
+    SharedPipeModule,
   ],
   declarations: [
     ThreadMemberComponent,
     ThreadMemberDetailComponent,
     ThreadEditComponent,
-    TimeAgoPipe,
   ],
   exports: [
     ThreadMemberComponent,

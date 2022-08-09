@@ -13,6 +13,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { StoreModule } from '@ngrx/store';
 import { registerReducer } from './state/register/register.reducer';
 import { CustomInterceptor } from './interceptor/custom.interceptor';
+import { SharedPipeModule } from './pipe/shared-pipe.module';
 // import { NgxSpinnerModule } from "ngx-spinner";
 
 @NgModule({

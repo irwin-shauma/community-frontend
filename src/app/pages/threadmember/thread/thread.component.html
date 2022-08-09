@@ -171,6 +171,7 @@
                     </div>
                 </div>
            
+                
                 <div class="border-round mb-8 mt-5" *ngFor="let thread of threadHeader.data; let i = index">
                     <div *ngIf="thread.threadType === 'Regular' && regularThreadShow === true">
                         <div class="flex">
@@ -227,7 +228,6 @@
              
                     
                 </div>
-
                 <div class="border-round mb-8 mt-5" *ngFor="let thread of threadHeader.data; let i = index">
                     <div *ngIf="thread.threadType === 'Premium' && premiumThreadShow === true">
                         <div class="flex">
