@@ -77,7 +77,7 @@
             <p>Total Revenue</p>
         </div>
         <div>
-            <h1>{{totalCountRes.data?.totalRevenue}}</h1>
+            <h1>{{totalCountRes.data?.totalRevenue | customCurrency}}</h1>
         </div>
         <div class="absolute top-0 right-0">
             <i class="pi pi-external-link" routerLink="/payment/history"  [style]="{'cursor' : 'pointer'}"></i>
