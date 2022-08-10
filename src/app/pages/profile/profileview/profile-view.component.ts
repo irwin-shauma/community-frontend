@@ -24,7 +24,7 @@ import { UserService } from 'src/app/service/user.service';
   templateUrl: './profile-view.component.html',
   styleUrls: ['./../profile.styles.css'],
 })
-export class ProfileViewComponent implements OnInit {
+export class ProfileViewComponent implements OnInit, OnDestroy {
   idParam!: string;
   threadLikeSubs?: Subscription;
   answerPollingSubscription?: Subscription;
@@ -40,7 +40,7 @@ export class ProfileViewComponent implements OnInit {
   answerInsert: ThreadPollingAnswerInsertReq =
     {} as ThreadPollingAnswerInsertReq;
   bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
-
+  premiumSubs?: Subscription;
   userSubscription?: Subscription;
 
   constructor(
@@ -87,10 +87,16 @@ export class ProfileViewComponent implements OnInit {
     this.threadPollingService.findByUserId().subscribe((result) => {
       this.threadPolling = result;
     });
-    this.premiumPaymentHistoryService.findByUser().subscribe((result) => {
-      this.premiumHistory = result;
-      this.premiumPaymentHistory = result.data;
-    });
+    // this.premiumSubs = this.premiumPaymentHistoryService.findByUser().subscribe((res) => {
+    //   this.premiumHistory.data = res.data;
+    // });
+    this.initPremium()
+  }
+
+  initPremium(): void {
+    this.premiumSubs = this.premiumPaymentHistoryService.getByUser().subscribe(res => {
+      this.premiumPaymentHistory = res.data
+    })
   }
 
   onExpandText(evt: any, id: string): void {
@@ -154,5 +160,11 @@ export class ProfileViewComponent implements OnInit {
     this.bookmarkService.delete(threadId).subscribe((result) => {
       this.initData();
     });
+  }
+
+  ngOnDestroy(): void {
+    this.threadLikeSubs?.unsubscribe()
+    this.answerPollingSubscription?.unsubscribe()
+    this.premiumSubs?.unsubscribe()
   }
 }
