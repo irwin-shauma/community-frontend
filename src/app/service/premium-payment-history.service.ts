@@ -23,4 +23,8 @@ export class PremiumPaymentHistoryService {
       'http://localhost:1234/premium-payment-histories/users/'
     );
   }
+
+  getByUser(): Observable<PremiumPaymentHistoryFindAll> {
+    return this.http.get<PremiumPaymentHistoryFindAll> ('http://localhost:1234/premium-payment-histories/users')
+  }
 }
