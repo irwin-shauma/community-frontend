@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Role } from 'src/app/constant/role-constant';
 import { LogoutReq } from 'src/app/dto/user/logout-req';
 import { LoginService } from 'src/app/service/login.service';
+import { LogoutService } from 'src/app/service/logout.service';
 import { UserService } from 'src/app/service/user.service';
 
 @Component({
@@ -27,6 +28,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(private router: Router,
     private loginService: LoginService,
+    private logoutService: LogoutService,
     private userService: UserService,
     // private spinner : NgxSpinnerService,
     private activateRoute: ActivatedRoute) { }
@@ -164,9 +166,10 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Logout',
             icon: 'pi pi-fw pi-power-off',
-            command: () => {
-              this.logout();
-            },
+            // command: () => {
+            //   // this.logout();
+            // },
+            routerLink: '/logout'
           },
         ],
       },
