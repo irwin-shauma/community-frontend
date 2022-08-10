@@ -61,7 +61,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   regularCheck: string = '';
   pollingPresentasion: boolean = false;
   pollingTypeChoose: boolean = false;
-  showType: boolean = true;
+  showType: boolean | any = false;
   data: ThreadHeaderData = {} as ThreadHeaderData;
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
   threadType: ThreadTypeFindAll = {} as ThreadTypeFindAll;
@@ -124,9 +124,9 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     this.threadService.showAllThread().subscribe((result) => {
       this.threadHeader = result;
     });
-    this.premiumPaymentHistoryService.findByUser().subscribe((result) => {
+    this.premiumPaymentHistoryService.getPremium().subscribe((result) => {
       if (result.data == null) {
-        this.showType = false;
+        this.showType = result.data!.isActive;
       }
     });
     this.threadTypeService.findByRegularType().subscribe((result) => {

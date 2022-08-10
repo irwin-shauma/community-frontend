@@ -2,9 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { PaymentInsertReq } from 'src/app/dto/payment/payment-insert-req';
+import { PremiumPaymentHistoryInsertReq } from 'src/app/dto/premium-payment-history/premium-payment-history-insert-req';
 import { PremiumTypeFindAllRes } from 'src/app/dto/premium-type/premium-type-find-all-res';
 import { FileService } from 'src/app/service/file.service';
 import { PaymentService } from 'src/app/service/payment.service';
+import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
 import { PremiumTypeService } from 'src/app/service/premium-type.service';
 
 @Component({
@@ -15,15 +17,16 @@ import { PremiumTypeService } from 'src/app/service/premium-type.service';
 export class PremiumComponent implements OnInit {
   eventPaymentSubscription?: Subscription;
   displayMaximizable!: boolean;
-  insertPayment: PaymentInsertReq = {} as PaymentInsertReq;
+  insertPayment: PremiumPaymentHistoryInsertReq = {} as PremiumPaymentHistoryInsertReq;
   dataPremium: PremiumTypeFindAllRes = {} as PremiumTypeFindAllRes;
-  choosePremium: [] = [];
+  choosePremium: string = '';
   dropPremium: string[] = []
   constructor(
     private premiumService: PremiumTypeService,
     private paymentService: PaymentService,
     private router: Router,
-    private fileService: FileService
+    private fileService: FileService,
+    private premiumHistoryService: PremiumPaymentHistoryService
   ) {}
 
   ngOnInit(): void {
@@ -47,8 +50,9 @@ export class PremiumComponent implements OnInit {
     });
   }
   onsubmit(): void {
-    this.eventPaymentSubscription = this.paymentService
-      .addPayment(this.insertPayment)
+    this.insertPayment.premiumTypeId = this.choosePremium
+    this.eventPaymentSubscription = this.premiumHistoryService
+      .addPremiumPaymentHistory(this.insertPayment)
       .subscribe((result) => {
         this.router.navigateByUrl('/premiums');
       });

@@ -1,6 +1,6 @@
 
 export interface PremiumPaymentHistoryInsertReq{
-    userId? : string
+    fileName? : string
+    fileExtension? : string
     premiumTypeId? : string
-    trxNo? : string
 }
