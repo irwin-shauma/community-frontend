@@ -4,5 +4,6 @@ export interface  TotalCountData{
     totalArticle?: number;
     totalThread?: number;
     totalEvent?: number;
-    totalCourse?: number
+    totalCourse?: number;
+    totalRevenue?:number;
 }

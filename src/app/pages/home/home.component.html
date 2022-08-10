@@ -8,7 +8,7 @@
             <h1>{{totalCountRes.data?.totalUser}}</h1>
         </div>
         <div class="absolute top-0 right-0">
-            <i class="pi pi-external-link" routerLink="/users"></i>
+            <i class="pi pi-external-link" routerLink="/users"  [style]="{'cursor' : 'pointer'}"></i>
         </div>
     </div>
     <div class="glasses w-25rem h-12rem flex flex-column bg-blue-200 justify-content-center align-items-center pt-3 border-round">
@@ -20,7 +20,7 @@
             <h1>{{totalCountRes.data?.totalPremiumUser}}</h1>
         </div>
         <div class="absolute top-0 right-0">
-            <i class="pi pi-external-link" routerLink="/users/premium"></i>
+            <i class="pi pi-external-link" routerLink="/users/premium"  [style]="{'cursor' : 'pointer'}"></i>
         </div>
     </div>
     <div class="glasses w-25rem h-12rem flex flex-column bg-blue-200 justify-content-center align-items-center pt-3 border-round">
@@ -32,7 +32,7 @@
             <h1>{{totalCountRes.data?.totalArticle}}</h1>
         </div>
         <div class="absolute top-0 right-0">
-            <i class="pi pi-external-link" routerLink="/article"></i>
+            <i class="pi pi-external-link" routerLink="/article"  [style]="{'cursor' : 'pointer'}"></i>
         </div>
     </div>
     <div class="glasses w-25rem h-12rem flex flex-column bg-blue-200 justify-content-center align-items-center pt-3 border-round">
@@ -44,7 +44,7 @@
             <h1>{{totalCountRes.data?.totalThread}}</h1>
         </div>
         <div class="absolute top-0 right-0">
-            <i class="pi pi-external-link" routerLink="/threads"></i>
+            <i class="pi pi-external-link" routerLink="/threads"  [style]="{'cursor' : 'pointer'}"></i>
         </div>
     </div>
     <div class="glasses w-25rem h-12rem flex flex-column bg-blue-200 justify-content-center align-items-center pt-3 border-round">
@@ -56,7 +56,7 @@
             <h1>{{totalCountRes.data?.totalEvent}}</h1>
         </div>
         <div class="absolute top-0 right-0">
-            <i class="pi pi-external-link" routerLink="/events"></i>
+            <i class="pi pi-external-link" routerLink="/events"  [style]="{'cursor' : 'pointer'}"></i>
         </div>
     </div>
     <div class="glasses w-25rem h-12rem flex flex-column bg-blue-200 justify-content-center align-items-center pt-3 border-round">
@@ -68,7 +68,7 @@
             <h1>{{totalCountRes.data?.totalCourse}}</h1>
         </div>
         <div class="absolute top-0 right-0">
-            <i class="pi pi-external-link" routerLink="/events/course"></i>
+            <i class="pi pi-external-link" routerLink="/events/course"  [style]="{'cursor' : 'pointer'}"></i>
         </div>
     </div>
     <div class="glasses w-25rem h-12rem flex flex-column bg-blue-200 justify-content-center align-items-center pt-3 border-round">
@@ -77,10 +77,10 @@
             <p>Total Revenue</p>
         </div>
         <div>
-            <h1>Rp 1.000.000,00</h1>
+            <h1>{{totalCountRes.data?.totalRevenue}}</h1>
         </div>
         <div class="absolute top-0 right-0">
-            <i class="pi pi-external-link" routerLink="/payment/history"></i>
+            <i class="pi pi-external-link" routerLink="/payment/history"  [style]="{'cursor' : 'pointer'}"></i>
         </div>
     </div>
 </div>
