@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'primeng/api';
+import { LogoutComponent } from './components/logout/logout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { NotFoundComponent } from './pages/notfound/notfound.component';
 
@@ -11,6 +12,10 @@ const routes: Routes = [
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent
   },
   {
     path: 'homes',

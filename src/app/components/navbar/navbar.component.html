@@ -10,9 +10,17 @@
 
       <ng-template pTemplate="end" >
         <!-- <a href=""> -->
-          <p-avatar image="http://localhost:1234/files/{{fileId}}" *ngIf="loginStatus" class="mt-1" size="large" shape="circle" ng-mouseover="hoverActive=true"
-          ng-mouseleave="hoverActive=false"
-          ng-style="hoverActive ? {'border-style' : solid} : {}"(click)="menu.toggle($event)" [style]="{'cursor' : 'pointer'}"></p-avatar>
+          <div *ngIf="fileId == null">
+            <p-avatar image="./../../../assets/profille.png" *ngIf="loginStatus" class="mt-1" size="large" shape="circle" ng-mouseover="hoverActive=true"
+            ng-mouseleave="hoverActive=false"
+            ng-style="hoverActive ? {'border-style' : solid} : {}"(click)="menu.toggle($event)" [style]="{'cursor' : 'pointer'}"></p-avatar>
+          </div>
+          <div *ngIf="fileId !== null">
+            <p-avatar image="http://localhost:1234/files/{{fileId}}" *ngIf="loginStatus" class="mt-1" size="large" shape="circle" ng-mouseover="hoverActive=true"
+            ng-mouseleave="hoverActive=false"
+            ng-style="hoverActive ? {'border-style' : solid} : {}"(click)="menu.toggle($event)" [style]="{'cursor' : 'pointer'}"></p-avatar>
+          </div>
+         
         <!-- </a> -->
 
 
@@ -56,10 +64,12 @@
       <div class="flex flex-column gap-2">
         <span class="social-media">Main Menu</span>
 
-        <a class="menu-item" routerLink="/event-members">Event</a>
-        <a class="menu-item" routerLink="/">Course</a>
-        <a class="menu-item" routerLink="/threads-main">Thread</a>
         <a class="menu-item" routerLink="/article-members">Article</a>
+        <a class="menu-item" routerLink="/threads-main">Thread</a>
+        <a class="menu-item" routerLink="/event-members">Event</a>
+        <a class="menu-item" routerLink="/premiums">Premium</a>
+        
+        
       </div>
       <div class="flex flex-column gap-2 w-5">
         <span class="social-media">Contact</span>
