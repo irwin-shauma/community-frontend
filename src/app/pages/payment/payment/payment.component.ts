@@ -70,6 +70,9 @@ export class PaymentComponent implements OnInit{
   approve(): void {
     this.updateData.id = this.idPayment;
     this.updateData.isApprove = true
+    this.updateData.isActive = true
+    console.log(this.updateData);
+    
     this.paymentService.approve(this.updateData).subscribe((res) => {
       this.initData();
     });
@@ -78,6 +81,7 @@ export class PaymentComponent implements OnInit{
   reject(): void {
     this.updateData.id = this.idPayment;
     this.updateData.isApprove = false
+    this.updateData.isActive = false
     this.paymentService.approve(this.updateData).subscribe(res => {
       this.initData();
     })

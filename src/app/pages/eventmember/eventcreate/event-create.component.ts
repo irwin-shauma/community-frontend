@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -35,6 +36,11 @@ export class EventCreateComponent implements OnInit {
   }
 
   onsubmit(): void {
+    const startDate = formatDate(this.insertEvent.starts, `yyyy-MM-dd'T'HH:mm:ss.SSS${getTimeZone()}`, 'en')
+    const endDate = formatDate(this.insertEvent.ends, `yyyy-MM-dd'T'HH:mm:ss.SSS${getTimeZone()}`, 'en')
+    this.insertEvent.starts = startDate
+    this.insertEvent.ends = endDate
+
     this.eventHeaderSubscription = this.eventService
       .addEventHeader(this.insertEvent)
       .subscribe((result) => {
@@ -50,3 +56,9 @@ export class EventCreateComponent implements OnInit {
     });
   }
 }
+
+function getTimeZone() {
+  var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+  return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
+}
+

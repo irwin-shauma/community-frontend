@@ -486,11 +486,11 @@
                 <div class="flex flex-row justify-content-between mt-2 ">
                     <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i><h5 class="font-normal">start: {{startEvent | date: "medium"}}</h5>
                         </span>
-                        <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i><h5 class="font-normal">{{price | currency:"IDR":"symbol-narrow"}}</h5></span>
+                        <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i><h5 class="font-normal">{{price | customCurrency}}</h5></span>
                        
                 </div>
                 <div class="flex flex-row justify-content-between mt-3">
-                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i><h5 class="font-normal">end: {{endEvent}} </h5>
+                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i><h5 class="font-normal">end: {{endEvent| date: "medium"}} </h5>
                     </span>
                     <span>
                       

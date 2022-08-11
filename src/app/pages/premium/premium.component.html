@@ -16,12 +16,13 @@
         </p-tabView>
     </div>
 </div>
-<div class="flex justify-content-around align-items-center pl-8 pr-8" >
+<div class="flex justify-content-around align-items-center pl-8 pr-8">
 
-   <div class="w-15rem h-15rem glasses flex flex-column justify-content-center align-items-center text-red-500" *ngFor="let premium of dataPremium.data">
-    <i class="pi pi-star-fill"></i>
+    <div class="w-15rem h-15rem glasses flex flex-column justify-content-center align-items-center text-red-500"
+        *ngFor="let premium of dataPremium.data">
+        <i class="pi pi-star-fill"></i>
         <h3>{{premium.price}} / {{premium.duration}} Month</h3>
-   </div>
+    </div>
 </div>
 
 
@@ -32,43 +33,49 @@
 
                 <div class="flex flex-column justify-content-start w-full">
                     <h4>Premium choose</h4>
-                    <p-dropdown [options]="dataPremium.data!" [(ngModel)]="choosePremium" placeholder="premium type" optionLabel='duration' optionValue="price" name="duration" class="wdrop mt-3">
+                    <p-dropdown [options]="dataPremium.data!" [(ngModel)]="choosePremium" placeholder="premium type"
+                        optionLabel='duration' optionValue="id" name="duration" class="wdrop mt-3">
                     </p-dropdown>
 
                 </div>
 
                 <div class="flex justify-content-end mt-3">
-                    <button pButton label="pay" icon="pi pi-fw pi-wallet" (click)="showMaximizableDialog()" class="bg-red-500"></button>
+                    <button pButton label="pay" icon="pi pi-fw pi-wallet" (click)="showMaximizableDialog()"
+                        class="bg-red-500"></button>
                 </div>
                 <p-dialog [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
-    [draggable]="false" header="Detail Payment" [resizable]="false">
- 
-    
-                            <div class="mb-5">
-                                <h5 class="font-normal">Nomor Virtual Account</h5>
-                                <h4>828312039213810</h4>
-                            </div>
-                            <div>
-                                <h5 class="font-normal">Total Pembayaran</h5>
-                                <h4>Rp.{{choosePremium}}</h4>
+                    [draggable]="false" header="Detail Payment" [resizable]="false">
+
+
+                    <div class="mb-5">
+                        <h5 class="font-normal">Nomor Virtual Account</h5>
+                        <h4>828312039213810</h4>
+                    </div>
+                    <div>
+                        <h5 class="font-normal">Total Pembayaran</h5>
+                        <h4>Rp.{{insertPayment.premiumTypeId}}</h4>
+                    </div>
+
+
+
+                    <ng-template pTemplate="footer" class="flex gap-5">
+                        <form (ngSubmit)="onsubmit()">
+                            <div class="flex gap-2">
+                                <p-fileUpload mode="basic" chooseIcon="pi pi-upload" name="file" [customUpload]="true"
+                                    id="file" [auto]="true" chooseLabel="Proof of payment"
+                                    (uploadHandler)="onInsertFile($event)" [style]="{'background-color':'red'}">
+                                </p-fileUpload>
+                                <button pButton pRipple type="submit" label="Pay"
+                                    class="p-button-outlined p-button-danger"></button>
                             </div>
 
-   
-                        
-        <ng-template pTemplate="footer" class="flex gap-5">
-            <form (ngSubmit)="onsubmit()">
-                <div class="flex gap-2">
-                    <p-fileUpload mode="basic"  chooseIcon="pi pi-upload" name="file" [customUpload]="true" id="file"  [auto]="true" chooseLabel="Proof of payment" (uploadHandler)="onInsertFile($event)" [style]="{'background-color':'red'}"></p-fileUpload>
-                    <button pButton pRipple type="submit" label="Pay" class="p-button-outlined p-button-danger"></button>
-                </div>
 
-                                
-            </form>
-        
-           
-          
-        </ng-template>
-</p-dialog>
+                        </form>
+
+
+
+                    </ng-template>
+                </p-dialog>
             </p-tabPanel>
         </p-tabView>
     </div>
