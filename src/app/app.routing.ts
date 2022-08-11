@@ -19,6 +19,7 @@ const routes: Routes = [
     path: 'logout',
     component: LogoutComponent
   },
+  {
     path: 'login',
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
