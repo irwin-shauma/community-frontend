@@ -5,6 +5,7 @@ import { Role } from 'src/app/constant/role-constant';
 import { LoginReq } from 'src/app/dto/user/login-req';
 import { LoginService } from 'src/app/service/login.service';
 import { NgxSpinnerService } from "ngx-spinner";
+// import { Title } from "@angular/platform-browser"
 
 @Component({
   selector: 'app-login-auth',
@@ -14,7 +15,13 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class LoginComponent implements OnInit, OnDestroy {
   loginSubsription?: Subscription;
   loginReq: LoginReq = {} as LoginReq;
-  constructor(private loginService: LoginService, private router: Router, private spinner: NgxSpinnerService) { }
+  constructor(private loginService: LoginService,
+    private router: Router,
+    private spinner: NgxSpinnerService,
+    // private titleService : Title
+    ) { 
+      // this.titleService.setTitle("Login | Communify")
+    }
 
   ngOnInit(): void {
 
