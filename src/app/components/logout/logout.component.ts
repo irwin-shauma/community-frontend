@@ -16,7 +16,7 @@ export class LogoutComponent implements OnInit, OnDestroy {
     ngOnInit(): void {
         this.logoutService.logout().subscribe(result => {
             localStorage.clear();
-            this.router.navigateByUrl('/homes')
+            this.router.navigateByUrl('/threads-main');
         })
     }
 

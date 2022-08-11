@@ -6,21 +6,21 @@
         <button pButton pRipple label="back" icon="pi pi-arrow-left" class="bg-red-500" routerLink="/premium-types" styleClass="p-button-sm"
             routerLink="/premium-types"></button>
 
-        <form class="pt-5 h-20rem" (ngSubmit)="onSubmitPremiumType()">
+        <form class="pt-5 h-20rem" (ngSubmit)="onSubmitPremiumType()" #form="ngForm">
             <div class="grid">
                 <div class="md:col-4">
                     <div class="flex flex-column mb-4">
                         <label for="">Price <span class="text-red-500">*</span></label>
-                        <p-inputNumber inputStyleClass="inputstyle" mode="currency" currency="IDR" locale="id-ID" name="price" [(ngModel)] = "insertPremiumTypeReq.price"></p-inputNumber>
+                        <p-inputNumber inputStyleClass="inputstyle" mode="currency" [required]="true" currency="IDR" locale="id-ID" name="price" [(ngModel)] = "insertPremiumTypeReq.price"></p-inputNumber>
                     </div>
                     <div class="flex flex-column">
                         <label for="">Duration(Month) <span class="text-red-500">*</span></label>
-                        <input pInputText class="inputstyle" name="duration" [(ngModel)]="insertPremiumTypeReq.duration">
+                        <input pInputText [required]="true" name="duration" [(ngModel)]="insertPremiumTypeReq.duration">
                     </div>
                 </div>
             </div>
             <div class="flex justify-content-end">
-                <p-button label="Submit" [loading]="loading" styleClass="p-button-sm" type="submit"></p-button>
+                <p-button label="Submit" [loading]="loading" styleClass="p-button-sm" [disabled]="!form.valid" type="submit"></p-button>
             </div>
         </form>
     </div>
