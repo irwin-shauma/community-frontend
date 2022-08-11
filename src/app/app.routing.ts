@@ -2,21 +2,17 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from 'primeng/api';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { AdminGuard } from './guard/admin.guard';
+import { NonAdminGuard } from './guard/non-admin.guard';
 import { NotFoundComponent } from './pages/notfound/notfound.component';
 
 const routes: Routes = [
   {
     path: 'home',
-
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/home/home.module').then((m) => m.HomeModule),
-  },
-  {
-    path: 'homes',
-    component: NavbarComponent,
-    loadChildren: () =>
-      import('./pages/homepage/homepage.module').then((m) => m.HomepageModule),
   },
   {
     path: 'login',
@@ -30,42 +26,49 @@ const routes: Routes = [
   },
   {
     path: 'article',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/article/article.module').then((m) => m.ArticleModule),
   },
   {
     path: 'payment',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/payment/payment.module').then((m) => m.PaymentModule),
   },
   {
     path: 'users',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/user/user.module').then((m) => m.UserModule),
   },
   {
     path: 'events',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/event/event.module').then((m) => m.EventModule),
   },
   {
     path: 'threads',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/thread/thread.module').then((m) => m.ThreadModule),
   },
   {
     path: 'roles',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/role/role.module').then((m) => m.RoleModule),
   },
   {
     path: 'event-types',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/eventtype/eventtype.module').then(
@@ -74,6 +77,7 @@ const routes: Routes = [
   },
   {
     path: 'threadtypes',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/threadtype/threadtype.module').then(
@@ -88,6 +92,7 @@ const routes: Routes = [
   },
   {
     path: 'premium-types',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/premium-type/premium-type.module').then(
@@ -96,6 +101,7 @@ const routes: Routes = [
   },
   {
     path: 'threads-main',
+    canLoad: [NonAdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/threadmember/thread-member.module').then(
@@ -126,6 +132,7 @@ const routes: Routes = [
   },
   {
     path: 'event-payment-histories',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/event-payment-history/event-payment-history.module').then(
@@ -134,6 +141,7 @@ const routes: Routes = [
   },
   {
     path: 'premium-payment-histories',
+    canLoad: [AdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import(

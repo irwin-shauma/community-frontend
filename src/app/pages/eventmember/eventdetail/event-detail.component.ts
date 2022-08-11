@@ -2,8 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EventHeaderFindById } from 'src/app/dto/event-header/event-header-find-by-id-res';
+import { EventPaymentHistoryInsertReq } from 'src/app/dto/event-payment-history/event-payment-insert-req';
 import { PaymentInsertReq } from 'src/app/dto/payment/payment-insert-req';
 import { EventHeaderService } from 'src/app/service/event-header.service';
+import { EventPaymentHistoryService } from 'src/app/service/event-payment-history.service';
 import { FileService } from 'src/app/service/file.service';
 import { LoginService } from 'src/app/service/login.service';
 import { PaymentService } from 'src/app/service/payment.service';
@@ -17,6 +19,7 @@ export class EventDetailCompoenent implements OnInit {
   idParam!: string;
   eventDetailSubscription?: Subscription;
   eventPaymentSubscription?: Subscription;
+  eventPaymentHistorySubcription?: Subscription;
   showEdit: boolean = false;
   eventData: EventHeaderFindById = {} as EventHeaderFindById;
   insertPayment: PaymentInsertReq = {} as PaymentInsertReq;
@@ -27,7 +30,8 @@ export class EventDetailCompoenent implements OnInit {
     private fileService: FileService,
     private paymentService: PaymentService,
     private router: Router,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private eventPaymentHistoryService: EventPaymentHistoryService
   ) {}
 
   ngOnInit(): void {
@@ -40,6 +44,8 @@ export class EventDetailCompoenent implements OnInit {
       this.idParam = resultTemp.id;
 
       this.eventService.findById(this.idParam).subscribe((res) => {
+        console.log(res.data?.userId);
+
         if (this.loginService.getData()?.data?.id === res.data?.userId) {
           this.showEdit = true;
         }
@@ -49,6 +55,11 @@ export class EventDetailCompoenent implements OnInit {
   }
 
   onsubmit(): void {
+    const insertEventPayment = {} as EventPaymentHistoryInsertReq;
+    insertEventPayment.eventHeaderId = this.eventData.data?.id;
+    this.eventPaymentHistorySubcription = this.eventPaymentHistoryService
+      .addPaymentEvent(insertEventPayment)
+      .subscribe((result) => {});
     this.eventPaymentSubscription = this.paymentService
       .addPayment(this.insertPayment)
       .subscribe((result) => {

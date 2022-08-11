@@ -68,7 +68,7 @@ export class NavbarComponent implements OnInit {
       })
     } else {
       this.loginStatus = false
-      this.router.navigateByUrl('/homes');
+      this.router.navigateByUrl('/login');
       // this.initData()
 
     }
@@ -118,13 +118,13 @@ export class NavbarComponent implements OnInit {
         label: 'Article',
         icon: 'pi pi-fw pi-book text-red-500',
         routerLink: '/article-members',
-        visible: this.dataLogin == Role.MEMBER,
+        visible: this.dataLogin != Role.SUPERADMIN,
       },
       {
         label: 'Thread',
         icon: 'pi pi-fw pi-comments text-red-500',
         routerLink: '/threads-main',
-        visible: this.dataLogin == Role.MEMBER,
+        visible: this.dataLogin != Role.SUPERADMIN,
       },
       {
         label: 'Event',
@@ -141,13 +141,13 @@ export class NavbarComponent implements OnInit {
           },
         ],
         icon: 'pi pi-fw pi-calendar text-red-500',
-        visible: this.dataLogin == Role.MEMBER,
+        visible: this.dataLogin != Role.SUPERADMIN,
       },
       {
         label: 'Premium',
         icon: 'pi pi-fw pi-star-fill text-red-500',
         routerLink: '/premiums',
-        visible: this.dataLogin == Role.MEMBER,
+        visible: this.dataLogin != Role.SUPERADMIN,
       },
     ];
 
