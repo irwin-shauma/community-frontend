@@ -120,7 +120,30 @@
                     </div>
             </p-tabPanel>
             <p-tabPanel header="history payment" leftIcon="pi pi-fw pi-wallet">
-                
+                <div *ngFor="let history of premiumHistory.data; let i = index">
+                    
+                    <div class="flex flex-column gap-2 glasses p-5">
+                        <i class="pi pi-fw pi-shopping-bag text-red-500"></i>
+                        <div class="flex gap-5 px-5">
+                         
+                            <h5 class="font-medium">{{history.createdAt}}</h5>
+                            <h5 class="font-normal">{{history.trxNo}}</h5>
+                        </div>
+                        <div class="flex justify-content-between px-5">
+                       
+                            <h5>Detail : {{history.duration}} Month Subsciption</h5>
+                            <div>
+                                <h5 class="font-normal">Total Price: </h5>
+                                <h5>Rp.{{history.price}}</h5>
+                            </div>
+                         
+                        </div>
+                  
+
+
+                    </div>
+                  
+                </div>
             </p-tabPanel>
         </p-tabView>
     </div>
