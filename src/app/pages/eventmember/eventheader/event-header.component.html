@@ -13,13 +13,13 @@
                             </ng-template>
                             <span class="card-title text-center mt-0">{{event.title}}</span>
                             <div class="flex flex-row justify-content-between mt-2 ">
-                                <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i>start: {{event.startDate}}
+                                <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i>start: {{event.startDate | date: "medium"}}
                                     </span>
-                                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>Rp.{{event.price}}</span>
+                                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>{{event.price | currency: "IDR": "symbol-narrow"}}</span>
                                    
                             </div>
                             <div class="flex flex-row justify-content-between mt-3">
-                                <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i>end: {{event.endDate}}
+                                <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i>end: {{event.endDate | date: "medium"}}
                                 </span>
                                 <span>
                                   

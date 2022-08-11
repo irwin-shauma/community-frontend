@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -13,6 +14,8 @@ export class EventEditComponent implements OnInit, OnDestroy {
   idParam!: string;
   eventHeaderSubscription?: Subscription;
   data: EventHeaderUpdateReq = {} as EventHeaderUpdateReq;
+  today = new Date();
+
   constructor(
     private eventService: EventHeaderService,
     private router: Router,
@@ -39,6 +42,12 @@ export class EventEditComponent implements OnInit, OnDestroy {
   }
 
   onsubmit(): void {
+    const startDate = formatDate(this.data!.starts!, `yyyy-MM-dd'T'HH:mm:ss.SSS${getTimeZone()}`, 'en')
+    const endDate = formatDate(this.data!.ends!, `yyyy-MM-dd'T'HH:mm:ss.SSS${getTimeZone()}`, 'en')
+
+    this.data.starts = startDate
+    this.data.ends = endDate
+
     this.eventService.editEventHeader(this.data).subscribe((result) => {
       this.router.navigateByUrl('/event-members');
     });
@@ -55,4 +64,8 @@ export class EventEditComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.eventHeaderSubscription?.unsubscribe();
   }
+}
+function getTimeZone() {
+  var offset = new Date().getTimezoneOffset(), o = Math.abs(offset);
+  return (offset < 0 ? "+" : "-") + ("00" + Math.floor(o / 60)).slice(-2) + ":" + ("00" + (o % 60)).slice(-2);
 }

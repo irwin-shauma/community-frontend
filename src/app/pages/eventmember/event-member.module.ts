@@ -17,6 +17,7 @@ import { EventHeaderComponent } from './eventheader/event-header.component';
 import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { EventEditComponent } from './eventedit/event-edit.component';
+import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
 
 @NgModule({
   imports: [
@@ -33,7 +34,8 @@ import { EventEditComponent } from './eventedit/event-edit.component';
     CommonModule,
     FormsModule,
     DialogModule,
-    InputNumberModule
+    InputNumberModule,
+    SharedPipeModule
   ],
   declarations: [
     EventHeaderComponent,
