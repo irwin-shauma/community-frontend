@@ -3,17 +3,17 @@
         <div class="flex gap-3">
             <h3><i class="pi pi-pw pi-eject text-red-500 mr-2"></i>Create Event</h3>
         </div>
-        <form (ngSubmit)="onsubmit()">
+        <form (ngSubmit)="onsubmit()" #form="ngForm">
         <div class="grid">
            
                 <div class="col-6 flex mt-5 flex-column gap-5">
                     <div>
                         <h5>Title Event</h5>
-                        <input type="text" [(ngModel)]="insertEvent.title" pInputText class="inputstyle" name="title" >
+                        <input type="text" [(ngModel)]="insertEvent.title" pInputText class="inputstyle" name="title" required >
                     </div>
                    <div>
                         <h5>Type Event</h5>
-                        <p-dropdown placeholder="Type Event" [(ngModel)]="insertEvent.eventTypeId" optionValue="id" [options]="eventType.data!" optionLabel="type" name="eventType" [showClear]="true" ></p-dropdown>
+                        <p-dropdown placeholder="Type Event" [required]="true" [(ngModel)]="insertEvent.eventTypeId" optionValue="id" [options]="eventType.data!" optionLabel="type" name="eventType" [showClear]="true" ></p-dropdown>
                    </div>
                    <div>
                         <h5>Photo Upload</h5>
@@ -21,7 +21,7 @@
                    </div>
                    <div>
                     <h5>Price</h5>
-                    <p-inputNumber inputStyleClass="inputstyle" mode="currency" currency="IDR" locale="id-ID" name="price" [(ngModel)] = "insertEvent.price"></p-inputNumber>
+                    <p-inputNumber inputStyleClass="inputstyle" [required]="true" mode="currency" currency="IDR" locale="id-ID" name="price" [(ngModel)] = "insertEvent.price"></p-inputNumber>
                    </div>
 
                 </div>
@@ -29,26 +29,26 @@
 
                     <div>
                         <h5>Start Date</h5>
-                        <p-calendar [showIcon]="true" [minDate]="today" [showTime]="true" [showSeconds]="false" inputId="time" name="startDate" inputId="icon" [(ngModel)]="insertEvent.starts"></p-calendar>
+                        <p-calendar [showIcon]="true" [minDate]="today" [required]="true" [showTime]="true" [showSeconds]="false" inputId="time" name="startDate" inputId="icon" [(ngModel)]="insertEvent.starts"></p-calendar>
                       </div>
                       <div>
                         <h5>End Date</h5>
-                        <p-calendar [showIcon]="true" [minDate]="today" [showTime]="true" [showSeconds]="false" inputId="time" name="endDate" inputId="icon" [(ngModel)]="insertEvent.ends"></p-calendar>
+                        <p-calendar [showIcon]="true" [minDate]="today" [required]="true" [showTime]="true" [showSeconds]="false" inputId="time" name="endDate" inputId="icon" [(ngModel)]="insertEvent.ends"></p-calendar>
                       </div>
                       <div>
                         <h5>Provider</h5>
-                        <input type="text" name="provider" [(ngModel)]="insertEvent.provider" pInputText class="inputstyle">
+                        <input type="text" name="provider" [required]="true" [(ngModel)]="insertEvent.provider" pInputText class="inputstyle">
                       </div>
                       <div>
                         <h5>Location</h5>
-                        <input type="text" name="location" [(ngModel)]="insertEvent.location" pInputText class="inputstyle">
+                        <input type="text" name="location" [required]="true" [(ngModel)]="insertEvent.location" pInputText class="inputstyle">
                       </div>
     
                 </div>
         </div>
 
         <div class="flex justify-content-end">
-            <button pButton label="Submit" type="submit" class="bg-red-500 border-round"></button>
+            <button pButton label="Submit" type="submit" class="bg-red-500 border-round" [disabled]="!form.valid"></button>
         </div>
     </form>
     
