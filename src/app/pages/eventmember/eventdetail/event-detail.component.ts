@@ -17,6 +17,7 @@ export class EventDetailCompoenent implements OnInit {
   idParam!: string;
   eventDetailSubscription?: Subscription;
   eventPaymentSubscription?: Subscription;
+  eventPaymentHistorySubcription?: Subscription;
   showEdit: boolean = false;
   eventData: EventHeaderFindById = {} as EventHeaderFindById;
   insertPayment: EventPaymentHistoryInsertReq = {} as EventPaymentHistoryInsertReq;
@@ -40,6 +41,8 @@ export class EventDetailCompoenent implements OnInit {
       this.idParam = resultTemp.id;
 
       this.eventService.findById(this.idParam).subscribe((res) => {
+        console.log(res.data?.userId);
+
         if (this.loginService.getData()?.data?.id === res.data?.userId) {
           this.showEdit = true;
         }

@@ -34,7 +34,6 @@ export class PremiumPaymentHistoryService {
   getByUser(): Observable<PremiumPaymentHistoryFindAll> {
     return this.http.get<PremiumPaymentHistoryFindAll> ('http://localhost:1234/premium-payment-histories/users')
   }
-
   addPremiumPaymentHistory(
     data: PremiumPaymentHistoryInsertReq
   ): Observable<InsertRes> {
