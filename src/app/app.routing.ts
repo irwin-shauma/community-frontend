@@ -106,7 +106,6 @@ const routes: Routes = [
   },
   {
     path: 'threads-main',
-    canLoad: [NonAdminGuard],
     component: NavbarComponent,
     loadChildren: () =>
       import('./pages/threadmember/thread-member.module').then(
