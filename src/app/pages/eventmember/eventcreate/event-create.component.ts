@@ -16,13 +16,14 @@ import { FileService } from 'src/app/service/file.service';
 export class EventCreateComponent implements OnInit {
   eventHeaderSubscription?: Subscription;
   insertEvent: EventHeaderInsertReq = {} as EventHeaderInsertReq;
+  today = new Date();
 
   constructor(
     private eventTypeService: EventTypeService,
     private eventService: EventHeaderService,
     private router: Router,
     private fileService: FileService
-  ) {}
+  ) { }
   eventType: EventTypeFindAll = {} as EventTypeFindAll;
   ngOnInit(): void {
     this.eventType.data = [];

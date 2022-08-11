@@ -1,6 +1,6 @@
-export interface EventPaymentHistoryInsertReq {
-  userId?: string;
-  eventHeaderId?: string;
-  terNo?: string;
-  paymentId?: string;
+export interface EventPaymentHistoryInsertReq{
+    fileName: string
+    fileExtension: string
+    eventHeaderId: string
+
 }

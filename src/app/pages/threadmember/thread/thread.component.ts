@@ -111,6 +111,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
   ngOnInit(): void {
     this.onInitData();
+    console.log(this.showType);
   }
 
   onInitData(): void {
@@ -125,7 +126,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       this.threadHeader = result;
     });
     this.premiumPaymentHistoryService.getPremium().subscribe((result) => {
-      if (result.data == null) {
+      if (result.data !== null) {
         this.showType = result.data!.isActive;
       }
     });

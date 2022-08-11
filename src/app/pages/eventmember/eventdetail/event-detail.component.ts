@@ -3,12 +3,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { EventHeaderFindById } from 'src/app/dto/event-header/event-header-find-by-id-res';
 import { EventPaymentHistoryInsertReq } from 'src/app/dto/event-payment-history/event-payment-insert-req';
-import { PaymentInsertReq } from 'src/app/dto/payment/payment-insert-req';
 import { EventHeaderService } from 'src/app/service/event-header.service';
 import { EventPaymentHistoryService } from 'src/app/service/event-payment-history.service';
 import { FileService } from 'src/app/service/file.service';
 import { LoginService } from 'src/app/service/login.service';
-import { PaymentService } from 'src/app/service/payment.service';
 
 @Component({
   selector: 'app-eventdetail',
@@ -22,16 +20,15 @@ export class EventDetailCompoenent implements OnInit {
   eventPaymentHistorySubcription?: Subscription;
   showEdit: boolean = false;
   eventData: EventHeaderFindById = {} as EventHeaderFindById;
-  insertPayment: PaymentInsertReq = {} as PaymentInsertReq;
+  insertPayment: EventPaymentHistoryInsertReq = {} as EventPaymentHistoryInsertReq;
   displayMaximizable!: boolean;
   constructor(
     private activateRoute: ActivatedRoute,
     private eventService: EventHeaderService,
     private fileService: FileService,
-    private paymentService: PaymentService,
     private router: Router,
     private loginService: LoginService,
-    private eventPaymentHistoryService: EventPaymentHistoryService
+    private eventPaymentService: EventPaymentHistoryService
   ) {}
 
   ngOnInit(): void {
@@ -55,13 +52,9 @@ export class EventDetailCompoenent implements OnInit {
   }
 
   onsubmit(): void {
-    const insertEventPayment = {} as EventPaymentHistoryInsertReq;
-    insertEventPayment.eventHeaderId = this.eventData.data?.id;
-    this.eventPaymentHistorySubcription = this.eventPaymentHistoryService
-      .addPaymentEvent(insertEventPayment)
-      .subscribe((result) => {});
-    this.eventPaymentSubscription = this.paymentService
-      .addPayment(this.insertPayment)
+    this.insertPayment.eventHeaderId = this.idParam
+    this.eventPaymentSubscription = this.eventPaymentService
+      .addPaymentEvent(this.insertPayment)
       .subscribe((result) => {
         this.router.navigateByUrl('/event-members');
       });
