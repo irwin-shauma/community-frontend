@@ -59,7 +59,6 @@ export class EventDetailCompoenent implements OnInit {
         this.router.navigateByUrl('/event-members');
       });
   }
-
   onInsertFile(event: any): void {
     const file = event.files[0];
     this.fileService.uploadAsBase64(file).then((res) => {
