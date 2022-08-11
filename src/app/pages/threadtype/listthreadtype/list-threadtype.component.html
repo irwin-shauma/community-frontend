@@ -26,7 +26,7 @@
                     </td>
                     <td class="flex">
                         <button pButton pRipple type="button" icon="pi pi-fw pi-pencil" class="p-button-rounded p-button-warning mr-2" (click)="update(data.id)"></button>
-                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm(data.id)"></button>
+                        <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger" (click)="confirm(data.id)" [loading]="loading"></button>
                     </td>
                 </tr>
             </ng-template>
