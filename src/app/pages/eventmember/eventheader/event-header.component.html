@@ -5,7 +5,13 @@
                     <div class="flex flex-row flex-wrap justify-content-between gap-6 mt-3 ml-5 mr-5">
                         <p-card [style]="{width: '350px', height:'400px'}" *ngFor="let event of eventHeader;">
                             <ng-template pTemplate="header">
-                                <img alt="Card" src="http://localhost:1234/files/{{event.fileId}}" class="imgEvent" width="100" height="200">
+                                <div *ngIf="event.fileId === null">
+                                    <img src="./../../../../assets/card-image.png" alt="">
+                                </div>
+                                <div *ngIf="event.fileId !== null">
+                                    <img alt="Card" src="http://localhost:1234/files/{{event.fileId}}" class="imgEvent" width="100" height="200">
+                                </div>
+                            
                                 <div class="flex flex-row justify-content-between px-3">
                                     <span><i class="pi pi-github text-red-400"></i>{{event.provider}}</span>
                                     <span><i class="pi pi-map-marker text-red-400"></i> {{event.location}}</span>
