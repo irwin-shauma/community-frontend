@@ -21,21 +21,22 @@ export class NavbarComponent implements OnInit {
   profile!: MenuItem[];
   loginMenu!: MenuItem[];
   userName!: string;
-  fileId! : string;
+  fileId!: string;
   loginStatus: boolean = false;
 
-  logoutReq : LogoutReq = {} as LogoutReq;
+  logoutReq: LogoutReq = {} as LogoutReq;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private loginService: LoginService,
     private logoutService: LogoutService,
     private userService: UserService,
-    // private spinner : NgxSpinnerService,
-    private activateRoute: ActivatedRoute) { }
+    private activateRoute: ActivatedRoute
+  ) {}
 
   logout(): void {
     localStorage.clear();
-    this.userService.logout(this.logoutReq)
+    this.userService.logout(this.logoutReq);
     this.checkLoginStatus();
   }
 
@@ -48,31 +49,33 @@ export class NavbarComponent implements OnInit {
   }
 
   getUsername() {
-    this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
-      this.userName = result.data?.fullName!
-      this.fileId = result.data?.fileId!
-    })
+    this.userService
+      .findById(this.loginService.getData()?.data?.id!)
+      .subscribe((result) => {
+        this.userName = result.data?.fullName!;
+        this.fileId = result.data?.fileId!;
+      });
   }
 
   ngOnInit(): void {
-   this.checkLoginStatus();
-   this.logoutReq.id =String(this.loginService.getData()?.data?.id)
-
+    this.checkLoginStatus();
+    this.logoutReq.id = String(this.loginService.getData()?.data?.id);
   }
 
-  checkLoginStatus() : void {
+  checkLoginStatus(): void {
     if (this.loginService.getData() != null) {
-      this.loginStatus = true
-      this.getUsername()
-      this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
-        this.userName = result.data?.fullName!
-        this.initData()
-      })
+      this.loginStatus = true;
+      this.getUsername();
+      this.userService
+        .findById(this.loginService.getData()?.data?.id!)
+        .subscribe((result) => {
+          this.userName = result.data?.fullName!;
+          this.initData();
+        });
     } else {
-      this.loginStatus = false
-      this.router.navigateByUrl('/login');
-      // this.initData()
+      this.loginStatus = false;
 
+      // this.initData()
     }
   }
 
@@ -169,7 +172,7 @@ export class NavbarComponent implements OnInit {
             // command: () => {
             //   // this.logout();
             // },
-            routerLink: '/logout'
+            routerLink: '/logout',
           },
         ],
       },
@@ -181,7 +184,6 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-fw pi-home text-red-500',
         routerLink: '/login',
       },
-
-    ]
+    ];
   }
 }
