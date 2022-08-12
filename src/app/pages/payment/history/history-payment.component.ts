@@ -5,13 +5,5 @@ import { Component } from '@angular/core';
   templateUrl: './history-payment.component.html',
 })
 export class HistoryPaymentComponent {
-  listHistoryPayment = [
-    {
-      code: '31231',
-      user: 'salman faris',
-      trxNo: '123',
-      event: 'blabalb',
-      price: 'Rp20000',
-    },
-  ];
+  listHistoryPayment = [];
 }

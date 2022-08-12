@@ -35,7 +35,6 @@
                         <p-checkbox [binary]="true" [(ngModel)]="list.isActive" name="isActive" inputId="binary" [disabled]="checkboxDisabled"></p-checkbox>
                     </td>
                     <td>
-                         <button pButton pRipple type="button" icon="pi pi-eye" class="p-button-rounded p-button-primary" routerLink="/event-members/details"></button>
                          <button pButton pRipple type="button" icon="pi pi-trash" class="p-button-rounded p-button-danger ml-1" (click)="confirm(list.id)"></button>
                         </td>
                 </tr>

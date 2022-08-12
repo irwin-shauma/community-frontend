@@ -18,7 +18,8 @@
             <div class="px-2">
                 <div class="flex gap-1">
                     <i class="pi pi-fw pi-money-bill text-red-500"></i>
-                    <h5 class="font-normal">Balance :</h5>
+                    <h5 class="font-normal" *ngIf="balance.data?.currentBalance === 0">Balance : {{ "0" | customCurrency}}</h5>
+                    <h5 class="font-normal" *ngIf="balance.data?.currentBalance !== 0">Balance : {{ balance.data?.currentBalance | customCurrency}}</h5>
                 </div>
 
             </div>
