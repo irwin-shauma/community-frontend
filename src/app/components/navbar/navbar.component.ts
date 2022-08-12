@@ -32,7 +32,7 @@ export class NavbarComponent implements OnInit {
     private logoutService: LogoutService,
     private userService: UserService,
     private activateRoute: ActivatedRoute
-  ) {}
+  ) { }
 
   logout(): void {
     localStorage.clear();
@@ -125,8 +125,29 @@ export class NavbarComponent implements OnInit {
       {
         label: 'Approval Payment',
         icon: 'pi pi-fw pi-check-circle',
-        routerLink: '/payment',
         visible: this.dataLogin === Role.SUPERADMIN,
+        items: [
+          {
+            label: 'Premium',
+            icon: 'pi pi-money-bill',
+            items: [
+              {
+                label: 'All Premium',
+                icon: 'pi pi-money-bill',
+                routerLink: '/payment',
+              },
+              {
+                label: 'Not Approved Premium',
+                icon: 'pi pi-money-bill',
+                routerLink: '/payment/unapprove-premiums',
+              }
+            ]
+          },
+          {
+            label: 'Event',
+            icon: 'pi pi-money-bill',
+          }
+        ]
       },
       {
         label: 'List',

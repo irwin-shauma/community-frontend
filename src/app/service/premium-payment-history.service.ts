@@ -23,6 +23,13 @@ export class PremiumPaymentHistoryService {
     );
   }
 
+  showAllUnApprove(): Observable<PremiumPaymentHistoryFindAll> {
+    return this.http.get<PremiumPaymentHistoryFindAll>(
+      'http://localhost:1234/premium-payment-histories/unapprove'
+    );
+  }
+
+
   findByUser(): Observable<PremiumPaymentHistoryFindAll> {
     return this.http.get<PremiumPaymentHistoryFindAll>(
       'http://localhost:1234/premium-payment-histories/users/'

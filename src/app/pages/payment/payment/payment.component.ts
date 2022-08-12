@@ -1,20 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
+import { LazyLoadEvent } from 'primeng/api';
 import { Subscription } from 'rxjs';
-import { PaymentData } from 'src/app/dto/payment/payment-data';
-import { PaymentFindAllRes } from 'src/app/dto/payment/payment-find-all-res';
-import { PaymentUpdateReq } from 'src/app/dto/payment/payment-update-req';
-import { PaymentService } from 'src/app/service/payment.service';
+import { PremiumPaymentHistoryData } from 'src/app/dto/premium-payment-history/premium-payment-history-data';
+import { PremiumPaymentHistoryFindAll } from 'src/app/dto/premium-payment-history/premium-payment-history-find-all';
+import { PremiumPaymentHistoryUpdateReq } from 'src/app/dto/premium-payment-history/premium-payment-history-update-req';
+import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
 
 @Component({
   selector: 'app-payment',
   templateUrl: './payment.component.html',
 })
 export class PaymentComponent implements OnInit{
-  payments : PaymentFindAllRes= {} as PaymentFindAllRes
-  paymentData!: PaymentData [];
-  updateData: PaymentUpdateReq = {} as PaymentUpdateReq;
+  payments : PremiumPaymentHistoryFindAll= {} as PremiumPaymentHistoryFindAll
+  paymentData!: PremiumPaymentHistoryData [];
+  updateData: PremiumPaymentHistoryUpdateReq = {} as PremiumPaymentHistoryUpdateReq;
   
+  id!: string;
   idPayment!: string;
   startPage: number = 0;
   maxPage: number = 5;
@@ -24,13 +25,12 @@ export class PaymentComponent implements OnInit{
   paymentSubscription?: Subscription;
 
   constructor(
-    private paymentService:PaymentService,
-    private confirmationService: ConfirmationService
+    private paymentService:PremiumPaymentHistoryService
   ){}
 
   ngOnInit(): void{
     this.payments.data =[];
-    this.initData();
+    this.getData();
     
   }
 
@@ -43,7 +43,7 @@ export class PaymentComponent implements OnInit{
     this.startPage = startPage;
     this.maxPage = maxPage;
 
-    this.paymentSubscription = this.paymentService.showAllPayment().subscribe(
+    this.paymentSubscription = this.paymentService.showAllPremiumPaymentHistory(this.startPage, this.maxPage).subscribe(
       result => {
         const resultData: any = result
         this.paymentData = resultData.data
@@ -51,66 +51,5 @@ export class PaymentComponent implements OnInit{
         this.totalData = resultData.count
       }
     )
-  }
-
-  initData(): void{
-    this.paymentService.showAllPayment().subscribe((result) => {
-      this.payments = result;
-      this.paymentData = result.data!;
-      this.loading = false;
-    });
-  }
-
-  loadPayments(event: LazyLoadEvent){
-    this.loading = true;
-
-    this.initData();
-  }
-
-  approve(): void {
-    this.updateData.id = this.idPayment;
-    this.updateData.isApprove = true
-    this.paymentService.approve(this.updateData).subscribe((res) => {
-      this.initData();
-    });
-    
-  }
-
-  reject(): void {
-    this.updateData.id = this.idPayment;
-    this.updateData.isApprove = false
-    this.paymentService.approve(this.updateData).subscribe(res => {
-      this.initData();
-    })
-  }
-
-
-  confirm(id: string): void {
-    this.loading = true
-    this.idPayment = id;
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to approve this payment?',
-      accept: () => {
-        this.approve();
-        
-      },
-      reject: ()=> {
-        this.loading = false
-      }
-    });
-  }
-
-  confirmReject(id: string): void {
-    this.loading = true
-    this.idPayment = id;
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to reject this payment?',
-      accept: () => {
-        this.reject();
-      },
-      reject: ()=> {
-        this.loading = false
-      }
-    });
   }
 }

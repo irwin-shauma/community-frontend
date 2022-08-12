@@ -9,6 +9,8 @@ import { TableModule } from 'primeng/table';
 import { HistoryPaymentComponent } from './history/history-payment.component';
 import { PaymentRouting } from './payment.routing';
 import { PaymentComponent } from './payment/payment.component';
+import { PaymentUnapproveComponent } from './payment-unapprove/payment-unapprove.component';
+import { EventComponent } from './event/event.component';
 
 @NgModule({
   imports: [
@@ -22,7 +24,7 @@ import { PaymentComponent } from './payment/payment.component';
   ],
   declarations: [
     PaymentComponent, 
-    HistoryPaymentComponent]
+    HistoryPaymentComponent, PaymentUnapproveComponent, EventComponent]
     ,
   exports: [
     PaymentComponent, 
