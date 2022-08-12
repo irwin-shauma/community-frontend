@@ -18,8 +18,7 @@
                 <div class="flex flex-column">
                     <label for="password">Password</label>
                     <span class="p-input-icon-right">
-                        <i class="pi pi-lock"></i>
-                        <input type="password" pInputText placeholder="Password" name="password" [(ngModel)] = "loginReq.password" class="inputstyle" />
+                        <p-password placeholder="Password" name="password" [(ngModel)] = "loginReq.password" styleClass="inputstyle" [toggleMask]="true" [feedback]="false"></p-password>
                     </span>
                 </div>
     

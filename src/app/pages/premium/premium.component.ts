@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { PaymentInsertReq } from 'src/app/dto/payment/payment-insert-req';
 import { PremiumPaymentHistoryInsertReq } from 'src/app/dto/premium-payment-history/premium-payment-history-insert-req';
 import { PremiumTypeFindAllRes } from 'src/app/dto/premium-type/premium-type-find-all-res';
 import { FileService } from 'src/app/service/file.service';

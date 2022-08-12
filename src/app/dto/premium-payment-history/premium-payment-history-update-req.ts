@@ -1,8 +1,7 @@
 
 export interface PremiumPaymentHistoryUpdateReq{
     id? : string
-    userId? : string
-    premiumTypeId? : string
-    trxNo? : string
-    isActive? : string
+    paymentId? : string
+    isApprove? : boolean
+    isActive? : boolean
 }

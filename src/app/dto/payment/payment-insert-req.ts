@@ -1,5 +1,6 @@
 export interface PaymentInsertReq {
-  userId?: string;
   fileName: string;
   fileExtension: string;
+  premiumTypeId: string;
+  eventHeaderId: string;
 }
