@@ -30,6 +30,18 @@ export class EventHeaderService {
     );
   }
 
+  showAllEvent(): Observable<EventHeaderFindAllRes> {
+    return this.http.get<EventHeaderFindAllRes>(
+      'http://localhost:1234/event-headers/events'
+    );
+  }
+
+  showAllCourse(): Observable<EventHeaderFindAllRes> {
+    return this.http.get<EventHeaderFindAllRes>(
+      'http://localhost:1234/event-headers/courses'
+    );
+  }
+
   addEventHeader(data: EventHeaderInsertReq): Observable<InsertRes> {
     return this.http.post<InsertRes>(
       'http://localhost:1234/event-headers',

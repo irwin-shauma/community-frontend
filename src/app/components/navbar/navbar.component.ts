@@ -64,6 +64,8 @@ export class NavbarComponent implements OnInit {
 
   checkLoginStatus(): void {
     if (this.loginService.getData() != null) {
+      console.log(this.loginService.getData());
+
       this.loginStatus = true;
       this.getUsername();
       this.userService
@@ -74,7 +76,6 @@ export class NavbarComponent implements OnInit {
         });
     } else {
       this.loginStatus = false;
-
       // this.initData()
     }
   }
@@ -92,15 +93,17 @@ export class NavbarComponent implements OnInit {
             routerLink: '/article',
           },
           {
-            label: 'Approval Payment',
-            icon: 'pi pi-fw pi-check-circle',
-            routerLink: '/payment',
-          },
-          {
             label: 'Role',
             icon: 'pi pi-fw pi-user',
             routerLink: '/roles',
           },
+        ],
+        visible: this.dataLogin === Role.SUPERADMIN,
+      },
+      {
+        label: 'Type',
+        icon: 'pi pi-fw pi-book',
+        items: [
           {
             label: 'Thread Type',
             icon: 'pi pi-fw pi-sort',
@@ -120,16 +123,39 @@ export class NavbarComponent implements OnInit {
         visible: this.dataLogin === Role.SUPERADMIN,
       },
       {
+        label: 'Approval Payment',
+        icon: 'pi pi-fw pi-check-circle',
+        routerLink: '/payment',
+        visible: this.dataLogin === Role.SUPERADMIN,
+      },
+      {
+        label: 'List',
+        icon: 'pi pi-fw pi-table',
+        items: [
+          {
+            label: 'Event',
+            icon: 'pi pi-fw pi-calendar',
+            routerLink: '/events',
+          },
+          {
+            label: 'Thread',
+            icon: 'pi pi-fw pi-book',
+            routerLink: '/threads',
+          },
+        ],
+        visible: this.dataLogin === Role.SUPERADMIN,
+      },
+      {
         label: 'Article',
         icon: 'pi pi-fw pi-book text-red-500',
         routerLink: '/article-members',
-        visible: this.dataLogin != Role.SUPERADMIN,
+        visible: this.dataLogin !== Role.SUPERADMIN,
       },
       {
         label: 'Thread',
         icon: 'pi pi-fw pi-comments text-red-500',
         routerLink: '/threads-main',
-        visible: this.dataLogin != Role.SUPERADMIN,
+        visible: this.dataLogin !== Role.SUPERADMIN,
       },
       {
         label: 'Event',

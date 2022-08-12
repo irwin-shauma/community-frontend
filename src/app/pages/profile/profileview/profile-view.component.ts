@@ -1,7 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { Role } from 'src/app/constant/role-constant';
 import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
+import { EventPaymentHistoryFindAllRes } from 'src/app/dto/event-payment-history/event-payment-history-find-all-res';
 import { PremiumPaymentHistoryData } from 'src/app/dto/premium-payment-history/premium-payment-history-data';
 import { PremiumPaymentHistoryFindAll } from 'src/app/dto/premium-payment-history/premium-payment-history-find-all';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
@@ -29,6 +31,7 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   threadLikeSubs?: Subscription;
   answerPollingSubscription?: Subscription;
   id!: string | any;
+  admin: boolean = false;
   data: UserData = {} as UserData;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadPolling: ThreadHeaderPollingFindAll = {} as ThreadHeaderPollingFindAll;
@@ -36,6 +39,8 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   likeInsert: ThreadLikeInsertReq = {} as ThreadLikeInsertReq;
   premiumHistory: PremiumPaymentHistoryFindAll =
     {} as PremiumPaymentHistoryFindAll;
+  eventHistory: EventPaymentHistoryFindAllRes =
+    {} as EventPaymentHistoryFindAllRes;
   pollingPresentasion: boolean = false;
   answerInsert: ThreadPollingAnswerInsertReq =
     {} as ThreadPollingAnswerInsertReq;
@@ -90,13 +95,19 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
     // this.premiumSubs = this.premiumPaymentHistoryService.findByUser().subscribe((res) => {
     //   this.premiumHistory.data = res.data;
     // });
-    this.initPremium()
+    this.initPremium();
+    if (this.loginService.getRole() !== Role.SUPERADMIN) {
+      this.admin = true;
+    }
   }
 
   initPremium(): void {
-    this.premiumSubs = this.premiumPaymentHistoryService.getByUser().subscribe(res => {
-      this.premiumPaymentHistory = res.data
-    })
+    this.premiumSubs = this.premiumPaymentHistoryService
+      .getByUser()
+      .subscribe((res) => {
+        this.premiumPaymentHistory = res.data;
+        this.premiumHistory = res;
+      });
   }
 
   onExpandText(evt: any, id: string): void {
@@ -163,8 +174,8 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.threadLikeSubs?.unsubscribe()
-    this.answerPollingSubscription?.unsubscribe()
-    this.premiumSubs?.unsubscribe()
+    this.threadLikeSubs?.unsubscribe();
+    this.answerPollingSubscription?.unsubscribe();
+    this.premiumSubs?.unsubscribe();
   }
 }

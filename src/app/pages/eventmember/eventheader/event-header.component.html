@@ -1,53 +1,91 @@
-    <div class="p-8">
-        <div class="card">
-            <p-tabView class="p-2">
-                <p-tabPanel header="Event" leftIcon="pi pi-calendar">
-                    <div class="flex flex-row flex-wrap justify-content-between gap-6 mt-3 ml-5 mr-5">
-                        <p-card [style]="{width: '350px', height:'400px'}" *ngFor="let event of eventHeader;">
-                            <ng-template pTemplate="header">
-                                <div *ngIf="event.fileId === null">
-                                    <img src="./../../../../assets/card-image.png" alt="">
-                                </div>
-                                <div *ngIf="event.fileId !== null">
-                                    <img alt="Card" src="http://localhost:1234/files/{{event.fileId}}" class="imgEvent" width="100" height="200">
-                                </div>
-                            
-                                <div class="flex flex-row justify-content-between px-3">
-                                    <span><i class="pi pi-github text-red-400"></i>{{event.provider}}</span>
-                                    <span><i class="pi pi-map-marker text-red-400"></i> {{event.location}}</span>
-                                </div>
-                            </ng-template>
-                            <span class="card-title text-center mt-0">{{event.title}}</span>
-                            <div class="flex flex-row justify-content-between mt-2 ">
-                                <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i>start: {{event.startDate | date: "medium"}}
-                                    </span>
-                                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>{{event.price | currency: "IDR": "symbol-narrow"}}</span>
-                                   
+<div class="p-8">
+    <div class="card">
+        <p-tabView class="p-2">
+            <p-tabPanel header="Event" leftIcon="pi pi-calendar">
+                <h2 class="text-center" *ngIf="isEvent == false">No Event Available Yet</h2>
+                <div class="flex flex-row flex-wrap justify-content-between gap-6 mt-3 ml-5 mr-5" *ngIf="isEvent == true">
+                    <p-card [style]="{width: '350px', height:'400px'}" *ngFor="let event of eventData;">
+                        <ng-template pTemplate="header">
+                            <img alt="Card" src="http://localhost:1234/files/{{event.fileId}}" class="imgEvent"
+                                width="100" height="200">
+                            <div class="flex flex-row justify-content-between px-3">
+                                <span><i class="pi pi-github text-red-400"></i>{{event.provider}}</span>
+                                <span><i class="pi pi-map-marker text-red-400"></i> {{event.location}}</span>
                             </div>
-                            <div class="flex flex-row justify-content-between mt-3">
-                                <span class="card-content flex justify-content-center gap-1"><i class="pi pi-clock text-red-400"></i>end: {{event.endDate | date: "medium"}}
-                                </span>
-                                <span>
-                                  
-                                    <div class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" (click)="clickToDetail(event.id)">Buy <i class="pi pi-fw pi-shopping-cart"></i></div>
-                                </span>
-                        
-                              
-                             
+                        </ng-template>
+                        <span class="card-title text-center mt-0">{{event.title}}</span>
+                        <div class="flex flex-row justify-content-between mt-2 ">
+                            <span class="card-content flex justify-content-center gap-1"><i
+                                    class="pi pi-clock text-red-400"></i>start: {{event.startDate | date: "medium"}}
+                            </span>
+                            <span class="card-content flex justify-content-center gap-1"><i
+                                    class="pi pi-tag text-red-400"></i>{{event.price | currency: "IDR":
+                                "symbol-narrow"}}</span>
+
+                        </div>
+                        <div class="flex flex-row justify-content-between mt-3">
+                            <span class="card-content flex justify-content-center gap-1"><i
+                                    class="pi pi-clock text-red-400"></i>end: {{event.endDate | date: "medium"}}
+                            </span>
+                            <span>
+
+                                <div class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer"
+                                    (click)="clickToDetail(event.id)">Buy <i class="pi pi-fw pi-shopping-cart"></i>
+                                </div>
+                            </span>
+
+
+
+                        </div>
+                    </p-card>
+
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Course" leftIcon="pi pi-chart-pie">
+                <h2 class="text-center" *ngIf="isCourse == false">No Event Available Yet</h2>
+                <div class="flex flex-row flex-wrap justify-content-between gap-6 mt-3 ml-5 mr-5" *ngIf="isEvent == true">
+                    <p-card [style]="{width: '350px', height:'400px'}" *ngFor="let course of courseData;">
+                        <ng-template pTemplate="header">
+                            <img alt="Card" src="http://localhost:1234/files/{{course.fileId}}" class="imgEvent"
+                                width="100" height="200">
+                            <div class="flex flex-row justify-content-between px-3">
+                                <span><i class="pi pi-github text-red-400"></i>{{course.provider}}</span>
+                                <span><i class="pi pi-map-marker text-red-400"></i> {{course.location}}</span>
                             </div>
-                        </p-card>
+                        </ng-template>
+                        <span class="card-title text-center mt-0">{{course.title}}</span>
+                        <div class="flex flex-row justify-content-between mt-2 ">
+                            <span class="card-content flex justify-content-center gap-1"><i
+                                    class="pi pi-clock text-red-400"></i>start: {{course.startDate | date: "medium"}}
+                            </span>
+                            <span class="card-content flex justify-content-center gap-1"><i
+                                    class="pi pi-tag text-red-400"></i>{{course.price | currency: "IDR":
+                                "symbol-narrow"}}</span>
 
-                    </div>
-                </p-tabPanel>
-                <p-tabPanel header="Course" leftIcon="pi pi-chart-pie">
-                    <div class="flex flex-row flex-wrap justify-content-between gap-4 mt-3 ml-5 mr-5">
-                      
+                        </div>
+                        <div class="flex flex-row justify-content-between mt-3">
+                            <span class="card-content flex justify-content-center gap-1"><i
+                                    class="pi pi-clock text-red-400"></i>end: {{course.endDate | date: "medium"}}
+                            </span>
+                            <span>
 
-                        
+                                <div class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer"
+                                    (click)="clickToDetail(course.id)">Buy <i class="pi pi-fw pi-shopping-cart"></i>
+                                </div>
+                            </span>
 
 
-                    </div>
-                </p-tabPanel>
-            </p-tabView>
-        </div>
+
+                        </div>
+                    </p-card>
+
+
+
+
+
+
+                </div>
+            </p-tabPanel>
+        </p-tabView>
     </div>
+</div>

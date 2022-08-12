@@ -11,7 +11,11 @@ import { EventHeaderService } from 'src/app/service/event-header.service';
 })
 export class EventHeaderComponent implements OnInit {
   eventHeader: EventHeaderData[] = [];
+  eventData: EventHeaderData[] = [];
+  courseData: EventHeaderData[] = [];
+  isCourse: boolean = false;
   eventSubscription?: Subscription;
+  isEvent: boolean = false;
 
   constructor(
     private eventHeaderService: EventHeaderService,
@@ -19,24 +23,25 @@ export class EventHeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.onInitData();
+    this.initEvent();
+    this.initCourse();
   }
 
-  onInitData(): void {
-    this.eventHeaderService.showAllEventHeaderMember().subscribe((result) => {
-      this.eventHeader = result.data;
-
-      for (let i = 0; i < result.data.length; i++) {
-        let event = new Date();
-        this.eventHeader[i].startDate = event.toLocaleString(
-          result.data[i].startDate
-        );
+  initEvent(): void {
+    this.eventHeaderService.showAllEvent().subscribe((result) => {
+      this.eventData = result.data;
+      if (result.data.length > 0) {
+        this.isEvent = true;
       }
-      for (let j = 0; j < result.data.length; j++) {
-        let event = new Date();
-        this.eventHeader[j].endDate = event.toLocaleString(
-          result.data[j].endDate
-        );
+    });
+  }
+
+  initCourse(): void {
+    this.eventHeaderService.showAllCourse().subscribe((result) => {
+      console.log('ini data', result.data);
+      this.courseData = result.data;
+      if (result.data.length > 0) {
+        this.isCourse = true;
       }
     });
   }

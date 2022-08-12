@@ -33,8 +33,8 @@
              
               
           
-            </p-tabPanel>
-            <p-tabPanel header="My Thread" leftIcon="pi pi-fw pi-th-large">
+            </p-tabPanel> 
+            <p-tabPanel header="My Thread" leftIcon="pi pi-fw pi-th-large" *ngIf="this.admin === true">
                 <div class="border-round mb-8 mt-5" *ngFor="let thread of threadHeader.data; let i = index">
                         <div class="flex">
                             <div>
@@ -119,7 +119,7 @@
                         </div>
                     </div>
             </p-tabPanel>
-            <p-tabPanel header="history payment" leftIcon="pi pi-fw pi-wallet">
+            <p-tabPanel header="history payment" leftIcon="pi pi-fw pi-wallet" *ngIf="admin == true">
                 <div *ngFor="let history of premiumHistory.data; let i = index">
                     
                     <div class="flex flex-column gap-2 glasses p-5">
