@@ -20,6 +20,8 @@ import { DividerModule } from 'primeng/divider';
 import { CheckboxModule } from 'primeng/checkbox';
 import { ThreadEditComponent } from './threadedit/thread-edit.component';
 import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import {SkeletonModule} from 'primeng/skeleton';
 
 @NgModule({
   imports: [
@@ -41,6 +43,8 @@ import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
     DividerModule,
     CheckboxModule,
     SharedPipeModule,
+    ProgressSpinnerModule,
+    SkeletonModule
   ],
   declarations: [
     ThreadMemberComponent,
@@ -54,4 +58,4 @@ import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
   ],
 
 })
-export class ThreadMemberModule {}
+export class ThreadMemberModule { }
