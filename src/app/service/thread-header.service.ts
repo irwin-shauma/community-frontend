@@ -42,4 +42,10 @@ export class ThreadHeaderService {
       data
     );
   }
+
+  findAllNonLogin(): Observable<ThreadHeaderFindAll> {
+    return this.http.get<ThreadHeaderFindAll>(
+      'http://localhost:1234/thread-headers/non-login'
+    );
+  }
 }

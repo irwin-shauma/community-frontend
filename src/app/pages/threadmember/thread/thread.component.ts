@@ -66,6 +66,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   dataPolling: ThreadHeaderPollingData = {} as ThreadHeaderPollingData;
   threadType: ThreadTypeFindAll = {} as ThreadTypeFindAll;
   threadSelf: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  threadNonLogin: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeaderLike: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeaderBookmark: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
@@ -79,6 +80,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   answerInsert: ThreadPollingAnswerInsertReq =
     {} as ThreadPollingAnswerInsertReq;
   bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
+  isLoggedIn: boolean = false
 
   sliceOptions = {
     start: 0,
@@ -110,8 +112,19 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
-    this.onInitData();
-    console.log(this.showType);
+
+    this.initNonLogin()
+    
+    if(this.loginService.getData() != null){
+      this.isLoggedIn = true
+      this.onInitData();
+    }
+  }
+
+  initNonLogin(): void {
+    this.threadHeaderService.findAllNonLogin().subscribe((result) => {
+      this.threadNonLogin.data = result.data;
+    });
   }
 
   onInitData(): void {
