@@ -38,7 +38,7 @@ export class EventHeaderService {
 
   showAllCourse(): Observable<EventHeaderFindAllRes> {
     return this.http.get<EventHeaderFindAllRes>(
-      'http://localhost:1234/event-headers/course'
+      'http://localhost:1234/event-headers/courses'
     );
   }
 

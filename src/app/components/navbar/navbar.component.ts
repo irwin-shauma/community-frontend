@@ -21,21 +21,22 @@ export class NavbarComponent implements OnInit {
   profile!: MenuItem[];
   loginMenu!: MenuItem[];
   userName!: string;
-  fileId! : string;
+  fileId!: string;
   loginStatus: boolean = false;
 
-  logoutReq : LogoutReq = {} as LogoutReq;
+  logoutReq: LogoutReq = {} as LogoutReq;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private loginService: LoginService,
     private logoutService: LogoutService,
     private userService: UserService,
-    // private spinner : NgxSpinnerService,
-    private activateRoute: ActivatedRoute) { }
+    private activateRoute: ActivatedRoute
+  ) {}
 
   logout(): void {
     localStorage.clear();
-    this.userService.logout(this.logoutReq)
+    this.userService.logout(this.logoutReq);
     this.checkLoginStatus();
   }
 
@@ -48,31 +49,34 @@ export class NavbarComponent implements OnInit {
   }
 
   getUsername() {
-    this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
-      this.userName = result.data?.fullName!
-      this.fileId = result.data?.fileId!
-    })
+    this.userService
+      .findById(this.loginService.getData()?.data?.id!)
+      .subscribe((result) => {
+        this.userName = result.data?.fullName!;
+        this.fileId = result.data?.fileId!;
+      });
   }
 
   ngOnInit(): void {
-   this.checkLoginStatus();
-   this.logoutReq.id =String(this.loginService.getData()?.data?.id)
-
+    this.checkLoginStatus();
+    this.logoutReq.id = String(this.loginService.getData()?.data?.id);
   }
 
-  checkLoginStatus() : void {
+  checkLoginStatus(): void {
     if (this.loginService.getData() != null) {
-      this.loginStatus = true
-      this.getUsername()
-      this.userService.findById(this.loginService.getData()?.data?.id!).subscribe((result) => {
-        this.userName = result.data?.fullName!
-        this.initData()
-      })
-    } else {
-      this.loginStatus = false
-      // this.router.navigateByUrl('/login');
-      // this.initData()
+      console.log(this.loginService.getData());
 
+      this.loginStatus = true;
+      this.getUsername();
+      this.userService
+        .findById(this.loginService.getData()?.data?.id!)
+        .subscribe((result) => {
+          this.userName = result.data?.fullName!;
+          this.initData();
+        });
+    } else {
+      this.loginStatus = false;
+      // this.initData()
     }
   }
 
@@ -89,15 +93,17 @@ export class NavbarComponent implements OnInit {
             routerLink: '/article',
           },
           {
-            label: 'Approval Payment',
-            icon: 'pi pi-fw pi-check-circle',
-            routerLink: '/payment',
-          },
-          {
             label: 'Role',
             icon: 'pi pi-fw pi-user',
             routerLink: '/roles',
           },
+        ],
+        visible: this.dataLogin === Role.SUPERADMIN,
+      },
+      {
+        label: 'Type',
+        icon: 'pi pi-fw pi-book',
+        items: [
           {
             label: 'Thread Type',
             icon: 'pi pi-fw pi-sort',
@@ -117,16 +123,39 @@ export class NavbarComponent implements OnInit {
         visible: this.dataLogin === Role.SUPERADMIN,
       },
       {
+        label: 'Approval Payment',
+        icon: 'pi pi-fw pi-check-circle',
+        routerLink: '/payment',
+        visible: this.dataLogin === Role.SUPERADMIN,
+      },
+      {
+        label: 'List',
+        icon: 'pi pi-fw pi-table',
+        items: [
+          {
+            label: 'Event',
+            icon: 'pi pi-fw pi-calendar',
+            routerLink: '/events',
+          },
+          {
+            label: 'Thread',
+            icon: 'pi pi-fw pi-book',
+            routerLink: '/threads',
+          },
+        ],
+        visible: this.dataLogin === Role.SUPERADMIN,
+      },
+      {
         label: 'Article',
         icon: 'pi pi-fw pi-book text-red-500',
         routerLink: '/article-members',
-        visible: this.dataLogin != Role.SUPERADMIN,
+        visible: this.dataLogin !== Role.SUPERADMIN,
       },
       {
         label: 'Thread',
         icon: 'pi pi-fw pi-comments text-red-500',
         routerLink: '/threads-main',
-        visible: this.dataLogin != Role.SUPERADMIN,
+        visible: this.dataLogin !== Role.SUPERADMIN,
       },
       {
         label: 'Event',
@@ -169,7 +198,7 @@ export class NavbarComponent implements OnInit {
             // command: () => {
             //   // this.logout();
             // },
-            routerLink: '/logout'
+            routerLink: '/logout',
           },
         ],
       },
@@ -181,7 +210,6 @@ export class NavbarComponent implements OnInit {
         icon: 'pi pi-fw pi-home text-red-500',
         routerLink: '/login',
       },
-
-    ]
+    ];
   }
 }

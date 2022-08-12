@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormArray, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { BalanceFindById } from 'src/app/dto/balance/balance-find-by-id-res';
 import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
 import { EventHeaderFindAllRes } from 'src/app/dto/event-header/event-header-find-all-res';
 import { PremiumPaymentHistoryFindById } from 'src/app/dto/premium-payment-history/premium-payment-history-find-by-id-res';
@@ -16,6 +17,7 @@ import { ThreadHeaderPollingInsertReq } from 'src/app/dto/threadheaderpolling/th
 import { ThreadPollingDetailData } from 'src/app/dto/threadheaderpolling/thread-polling-detail-data';
 import { ThreadPollingDetailInsertReq } from 'src/app/dto/threadheaderpolling/thread-polling-detail-insert-req';
 import { ThreadTypeFindAll } from 'src/app/dto/threadtype/thread-type-find-all';
+import { BalanceService } from 'src/app/service/balance.service';
 import { BookmarkService } from 'src/app/service/bookmark.service';
 import { EventHeaderService } from 'src/app/service/event-header.service';
 import { FileService } from 'src/app/service/file.service';
@@ -71,6 +73,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadHeaderLike: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeaderBookmark: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   eventHeader: EventHeaderFindAllRes = {} as EventHeaderFindAllRes;
+  balance: BalanceFindById = {} as BalanceFindById;
   threadPollingHeader: ThreadHeaderPollingFindAll =
     {} as ThreadHeaderPollingFindAll;
   threadPollingDetail: ThreadPollingDetailData = {} as ThreadPollingDetailData;
@@ -80,8 +83,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   answerInsert: ThreadPollingAnswerInsertReq =
     {} as ThreadPollingAnswerInsertReq;
   bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
-  isLoggedIn: boolean = false
-  isLoading: boolean = true
+  isLoggedIn: boolean = false;
+  isLoading: boolean = true;
 
   sliceOptions = {
     start: 0,
@@ -101,7 +104,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     private bookmarkService: BookmarkService,
     private loginService: LoginService,
     private userService: UserService,
-    private eventService: EventHeaderService
+    private eventService: EventHeaderService,
+    private balanceService: BalanceService
   ) {}
 
   pollingArray = new FormArray([new FormControl('')]);
@@ -113,11 +117,10 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit(): void {
+    this.initNonLogin();
 
-    this.initNonLogin()
-    
-    if(this.loginService.getData() != null){
-      this.isLoggedIn = true
+    if (this.loginService.getData() != null) {
+      this.isLoggedIn = true;
       this.onInitData();
     }
   }
@@ -125,7 +128,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   initNonLogin(): void {
     this.threadHeaderService.findAllNonLogin().subscribe((result) => {
       this.threadNonLogin.data = result.data;
-      this.isLoading = false
+      this.isLoading = false;
     });
     this.eventService.showAllEventHeader(0, 10).subscribe((result) => {
       this.fileEvent = result.data[result.data.length - 1].fileId;
@@ -170,6 +173,11 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
     this.threadService.showAllByUserBookmark().subscribe((result) => {
       this.threadHeaderBookmark = result;
+    });
+
+    this.balanceService.findByUser().subscribe((result) => {
+      this.balance = result;
+      console.log('check', result.data?.currentBalance);
     });
 
     this.eventService.showAllEventHeader(0, 10).subscribe((result) => {
@@ -316,7 +324,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   }
 
   directToLogin(): void {
-    this.router.navigateByUrl("/login");
+    this.router.navigateByUrl('/login');
   }
 
   ngOnDestroy(): void {

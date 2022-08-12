@@ -13,8 +13,9 @@ export class EventHeaderComponent implements OnInit {
   eventHeader: EventHeaderData[] = [];
   eventData: EventHeaderData[] = [];
   courseData: EventHeaderData[] = [];
+  isCourse: boolean = false;
   eventSubscription?: Subscription;
-  isEvent: boolean = false
+  isEvent: boolean = false;
 
   constructor(
     private eventHeaderService: EventHeaderService,
@@ -22,33 +23,27 @@ export class EventHeaderComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.onInitData();
     this.initEvent();
     this.initCourse();
-    
-    
-  }
-
-  onInitData(): void {
-    this.eventHeaderService.showAllEventHeaderMember().subscribe((result) => {
-      this.eventHeader = result.data;
-    });
   }
 
   initEvent(): void {
-    this.eventHeaderService.showAllEvent().subscribe(result => {
+    this.eventHeaderService.showAllEvent().subscribe((result) => {
       this.eventData = result.data;
-      if(result.data.length > 0) {
-        this.isEvent = true
+      if (result.data.length > 0) {
+        this.isEvent = true;
       }
-      console.log(this.isEvent);
-    })
+    });
   }
 
   initCourse(): void {
-    this.eventHeaderService.showAllCourse().subscribe(result => {
+    this.eventHeaderService.showAllCourse().subscribe((result) => {
+      console.log('ini data', result.data);
       this.courseData = result.data;
-    })
+      if (result.data.length > 0) {
+        this.isCourse = true;
+      }
+    });
   }
 
   clickToDetail(id: string): void {
