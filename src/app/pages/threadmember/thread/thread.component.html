@@ -1,5 +1,5 @@
-<div class="grid px-8">
-    <div class="col-3 side-bar-profile" *ngIf="isLoggedIn === true">
+<div class="grid px-8 m-0 row-gap-2">
+    <div class="md:col-3 side-bar-profile" *ngIf="isLoggedIn === true">
         <div class="bg-white border-round h-20rem">
             <div class="flex flex-column align-items-center">
                 <div *ngIf="file === null">
@@ -53,8 +53,8 @@
         </div>
 
     </div>
-    <div class="col-6">
-        <p-tabView *ngIf="isLoggedIn === true">
+    <div class="md:col-6"  *ngIf="isLoggedIn === true">
+        <p-tabView>
             <p-tabPanel header="Thread" leftIcon="pi pi-book text-red-500">
                 <form (ngSubmit)="onsubmit()">
                     <div>
@@ -578,8 +578,15 @@
                 </div>
             </p-tabPanel>
         </p-tabView>
-        <p-tabView *ngIf="isLoggedIn === false">
-            <p-tabPanel>
+    </div>
+    <div class="lg:col-8 md:col-6" *ngIf="isLoggedIn === false">
+        <p-tabView>
+            <p-tabPanel header="Thread" leftIcon="pi pi-book text-red-500">
+
+                <div class="flex align-items-center justify-content-center" *ngIf="isLoading === true">
+                    <p-progressSpinner ></p-progressSpinner>
+                </div>
+                
                 <div class="border-round mb-8 mt-5" *ngFor="let thread of threadNonLogin.data; let i = index">
                     <div *ngIf="allThreadShow === true">
                         <div class="flex">
@@ -603,7 +610,7 @@
                             </p>
                             <p>
                                 {{thread.contentThread | slice:sliceOptions.start:sliceOptions.end}} ... <a
-                                    *ngIf="thread.threadType === 'Regular'" (click)="onExpandText($event, thread.id)"
+                                    *ngIf="thread.threadType === 'Regular'" (click)="directToLogin()"
                                     class="cursor-pointer">See More </a>
                                 <a *ngIf="thread.threadType === 'Premium' && showType === false"
                                     (click)="onExpandTextPremium($event)" class="cursor-pointer">See More <i
@@ -621,15 +628,11 @@
                                 <div class="flex justify-content-between mt-8 align-items-center">
                                     <div class="flex w-1 justify-content-around">
                                         <div class="flex justify-content-center align-items-center mx-2">
-                                            <a (click)="like(thread.id)" class="cursor-pointer mr-1"
-                                                *ngIf="thread.isLike === false"><i class="pi pi-heart"></i></a>
-                                            <a (click)="unLike(thread.id)" *ngIf="thread.isLike === true"
-                                                class="cursor-pointer mr-1"><i
-                                                    class="pi pi-heart-fill text-red-500"></i></a>
+                                            <a (click)="directToLogin()" class="cursor-pointer mr-1"><i class="pi pi-heart"></i></a>
                                             <p>{{thread.countLike}}</p>
                                         </div>
                                         <div class="flex justify-content-center align-items-center">
-                                            <i class="pi pi-comment  mr-1"></i>
+                                            <a (click)="directToLogin()" class="cursor-pointer"><i class="pi pi-comment  mr-1"></i></a>
                                             <p>{{thread.countComment}}</p>
                                         </div>
                                     </div>
@@ -656,16 +659,27 @@
             </p-tabPanel>
         </p-tabView>
     </div>
-    <div class="col-3">
+    <div class="md:col-3">
         <div class="bg-white border-round">
-            <div class="flex gap-1 align-items-center p-3">
+            <div class="flex gap-1 align-items-center p-3" *ngIf="isLoading === true">
+                <p-skeleton width="13rem" height="4rem"></p-skeleton>
+            </div>
+            <div class="flex gap-1 align-items-center p-3" *ngIf="isLoading === false">
                 <i class="pi pi-fw pi-book text-red-500"></i>
                 <h3 class="font-medium">Upcoming Event / Course </h3>
             </div>
             <div class="p-3">
-                <img src="http://localhost:1234/files/{{fileEvent}}" alt="" width="100%" height="200px">
-                <h3>{{titleEvent}}</h3>
-                <div class="flex flex-row justify-content-between mt-5">
+                <p-skeleton width="100%" height="200px" *ngIf="isLoading === true"></p-skeleton>
+                <img src="http://localhost:1234/files/{{fileEvent}}" alt="" width="100%" height="200px" *ngIf="isLoading === false">
+
+                <p-skeleton styleClass="mt-3" width="7rem" *ngIf="isLoading === true"></p-skeleton>
+                <h3 *ngIf="isLoading === false">{{titleEvent}}</h3>
+
+
+                <div class="flex flex-row justify-content-between mt-5" *ngIf="isLoading === true">
+                    <p-skeleton width="12rem"></p-skeleton>
+                </div>
+                <div class="flex flex-row justify-content-between mt-5" *ngIf="isLoading === false">
                     <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
                         <h5 class="font-normal">{{provider}}</h5>
                     </span>
@@ -673,7 +687,11 @@
                         <h5 class="font-normal">{{location}}</h5>
                     </span>
                 </div>
-                <div class="flex flex-row justify-content-between mt-2 ">
+
+                <div class="flex flex-row justify-content-between mt-2" *ngIf="isLoading === true">
+                    <p-skeleton width="12rem"></p-skeleton>
+                </div>
+                <div class="flex flex-row justify-content-between mt-2" *ngIf="isLoading === false">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
                         <h5 class="font-normal">start: {{startEvent | date: "medium"}}</h5>
@@ -681,26 +699,20 @@
                     <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>
                         <h5 class="font-normal">{{price | customCurrency}}</h5>
                     </span>
-
                 </div>
-                <div class="flex flex-row justify-content-between mt-3">
+
+                <div class="flex flex-row justify-content-between mt-2" *ngIf="isLoading === true">
+                    <p-skeleton width="12rem"></p-skeleton>
+                </div>
+                <div class="flex flex-row justify-content-between mt-3" *ngIf="isLoading === false">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
                         <h5 class="font-normal">end: {{endEvent| date: "medium"}} </h5>
                     </span>
-                    <span>
-
-                        <div class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer"
-                            (click)="clickToDetail(idEvent)">Buy <i class="pi pi-fw pi-shopping-cart"></i></div>
-                    </span>
-
-
-
+                    <button pButton type="button" (click)="clickToDetail(idEvent)" class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy" icon="pi pi-fw pi-shopping-cart">
+                    </button>
                 </div>
             </div>
         </div>
     </div>
-
-
-
 </div>

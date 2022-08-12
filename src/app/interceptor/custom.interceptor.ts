@@ -58,10 +58,10 @@ export class CustomInterceptor implements HttpInterceptor {
               life: 1000,
             });
             if (result.status == 401) {
-              // if (!isLoginReq) {
-              //   this.router.navigateByUrl('/login');
-              // }
-              // localStorage.clear();
+              if (!isLoginReq) {
+                this.router.navigateByUrl('/login');
+              }
+              localStorage.clear();
             }
           }
         },

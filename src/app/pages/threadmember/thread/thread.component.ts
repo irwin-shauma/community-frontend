@@ -81,6 +81,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     {} as ThreadPollingAnswerInsertReq;
   bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
   isLoggedIn: boolean = false
+  isLoading: boolean = true
 
   sliceOptions = {
     start: 0,
@@ -124,6 +125,19 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   initNonLogin(): void {
     this.threadHeaderService.findAllNonLogin().subscribe((result) => {
       this.threadNonLogin.data = result.data;
+      this.isLoading = false
+    });
+    this.eventService.showAllEventHeader(0, 10).subscribe((result) => {
+      this.fileEvent = result.data[result.data.length - 1].fileId;
+      this.titleEvent = result.data[result.data.length - 1].title;
+      let event = new Date();
+      this.startEvent = result.data[result.data.length - 1].startDate;
+      this.startEvent = result.data[result.data.length - 1].startDate;
+      this.endEvent = result.data[result.data.length - 1].endDate;
+      this.location = result.data[result.data.length - 1].location;
+      this.provider = result.data[result.data.length - 1].provider;
+      this.price = result.data[result.data.length - 1].price;
+      this.idEvent = result.data[result.data.length - 1].id;
     });
   }
 
@@ -299,6 +313,10 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
   clickToDetail(id: string): void {
     this.router.navigateByUrl(`/event-members/detail/${id}`);
+  }
+
+  directToLogin(): void {
+    this.router.navigateByUrl("/login");
   }
 
   ngOnDestroy(): void {
