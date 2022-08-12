@@ -85,7 +85,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
   sliceOptions = {
     start: 0,
-    end: 100,
+    end: 200,
     default: 100,
   };
 

@@ -5,6 +5,8 @@ import { InsertRes } from '../dto/insert-res';
 import { PremiumPaymentHistoryFindAll } from '../dto/premium-payment-history/premium-payment-history-find-all';
 import { PremiumPaymentHistoryFindById } from '../dto/premium-payment-history/premium-payment-history-find-by-id-res';
 import { PremiumPaymentHistoryInsertReq } from '../dto/premium-payment-history/premium-payment-history-insert-req';
+import { PremiumPaymentHistoryUpdateReq } from '../dto/premium-payment-history/premium-payment-history-update-req';
+import { UpdateRes } from '../dto/update-res';
 
 @Injectable({
   providedIn: 'root',
@@ -41,5 +43,9 @@ export class PremiumPaymentHistoryService {
       'http://localhost:1234/premium-payment-histories',
       data
     );
+  }
+
+  approvePremium(data: PremiumPaymentHistoryUpdateReq): Observable<UpdateRes> {
+    return this.http.put<UpdateRes> ('http://localhost:1234/premium-payment-histories', data)
   }
 }
