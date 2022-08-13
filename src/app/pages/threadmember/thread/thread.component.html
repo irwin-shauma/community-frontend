@@ -234,8 +234,8 @@
                                     (click)="onExpandText($event, thread.id)" class="cursor-pointer">See More </a>
                             </p>
                         </div>
-                        <div *ngIf="thread.fileId != null">
-                            <img [src]="'http://localhost:1234/files/'+thread.fileId" alt="" width="400px"
+                        <div *ngIf="thread.fileId != null" class="thread-img">
+                            <img [src]="'http://localhost:1234/files/'+thread.fileId" alt="img" width="400px"
                                 height="200px">
                         </div>
                         <div>

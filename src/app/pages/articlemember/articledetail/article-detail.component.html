@@ -1,4 +1,7 @@
-<div class="p-8">
+<div class="pl-8" routerLink="/article-members">
+    <button pButton pRipple type="button" label="Back" icon="pi pi-arrow-left" class="p-button-raised text-red-500 p-button-secondary p-button-text"></button>
+</div>
+<div class="pl-8 py-3">
     <div class="grid">
     <div class="p-card col-12" id="card-article">
             <div class="grid">
@@ -13,7 +16,7 @@
                             </p-tabPanel>
                         </p-tabView>
                     </div>
-                    <div class="p-card m-6 h-15rem" id="card-image">
+                    <div class="p-card m-6 h-30rem" id="card-image">
                         <img src="http://localhost:1234/files/{{articleDetail.fileId}}" class="imgCover" alt="Image" width="100%" height="100%" object-fit="cover" />
                     </div>
                     <div class="flex flex-column card-container ml-5 mr-5">

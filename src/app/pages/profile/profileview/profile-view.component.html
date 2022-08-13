@@ -170,6 +170,28 @@
                 </div>
             </p-tabPanel>
             <p-tabPanel header="My Event" leftIcon="pi pi-fw pi-calendar">
+                <div class="flex justify-content-end">
+                    <button pButton (click)="showMaximizableDialog()" label="Download Report" class="p-button-rounded bg-red-500" icon="pi pi-download" [loading]="false"></button>
+<p-dialog header="Download Report" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '1000px', height:'1000px'}" [maximizable]="true"
+    [draggable]="false" [resizable]="false">
+    <div class="flex flex-column gap-5 justify-content-center align-items-center glasses h-full">
+        <div>
+            <h4>Start Date</h4>
+            <p-calendar [showIcon]="true" [required]="true" inputId="time" name="startDate" inputId="icon"></p-calendar>
+        </div>
+        <div>
+            <h4>End Date</h4>
+            <p-calendar [showIcon]="true" [required]="true" inputId="time" name="startDate" inputId="icon"></p-calendar>
+        </div>
+
+    </div>
+     
+        <ng-template pTemplate="footer">
+            <p-button icon="pi pi-download" (click)="displayMaximizable=false" label="Download"></p-button>
+        </ng-template>
+</p-dialog>
+                </div>
+             
                 <div class="flex flex-row flex-wrap justify-content-between gap-6 mt-3 ml-5 mr-5">
                     <p-card [style]="{width: '350px', height:'400px'}" *ngFor="let event of eventHeader.data;">
                         <ng-template pTemplate="header">
