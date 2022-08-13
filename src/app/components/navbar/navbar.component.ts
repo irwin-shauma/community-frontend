@@ -146,6 +146,18 @@ export class NavbarComponent implements OnInit {
           {
             label: 'Event',
             icon: 'pi pi-money-bill',
+            items: [
+              {
+                label: 'All Event',
+                icon: 'pi pi-money-bill',
+                routerLink: '/payment/events'
+              },
+              {
+                label: 'Not Approved Event',
+                icon: 'pi pi-money-bill',
+                routerLink: '/payment/unapprove-events'
+              }
+            ]
           }
         ]
       },

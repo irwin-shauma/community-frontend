@@ -14,6 +14,7 @@ import { UserService } from 'src/app/service/user.service';
 export class ArticleHeaderComponent implements OnInit {
   articleHeaders: ArticleHeaderFindAll = {} as ArticleHeaderFindAll;
   articleHeaderData!: ArticleHeaderData[];
+  loading: boolean = true;
   username: string = '';
   position: string = '';
   file: string = '';
@@ -51,6 +52,7 @@ export class ArticleHeaderComponent implements OnInit {
       .subscribe((result) => {
         this.articleHeaders = result;
         this.articleHeaderData = result.data!;
+        this.loading = false;
       });
     this.userService
       .findById(this.loginService.getData()?.data?.id!)

@@ -1,4 +1,4 @@
-<div class="grid px-8 m-0 row-gap-2">
+<div class="grid px-8 m-0 row-gap-2" *ngIf="isLoading === false">
     <div class="md:col-3 side-bar-profile" *ngIf="isLoggedIn === true">
         <div class="bg-white border-round h-20rem">
             <div class="flex flex-column align-items-center">
@@ -7,7 +7,7 @@
 
                 </div>
                 <div *ngIf="file !== null">
-                    <img src="http://localhost:1234/files/{{file}}" alt="" width="100px" height="100px"
+                    <img [src]="'http://localhost:1234/files/'+file" alt="" width="100px" height="100px"
                         class="profile mt-5">
                 </div>
 
@@ -18,8 +18,10 @@
             <div class="px-2">
                 <div class="flex gap-1">
                     <i class="pi pi-fw pi-money-bill text-red-500"></i>
-                    <h5 class="font-normal" *ngIf="balance.data?.currentBalance === 0">Balance : {{ "0" | customCurrency}}</h5>
-                    <h5 class="font-normal" *ngIf="balance.data?.currentBalance !== 0">Balance : {{ balance.data?.currentBalance | customCurrency}}</h5>
+                    <h5 class="font-normal" *ngIf="balance.data?.currentBalance === 0">Balance : {{ "0" |
+                        customCurrency}}</h5>
+                    <h5 class="font-normal" *ngIf="balance.data?.currentBalance !== 0">Balance : {{
+                        balance.data?.currentBalance | customCurrency}}</h5>
                 </div>
 
             </div>
@@ -54,14 +56,14 @@
         </div>
 
     </div>
-    <div class="md:col-6"  *ngIf="isLoggedIn === true">
+    <div class="md:col-6" *ngIf="isLoggedIn === true">
         <p-tabView>
             <p-tabPanel header="Thread" leftIcon="pi pi-book text-red-500">
                 <form (ngSubmit)="onsubmit()">
                     <div>
                         <h3>Title</h3>
                         <div>
-                            <textarea pInputTextarea rows="5" cols="10" class="w-full" name="title"
+                            <textarea pInputTextarea cols="10" class="w-full" name="title"
                                 [(ngModel)]="data.title"></textarea>
                         </div>
                     </div>
@@ -138,7 +140,7 @@
                                     size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                     shape="circle"></p-avatar>
                                 <p-avatar *ngIf="thread.userPhoto !== null"
-                                    image="http://localhost:1234/files/{{thread.userPhoto}}" styleClass="mr-2"
+                                    [image]="'http://localhost:1234/files/'+thread.userPhoto" styleClass="mr-2"
                                     size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                     shape="circle"></p-avatar>
                             </div>
@@ -163,7 +165,7 @@
                             </p>
                         </div>
                         <div *ngIf="thread.fileId != null">
-                            <img src="http://localhost:1234/files/{{thread.fileId}}" alt="" width="400px"
+                            <img [src]="'http://localhost:1234/files/'+thread.fileId" alt="" width="400px"
                                 height="200px">
                         </div>
                         <div>
@@ -213,7 +215,7 @@
                                     size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                     shape="circle"></p-avatar>
                                 <p-avatar *ngIf="thread.userPhoto !== null"
-                                    image="http://localhost:1234/files/{{thread.userPhoto}}" styleClass="mr-2"
+                                    [image]="'http://localhost:1234/files/'+thread.userPhoto" styleClass="mr-2"
                                     size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                     shape="circle"></p-avatar>
                             </div>
@@ -232,7 +234,7 @@
                             </p>
                         </div>
                         <div *ngIf="thread.fileId != null">
-                            <img src="http://localhost:1234/files/{{thread.fileId}}" alt="" width="400px"
+                            <img [src]="'http://localhost:1234/files/'+thread.fileId" alt="" width="400px"
                                 height="200px">
                         </div>
                         <div>
@@ -282,7 +284,7 @@
                                     size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                     shape="circle"></p-avatar>
                                 <p-avatar *ngIf="thread.userPhoto !== null"
-                                    image="http://localhost:1234/files/{{thread.userPhoto}}" styleClass="mr-2"
+                                    [image]="'http://localhost:1234/files/'+thread.userPhoto" styleClass="mr-2"
                                     size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                     shape="circle"></p-avatar>
                             </div>
@@ -305,7 +307,7 @@
                             </p>
                         </div>
                         <div *ngIf="thread.fileId != null">
-                            <img src="http://localhost:1234/files/{{thread.fileId}}" alt="" width="400px"
+                            <img [src]="'http://localhost:1234/files/'+thread.fileId" alt="" width="400px"
                                 height="200px">
                         </div>
                         <div>
@@ -450,7 +452,7 @@
                                 size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                 shape="circle"></p-avatar>
                             <p-avatar *ngIf="threadLike.userPhoto !== null"
-                                image="http://localhost:1234/files/{{threadLike.userPhoto}}" styleClass="mr-2"
+                                [image]="'http://localhost:1234/files/'+threadLike.userPhoto" styleClass="mr-2"
                                 size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                 shape="circle"></p-avatar>
                         </div>
@@ -473,7 +475,7 @@
                         </p>
                     </div>
                     <div *ngIf="threadLike.fileId != null">
-                        <img src="http://localhost:1234/files/{{threadLike.fileId}}" alt="" width="400px"
+                        <img [src]="'http://localhost:1234/files/'+threadLike.fileId" alt="" width="400px"
                             height="200px">
                     </div>
                     <div>
@@ -518,7 +520,7 @@
                                 size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                 shape="circle"></p-avatar>
                             <p-avatar *ngIf="threadBookmark.userPhoto !== null"
-                                image="http://localhost:1234/files/{{threadBookmark.userPhoto}}" styleClass="mr-2"
+                                [image]="'http://localhost:1234/files/'+threadBookmark.userPhoto" styleClass="mr-2"
                                 size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                 shape="circle"></p-avatar>
                         </div>
@@ -541,7 +543,7 @@
                         </p>
                     </div>
                     <div *ngIf="threadBookmark.fileId != null">
-                        <img src="http://localhost:1234/files/{{threadBookmark.fileId}}" alt="" width="400px"
+                        <img [src]="'http://localhost:1234/files/'+threadBookmark.fileId" alt="" width="400px"
                             height="200px">
                     </div>
                     <div>
@@ -583,11 +585,6 @@
     <div class="lg:col-8 md:col-6" *ngIf="isLoggedIn === false">
         <p-tabView>
             <p-tabPanel header="Thread" leftIcon="pi pi-book text-red-500">
-
-                <div class="flex align-items-center justify-content-center" *ngIf="isLoading === true">
-                    <p-progressSpinner ></p-progressSpinner>
-                </div>
-                
                 <div class="border-round mb-8 mt-5" *ngFor="let thread of threadNonLogin.data; let i = index">
                     <div *ngIf="allThreadShow === true">
                         <div class="flex">
@@ -596,7 +593,7 @@
                                     size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                     shape="circle"></p-avatar>
                                 <p-avatar *ngIf="thread.userPhoto !== null"
-                                    image="http://localhost:1234/files/{{thread.userPhoto}}" styleClass="mr-2"
+                                    [image]="'http://localhost:1234/files/'+thread.userPhoto" styleClass="mr-2"
                                     size="large" [style]="{'background-color':'#2196F3', 'color': '#ffffff'}"
                                     shape="circle"></p-avatar>
                             </div>
@@ -621,7 +618,7 @@
                             </p>
                         </div>
                         <div *ngIf="thread.fileId != null">
-                            <img src="http://localhost:1234/files/{{thread.fileId}}" alt="" width="400px"
+                            <img [src]="'http://localhost:1234/files/'+thread.fileId" alt="" width="400px"
                                 height="200px">
                         </div>
                         <div>
@@ -629,11 +626,13 @@
                                 <div class="flex justify-content-between mt-8 align-items-center">
                                     <div class="flex w-1 justify-content-around">
                                         <div class="flex justify-content-center align-items-center mx-2">
-                                            <a (click)="directToLogin()" class="cursor-pointer mr-1"><i class="pi pi-heart"></i></a>
+                                            <a (click)="directToLogin()" class="cursor-pointer mr-1"><i
+                                                    class="pi pi-heart"></i></a>
                                             <p>{{thread.countLike}}</p>
                                         </div>
                                         <div class="flex justify-content-center align-items-center">
-                                            <a (click)="directToLogin()" class="cursor-pointer"><i class="pi pi-comment  mr-1"></i></a>
+                                            <a (click)="directToLogin()" class="cursor-pointer"><i
+                                                    class="pi pi-comment  mr-1"></i></a>
                                             <p>{{thread.countComment}}</p>
                                         </div>
                                     </div>
@@ -662,25 +661,16 @@
     </div>
     <div class="md:col-3">
         <div class="bg-white border-round">
-            <div class="flex gap-1 align-items-center p-3" *ngIf="isLoading === true">
-                <p-skeleton width="13rem" height="4rem"></p-skeleton>
-            </div>
-            <div class="flex gap-1 align-items-center p-3" *ngIf="isLoading === false">
+            <div class="flex gap-1 align-items-center p-3">
                 <i class="pi pi-fw pi-book text-red-500"></i>
                 <h3 class="font-medium">Upcoming Event / Course </h3>
             </div>
             <div class="p-3">
-                <p-skeleton width="100%" height="200px" *ngIf="isLoading === true"></p-skeleton>
-                <img src="http://localhost:1234/files/{{fileEvent}}" alt="" width="100%" height="200px" *ngIf="isLoading === false">
+                <img [src]="'http://localhost:1234/files/'+fileEvent" alt="" width="100%" height="200px">
 
-                <p-skeleton styleClass="mt-3" width="7rem" *ngIf="isLoading === true"></p-skeleton>
-                <h3 *ngIf="isLoading === false">{{titleEvent}}</h3>
+                <h3>{{titleEvent}}</h3>
 
-
-                <div class="flex flex-row justify-content-between mt-5" *ngIf="isLoading === true">
-                    <p-skeleton width="12rem"></p-skeleton>
-                </div>
-                <div class="flex flex-row justify-content-between mt-5" *ngIf="isLoading === false">
+                <div class="flex flex-row justify-content-between mt-5">
                     <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
                         <h5 class="font-normal">{{provider}}</h5>
                     </span>
@@ -689,10 +679,7 @@
                     </span>
                 </div>
 
-                <div class="flex flex-row justify-content-between mt-2" *ngIf="isLoading === true">
-                    <p-skeleton width="12rem"></p-skeleton>
-                </div>
-                <div class="flex flex-row justify-content-between mt-2" *ngIf="isLoading === false">
+                <div class="flex flex-row justify-content-between mt-2">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
                         <h5 class="font-normal">start: {{startEvent | date: "medium"}}</h5>
@@ -702,16 +689,214 @@
                     </span>
                 </div>
 
-                <div class="flex flex-row justify-content-between mt-2" *ngIf="isLoading === true">
-                    <p-skeleton width="12rem"></p-skeleton>
-                </div>
-                <div class="flex flex-row justify-content-between mt-3" *ngIf="isLoading === false">
+                <div class="flex flex-row justify-content-between mt-3">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
                         <h5 class="font-normal">end: {{endEvent| date: "medium"}} </h5>
                     </span>
-                    <button pButton type="button" (click)="clickToDetail(idEvent)" class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy" icon="pi pi-fw pi-shopping-cart">
+                    <button pButton type="button" (click)="clickToDetail(idEvent)"
+                        class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
+                        icon="pi pi-fw pi-shopping-cart">
                     </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- SKELETON -->
+
+<div class="grid px-8 m-0 row-gap-2" *ngIf="isLoading === true">
+    <div class="md:col-3 side-bar-profile" *ngIf="isLoggedIn === true">
+        <div class="bg-white border-round h-20rem">
+            <div class="flex flex-column align-items-center">
+
+                <p-skeleton shape="circle" size="100px" styleClass="mt-5"></p-skeleton>
+
+                <p-skeleton width="10rem" styleClass="mb-2 mt-2"></p-skeleton>
+                <p-skeleton width="10rem"></p-skeleton>
+            </div>
+            <p-divider></p-divider>
+            <div class="px-2">
+                <div class="flex gap-1">
+                    <p-skeleton width="10rem"></p-skeleton>
+                </div>
+
+            </div>
+            <p-divider></p-divider>
+            <div class="px-2 ">
+                <div class="flex gap-1 ">
+                    <p-skeleton width="10rem"></p-skeleton>
+                </div>
+            </div>
+
+        </div>
+        <div class="bg-white border-round mt-5 p-2">
+            <div class="flex gap-2 mb-2">
+                <i class="pi pi-fw pi-sort-amount-up-alt text-red-500"></i>
+                <h4>Filter</h4>
+            </div>
+            <p-skeleton width="15rem"></p-skeleton>
+            <p-divider></p-divider>
+            <p-skeleton width="15rem"></p-skeleton>
+            <p-divider></p-divider>
+            <p-skeleton width="15rem"></p-skeleton>
+            <p-divider></p-divider>
+            <p-skeleton width="15rem"></p-skeleton>
+            <p-divider></p-divider>
+        </div>
+
+    </div>
+    <div class="md:col-6" *ngIf="isLoggedIn === true">
+        <p-tabView>
+            <p-tabPanel header="Thread" leftIcon="pi pi-book text-red-500">
+                <form>
+                    <div>
+                        <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                        <p-skeleton width="100%" height="3rem" styleClass="mb-2"></p-skeleton>
+                    </div>
+                    <div>
+                        <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                        <p-skeleton width="100%" height="20rem"></p-skeleton>
+                    </div>
+                    <p-skeleton width="15rem" height="7"></p-skeleton>
+
+                    <div class="flex justify-content-between mt-2">
+                        <div class="flex gap-2">
+                            <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                            <p-skeleton width="4rem" height="2rem"></p-skeleton>
+                        </div>
+                        <p-skeleton width="6rem" height="3rem"></p-skeleton>
+                    </div>
+                </form>
+
+                <div class="border-round mb-8 mt-5" *ngFor="let thread of threadHeader.data; let i = index">
+                    <div *ngIf="allThreadShow === true">
+                        <div class="flex">
+                            <div>
+                                <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+                            </div>
+                            <div>
+                                <p-skeleton width="10rem" styleClass="mb-2 mt-3"></p-skeleton>
+                                <p-skeleton height=".5rem"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <p-skeleton width="10rem" styleClass="mb-3"></p-skeleton>
+                            <p-skeleton height="1rem" width="100%" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="1rem" width="100%" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="1rem" width="100%" styleClass="mb-2"></p-skeleton>
+                        </div>
+                        <div *ngIf="thread.fileId != null">
+                            <p-skeleton width="400px" height="200px" styleClass="mb-2"></p-skeleton>
+                        </div>
+                        <div>
+                            <div>
+                                <div class="flex flex-row justify-content-between mt-8 align-items-center">
+                                    <p-skeleton height="1rem" width="5rem"></p-skeleton>
+                                    <p-skeleton height="1rem" width="1rem"></p-skeleton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p-divider class="w-full"></p-divider>
+                </div>
+
+                <div *ngIf="allThreadShow === true">
+                    <div class="glasses p-3 border-round mb-8 cursor-pointer"
+                        *ngFor="let polling of threadPollingHeader.data">
+                        <div class="flex">
+                            <div>
+                                <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+                            </div>
+                            <div>
+                                <p-skeleton width="10rem" styleClass="mb-2 mt-2"></p-skeleton>
+                                <p-skeleton height=".5rem"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="mt-3 mb-3">
+                            <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+
+                                <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                                <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                                <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                        </div>
+                        <div class="border-1 border-solid p-3 border-round">
+                            <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
+                            <div class="mt-5" *ngFor="let answer of polling.threadDtlPolling">
+                                <div>
+                                    <p-skeleton width="100%" height="4rem" styleClass="mb-2"></p-skeleton>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Like" leftIcon="pi pi-heart-fill">
+                <div class="border-round mb-8 mt-5" *ngFor="let threadLike of threadHeaderLike.data; let i = index">
+                    <div *ngIf="allThreadShow === true">
+                        <div class="flex">
+                            <div>
+                                <p-skeleton shape="circle" size="4rem" styleClass="mr-2"></p-skeleton>
+                            </div>
+                            <div>
+                                <p-skeleton width="10rem" styleClass="mb-2 mt-3"></p-skeleton>
+                                <p-skeleton height=".5rem"></p-skeleton>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <p-skeleton width="10rem" styleClass="mb-3"></p-skeleton>
+                            <p-skeleton height="1rem" width="100%" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="1rem" width="100%" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton height="1rem" width="100%" styleClass="mb-2"></p-skeleton>
+                        </div>
+                            <p-skeleton width="400px" height="200px" styleClass="mb-2"></p-skeleton>
+                        <div>
+                            <div>
+                                <div class="flex flex-row justify-content-between mt-8 align-items-center">
+                                    <p-skeleton height="1rem" width="5rem"></p-skeleton>
+                                    <p-skeleton height="1rem" width="1rem"></p-skeleton>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p-divider class="w-full"></p-divider>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Bookmark" leftIcon="pi pi-bookmark-fill"></p-tabPanel>
+        </p-tabView>
+    </div>
+    <div class="lg:col-8 md:col-6" *ngIf="isLoggedIn === false">
+        <p-tabView>
+            <p-tabPanel header="Thread" leftIcon="pi pi-book text-red-500">
+
+                <div class="flex align-items-center justify-content-center" *ngIf="isLoading === true">
+                    <p-progressSpinner></p-progressSpinner>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
+    </div>
+    <div class="md:col-3">
+        <div class="bg-white border-round">
+            <div class="flex gap-1 align-items-center p-3">
+                <p-skeleton width="13rem" height="4rem"></p-skeleton>
+            </div>
+            <div class="p-3" *ngIf="isLoading === true">
+                <p-skeleton width="100%" height="200px"></p-skeleton>
+                <p-skeleton styleClass="mt-3" width="7rem"></p-skeleton>
+
+                <div class="flex flex-row justify-content-between mt-5">
+                    <p-skeleton width="12rem"></p-skeleton>
+                </div>
+                <div class="flex flex-row justify-content-between mt-2">
+                    <p-skeleton width="12rem"></p-skeleton>
+                </div>
+
+                <div class="flex flex-row justify-content-between mt-3">
+                    <p-skeleton width="12rem"></p-skeleton>
+                    <p-skeleton width="5rem" width="3rem"></p-skeleton>
                 </div>
             </div>
         </div>
