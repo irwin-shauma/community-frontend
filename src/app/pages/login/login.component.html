@@ -4,32 +4,36 @@
     </div> 
     <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
 
-        <div style="width: 500px; height: 500px;" class="flex flex-column justify-content-around align-items-center">
-            <div class="titlelogin">WELCOME BACK</div>
-            <form (ngSubmit)="onlogin()" class="justify-content-between">
-                <div class="flex flex-column ">
-                    <label for="email">Email</label>
-                    <span class="p-input-icon-right">
-                        <i class="pi pi-envelope"></i>
-                        <input type="email" [(ngModel)]="loginReq.email" pInputText placeholder="Email" name="email" class="inputstyle" />
-                    </span>
-                </div>
-                
-                <div class="flex flex-column">
-                    <label for="password">Password</label>
-                    <span class="p-input-icon-right">
-                        <p-password placeholder="Password" name="password" [(ngModel)] = "loginReq.password" styleClass="inputstyle" [toggleMask]="true" [feedback]="false"></p-password>
-                    </span>
-                </div>
-    
-                <div class="flex justify-content-between w-full">
+        <div style="width: 500px; height: 500px;" class="flex">
+            <form (ngSubmit)="onlogin()" class="flex flex-column justify-content-around align-items-center">
+                <div class="flex flex-column align-items-center gap-3">
+                    <div class="titlelogin">WELCOME BACK</div>
+                    <div>
+                        <label for="email">Email</label>
+                        <span class="p-input-icon-right">
+                            <i class="pi pi-envelope"></i>
+                            <input type="email" [(ngModel)]="loginReq.email" pInputText placeholder="Email" name="email" class="inputstyle" />
+                        </span>
+                    </div>
+                    <div class="flex flex-column">
+                        <label for="password">Password</label>
+                        <span class="p-input-icon-right">
+                            <p-password placeholder="Password" name="password" [(ngModel)] = "loginReq.password" styleClass="inputstyle" [toggleMask]="true" [feedback]="false"></p-password>
+                        </span>
+                    </div>
+                     <div class="flex justify-content-between w-full">
                     <p>don't have an account? <span class="font-bold cursor-pointer " routerLink="/register">Sign Up</span></p>
-                    <p>forget password?</p>
+                 
                 </div>
                 
                 <div class="w-full">
                     <button pButton pRipple label="Sign In" class="p-button-rounded button-signin" type="submit"> </button>
                 </div>
+                </div>
+                
+             
+    
+               
             </form>
  
         </div>

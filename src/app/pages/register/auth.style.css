@@ -41,3 +41,8 @@ p{
     z-index: 1;
 }
 
+:host ::ng-deep .p-password input {
+    width: 500px;
+    border-radius: 30px;
+    border: #BC7682 1px solid;
+}

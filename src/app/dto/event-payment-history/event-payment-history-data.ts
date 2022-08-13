@@ -9,6 +9,7 @@ export interface EventPaymentHistoryData {
   eventHeaderId?: string;
   price: number;
   fileId: string;
+  eventCreator: string;
   trxNo?: string;
   isAprove?: boolean;
   isActive?: boolean;

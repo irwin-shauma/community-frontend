@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ArticleHeaderData } from 'src/app/dto/article/article-data';
 import { ArticleHeaderFindAll } from 'src/app/dto/article/article-find-all';
+import { BalanceFindById } from 'src/app/dto/balance/balance-find-by-id-res';
 import { ArticleHeaderService } from 'src/app/service/article.service';
+import { BalanceService } from 'src/app/service/balance.service';
 import { LoginService } from 'src/app/service/login.service';
 import { UserService } from 'src/app/service/user.service';
 
@@ -18,6 +20,7 @@ export class ArticleHeaderComponent implements OnInit {
   username: string = '';
   position: string = '';
   file: string = '';
+  balance: BalanceFindById = {} as BalanceFindById;
   showType: boolean = true;
   // start page mulai dari 0, max page untuk maksimum querynya yang ingin ditampilkan.
   startPage: number = 0;
@@ -33,7 +36,8 @@ export class ArticleHeaderComponent implements OnInit {
     private articleHeaderService: ArticleHeaderService,
     private router: Router,
     private userService: UserService,
-    private loginService: LoginService
+    private loginService: LoginService,
+    private balanceService: BalanceService
   ) {}
 
   ngOnInit(): void {
@@ -61,5 +65,8 @@ export class ArticleHeaderComponent implements OnInit {
         this.file = result.data?.fileId!;
         this.position = result.data?.position!;
       });
+    this.balanceService.findByUser().subscribe((result) => {
+      this.balance = result;
+    });
   }
 }
