@@ -9,10 +9,11 @@ import { ButtonModule } from 'primeng/button';
 import {ImageModule} from 'primeng/image';
 import { ArticleDetailComponent } from './articledetail/article-detail.component';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-import {ScrollTopModule} from 'primeng/scrolltop';
+import { ScrollTopModule } from 'primeng/scrolltop';
 import { DividerModule } from 'primeng/divider';
+import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
 
 @NgModule({
   imports: [
@@ -28,6 +29,7 @@ import { DividerModule } from 'primeng/divider';
     InfiniteScrollModule,
     ScrollTopModule,
     DividerModule,
+    SharedPipeModule,
   ],
   declarations: [ArticleHeaderComponent, ArticleDetailComponent],
   exports: [ArticleHeaderComponent, ArticleDetailComponent],

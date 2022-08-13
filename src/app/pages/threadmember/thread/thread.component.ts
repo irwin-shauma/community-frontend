@@ -177,7 +177,6 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
     this.balanceService.findByUser().subscribe((result) => {
       this.balance = result;
-      console.log('check', result.data?.currentBalance);
     });
 
     this.eventService.showAllEventHeader(0, 10).subscribe((result) => {

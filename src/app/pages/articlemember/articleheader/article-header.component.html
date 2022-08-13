@@ -3,7 +3,7 @@
         <div class="bg-white border-round h-20rem">
             <div class="flex flex-column align-items-center">
                 <div *ngIf="file === null" >
-                    <img src="./../../../../assets/thread.png" alt="image" width="100px" height="100px" class="profile mt-5">
+                    <img src="./../../../../assets/profille.png" alt="image" width="100px" height="100px" class="profile mt-5">
                     
                 </div>
                 <div *ngIf="file !== null">
@@ -17,7 +17,7 @@
             <div class="px-2">
                 <div class="flex gap-1">
                     <i class="pi pi-fw pi-money-bill text-red-500"></i>
-                    <h5 class="font-normal">Balance :</h5>
+                    <h5 class="font-normal">Balance : {{balance.data?.currentBalance | customCurrency}}</h5>
                 </div>
          
             </div>
@@ -42,7 +42,7 @@
             <div class="grid">
                 <div class="col-3 ">
                     <div class="profile m-3">
-                        <p-image src="http://localhost:1234/files/{{data.fileId}}" alt="Image"  width="100" height="100">
+                        <p-image src="http://localhost:1234/files/{{data.fileId}}" alt="Image"  width="200" height="120" class="img">
                         </p-image>
                     </div>
                 </div>
