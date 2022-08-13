@@ -6,11 +6,13 @@ import { ThreadDetailInsertReq } from 'src/app/dto/thread-detail/thread-detail-i
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
 import { ThreadHeaderFindByIdRes } from 'src/app/dto/threadheader/thread-header-find-by-id-res';
+import { UserData } from 'src/app/dto/user/user-data';
 import { BookmarkService } from 'src/app/service/bookmark.service';
 import { LoginService } from 'src/app/service/login.service';
 import { ThreadDetailService } from 'src/app/service/thread-detail.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
 import { ThreadService } from 'src/app/service/thread.service';
+import { UserService } from 'src/app/service/user.service';
 
 @Component({
   selector: 'app-thread-detail',
@@ -26,6 +28,8 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
   likeInsert: ThreadLikeInsertReq = {} as ThreadLikeInsertReq;
   showEdit: boolean = false;
   bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
+  loadingButton: boolean = false;
+  userData: UserData = {} as UserData;
 
   constructor(
     private threadService: ThreadService,
@@ -34,7 +38,8 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
     private threadLikeService: ThreadLikeService,
     private loginService: LoginService,
     private router: Router,
-    private bookmarkService: BookmarkService
+    private bookmarkService: BookmarkService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -56,12 +61,21 @@ export class ThreadMemberDetailComponent implements OnInit, OnDestroy {
     this.insertComment.commentThread = '';
   }
 
+  initUser(): void {
+    const id = this.loginService.getData()?.data?.id
+    this.userService.findById(id!).subscribe(result => {
+      this.userData = result.data!
+    })
+  }
+
   submit(): void {
+    this.loadingButton = true
     this.insertComment.threadHeaderId = this.threadData.data.id;
     this.threadDetailSubs = this.threadDetailService
       .insert(this.insertComment)
       .subscribe((result) => {
         this.initData();
+        this.loadingButton = false;
       });
   }
 
