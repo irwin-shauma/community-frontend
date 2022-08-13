@@ -18,6 +18,12 @@ export class ThreadHeaderService {
     );
   }
 
+  showAllThreadHeaderDesc(): Observable<ThreadHeaderFindAll> {
+    return this.http.get<ThreadHeaderFindAll>(
+      'http://localhost:1234/thread-headers/desc'
+    );
+  }
+
   showAllByUserLike(): Observable<ThreadHeaderFindAll> {
     return this.http.get<ThreadHeaderFindAll>(
       'http://localhost:1234/thread-headers/likes'

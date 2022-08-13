@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Role } from 'src/app/constant/role-constant';
 import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
+import { EventHeaderFindAllRes } from 'src/app/dto/event-header/event-header-find-all-res';
 import { EventPaymentHistoryFindAllRes } from 'src/app/dto/event-payment-history/event-payment-history-find-all-res';
 import { PremiumPaymentHistoryData } from 'src/app/dto/premium-payment-history/premium-payment-history-data';
 import { PremiumPaymentHistoryFindAll } from 'src/app/dto/premium-payment-history/premium-payment-history-find-all';
@@ -14,6 +15,7 @@ import { ThreadHeaderPollingFindAll } from 'src/app/dto/threadheaderpolling/thre
 import { UserData } from 'src/app/dto/user/user-data';
 import { UserFindByIdRes } from 'src/app/dto/user/user-find-by-id-res';
 import { BookmarkService } from 'src/app/service/bookmark.service';
+import { EventHeaderService } from 'src/app/service/event-header.service';
 import { LoginService } from 'src/app/service/login.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
 import { ThreadHeaderService } from 'src/app/service/thread-header.service';
@@ -34,6 +36,7 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   admin: boolean = false;
   data: UserData = {} as UserData;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  eventHeader: EventHeaderFindAllRes = {} as EventHeaderFindAllRes;
   threadPolling: ThreadHeaderPollingFindAll = {} as ThreadHeaderPollingFindAll;
   premiumPaymentHistory!: PremiumPaymentHistoryData[];
   likeInsert: ThreadLikeInsertReq = {} as ThreadLikeInsertReq;
@@ -57,6 +60,7 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
     private threadPollingService: ThreadPollingService,
     private threadLikeService: ThreadLikeService,
     private bookmarkService: BookmarkService,
+    private eventHeaderService: EventHeaderService,
     private premiumPaymentHistoryService: PremiumPaymentHistoryService
   ) {}
 
@@ -91,6 +95,9 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
     });
     this.threadPollingService.findByUserId().subscribe((result) => {
       this.threadPolling = result;
+    });
+    this.eventHeaderService.getAllByUser().subscribe((result) => {
+      this.eventHeader = result;
     });
     // this.premiumSubs = this.premiumPaymentHistoryService.findByUser().subscribe((res) => {
     //   this.premiumHistory.data = res.data;

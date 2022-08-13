@@ -85,6 +85,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
   isLoggedIn: boolean = false;
   isLoading: boolean = true;
+  loadingButton: boolean = false;
 
   sliceOptions = {
     start: 0,
@@ -152,7 +153,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       this.threadSelf.data = result.data;
     });
 
-    this.threadService.showAllThread().subscribe((result) => {
+    this.threadService.showAllThreadDesc().subscribe((result) => {
       this.threadHeader = result;
       this.isLoading = false;
     });
@@ -220,6 +221,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   }
 
   onsubmit(): void {
+    this.loadingButton = true;
     if (this.pollingTypeChoose === false) {
       console.log(this.pollingArray.value);
       const insertThreadHeader = {} as ThreadHeaderInsertReq;
@@ -241,6 +243,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
           this.onInitData();
           this.data.title = '';
           this.data.contentThread = '';
+          this.loadingButton = false
         });
     } else {
       const insertThreadPolling = {} as ThreadHeaderPollingInsertReq;
@@ -262,6 +265,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
           this.pollingArray.reset();
           this.data.title = '';
           this.data.contentThread = '';
+          this.loadingButton = false;
         });
     }
   }
