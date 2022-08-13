@@ -14,7 +14,7 @@ const routes: Routes = [
         component: CreatePremiumTypeComponent
     },
     {
-        path: 'edit',
+        path: ':id',
         component: EditPremiumTypeComponent
     }
 ]

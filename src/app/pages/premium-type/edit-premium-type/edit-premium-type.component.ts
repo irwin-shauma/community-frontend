@@ -13,6 +13,7 @@ export class EditPremiumTypeComponent implements OnDestroy, OnInit {
   idParam!: string
   premiumTypeSubscription?: Subscription;
   data: PremiumTypeData= {} as PremiumTypeData;
+  loading: boolean = false;
 
   constructor(
     private premiumTypeService: PremiumTypeService,
@@ -39,8 +40,10 @@ export class EditPremiumTypeComponent implements OnDestroy, OnInit {
   }
 
   onSubmit(): void{
+    this.loading = true;
     this.premiumTypeService.editPremiumType(this.data).subscribe((result) => {
       this.router.navigateByUrl('/premium-types');
+      this.loading = false;
     });
   }
 

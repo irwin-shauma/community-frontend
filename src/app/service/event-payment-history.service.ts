@@ -20,6 +20,12 @@ export class EventPaymentHistoryService {
     );
   }
 
+  showAllNotApprove(): Observable<EventPaymentHistoryFindAllRes> {
+    return this.http.get<EventPaymentHistoryFindAllRes>(
+      'http://localhost:1234/event-payment-histories/unapprove'
+    );
+  }
+
   findById(id: number): Observable<EventPaymentHistoryFindByIdRes> {
     return this.http.get<EventPaymentHistoryFindByIdRes>(
       'http://localhost:1234/event-payment-histories/' + id

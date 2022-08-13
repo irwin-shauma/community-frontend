@@ -20,6 +20,12 @@ export class ThreadService {
     );
   }
 
+  showAllThreadDesc(): Observable<ThreadHeaderFindAll> {
+    return this.http.get<ThreadHeaderFindAll>(
+      'http://localhost:1234/thread-headers/desc'
+    );
+  }
+
   findById(id: string): Observable<ThreadHeaderFindByIdRes> {
     return this.http.get<ThreadHeaderFindByIdRes>(
       'http://localhost:1234/thread-headers/' + id

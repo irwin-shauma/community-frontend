@@ -30,7 +30,7 @@ export class UnapproveEventComponent implements OnInit, OnDestroy {
   }
 
   initData(): void {
-    this.subscription = this.eventPaymentService.showAllEventPaymentHistory().subscribe(result => {
+    this.subscription = this.eventPaymentService.showAllNotApprove().subscribe(result => {
       this.eventPaymentData = result.data!
       this.loading = false
     })
