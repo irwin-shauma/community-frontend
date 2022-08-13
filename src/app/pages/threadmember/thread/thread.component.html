@@ -1,5 +1,5 @@
-<div class="grid px-8 m-0 row-gap-2" *ngIf="isLoading === false">
-    <div class="md:col-3 side-bar-profile" *ngIf="isLoggedIn === true">
+<div class="grid px-8 m-0 row-gap-2" *ngIf="isLoading === false  && isLoggedIn === true">
+    <div class="md:col-3 side-bar-profile">
         <div class="bg-white border-round h-20rem">
             <div class="flex flex-column align-items-center">
                 <div *ngIf="file === null">
@@ -56,15 +56,15 @@
         </div>
 
     </div>
-    <div class="md:col-6"  *ngIf="isLoggedIn === true">
+    <div class="md:col-6">
         <p-tabView id="tv">
             <p-tabPanel header="Thread" leftIcon="pi pi-book text-red-500">
                 <form (ngSubmit)="onsubmit()" ngNativeValidate>
                     <div>
                         <h3>Title</h3>
                         <div>
-                            <textarea pInputTextarea cols="10" class="w-full" name="title"
-                                [(ngModel)]="data.title" [required]="true"></textarea>
+                            <textarea pInputTextarea cols="10" class="w-full" name="title" [(ngModel)]="data.title"
+                                [required]="true"></textarea>
                         </div>
                     </div>
                     <div>
@@ -128,7 +128,8 @@
                             <button pButton pRipple type="button" icon="pi pi-chart-bar"
                                 class="p-button-rounded bg-red-500" (click)="clickPolling()"></button>
                         </div>
-                        <button pButton label="Create Thread" icon="pi pi-book" [loading]="loadingButton" class="bg-red-500"></button>
+                        <button pButton label="Create Thread" icon="pi pi-book" [loading]="loadingButton"
+                            class="bg-red-500"></button>
                     </div>
                 </form>
 
@@ -582,10 +583,98 @@
             </p-tabPanel>
         </p-tabView>
     </div>
-    <div class="lg:col-8 md:col-6" *ngIf="isLoggedIn === false">
+    <div class="md:col-3">
+        <div class="bg-white border-round mb-2">
+            <div class="flex gap-1 align-items-center p-3">
+                <i class="pi pi-fw pi-book text-red-500"></i>
+                <h3 class="font-medium">Upcoming Event</h3>
+            </div>
+            <div class="p-3">
+                <img [src]="'http://localhost:1234/files/'+fileEvent" alt="" width="100%" height="200px">
+
+                <h3>{{titleEvent}}</h3>
+
+                <div class="flex flex-row justify-content-between mt-5">
+                    <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
+                        <h5 class="font-normal">{{provider}}</h5>
+                    </span>
+                    <span class="flex gap-1"><i class="pi pi-map-marker text-red-500"></i>
+                        <h5 class="font-normal">{{location}}</h5>
+                    </span>
+                </div>
+
+                <div class="flex flex-row justify-content-between mt-2">
+                    <span class="card-content flex justify-content-center gap-1"><i
+                            class="pi pi-clock text-red-400"></i>
+                        <h5 class="font-normal">start: {{startEvent | date: "medium"}}</h5>
+                    </span>
+                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>
+                        <h5 class="font-normal">{{price | customCurrency}}</h5>
+                    </span>
+                </div>
+
+                <div class="flex flex-row justify-content-between mt-3">
+                    <span class="card-content flex justify-content-center gap-1"><i
+                            class="pi pi-clock text-red-400"></i>
+                        <h5 class="font-normal">end: {{endEvent| date: "medium"}} </h5>
+                    </span>
+                    <button pButton type="button" (click)="clickToDetail(idEvent)"
+                        class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
+                        icon="pi pi-fw pi-shopping-cart">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white border-round">
+            <div class="flex gap-1 align-items-center p-3">
+                <i class="pi pi-fw pi-book text-red-500"></i>
+                <h3 class="font-medium">Upcoming Course </h3>
+            </div>
+            <div class="p-3">
+                <img [src]="'http://localhost:1234/files/'+fileEvent" alt="" width="100%" height="200px">
+
+                <h3>{{titleEvent}}</h3>
+
+                <div class="flex flex-row justify-content-between mt-5">
+                    <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
+                        <h5 class="font-normal">{{provider}}</h5>
+                    </span>
+                    <span class="flex gap-1"><i class="pi pi-map-marker text-red-500"></i>
+                        <h5 class="font-normal">{{location}}</h5>
+                    </span>
+                </div>
+
+                <div class="flex flex-row justify-content-between mt-2">
+                    <span class="card-content flex justify-content-center gap-1"><i
+                            class="pi pi-clock text-red-400"></i>
+                        <h5 class="font-normal">start: {{startEvent | date: "medium"}}</h5>
+                    </span>
+                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>
+                        <h5 class="font-normal">{{price | customCurrency}}</h5>
+                    </span>
+                </div>
+
+                <div class="flex flex-row justify-content-between mt-3">
+                    <span class="card-content flex justify-content-center gap-1"><i
+                            class="pi pi-clock text-red-400"></i>
+                        <h5 class="font-normal">end: {{endEvent| date: "medium"}} </h5>
+                    </span>
+                    <button pButton type="button" (click)="clickToDetail(idEvent)"
+                        class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
+                        icon="pi pi-fw pi-shopping-cart">
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- NON LOGIN VIEW -->
+<div class="grid px-8 m-0 row-gap-2" *ngIf="isLoading === false && isLoggedIn === false">
+    <div class="lg:col-8 md:col-6">
         <p-tabView>
             <p-tabPanel header="Thread" leftIcon="pi pi-book text-red-500">
-                <div class="border-round mb-8 mt-5" *ngFor="let thread of threadNonLogin.data; let i = index">
+                <div class="border-round mb-6 mt-2" *ngFor="let thread of threadNonLogin.data; let i = index">
                     <div *ngIf="allThreadShow === true">
                         <div class="flex">
                             <div>
@@ -659,54 +748,101 @@
             </p-tabPanel>
         </p-tabView>
     </div>
+
     <div class="md:col-3">
-        <div class="bg-white border-round">
+        <!-- UPCOMING EVENT -->
+        <div class="bg-white border-round mb-2">
             <div class="flex gap-1 align-items-center p-3">
                 <i class="pi pi-fw pi-book text-red-500"></i>
-                <h3 class="font-medium">Upcoming Event / Course </h3>
+                <h3 class="font-medium">Upcoming Event</h3>
             </div>
             <div class="p-3">
-                <img [src]="'http://localhost:1234/files/'+fileEvent" alt="" width="100%" height="200px">
+                <img src="http://localhost:1234/files/{{eventNonLogin[0].fileId!}}" alt="" width="100%" height="200px">
 
-                <h3>{{titleEvent}}</h3>
+                <h3>{{eventNonLogin[0].title!}}</h3>
 
                 <div class="flex flex-row justify-content-between mt-5">
                     <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
-                        <h5 class="font-normal">{{provider}}</h5>
+                        <h5 class="font-normal">{{eventNonLogin[0].provider!}}</h5>
                     </span>
                     <span class="flex gap-1"><i class="pi pi-map-marker text-red-500"></i>
-                        <h5 class="font-normal">{{location}}</h5>
+                        <h5 class="font-normal">{{eventNonLogin[0].location!}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-2">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">start: {{startEvent | date: "medium"}}</h5>
+                        <h5 class="font-normal">start: {{eventNonLogin[0].startDate! | date: "medium"}}</h5>
                     </span>
                     <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>
-                        <h5 class="font-normal">{{price | customCurrency}}</h5>
+                        <h5 class="font-normal">{{eventNonLogin[0].price! | customCurrency}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-3">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">end: {{endEvent| date: "medium"}} </h5>
+                        <h5 class="font-normal">end: {{eventNonLogin[0].endDate!| date: "medium"}} </h5>
                     </span>
-                    <button pButton type="button" (click)="clickToDetail(idEvent)"
+                    <button pButton type="button" routerLink="/login"
                         class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
                         icon="pi pi-fw pi-shopping-cart">
                     </button>
                 </div>
             </div>
         </div>
+        <!-- END OF UPCOMING EVENT -->
+
+        <!-- UPCOMING COURSE -->
+        <div class="bg-white border-round">
+            <div class="flex gap-1 align-items-center p-3">
+                <i class="pi pi-fw pi-book text-red-500"></i>
+                <h3 class="font-medium">Upcoming Course</h3>
+            </div>
+            <div class="p-3">
+                <img src="http://localhost:1234/files/{{courseNonLogin[0].fileId!}}" alt="" width="100%" height="200px">
+
+                <h3>{{courseNonLogin[0].title!}}</h3>
+
+                <div class="flex flex-row justify-content-between mt-5">
+                    <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
+                        <h5 class="font-normal">{{courseNonLogin[0].provider!}}</h5>
+                    </span>
+                    <span class="flex gap-1"><i class="pi pi-map-marker text-red-500"></i>
+                        <h5 class="font-normal">{{courseNonLogin[0].location!}}</h5>
+                    </span>
+                </div>
+
+                <div class="flex flex-row justify-content-between mt-2">
+                    <span class="card-content flex justify-content-center gap-1"><i
+                            class="pi pi-clock text-red-400"></i>
+                        <h5 class="font-normal">start: {{courseNonLogin[0].startDate! | date: "medium"}}</h5>
+                    </span>
+                    <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>
+                        <h5 class="font-normal">{{courseNonLogin[0].price! | customCurrency}}</h5>
+                    </span>
+                </div>
+
+                <div class="flex flex-row justify-content-between mt-3">
+                    <span class="card-content flex justify-content-center gap-1"><i
+                            class="pi pi-clock text-red-400"></i>
+                        <h5 class="font-normal">end: {{courseNonLogin[0].endDate!| date: "medium"}} </h5>
+                    </span>
+                    <button pButton type="button" routerLink="/login"
+                        class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
+                        icon="pi pi-fw pi-shopping-cart">
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- END OF UPCOMING COURSE -->
     </div>
 </div>
+<!-- END OF NON LOGIN VIEW -->
 
 
 <!-- SKELETON -->
-
 <div class="grid px-8 m-0 row-gap-2" *ngIf="isLoading === true">
     <div class="md:col-3 side-bar-profile" *ngIf="isLoggedIn === true">
         <div class="bg-white border-round h-20rem">
@@ -818,9 +954,9 @@
                         <div class="mt-3 mb-3">
                             <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
 
-                                <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
-                                <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
-                                <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
+                            <p-skeleton width="100%" styleClass="mb-2"></p-skeleton>
                         </div>
                         <div class="border-1 border-solid p-3 border-round">
                             <p-skeleton width="10rem" styleClass="mb-2"></p-skeleton>
@@ -852,7 +988,7 @@
                             <p-skeleton height="1rem" width="100%" styleClass="mb-2"></p-skeleton>
                             <p-skeleton height="1rem" width="100%" styleClass="mb-2"></p-skeleton>
                         </div>
-                            <p-skeleton width="400px" height="200px" styleClass="mb-2"></p-skeleton>
+                        <p-skeleton width="400px" height="200px" styleClass="mb-2"></p-skeleton>
                         <div>
                             <div>
                                 <div class="flex flex-row justify-content-between mt-8 align-items-center">
@@ -879,6 +1015,27 @@
         </p-tabView>
     </div>
     <div class="md:col-3">
+        <div class="bg-white border-round mb-2">
+            <div class="flex gap-1 align-items-center p-3">
+                <p-skeleton width="13rem" height="4rem"></p-skeleton>
+            </div>
+            <div class="p-3" *ngIf="isLoading === true">
+                <p-skeleton width="100%" height="200px"></p-skeleton>
+                <p-skeleton styleClass="mt-3" width="7rem"></p-skeleton>
+
+                <div class="flex flex-row justify-content-between mt-5">
+                    <p-skeleton width="12rem"></p-skeleton>
+                </div>
+                <div class="flex flex-row justify-content-between mt-2">
+                    <p-skeleton width="12rem"></p-skeleton>
+                </div>
+
+                <div class="flex flex-row justify-content-between mt-3">
+                    <p-skeleton width="12rem"></p-skeleton>
+                    <p-skeleton width="5rem" width="3rem"></p-skeleton>
+                </div>
+            </div>
+        </div>
         <div class="bg-white border-round">
             <div class="flex gap-1 align-items-center p-3">
                 <p-skeleton width="13rem" height="4rem"></p-skeleton>
@@ -902,3 +1059,4 @@
         </div>
     </div>
 </div>
+<!-- END OF SKELETON -->

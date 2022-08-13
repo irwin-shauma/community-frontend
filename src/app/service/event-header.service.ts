@@ -24,6 +24,24 @@ export class EventHeaderService {
     );
   }
 
+  showAllEventNonLogin(
+    startPage: number,
+    maxPage: number
+  ): Observable<EventHeaderFindAllRes> {
+    return this.http.get<EventHeaderFindAllRes>(
+      `http://localhost:1234/event-headers/events/non-login?startPage=${startPage}&maxPage=${maxPage}`
+    );
+  }
+
+  showAllCourseNonLogin(
+    startPage: number,
+    maxPage: number
+  ): Observable<EventHeaderFindAllRes> {
+    return this.http.get<EventHeaderFindAllRes>(
+      `http://localhost:1234/event-headers/course/non-login?startPage=${startPage}&maxPage=${maxPage}`
+    );
+  }
+
   showAllEventHeaderMember(): Observable<EventHeaderFindAllRes> {
     return this.http.get<EventHeaderFindAllRes>(
       'http://localhost:1234/event-headers'
@@ -38,7 +56,7 @@ export class EventHeaderService {
 
   showAllCourse(): Observable<EventHeaderFindAllRes> {
     return this.http.get<EventHeaderFindAllRes>(
-      'http://localhost:1234/event-headers/courses'
+      'http://localhost:1234/event-headers/course'
     );
   }
 

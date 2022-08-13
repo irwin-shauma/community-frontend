@@ -13,4 +13,5 @@ export interface EventPaymentHistoryData {
   isAprove?: boolean;
   isActive?: boolean;
   version?: number;
+  createdAt: string;
 }

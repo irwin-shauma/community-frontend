@@ -3,17 +3,17 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Role } from 'src/app/constant/role-constant';
 import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
+import { EventPaymentHistoryData } from 'src/app/dto/event-payment-history/event-payment-history-data';
 import { EventPaymentHistoryFindAllRes } from 'src/app/dto/event-payment-history/event-payment-history-find-all-res';
 import { PremiumPaymentHistoryData } from 'src/app/dto/premium-payment-history/premium-payment-history-data';
 import { PremiumPaymentHistoryFindAll } from 'src/app/dto/premium-payment-history/premium-payment-history-find-all';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
 import { ThreadPollingAnswerInsertReq } from 'src/app/dto/thread-polling-answer/thread-polling-answer-insert-req';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
-import { ThreadHeaderPollingData } from 'src/app/dto/threadheaderpolling/thread-header-polling-data';
 import { ThreadHeaderPollingFindAll } from 'src/app/dto/threadheaderpolling/thread-header-polling-find-all-res';
 import { UserData } from 'src/app/dto/user/user-data';
-import { UserFindByIdRes } from 'src/app/dto/user/user-find-by-id-res';
 import { BookmarkService } from 'src/app/service/bookmark.service';
+import { EventPaymentHistoryService } from 'src/app/service/event-payment-history.service';
 import { LoginService } from 'src/app/service/login.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
 import { ThreadHeaderService } from 'src/app/service/thread-header.service';
@@ -47,6 +47,8 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
   premiumSubs?: Subscription;
   userSubscription?: Subscription;
+  eventSubscription?: Subscription;
+  eventPaymentData: EventPaymentHistoryData[] = []
 
   constructor(
     private activateRoute: ActivatedRoute,
@@ -57,7 +59,8 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
     private threadPollingService: ThreadPollingService,
     private threadLikeService: ThreadLikeService,
     private bookmarkService: BookmarkService,
-    private premiumPaymentHistoryService: PremiumPaymentHistoryService
+    private premiumPaymentHistoryService: PremiumPaymentHistoryService,
+    private eventPaymentService: EventPaymentHistoryService
   ) {}
 
   sliceOptions = {
@@ -92,10 +95,8 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
     this.threadPollingService.findByUserId().subscribe((result) => {
       this.threadPolling = result;
     });
-    // this.premiumSubs = this.premiumPaymentHistoryService.findByUser().subscribe((res) => {
-    //   this.premiumHistory.data = res.data;
-    // });
     this.initPremium();
+    this.initEventHistories();
     if (this.loginService.getRole() !== Role.SUPERADMIN) {
       this.admin = true;
     }
@@ -108,6 +109,12 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
         this.premiumPaymentHistory = res.data;
         this.premiumHistory = res;
       });
+  }
+
+  initEventHistories(): void {
+    this.eventSubscription = this.eventPaymentService.showAllByUser().subscribe(result => {
+      this.eventPaymentData = result.data!
+    })
   }
 
   onExpandText(evt: any, id: string): void {
