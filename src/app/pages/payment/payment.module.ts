@@ -11,6 +11,7 @@ import { PaymentRouting } from './payment.routing';
 import { PaymentComponent } from './payment/payment.component';
 import { PaymentUnapproveComponent } from './payment-unapprove/payment-unapprove.component';
 import { EventComponent } from './event/event.component';
+import { UnapproveEventComponent } from './unapprove-event/unapprove-event.component';
 
 @NgModule({
   imports: [
@@ -24,7 +25,7 @@ import { EventComponent } from './event/event.component';
   ],
   declarations: [
     PaymentComponent, 
-    HistoryPaymentComponent, PaymentUnapproveComponent, EventComponent]
+    HistoryPaymentComponent, PaymentUnapproveComponent, EventComponent, UnapproveEventComponent]
     ,
   exports: [
     PaymentComponent, 

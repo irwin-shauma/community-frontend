@@ -154,6 +154,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
     this.threadService.showAllThread().subscribe((result) => {
       this.threadHeader = result;
+      this.isLoading = false;
     });
     this.premiumPaymentHistoryService.getPremium().subscribe((result) => {
       if (result.data !== null) {

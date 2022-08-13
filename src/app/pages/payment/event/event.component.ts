@@ -35,59 +35,6 @@ export class EventComponent implements OnInit, OnDestroy {
       this.loading = false
     })
   }
-
-  approve(): void {
-    this.updateData.id = this.id
-    this.updateData.paymentId = this.idPayment
-    this.updateData.isApprove = true
-    this.updateData.isActive = true
-    this.eventPaymentService.approvePayment(this.updateData).subscribe((res) => {
-      this.initData();
-    });
-    
-  }
-
-  reject(): void {
-    this.updateData.id = this.id
-    this.updateData.paymentId = this.idPayment
-    this.updateData.isApprove = false
-    this.updateData.isActive = false
-    this.eventPaymentService.approvePayment(this.updateData).subscribe(res => {
-      this.initData();
-    })
-  }
-
-
-  confirm(id: string, idPayment:string): void {
-    this.loading = true
-    this.id = id;
-    this.idPayment = idPayment;
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to approve this payment?',
-      accept: () => {
-        this.approve();
-        
-      },
-      reject: ()=> {
-        this.loading = false
-      }
-    });
-  }
-
-  confirmReject(id: string, idPayment:string): void {
-    this.loading = true
-    this.id = id;
-    this.idPayment = idPayment;
-    this.confirmationService.confirm({
-      message: 'Are you sure that you want to reject this payment?',
-      accept: () => {
-        this.reject();
-      },
-      reject: ()=> {
-        this.loading = false
-      }
-    });
-  }
   
   ngOnDestroy(): void {
     this.subscription?.unsubscribe()
