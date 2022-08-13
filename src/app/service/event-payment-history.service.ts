@@ -26,6 +26,12 @@ export class EventPaymentHistoryService {
     );
   }
 
+  showAllByUser(): Observable<EventPaymentHistoryFindAllRes> {
+    return this.http.get<EventPaymentHistoryFindAllRes>(
+      'http://localhost:1234/event-payment-histories/users'
+    );
+  }
+
   findById(id: number): Observable<EventPaymentHistoryFindByIdRes> {
     return this.http.get<EventPaymentHistoryFindByIdRes>(
       'http://localhost:1234/event-payment-histories/' + id

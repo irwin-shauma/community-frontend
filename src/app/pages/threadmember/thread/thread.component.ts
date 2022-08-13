@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { BalanceFindById } from 'src/app/dto/balance/balance-find-by-id-res';
 import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
+import { EventHeaderData } from 'src/app/dto/event-header/event-header-data';
 import { EventHeaderFindAllRes } from 'src/app/dto/event-header/event-header-find-all-res';
 import { PremiumPaymentHistoryFindById } from 'src/app/dto/premium-payment-history/premium-payment-history-find-by-id-res';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
@@ -73,6 +74,9 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadHeaderLike: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeaderBookmark: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   eventHeader: EventHeaderFindAllRes = {} as EventHeaderFindAllRes;
+  course: EventHeaderData[] = [];
+  eventNonLogin: EventHeaderData[] = [];
+  courseNonLogin: EventHeaderData[] = [];
   balance: BalanceFindById = {} as BalanceFindById;
   threadPollingHeader: ThreadHeaderPollingFindAll =
     {} as ThreadHeaderPollingFindAll;
@@ -131,17 +135,11 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       this.threadNonLogin.data = result.data;
       this.isLoading = false;
     });
-    this.eventService.showAllEventHeader(0, 10).subscribe((result) => {
-      this.fileEvent = result.data[result.data.length - 1].fileId;
-      this.titleEvent = result.data[result.data.length - 1].title;
-      let event = new Date();
-      this.startEvent = result.data[result.data.length - 1].startDate;
-      this.startEvent = result.data[result.data.length - 1].startDate;
-      this.endEvent = result.data[result.data.length - 1].endDate;
-      this.location = result.data[result.data.length - 1].location;
-      this.provider = result.data[result.data.length - 1].provider;
-      this.price = result.data[result.data.length - 1].price;
-      this.idEvent = result.data[result.data.length - 1].id;
+    this.eventService.showAllEventNonLogin(0, 1).subscribe((result) => {
+      this.eventNonLogin = result.data
+    });
+    this.eventService.showAllCourseNonLogin(0, 1).subscribe((result) => {
+      this.courseNonLogin = result.data
     });
   }
 
@@ -181,7 +179,15 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       this.balance = result;
     });
 
-    this.eventService.showAllEventHeader(0, 10).subscribe((result) => {
+    this.eventService.showAllCourseNonLogin(0, 1).subscribe((result) => {
+      this.courseNonLogin = result.data
+    });
+
+    this.eventService.showAllCourse().subscribe((result) => {
+      this.course = result.data
+    });
+
+    this.eventService.showAllEvent().subscribe((result) => {
       this.fileEvent = result.data[result.data.length - 1].fileId;
       this.titleEvent = result.data[result.data.length - 1].title;
       let event = new Date();
