@@ -2,9 +2,13 @@
     <div class="card">
         <p-tabView class="p-2">
             <p-tabPanel header="Event" leftIcon="pi pi-calendar">
-                <h2 class="text-center" *ngIf="isEvent == false">No Event Available Yet</h2>
-                <div class="flex flex-row flex-wrap justify-content-between gap-6 mt-3 ml-5 mr-5" *ngIf="isEvent == true">
-                    <p-card [style]="{width: '350px', height:'400px'}" *ngFor="let event of eventData;">
+                <h2 class="text-center" *ngIf="isEvent == false && loading === false">No Event Available Yet</h2>
+                <div class="flex align-items-center justify-content-center" *ngIf="loading === true">
+                    <p-progressSpinner></p-progressSpinner>
+                </div>
+                <div class="grid row-gap-2" *ngIf="isEvent == true && loading === false">
+                    <p-card class="md:col-4" [style]="{width: '350px', height:'400px'}"
+                        *ngFor="let event of eventData;">
                         <ng-template pTemplate="header">
                             <img alt="Card" src="http://localhost:1234/files/{{event.fileId}}" class="imgEvent"
                                 width="100" height="200">
@@ -43,8 +47,9 @@
             </p-tabPanel>
             <p-tabPanel header="Course" leftIcon="pi pi-chart-pie">
                 <h2 class="text-center" *ngIf="isCourse == false">No Event Available Yet</h2>
-                <div class="flex flex-row flex-wrap justify-content-between gap-6 mt-3 ml-5 mr-5" *ngIf="isEvent == true">
-                    <p-card [style]="{width: '350px', height:'400px'}" *ngFor="let course of courseData;">
+                <div class="grid row-gap-2"
+                    *ngIf="isEvent == true">
+                    <p-card class="md:col-4" [style]="{width: '350px', height:'400px'}" *ngFor="let course of courseData;">
                         <ng-template pTemplate="header">
                             <img alt="Card" src="http://localhost:1234/files/{{course.fileId}}" class="imgEvent"
                                 width="100" height="200">

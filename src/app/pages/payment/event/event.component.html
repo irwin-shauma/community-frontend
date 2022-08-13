@@ -3,7 +3,7 @@
         <h2>List Event Payment</h2>
     </div>
     <form action="">
-        <p-table [value]="eventPaymentData" responsiveLayout="scroll" [loading]="loading" [lazy]="true" (onLazyLoad)="loadData($event)" [paginator]="true" [rows]="10" class="glasses">
+        <p-table [value]="eventPaymentData" responsiveLayout="scroll" [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" [rows]="maxPage" [totalRecords]="totalData" [loading]="loading" [lazy]="true" (onLazyLoad)="loadData($event)" [paginator]="true" [rows]="10" class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>

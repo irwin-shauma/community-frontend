@@ -3,7 +3,7 @@
         <h2>List Premium Payment</h2>
     </div>
     <form action="">
-        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[10,25,50]" [rows]="10" [value]="premiumData" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadData($event)" [loading]="loading" class="glasses">
+        <p-table [showCurrentPageReport]="true" [paginator]="true" [rowsPerPageOptions]="[5,10,20]" [rows]="maxPage" [totalRecords]="totalData" [value]="premiumData" responsiveLayout="scroll" [lazy]="true" (onLazyLoad)="loadData($event)" [loading]="loading" class="glasses">
             <ng-template pTemplate="header">
                 <tr>
                     <th>No</th>

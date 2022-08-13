@@ -17,6 +17,9 @@ export class EventComponent implements OnInit, OnDestroy {
   loading: boolean = true
   id!: string;
   idPayment!: string;
+  startPage: number = 0;
+  maxPage: number = 5;
+  totalData: number = 0;
 
   constructor(private eventPaymentService: EventPaymentHistoryService, private confirmationService: ConfirmationService) { }
 
@@ -29,9 +32,14 @@ export class EventComponent implements OnInit, OnDestroy {
     this.initData()
   }
 
-  initData(): void {
-    this.subscription = this.eventPaymentService.showAllEventPaymentHistory().subscribe(result => {
-      this.eventPaymentData = result.data!
+  initData(startPage: number = this.startPage, maxPage: number = this.maxPage): void {
+    this.startPage = startPage;
+    this.maxPage = maxPage;
+
+    this.subscription = this.eventPaymentService.showAllEventPaymentHistory(this.startPage, this.maxPage).subscribe(result => {
+      const resultData: any = result
+      this.eventPaymentData = resultData.data
+      this.totalData = resultData.count
       this.loading = false
     })
   }

@@ -56,7 +56,21 @@ export class EventHeaderService {
 
   showAllCourse(): Observable<EventHeaderFindAllRes> {
     return this.http.get<EventHeaderFindAllRes>(
-      'http://localhost:1234/event-headers/course'
+      'http://localhost:1234/event-headers/courses'
+    );
+  }
+
+  upcomingEvent(startPage: number,
+    maxPage: number): Observable<EventHeaderFindAllRes> {
+    return this.http.get<EventHeaderFindAllRes>(
+      `http://localhost:1234/event-headers/events?startPage=${startPage}&maxPage=${maxPage}`
+    );
+  }
+
+  upcomingCourse(startPage: number,
+    maxPage: number): Observable<EventHeaderFindAllRes> {
+    return this.http.get<EventHeaderFindAllRes>(
+      `http://localhost:1234/event-headers/courses?startPage=${startPage}&maxPage=${maxPage}`
     );
   }
 
