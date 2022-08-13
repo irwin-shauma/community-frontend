@@ -20,6 +20,9 @@ export class UnapproveEventComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   id!: string;
   idPayment!: string;
+  startPage: number = 0;
+  maxPage: number = 5;
+  totalData: number = 0;
 
   constructor(
     private eventPaymentService: EventPaymentHistoryService,
@@ -37,7 +40,7 @@ export class UnapproveEventComponent implements OnInit, OnDestroy {
 
   initData(): void {
     this.subscription = this.eventPaymentService
-      .showAllNotApprove()
+      .showAllNotApprove(this.startPage, this.maxPage)
       .subscribe((result) => {
         this.eventPaymentData = result.data!;
         this.loading = false;

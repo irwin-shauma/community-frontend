@@ -16,6 +16,7 @@ export class EventHeaderComponent implements OnInit {
   isCourse: boolean = false;
   eventSubscription?: Subscription;
   isEvent: boolean = false;
+  loading: boolean = true;
 
   constructor(
     private eventHeaderService: EventHeaderService,
@@ -33,6 +34,7 @@ export class EventHeaderComponent implements OnInit {
       if (result.data.length > 0) {
         this.isEvent = true;
       }
+      this.loading = false;
     });
   }
 
@@ -43,6 +45,7 @@ export class EventHeaderComponent implements OnInit {
       if (result.data.length > 0) {
         this.isCourse = true;
       }
+      this.loading = false;
     });
   }
 

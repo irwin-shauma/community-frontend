@@ -17,8 +17,11 @@ export class PaymentUnapproveComponent implements OnInit, OnDestroy {
   subscription?: Subscription;
   id!: string;
   idPayment!: string;
+  startPage: number = 0;
+  maxPage: number = 5;
+  totalData: number = 0;
   price!: number;
-  loading: boolean = true;
+  loading!: boolean;
   updateData: PremiumPaymentHistoryUpdateReq =
     {} as PremiumPaymentHistoryUpdateReq;
   updateBalance: PremiumUpdateBalanceReq = {} as PremiumUpdateBalanceReq;
@@ -33,11 +36,17 @@ export class PaymentUnapproveComponent implements OnInit, OnDestroy {
     this.initData();
   }
 
-  initData(): void {
+  initData(startPage: number = this.startPage, maxPage: number = this.maxPage): void {
+    this.startPage = startPage;
+    this.maxPage = maxPage;
+    this.loading = true;
+
     this.subscription = this.premiumPaymentService
-      .showAllUnApprove()
+      .showAllUnApprove(this.startPage, this.maxPage)
       .subscribe((result) => {
-        this.premiumData = result.data;
+        const resultData: any = result.data
+        this.premiumData = resultData.data;
+        this.totalData = resultData.count
         this.loading = false;
       });
   }

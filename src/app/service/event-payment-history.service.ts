@@ -14,15 +14,15 @@ import { UpdateRes } from "../dto/update-res";
 export class EventPaymentHistoryService {
   constructor(private http: HttpClient) {}
 
-  showAllEventPaymentHistory(): Observable<EventPaymentHistoryFindAllRes> {
+  showAllEventPaymentHistory(startPage?: number, maxPage?: number): Observable<EventPaymentHistoryFindAllRes> {
     return this.http.get<EventPaymentHistoryFindAllRes>(
-      'http://localhost:1234/event-payment-histories'
+      `http://localhost:1234/event-payment-histories?startPage=${startPage}&maxPage=${maxPage}`
     );
   }
 
-  showAllNotApprove(): Observable<EventPaymentHistoryFindAllRes> {
+  showAllNotApprove(startPage: number, maxPage: number): Observable<EventPaymentHistoryFindAllRes> {
     return this.http.get<EventPaymentHistoryFindAllRes>(
-      'http://localhost:1234/event-payment-histories/unapprove'
+      `http://localhost:1234/event-payment-histories/unapprove?startPage=${startPage}&maxPage=${maxPage}`
     );
   }
 

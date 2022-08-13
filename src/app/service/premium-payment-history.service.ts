@@ -19,13 +19,13 @@ export class PremiumPaymentHistoryService {
     maxPage: number
   ): Observable<PremiumPaymentHistoryFindAll> {
     return this.http.get<PremiumPaymentHistoryFindAll>(
-      'http://localhost:1234/premium-payment-histories'
+      `http://localhost:1234/premium-payment-histories?startPage=${startPage}&maxPage=${maxPage}`
     );
   }
 
-  showAllUnApprove(): Observable<PremiumPaymentHistoryFindAll> {
+  showAllUnApprove(startPage: number, maxPage: number): Observable<PremiumPaymentHistoryFindAll> {
     return this.http.get<PremiumPaymentHistoryFindAll>(
-      'http://localhost:1234/premium-payment-histories/unapprove'
+      `http://localhost:1234/premium-payment-histories/unapprove?startPage=${startPage}&maxPage=${maxPage}`
     );
   }
 

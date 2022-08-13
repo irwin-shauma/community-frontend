@@ -18,6 +18,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { EventEditComponent } from './eventedit/event-edit.component';
 import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   imports: [
@@ -35,7 +36,8 @@ import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
     FormsModule,
     DialogModule,
     InputNumberModule,
-    SharedPipeModule
+    SharedPipeModule,
+    ProgressSpinnerModule
   ],
   declarations: [
     EventHeaderComponent,
