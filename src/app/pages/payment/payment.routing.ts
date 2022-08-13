@@ -4,6 +4,7 @@ import { EventComponent } from './event/event.component';
 import { HistoryPaymentComponent } from './history/history-payment.component';
 import { PaymentUnapproveComponent } from './payment-unapprove/payment-unapprove.component';
 import { PaymentComponent } from './payment/payment.component';
+import { UnapproveEventComponent } from './unapprove-event/unapprove-event.component';
 
 const routes: Routes = [
   {
@@ -19,8 +20,12 @@ const routes: Routes = [
     component: HistoryPaymentComponent,
   },
   {
-    path: 'event',
+    path: 'events',
     component: EventComponent,
+  },
+  {
+    path: 'unapprove-events',
+    component: UnapproveEventComponent,
   },
 ];
 

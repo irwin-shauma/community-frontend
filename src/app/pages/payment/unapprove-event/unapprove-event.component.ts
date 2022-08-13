@@ -3,28 +3,26 @@ import { ConfirmationService, LazyLoadEvent } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { PremiumUpdateBalanceReq } from 'src/app/dto/balance/premium-update-balance-req';
 import { UpdateCurrentBalanceReq } from 'src/app/dto/balance/update-current-balance-req';
-import { PremiumPaymentHistoryData } from 'src/app/dto/premium-payment-history/premium-payment-history-data';
-import { PremiumPaymentHistoryUpdateReq } from 'src/app/dto/premium-payment-history/premium-payment-history-update-req';
+import { EventPaymentHistoryData } from 'src/app/dto/event-payment-history/event-payment-history-data';
+import { EventPaymentHistoryUpdateReq } from 'src/app/dto/event-payment-history/event-payment-update-req';
 import { BalanceService } from 'src/app/service/balance.service';
-import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
+import { EventPaymentHistoryService } from 'src/app/service/event-payment-history.service';
 
 @Component({
-  selector: 'app-payment-unapprove',
-  templateUrl: './payment-unapprove.component.html',
+  selector: 'app-unapprove-event',
+  templateUrl: './unapprove-event.component.html',
 })
-export class PaymentUnapproveComponent implements OnInit, OnDestroy {
-  premiumData: PremiumPaymentHistoryData[] = [];
+export class UnapproveEventComponent implements OnInit, OnDestroy {
+  eventPaymentData: EventPaymentHistoryData[] = [];
+  updateData: EventPaymentHistoryUpdateReq = {} as EventPaymentHistoryUpdateReq;
+  updateBalance: UpdateCurrentBalanceReq = {} as UpdateCurrentBalanceReq;
   subscription?: Subscription;
+  loading: boolean = true;
   id!: string;
   idPayment!: string;
-  price!: number;
-  loading: boolean = true;
-  updateData: PremiumPaymentHistoryUpdateReq =
-    {} as PremiumPaymentHistoryUpdateReq;
-  updateBalance: PremiumUpdateBalanceReq = {} as PremiumUpdateBalanceReq;
 
   constructor(
-    private premiumPaymentService: PremiumPaymentHistoryService,
+    private eventPaymentService: EventPaymentHistoryService,
     private confirmationService: ConfirmationService,
     private balanceService: BalanceService
   ) {}
@@ -33,17 +31,17 @@ export class PaymentUnapproveComponent implements OnInit, OnDestroy {
     this.initData();
   }
 
-  initData(): void {
-    this.subscription = this.premiumPaymentService
-      .showAllUnApprove()
-      .subscribe((result) => {
-        this.premiumData = result.data;
-        this.loading = false;
-      });
-  }
-
   loadData(event: LazyLoadEvent) {
     this.initData();
+  }
+
+  initData(): void {
+    this.subscription = this.eventPaymentService
+      .showAllEventPaymentHistory()
+      .subscribe((result) => {
+        this.eventPaymentData = result.data!;
+        this.loading = false;
+      });
   }
 
   approve(): void {
@@ -51,13 +49,12 @@ export class PaymentUnapproveComponent implements OnInit, OnDestroy {
     this.updateData.paymentId = this.idPayment;
     this.updateData.isApprove = true;
     this.updateData.isActive = true;
-
     this.balanceService
-      .updatePremiumSystem(this.updateBalance)
+      .updateBalance(this.updateBalance)
       .subscribe((result) => {});
 
-    this.premiumPaymentService
-      .approvePremium(this.updateData)
+    this.eventPaymentService
+      .approvePayment(this.updateData)
       .subscribe((res) => {
         this.initData();
       });
@@ -68,18 +65,25 @@ export class PaymentUnapproveComponent implements OnInit, OnDestroy {
     this.updateData.paymentId = this.idPayment;
     this.updateData.isApprove = false;
     this.updateData.isActive = false;
-    this.premiumPaymentService
-      .approvePremium(this.updateData)
+    this.eventPaymentService
+      .approvePayment(this.updateData)
       .subscribe((res) => {
         this.initData();
       });
   }
 
-  confirm(id: string, idPayment: string, price: number): void {
+  confirm(
+    id: string,
+    idPayment: string,
+    eventCreator: string,
+    balance: number
+  ): void {
     this.loading = true;
     this.id = id;
     this.idPayment = idPayment;
-    this.updateBalance.balance = price;
+    this.updateBalance.userId = eventCreator;
+    this.updateBalance.balance = balance;
+    console.log('ini balance', this.updateBalance.balance);
     this.confirmationService.confirm({
       message: 'Are you sure that you want to approve this payment?',
       accept: () => {
