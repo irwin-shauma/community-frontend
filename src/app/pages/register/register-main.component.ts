@@ -29,13 +29,13 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
   insertVerificationReq: VerificationInsertData = {} as VerificationInsertData;
   data$!: Observable<Register[]>;
 
-  registerReq : RegistrationReq = {} as RegistrationReq;
+  registerReq: RegistrationReq = {} as RegistrationReq;
 
   constructor(
     private store: Store,
     private verificationService: VerificationService,
     private router: Router,
-    private userService: UserService,
+    private userService: UserService
   ) {}
 
   ngOnInit(): void {
@@ -75,7 +75,7 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
     this.registerReq.email = this.dataRegister.email;
     this.registerReq.verificationCode = this.dataRegister.verification;
     this.verificationService.register(this.registerReq).subscribe((res) => {
-      if(res.data == true){
+      if (res.data == true) {
         const insertUser = {} as UserInsertReq;
         insertUser.email = this.dataRegister.email;
         insertUser.password = this.dataRegister.password;
@@ -89,11 +89,7 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
             this.router.navigateByUrl('/login');
           });
       }
-    })
-
-
-
-
+    });
 
     // this.verificationService.findById(this.verificationId).subscribe((res) => {
     //   if (this.dataRegister.verification == res.data?.verification) {
@@ -111,9 +107,14 @@ export class RegisterMainComponent implements OnInit, OnDestroy {
     //       });
     //   }
     // });
+  }
 
+  back(): void {
+    this.registerSwitch = 1;
+  }
 
-
+  back2(): void {
+    this.registerSwitch = 2;
   }
 
   ngOnDestroy(): void {

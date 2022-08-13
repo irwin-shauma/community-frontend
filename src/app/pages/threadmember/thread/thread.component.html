@@ -3,7 +3,7 @@
         <div class="bg-white border-round h-20rem">
             <div class="flex flex-column align-items-center">
                 <div *ngIf="file === null">
-                    <img src="../../../../assets/unnamed.png" alt="" width="100px" height="100px" class="profile mt-5">
+                    <img src="../../../../assets/profille.png" alt="" width="100px" height="100px" class="profile mt-5">
 
                 </div>
                 <div *ngIf="file !== null">
@@ -384,11 +384,10 @@
 
                                     <button *ngIf="polling.isChoice === true" pButton
                                         class="w-full bg-blue-900 buttonAnswer">
-                                        <p>{{(answer.countAnswer / polling.countAllAnswer) * 100}}%
-                                            {{answer.pollingChoice}}</p>
+                                        <h5>{{(answer.countAnswer / polling.countAllAnswer) * 100}}%
+                                            </h5>
+                                            <h5>({{answer.pollingChoice}})</h5>
                                     </button>
-
-
                                 </div>
                             </div>
 

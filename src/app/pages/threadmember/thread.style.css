@@ -11,7 +11,7 @@
 
 .buttonAnswer{
     cursor: no-drop;
-    
+    display: inline-block;
 }
 
 .profile{

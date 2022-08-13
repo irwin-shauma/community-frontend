@@ -3,34 +3,40 @@
        
     </div> 
     <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;" >
-        <div style="width: 500px; height: 500px;" class="flex flex-column justify-content-around align-items-center">
-            <div class="titlelogin">CREATE ACCOUNT</div>
-
+        <div style="width: 500px; height: 500px;">
+           
            <form (ngSubmit)="onSubmitRegis()">
-            <div class="flex flex-column">
-                <label for="email">Email</label>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-envelope"></i>
-                    <input type="email" [(ngModel)]="dataRegister.email" name="email" pInputText placeholder="Email" class="inputstyle" />
-                </span>
+
+            <div class="flex flex-column gap-3 align-items-center">
+                <div class="titlelogin">CREATE ACCOUNT</div>
+                <div>
+                    <label for="email">Email</label>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-envelope"></i>
+                        <input type="email" [(ngModel)]="dataRegister.email" name="email" pInputText placeholder="Email" class="inputstyle" />
+                    </span>
+                </div>
+                <div class="flex flex-column">
+                    <label for="password">Password</label>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-lock"></i>
+
+                        <p-password placeholder="Password" name="password" [(ngModel)] = "dataRegister.password" styleClass="inputstyle" [toggleMask]="true" [feedback]="false"></p-password>
+                    </span>
+                </div>
+                <div class="flex justify-content-between w-full">
+                    <p>already have an account? <span class="font-bold cursor-pointer" routerLink="/login">Sign In</span></p>
+                </div>
+    
+                <div class="w-full">
+                    <button pButton pRipple label="Sign Up" type="submit" class="p-button-rounded button-signin" ></button>
+                </div>
             </div>
          
             
-            <div class="flex flex-column">
-                <label for="password">Password</label>
-                <span class="p-input-icon-right">
-                    <i class="pi pi-lock"></i>
-                    <input type="password" [(ngModel)]="dataRegister.password" name="password" pInputText placeholder="Password" class="inputstyle" />
-                </span>
-            </div>
+        
 
-            <div class="flex justify-content-between w-full">
-                <p>already have an account? <span class="font-bold cursor-pointer" routerLink="/login">Sign In</span></p>
-            </div>
-
-            <div class="w-full">
-                <button pButton pRipple label="Sign Up" type="submit" class="p-button-rounded button-signin" ></button>
-            </div>
+            
 
 
         </form>
@@ -57,6 +63,10 @@
     <div class="flex flex-column justify-content-center align-items-center" style="width: 100vh;">
         <div style="width: 500px; height: 600px;" class="flex flex-column justify-content-around align-items-center">
             <div class="titlelogin">ACCOUNT DETAIL</div>
+            <div class="flex justify-content-start w-full">
+                <i class="pi pi-fw pi-arrow-left text-red-500 cursor-pointer" (click)="back()"></i>
+            </div>
+           
             <form (ngSubmit)="onSubmit()">
                 <div class="flex flex-column">
                     <label for="email">Fullname</label>
@@ -89,7 +99,7 @@
                 </div>
     
     
-                <div class="w-full">
+                <div class="w-full mt-3">
                     <button type="submit" pButton pRipple label="Next" class="p-button-rounded button-signin"></button>
                 </div>
             </form>
@@ -115,6 +125,9 @@
         <form (ngSubmit)="finalSubmit()">
             <div style="width: 500px; height: 500px;" class="flex flex-column justify-content-around align-items-center">
                 <div class="titlelogin">VERIFICATION CODE</div>
+                <div class="flex justify-content-start w-full">
+                    <i class="pi pi-fw pi-arrow-left text-red-500 cursor-pointer" (click)="back2()"></i>
+                </div>
                 <div class="flex flex-column">
                     <label for="email">Enter your verification code</label>
                     <span class="p-input-icon-right">

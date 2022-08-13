@@ -9,10 +9,11 @@ import { ButtonModule } from 'primeng/button';
 import { ImageModule } from 'primeng/image';
 import { ArticleDetailComponent } from './articledetail/article-detail.component';
 import { FormsModule } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { ScrollTopModule } from 'primeng/scrolltop';
 import { DividerModule } from 'primeng/divider';
+import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
 import { SkeletonModule } from 'primeng/skeleton';
 
 @NgModule({
@@ -29,9 +30,10 @@ import { SkeletonModule } from 'primeng/skeleton';
     InfiniteScrollModule,
     ScrollTopModule,
     DividerModule,
-    SkeletonModule
+    SharedPipeModule,
+    SkeletonModule,
   ],
   declarations: [ArticleHeaderComponent, ArticleDetailComponent],
   exports: [ArticleHeaderComponent, ArticleDetailComponent],
 })
-export class ArticleMemberModule { }
+export class ArticleMemberModule {}

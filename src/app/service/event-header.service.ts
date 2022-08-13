@@ -85,4 +85,10 @@ export class EventHeaderService {
       `http://localhost:1234/event-headers/${id}`
     );
   }
+
+  getAllByUser(): Observable<EventHeaderFindAllRes> {
+    return this.http.get<EventHeaderFindAllRes>(
+      'http://localhost:1234/event-headers/users'
+    );
+  }
 }

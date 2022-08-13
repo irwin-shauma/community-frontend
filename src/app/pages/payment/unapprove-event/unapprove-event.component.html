@@ -30,7 +30,7 @@
                         <p-checkbox *ngIf="list.isAprove === null" [binary]="false" [(ngModel)]="list.isAprove" name="isApprove" inputId="binary" [disabled]="true"></p-checkbox>
                     </td>
                     <td>
-                        <button pButton icon="pi pi-check" class="p-button-outlined p-button-rounded p-button-success mr-3" (click)="confirm(list.id, list.paymentId)"></button>
+                        <button pButton icon="pi pi-check" class="p-button-outlined p-button-rounded p-button-success mr-3" (click)="confirm(list.id, list.paymentId, list.eventCreator, list.price)"></button>
                         <button pButton icon="pi pi-times" class="p-button-outlined p-button-rounded p-button-danger" (click)="confirmReject(list.id, list.paymentId)"></button>
                     </td>
                 </tr>
