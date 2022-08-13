@@ -30,19 +30,22 @@
     <div class="card">
         <p-tabView class="border-circle">
             <p-tabPanel header="Form Input" leftIcon="pi pi-list">
-
+               <form (ngSubmit)="onchoosesubmit()">
                 <div class="flex flex-column justify-content-start w-full">
                     <h4>Premium choose</h4>
-                    <p-dropdown [options]="dataPremium.data!" [(ngModel)]="choosePremium" placeholder="premium type"
-                        optionLabel='duration' optionValue="id" name="duration" class="wdrop mt-3">
+                    <p-dropdown [options]="dataPremium.data!"  placeholder="premium type"
+                        optionLabel='duration' optionValue="id" [(ngModel)]="insertPayment.premiumTypeId" name="duration" class="wdrop mt-3">
                     </p-dropdown>
 
                 </div>
+              
 
                 <div class="flex justify-content-end mt-3">
-                    <button pButton label="pay" icon="pi pi-fw pi-wallet" (click)="showMaximizableDialog()"
+                    <button pButton type="submit" label="pay" icon="pi pi-fw pi-wallet" (click)="showMaximizableDialog()"
                         class="bg-red-500"></button>
                 </div>
+               </form>
+           
                 <p-dialog [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '50vw'}" [maximizable]="true"
                     [draggable]="false" header="Detail Payment" [resizable]="false">
 
@@ -53,7 +56,7 @@
                     </div>
                     <div>
                         <h5 class="font-normal">Total Pembayaran</h5>
-                        <h4>Rp.{{insertPayment.premiumTypeId}}</h4>
+                        <h4>Rp.{{choosePremium}}</h4>
                     </div>
 
 
@@ -68,9 +71,9 @@
                                 <button pButton pRipple type="submit" label="Pay"
                                     class="p-button-outlined p-button-danger"></button>
                             </div>
-
-
                         </form>
+
+                      
 
 
 
