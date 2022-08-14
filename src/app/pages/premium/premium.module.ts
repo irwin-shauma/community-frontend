@@ -12,6 +12,7 @@ import {CardModule} from 'primeng/card';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { DialogModule } from 'primeng/dialog';
+import { SharedPipeModule } from "src/app/pipe/shared-pipe.module";
 
 @NgModule({
   imports: [
@@ -27,6 +28,7 @@ import { DialogModule } from 'primeng/dialog';
     FormsModule,
     CommonModule,
     DialogModule,
+    SharedPipeModule
   ],
   declarations: [PremiumComponent],
   exports: [PremiumComponent],
