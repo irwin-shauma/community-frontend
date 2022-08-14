@@ -11,9 +11,10 @@ import { ProfileViewComponent } from './profileview/profile-view.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import {PasswordModule} from 'primeng/password';
 import { TableModule } from 'primeng/table';
-import { TimeAgoPipe } from 'src/app/pipe/time-ago.pipe';
 import { SharedPipeModule } from 'src/app/pipe/shared-pipe.module';
 import { CardModule } from 'primeng/card';
+import { DialogModule } from 'primeng/dialog';
+import { CalendarModule } from 'primeng/calendar';
 
 @NgModule({
   imports: [
@@ -29,6 +30,8 @@ import { CardModule } from 'primeng/card';
     TableModule,
     SharedPipeModule,
     CardModule,
+    DialogModule,
+    CalendarModule,
   ],
   declarations: [ProfileComponent, ProfileViewComponent],
   exports: [ProfileComponent, ProfileViewComponent],

@@ -15,7 +15,7 @@
             ng-mouseleave="hoverActive=false"
             ng-style="hoverActive ? {'border-style' : solid} : {}"(click)="menu.toggle($event)" [style]="{'cursor' : 'pointer'}"></p-avatar>
           </div>
-          <div *ngIf="fileId !== null">
+          <div *ngIf="fileId !== null" class="imgNavbar">
             <p-avatar image="http://localhost:1234/files/{{fileId}}" *ngIf="loginStatus" class="mt-1" size="large" shape="circle" ng-mouseover="hoverActive=true"
             ng-mouseleave="hoverActive=false"
             ng-style="hoverActive ? {'border-style' : solid} : {}"(click)="menu.toggle($event)" [style]="{'cursor' : 'pointer'}"></p-avatar>

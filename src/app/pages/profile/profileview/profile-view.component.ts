@@ -33,6 +33,7 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   threadLikeSubs?: Subscription;
   answerPollingSubscription?: Subscription;
   id!: string | any;
+  displayMaximizable!: boolean;
   admin: boolean = false;
   data: UserData = {} as UserData;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
@@ -51,8 +52,9 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   premiumSubs?: Subscription;
   userSubscription?: Subscription;
   eventSubscription?: Subscription;
-  eventPaymentData: EventPaymentHistoryData[] = []
-
+  eventPaymentData: EventPaymentHistoryData[] = [];
+  today = new Date();
+  date!: Date;
   constructor(
     private activateRoute: ActivatedRoute,
     private router: Router,
@@ -121,9 +123,15 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   }
 
   initEventHistories(): void {
-    this.eventSubscription = this.eventPaymentService.showAllByUser().subscribe(result => {
-      this.eventPaymentData = result.data!
-    })
+    this.eventSubscription = this.eventPaymentService
+      .showAllByUser()
+      .subscribe((result) => {
+        this.eventPaymentData = result.data!;
+      });
+  }
+
+  showMaximizableDialog() {
+    this.displayMaximizable = true;
   }
 
   onExpandText(evt: any, id: string): void {
