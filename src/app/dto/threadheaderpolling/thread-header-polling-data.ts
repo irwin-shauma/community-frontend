@@ -14,6 +14,8 @@ export interface ThreadHeaderPollingData {
   createdAt: string;
   createdBy: string;
   isChoice: boolean;
+  isLike: boolean;
+  countLike: number;
   version: number;
   countAllAnswer: number;
   threadDtlPolling: ThreadPollingDetailData[];

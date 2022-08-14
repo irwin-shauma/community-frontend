@@ -4,6 +4,7 @@ import { SharedModule } from 'primeng/api';
 import { LogoutComponent } from './components/logout/logout.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { AdminGuard } from './guard/admin.guard';
+import { LoginGuard } from './guard/login.guard';
 import { NonAdminGuard } from './guard/non-admin.guard';
 import { NotFoundComponent } from './pages/notfound/notfound.component';
 import { TemplatePageTitleStrategy } from './template-page-title-strategy.service';
@@ -22,6 +23,7 @@ const routes: Routes = [
   },
   {
     path: 'login',
+    canLoad: [LoginGuard],
     loadChildren: () =>
       import('./pages/login/login.module').then((m) => m.LoginModule),
     title : "Login"
