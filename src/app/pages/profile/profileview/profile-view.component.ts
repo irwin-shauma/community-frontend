@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,6 +9,7 @@ import { EventPaymentHistoryData } from 'src/app/dto/event-payment-history/event
 import { EventPaymentHistoryFindAllRes } from 'src/app/dto/event-payment-history/event-payment-history-find-all-res';
 import { PremiumPaymentHistoryData } from 'src/app/dto/premium-payment-history/premium-payment-history-data';
 import { PremiumPaymentHistoryFindAll } from 'src/app/dto/premium-payment-history/premium-payment-history-find-all';
+import { MemberRevenueReportReq } from 'src/app/dto/report/member-revenure-report-req';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
 import { ThreadPollingAnswerInsertReq } from 'src/app/dto/thread-polling-answer/thread-polling-answer-insert-req';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
@@ -18,6 +20,7 @@ import { EventHeaderService } from 'src/app/service/event-header.service';
 import { EventPaymentHistoryService } from 'src/app/service/event-payment-history.service';
 import { LoginService } from 'src/app/service/login.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
+import { ReportService } from 'src/app/service/report.service';
 import { ThreadHeaderService } from 'src/app/service/thread-header.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
 import { ThreadPollingService } from 'src/app/service/thread-polling.service';
@@ -32,11 +35,18 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   idParam!: string;
   threadLikeSubs?: Subscription;
   answerPollingSubscription?: Subscription;
+  reportSubscription?: Subscription;
   id!: string | any;
   displayMaximizable!: boolean;
   admin: boolean = false;
+  idReport: string = '';
+  startReport: string = '';
+  endReport: string = '';
+  startDate: string = '';
+  endDate: string = '';
   data: UserData = {} as UserData;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
+  reportInsert: MemberRevenueReportReq = {} as MemberRevenueReportReq;
   eventHeader: EventHeaderFindAllRes = {} as EventHeaderFindAllRes;
   threadPolling: ThreadHeaderPollingFindAll = {} as ThreadHeaderPollingFindAll;
   premiumPaymentHistory!: PremiumPaymentHistoryData[];
@@ -66,7 +76,8 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
     private bookmarkService: BookmarkService,
     private eventHeaderService: EventHeaderService,
     private premiumPaymentHistoryService: PremiumPaymentHistoryService,
-    private eventPaymentService: EventPaymentHistoryService
+    private eventPaymentService: EventPaymentHistoryService,
+    private reportService: ReportService
   ) {}
 
   sliceOptions = {
@@ -120,6 +131,13 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
         this.premiumPaymentHistory = res.data;
         this.premiumHistory = res;
       });
+  }
+
+  submitDownload(id: string, startDate: string, endDate: string): void {
+    const startDateFormated = formatDate(this.startDate, `yyyy-MM-dd`, 'en');
+    const endDateFormated = formatDate(this.endDate, `yyyy-MM-dd`, 'en');
+
+    this.reportService.getReport(id, startDateFormated, endDateFormated);
   }
 
   initEventHistories(): void {
