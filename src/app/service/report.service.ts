@@ -13,7 +13,7 @@ export class ReportService {
 
   getReport(id: string, startDate: string, endDate: string): void {
     window.open(
-      `http://localhost:1234/reports/members-revenue-report?id=${id}&startDate=${startDate}&endDate=${endDate}`,
+      `http://localhost:1234/reports/member-revenue-report?id=${id}&startDate=${startDate}&endDate=${endDate}`,
       '_blank'
     );
   }
