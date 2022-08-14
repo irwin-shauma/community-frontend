@@ -5,10 +5,10 @@ import { Subscription } from 'rxjs';
 import { BalanceFindById } from 'src/app/dto/balance/balance-find-by-id-res';
 import { BookmarkInsertReq } from 'src/app/dto/bookmark/bookmark-insert-req';
 import { EventHeaderData } from 'src/app/dto/event-header/event-header-data';
-import { EventHeaderFindAllRes } from 'src/app/dto/event-header/event-header-find-all-res';
 import { PremiumPaymentHistoryFindById } from 'src/app/dto/premium-payment-history/premium-payment-history-find-by-id-res';
 import { ThreadLikeInsertReq } from 'src/app/dto/thread-like/thread-like-insert-req';
 import { ThreadPollingAnswerInsertReq } from 'src/app/dto/thread-polling-answer/thread-polling-answer-insert-req';
+import { ThreadPollingLikeInsertReq } from 'src/app/dto/thread-polling-like/thread-polling-like-insert-req';
 import { ThreadHeaderData } from 'src/app/dto/threadheader/thread-header-data';
 import { ThreadHeaderFindAll } from 'src/app/dto/threadheader/thread-header-find-all';
 import { ThreadHeaderInsertReq } from 'src/app/dto/threadheader/thread-header-insert-req';
@@ -26,6 +26,7 @@ import { LoginService } from 'src/app/service/login.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
 import { ThreadHeaderService } from 'src/app/service/thread-header.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
+import { ThreadPollingLikeService } from 'src/app/service/thread-polling-like.service';
 import { ThreadPollingService } from 'src/app/service/thread-polling.service';
 import { ThreadTypeService } from 'src/app/service/thread-type.service';
 import { ThreadService } from 'src/app/service/thread.service';
@@ -84,6 +85,7 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   premiumHistory: PremiumPaymentHistoryFindById =
     {} as PremiumPaymentHistoryFindById;
   likeInsert: ThreadLikeInsertReq = {} as ThreadLikeInsertReq;
+  likePollingInsert: ThreadPollingLikeInsertReq = {} as ThreadPollingLikeInsertReq;
   answerInsert: ThreadPollingAnswerInsertReq =
     {} as ThreadPollingAnswerInsertReq;
   bookmarkInsert: BookmarkInsertReq = {} as BookmarkInsertReq;
@@ -112,7 +114,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     private loginService: LoginService,
     private userService: UserService,
     private eventService: EventHeaderService,
-    private balanceService: BalanceService
+    private balanceService: BalanceService,
+    private threadPollingLikeService: ThreadPollingLikeService
   ) {}
 
   pollingArray = new FormArray([new FormControl('')]);
@@ -302,6 +305,16 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       });
   }
 
+  likePolling(pollingId: string): void {
+    
+    this.likePollingInsert.threadPollingHeaderId = pollingId;
+    this.threadLikeSubs = this.threadPollingLikeService
+      .insert(this.likePollingInsert)
+      .subscribe((result) => {
+        this.onInitData();
+      });
+  }
+
   chooseAnswer(answerId: string): void {
     this.answerInsert.threadPollingId = answerId;
     this.answerPollingSubscription = this.pollingService
@@ -314,6 +327,11 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
 
   unLike(threadId: string): void {
     this.threadLikeService.delete(threadId).subscribe((res) => {
+      this.onInitData();
+    });
+  }
+  unLikePolling(threadId: string): void {
+    this.threadPollingLikeService.delete(threadId).subscribe((res) => {
       this.onInitData();
     });
   }

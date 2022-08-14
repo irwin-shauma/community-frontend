@@ -15,7 +15,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class LoginComponent implements OnInit, OnDestroy {
   loginSubsription?: Subscription;
   loginReq: LoginReq = {} as LoginReq;
-  loading!: boolean;
+  loading: boolean = false;
   constructor(private loginService: LoginService,
     private router: Router,
     private spinner: NgxSpinnerService,
