@@ -73,10 +73,10 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeaderLike: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   threadHeaderBookmark: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
-  eventHeader: EventHeaderFindAllRes = {} as EventHeaderFindAllRes;
-  course: EventHeaderData[] = [];
-  eventNonLogin: EventHeaderData[] = [];
-  courseNonLogin: EventHeaderData[] = [];
+  eventHeader: EventHeaderData = {} as EventHeaderData;
+  course: EventHeaderData = {} as EventHeaderData;
+  eventNonLogin: EventHeaderData = {} as EventHeaderData;
+  courseNonLogin: EventHeaderData = {} as EventHeaderData;
   balance: BalanceFindById = {} as BalanceFindById;
   threadPollingHeader: ThreadHeaderPollingFindAll =
     {} as ThreadHeaderPollingFindAll;
@@ -137,10 +137,10 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       this.isLoading = false;
     });
     this.eventService.showAllEventNonLogin(0, 1).subscribe((result) => {
-      this.eventNonLogin = result.data
+      this.eventNonLogin = result.data[0]
     });
     this.eventService.showAllCourseNonLogin(0, 1).subscribe((result) => {
-      this.courseNonLogin = result.data
+      this.courseNonLogin = result.data[0]
     });
   }
 
@@ -181,11 +181,11 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     });
 
     this.eventService.upcomingCourse(0, 1).subscribe((result) => {
-      this.course = result.data
+      this.course = result.data[0]
     });
 
     this.eventService.upcomingEvent(0, 1).subscribe((result) => {
-      this.eventHeader.data = result.data
+      this.eventHeader = result.data[0]
     });
 
     this.userService

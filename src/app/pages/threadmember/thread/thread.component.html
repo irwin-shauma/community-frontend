@@ -583,39 +583,40 @@
         </p-tabView>
     </div>
     <div class="md:col-3">
+        <!-- UPCOMING EVENT -->
         <div class="bg-white border-round mb-2">
             <div class="flex gap-1 align-items-center p-3">
                 <i class="pi pi-fw pi-book text-red-500"></i>
                 <h3 class="font-medium">Upcoming Event</h3>
             </div>
             <div class="p-3">
-                <img [src]="'http://localhost:1234/files/'+eventHeader.data[0].fileId" alt="" width="100%" height="200px">
+                <img [src]="'http://localhost:1234/files/'+eventHeader.fileId" alt="" width="100%" height="200px">
 
-                <h3>{{eventHeader.data[0].title}}</h3>
+                <h3>{{eventHeader.title}}</h3>
 
                 <div class="flex flex-row justify-content-between mt-5">
                     <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
-                        <h5 class="font-normal">{{eventHeader.data[0].provider}}</h5>
+                        <h5 class="font-normal">{{eventHeader.provider}}</h5>
                     </span>
                     <span class="flex gap-1"><i class="pi pi-map-marker text-red-500"></i>
-                        <h5 class="font-normal">{{eventHeader.data[0].location}}</h5>
+                        <h5 class="font-normal">{{eventHeader.location}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-2">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">start: {{eventHeader.data[0].startDate | date: "medium"}}</h5>
+                        <h5 class="font-normal">start: {{eventHeader.startDate | date: "medium"}}</h5>
                     </span>
                     <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>
-                        <h5 class="font-normal">{{eventHeader.data[0].price | customCurrency}}</h5>
+                        <h5 class="font-normal">{{eventHeader.price | customCurrency}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-3">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">end: {{eventHeader.data[0].endDate| date: "medium"}} </h5>
+                        <h5 class="font-normal">end: {{eventHeader.endDate| date: "medium"}} </h5>
                     </span>
                     <button pButton type="button" (click)="clickToDetail(idEvent)"
                         class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
@@ -624,39 +625,42 @@
                 </div>
             </div>
         </div>
-        <!-- <div class="bg-white border-round">
+        <!-- END OF UPCOMING EVENT -->
+
+        <!-- UPCOMING COURSE -->
+        <div class="bg-white border-round">
             <div class="flex gap-1 align-items-center p-3">
                 <i class="pi pi-fw pi-book text-red-500"></i>
                 <h3 class="font-medium">Upcoming Course </h3>
             </div>
             <div class="p-3">
-                <img [src]="'http://localhost:1234/files/'+course[0].fileId" alt="" width="100%" height="200px">
+                <img [src]="'http://localhost:1234/files/'+course.fileId" alt="" width="100%" height="200px">
 
-                <h3>{{course[0].title}}</h3>
+                <h3>{{course.title}}</h3>
 
                 <div class="flex flex-row justify-content-between mt-5">
                     <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
-                        <h5 class="font-normal">{{course[0].provider}}</h5>
+                        <h5 class="font-normal">{{course.provider}}</h5>
                     </span>
                     <span class="flex gap-1"><i class="pi pi-map-marker text-red-500"></i>
-                        <h5 class="font-normal">{{course[0].location}}</h5>
+                        <h5 class="font-normal">{{course.location}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-2">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">start: {{course[0].startDate | date: "medium"}}</h5>
+                        <h5 class="font-normal">start: {{course.startDate | date: "medium"}}</h5>
                     </span>
                     <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>
-                        <h5 class="font-normal">{{course[0].price | customCurrency}}</h5>
+                        <h5 class="font-normal">{{course.price | customCurrency}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-3">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">end: {{course[0].endDate| date: "medium"}} </h5>
+                        <h5 class="font-normal">end: {{course.endDate| date: "medium"}} </h5>
                     </span>
                     <button pButton type="button" (click)="clickToDetail(idEvent)"
                         class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
@@ -664,7 +668,9 @@
                     </button>
                 </div>
             </div>
-        </div> -->
+        </div>
+
+        <!-- END OF UPCOMING COURSE -->
     </div>
 </div>
 
@@ -756,33 +762,33 @@
                 <h3 class="font-medium">Upcoming Event</h3>
             </div>
             <div class="p-3">
-                <img src="http://localhost:1234/files/{{eventNonLogin[0].fileId!}}" alt="" width="100%" height="200px">
+                <img src="http://localhost:1234/files/{{eventNonLogin.fileId}}" alt="" width="100%" height="200px">
 
-                <h3>{{eventNonLogin[0].title!}}</h3>
+                <h3>{{eventNonLogin.title}}</h3>
 
                 <div class="flex flex-row justify-content-between mt-5">
                     <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
-                        <h5 class="font-normal">{{eventNonLogin[0].provider!}}</h5>
+                        <h5 class="font-normal">{{eventNonLogin.provider}}</h5>
                     </span>
                     <span class="flex gap-1"><i class="pi pi-map-marker text-red-500"></i>
-                        <h5 class="font-normal">{{eventNonLogin[0].location!}}</h5>
+                        <h5 class="font-normal">{{eventNonLogin.location}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-2">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">start: {{eventNonLogin[0].startDate! | date: "medium"}}</h5>
+                        <h5 class="font-normal">start: {{eventNonLogin.startDate | date: "medium"}}</h5>
                     </span>
                     <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>
-                        <h5 class="font-normal">{{eventNonLogin[0].price! | customCurrency}}</h5>
+                        <h5 class="font-normal">{{eventNonLogin.price | customCurrency}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-3">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">end: {{eventNonLogin[0].endDate!| date: "medium"}} </h5>
+                        <h5 class="font-normal">end: {{eventNonLogin.endDate| date: "medium"}} </h5>
                     </span>
                     <button pButton type="button" routerLink="/login"
                         class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
@@ -800,33 +806,33 @@
                 <h3 class="font-medium">Upcoming Course</h3>
             </div>
             <div class="p-3">
-                <img src="http://localhost:1234/files/{{courseNonLogin[0].fileId!}}" alt="" width="100%" height="200px">
+                <img src="http://localhost:1234/files/{{courseNonLogin.fileId}}" alt="" width="100%" height="200px">
 
-                <h3>{{courseNonLogin[0].title!}}</h3>
+                <h3>{{courseNonLogin.title}}</h3>
 
                 <div class="flex flex-row justify-content-between mt-5">
                     <span class="flex gap-1"><i class="pi pi-github text-red-500"></i>
-                        <h5 class="font-normal">{{courseNonLogin[0].provider!}}</h5>
+                        <h5 class="font-normal">{{courseNonLogin.provider}}</h5>
                     </span>
                     <span class="flex gap-1"><i class="pi pi-map-marker text-red-500"></i>
-                        <h5 class="font-normal">{{courseNonLogin[0].location!}}</h5>
+                        <h5 class="font-normal">{{courseNonLogin.location}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-2">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">start: {{courseNonLogin[0].startDate! | date: "medium"}}</h5>
+                        <h5 class="font-normal">start: {{courseNonLogin.startDate | date: "medium"}}</h5>
                     </span>
                     <span class="card-content flex justify-content-center gap-1"><i class="pi pi-tag text-red-400"></i>
-                        <h5 class="font-normal">{{courseNonLogin[0].price! | customCurrency}}</h5>
+                        <h5 class="font-normal">{{courseNonLogin.price | customCurrency}}</h5>
                     </span>
                 </div>
 
                 <div class="flex flex-row justify-content-between mt-3">
                     <span class="card-content flex justify-content-center gap-1"><i
                             class="pi pi-clock text-red-400"></i>
-                        <h5 class="font-normal">end: {{courseNonLogin[0].endDate!| date: "medium"}} </h5>
+                        <h5 class="font-normal">end: {{courseNonLogin.endDate| date: "medium"}} </h5>
                     </span>
                     <button pButton type="button" routerLink="/login"
                         class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
