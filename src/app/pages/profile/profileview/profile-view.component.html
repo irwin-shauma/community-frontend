@@ -169,7 +169,7 @@
                   
                 </div>
             </p-tabPanel>
-            <p-tabPanel header="My Event" leftIcon="pi pi-fw pi-calendar">
+            <p-tabPanel header="My Event" leftIcon="pi pi-fw pi-calendar" *ngIf="admin == true">
                 <div class="flex justify-content-end">
                     <button pButton (click)="showMaximizableDialog()" label="Download Report" class="p-button-rounded bg-red-500" icon="pi pi-download" [loading]="false"></button>
 <p-dialog header="Download Report" [(visible)]="displayMaximizable" [modal]="true" [style]="{width: '1000px', height:'1000px'}" [maximizable]="true"
@@ -177,11 +177,11 @@
     <div class="flex flex-column gap-5 justify-content-center align-items-center glasses h-full">
         <div>
             <h4>Start Date</h4>
-            <p-calendar [showIcon]="true" [required]="true" inputId="time" name="startDate" inputId="icon"></p-calendar>
+            <p-calendar [(ngModel)]="startDate" [showIcon]="true" [required]="true" inputId="time" name="startDate" inputId="icon"></p-calendar>
         </div>
         <div>
             <h4>End Date</h4>
-            <p-calendar [showIcon]="true" [required]="true" inputId="time" name="startDate" inputId="icon"></p-calendar>
+            <p-calendar [(ngModel)]="endDate" [showIcon]="true" [required]="true" inputId="time" name="startDate" inputId="icon"></p-calendar>
         </div>
 
     </div>

@@ -18,6 +18,7 @@ import { EventHeaderService } from 'src/app/service/event-header.service';
 import { EventPaymentHistoryService } from 'src/app/service/event-payment-history.service';
 import { LoginService } from 'src/app/service/login.service';
 import { PremiumPaymentHistoryService } from 'src/app/service/premium-payment-history.service';
+import { ReportService } from 'src/app/service/report.service';
 import { ThreadHeaderService } from 'src/app/service/thread-header.service';
 import { ThreadLikeService } from 'src/app/service/thread-like.service';
 import { ThreadPollingService } from 'src/app/service/thread-polling.service';
@@ -35,6 +36,8 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
   id!: string | any;
   displayMaximizable!: boolean;
   admin: boolean = false;
+  startDate: string = '';
+  endDate: string = '';
   data: UserData = {} as UserData;
   threadHeader: ThreadHeaderFindAll = {} as ThreadHeaderFindAll;
   eventHeader: EventHeaderFindAllRes = {} as EventHeaderFindAllRes;
@@ -66,7 +69,8 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
     private bookmarkService: BookmarkService,
     private eventHeaderService: EventHeaderService,
     private premiumPaymentHistoryService: PremiumPaymentHistoryService,
-    private eventPaymentService: EventPaymentHistoryService
+    private eventPaymentService: EventPaymentHistoryService,
+    private reportService: ReportService
   ) {}
 
   sliceOptions = {
@@ -105,6 +109,7 @@ export class ProfileViewComponent implements OnInit, OnDestroy {
     this.eventHeaderService.getAllByUser().subscribe((result) => {
       this.eventHeader = result;
     });
+    this.reportService.getMemberRevenueReport().subscribe((result) => {});
 
     this.initPremium();
     this.initEventHistories();
