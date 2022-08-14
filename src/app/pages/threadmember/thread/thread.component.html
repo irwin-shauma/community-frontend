@@ -589,7 +589,8 @@
                 <i class="pi pi-fw pi-book text-red-500"></i>
                 <h3 class="font-medium">Upcoming Event</h3>
             </div>
-            <div class="p-3">
+            <h3 class="p-3 text-center" *ngIf="noEvent === true">No Upcoming Event</h3>
+            <div class="p-3" *ngIf="noEvent === false">
                 <img [src]="'http://localhost:1234/files/'+eventHeader.fileId" alt="" width="100%" height="200px">
 
                 <h3>{{eventHeader.title}}</h3>
@@ -618,7 +619,7 @@
                             class="pi pi-clock text-red-400"></i>
                         <h5 class="font-normal">end: {{eventHeader.endDate| date: "medium"}} </h5>
                     </span>
-                    <button pButton type="button" (click)="clickToDetail(idEvent)"
+                    <button pButton type="button" (click)="clickToDetail(eventHeader.id)"
                         class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
                         icon="pi pi-fw pi-shopping-cart">
                     </button>
@@ -633,7 +634,8 @@
                 <i class="pi pi-fw pi-book text-red-500"></i>
                 <h3 class="font-medium">Upcoming Course </h3>
             </div>
-            <div class="p-3">
+            <h3 class="p-3 text-center" *ngIf="noCourse === true">No Upcoming Course</h3>
+            <div class="p-3" *ngIf="noCourse === false">
                 <img [src]="'http://localhost:1234/files/'+course.fileId" alt="" width="100%" height="200px">
 
                 <h3>{{course.title}}</h3>
@@ -662,7 +664,7 @@
                             class="pi pi-clock text-red-400"></i>
                         <h5 class="font-normal">end: {{course.endDate| date: "medium"}} </h5>
                     </span>
-                    <button pButton type="button" (click)="clickToDetail(idEvent)"
+                    <button pButton type="button" (click)="clickToDetail(course.id)"
                         class="bg-red-500 px-3 py-1 border-round text-white cursor-pointer" label="Buy"
                         icon="pi pi-fw pi-shopping-cart">
                     </button>
@@ -761,7 +763,8 @@
                 <i class="pi pi-fw pi-book text-red-500"></i>
                 <h3 class="font-medium">Upcoming Event</h3>
             </div>
-            <div class="p-3">
+            <h3 class="p-3 text-center" *ngIf="noEvent === true">No Upcoming Event</h3>
+            <div class="p-3" *ngIf="noEvent === false">
                 <img src="http://localhost:1234/files/{{eventNonLogin.fileId}}" alt="" width="100%" height="200px">
 
                 <h3>{{eventNonLogin.title}}</h3>
@@ -805,7 +808,8 @@
                 <i class="pi pi-fw pi-book text-red-500"></i>
                 <h3 class="font-medium">Upcoming Course</h3>
             </div>
-            <div class="p-3">
+            <h3 class="p-3 text-center" *ngIf="noCourse === true">No Upcoming Course</h3>
+            <div class="p-3" *ngIf="noCourse === false">
                 <img src="http://localhost:1234/files/{{courseNonLogin.fileId}}" alt="" width="100%" height="200px">
 
                 <h3>{{courseNonLogin.title}}</h3>

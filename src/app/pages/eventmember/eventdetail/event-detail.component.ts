@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { EventHeaderData } from 'src/app/dto/event-header/event-header-data';
 import { EventHeaderFindById } from 'src/app/dto/event-header/event-header-find-by-id-res';
 import { EventPaymentHistoryInsertReq } from 'src/app/dto/event-payment-history/event-payment-insert-req';
 import { EventHeaderService } from 'src/app/service/event-header.service';
@@ -19,7 +20,7 @@ export class EventDetailCompoenent implements OnInit {
   eventPaymentSubscription?: Subscription;
   eventPaymentHistorySubcription?: Subscription;
   showEdit: boolean = false;
-  eventData: EventHeaderFindById = {} as EventHeaderFindById;
+  eventData: EventHeaderData = {} as EventHeaderData;
   insertPayment: EventPaymentHistoryInsertReq = {} as EventPaymentHistoryInsertReq;
   displayMaximizable!: boolean;
   constructor(
@@ -46,7 +47,7 @@ export class EventDetailCompoenent implements OnInit {
         if (this.loginService.getData()?.data?.id === res.data?.userId) {
           this.showEdit = true;
         }
-        this.eventData.data = res.data;
+        this.eventData = res.data!;
       });
     });
   }

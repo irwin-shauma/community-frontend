@@ -90,6 +90,8 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
   isLoggedIn: boolean = false;
   isLoading: boolean = true;
   loadingButton: boolean = false;
+  noEvent: boolean = true;
+  noCourse: boolean = true;
 
   sliceOptions = {
     start: 0,
@@ -137,10 +139,16 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
       this.isLoading = false;
     });
     this.eventService.showAllEventNonLogin(0, 1).subscribe((result) => {
-      this.eventNonLogin = result.data[0]
+      this.eventNonLogin = result.data[0];
+      if(result.data.length > 0){
+        this.noEvent = false;
+      }
     });
     this.eventService.showAllCourseNonLogin(0, 1).subscribe((result) => {
-      this.courseNonLogin = result.data[0]
+      this.courseNonLogin = result.data[0];
+      if(result.data.length > 0){
+        this.noCourse = false;
+      }
     });
   }
 
@@ -181,11 +189,17 @@ export class ThreadMemberComponent implements OnDestroy, OnInit {
     });
 
     this.eventService.upcomingCourse(0, 1).subscribe((result) => {
-      this.course = result.data[0]
+      this.course = result.data[0];
+      if(result.data.length > 0){
+        this.noCourse = false;
+      }
     });
 
     this.eventService.upcomingEvent(0, 1).subscribe((result) => {
       this.eventHeader = result.data[0]
+      if(result.data.length > 0){
+        this.noEvent = false;
+      }
     });
 
     this.userService
