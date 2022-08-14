@@ -14,7 +14,7 @@
                         <div *ngIf="showEdit === true">
                             <button pButton pRipple type="button" icon="pi pi-pencil"
                                 class="p-button-rounded p-button-warning"
-                                (click)="updateThread(eventData.data!.id)"></button>
+                                (click)="updateThread(eventData.id!)"></button>
                         </div>
                     </div>
                        
@@ -23,46 +23,39 @@
                         <h4 class="mt-8 font-medium px-8">Event yang dibeli:</h4>
                         <div class="flex gap-5  w-full justify-content-center col-6">
                             <div>
-                                <img src="http://localhost:1234/files/{{eventData.data!.fileId}}" alt="event" width="300" height="200" class="imgEvent border-round mt-4">
-
-
-                    <!-- <h4 class="mt-4 font-medium px-2">Event / Course yang dibeli:</h4> -->
-                    <div class="flex gap-5  w-full justify-content-center col-6">
-                        <div>
-                            <img src="http://localhost:1234/files/{{eventData.data!.fileId}}" alt="event" width="300"
-                                height="200" class="imgEvent border-round mt-4">
+                                <img src="http://localhost:1234/files/{{eventData.fileId!}}" alt="event" width="300" height="200" class="imgEvent border-round mt-4">
                         </div>
                         <div class="mt-4 flex flex-column justify-content-between align-content-between col-6">
                             <div class="grid  ">
                                 <h4 class="font-normal col-4">Nama Event</h4>
                                 <h4 class="font-normal col-1">:</h4>
-                                <h4 class="font-normal col-7">{{eventData.data!.title}}</h4>
+                                <h4 class="font-normal col-7">{{eventData.title!}}</h4>
                             </div>
 
                             <div class="grid">
                                 <h4 class="font-normal col-4">Start Event</h4>
                                 <h4 class="font-normal col-1">:</h4>
-                                <h4 class="font-normal col-7">{{eventData.data!.startDate | date: "medium"}}</h4>
+                                <h4 class="font-normal col-7">{{eventData.startDate! | date: "medium"}}</h4>
                             </div>
                             <div class="grid">
                                 <h4 class="font-normal col-4">End Event</h4>
                                 <h4 class="font-normal col-1">:</h4>
-                                <h4 class="font-normal col-7">{{eventData.data!.endDate | date: "medium"}}</h4>
+                                <h4 class="font-normal col-7">{{eventData.endDate! | date: "medium"}}</h4>
                             </div>
                             <div class="grid">
                                 <h4 class="font-normal col-4">Provider</h4>
                                 <h4 class="font-normal col-1">:</h4>
-                                <h4 class="font-normal col-7">{{eventData.data!.provider}}</h4>
+                                <h4 class="font-normal col-7">{{eventData.provider!}}</h4>
                             </div>
                             <div class="grid">
                                 <h4 class="font-normal col-4">Location</h4>
                                 <h4 class="font-normal col-1">:</h4>
-                                <h4 class="font-normal col-7">{{eventData.data!.location}}</h4>
+                                <h4 class="font-normal col-7">{{eventData.location!}}</h4>
                             </div>
                             <div class="grid">
                                 <h4 class="font-normal col-4">Price</h4>
                                 <h4 class="font-normal col-1">:</h4>
-                                <h4 class="font-normal col-7">{{eventData.data!.price | currency: "IDR"}}</h4>
+                                <h4 class="font-normal col-7">{{eventData.price! | currency: "IDR"}}</h4>
                             </div>
                         </div>
                     </div>
@@ -80,7 +73,7 @@
                             </div>
                             <div>
                                 <h5 class="font-normal">Total Pembayaran</h5>
-                                <h4>Rp.{{eventData.data!.price}}</h4>
+                                <h4>Rp.{{eventData.price}}</h4>
                             </div>
 
 
