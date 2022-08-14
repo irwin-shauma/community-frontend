@@ -57,3 +57,7 @@ a:hover {
     text-decoration: underline;
     
 }
+
+.imgNavbar{
+    object-fit: cover;
+}

@@ -8,7 +8,7 @@
                             <img src="./../../../../assets/profille.png" alt="profile" width="400" height="400" class="border-round">
                         </div>
                         <div *ngIf="data.fileId !== null">
-                            <img src="http://localhost:1234/files/{{data.fileId}}" alt="profile" width="400" height="400" class="border-round">
+                            <img src="http://localhost:1234/files/{{data.fileId}}" alt="profile" width="400" height="400" class="border-round imgEvent">
                         </div>
                         <div class="flex flex-column glasses p-8 border-1  justify-content-around">
                             <button pButton pRipple type="button" icon="pi pi-pencil" (click)="updateById()" class="p-button-rounded p-button-warning p-button-outlined editprofile"></button>
