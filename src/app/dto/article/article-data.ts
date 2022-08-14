@@ -5,5 +5,6 @@ export interface ArticleHeaderData{
     title?: string
     contents?: string
     isActive?: boolean
+    createdAt: string
     version?: number
 }

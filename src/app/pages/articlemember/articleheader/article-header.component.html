@@ -40,7 +40,7 @@
     <div class="col-9">
         <div class="p-card col-12 md:6 mb-3" id="card-article" *ngFor="let data of articleHeaderData;">
             <div class="grid">
-                <div class="md:col-3 ">
+                <div class="col-3">
                     <div class="profile m-3">
                         <p-image src="http://localhost:1234/files/{{data.fileId}}" alt="Image"  width="200" height="120" class="img">
                     </p-image>
@@ -54,6 +54,9 @@
                         <div class="flex  text-black border-round">
                             <p class="text-sm ">{{data.contents | slice:sliceOptions.start:sliceOptions.end}} ... <a
                                     routerLink="/article-members/details/{{data.id}}">See More</a></p>
+                        </div>
+                        <div class="mt-5">
+                            <p class="text-xs text-right font-italic mr-2">{{data.createdAt | date: "short"}}</p>
                         </div>
                     </div>
                 </div>

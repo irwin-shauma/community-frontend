@@ -44,10 +44,10 @@ export class PaymentUnapproveComponent implements OnInit, OnDestroy {
     this.subscription = this.premiumPaymentService
       .showAllUnApprove(this.startPage, this.maxPage)
       .subscribe((result) => {
-        const resultData: any = result.data
-        this.premiumData = resultData.data;
-        this.totalData = resultData.count
+        this.premiumData = result.data;
+        this.totalData = result.data.length + 1
         this.loading = false;
+        
       });
   }
 

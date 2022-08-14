@@ -17,6 +17,7 @@ export class EventCreateComponent implements OnInit {
   eventHeaderSubscription?: Subscription;
   insertEvent: EventHeaderInsertReq = {} as EventHeaderInsertReq;
   today = new Date();
+  loading!: boolean;
 
   constructor(
     private eventTypeService: EventTypeService,
@@ -37,6 +38,7 @@ export class EventCreateComponent implements OnInit {
   }
 
   onsubmit(): void {
+    this.loading = true;
     const startDate = formatDate(this.insertEvent.starts, `yyyy-MM-dd'T'HH:mm:ss.SSS${getTimeZone()}`, 'en')
     const endDate = formatDate(this.insertEvent.ends, `yyyy-MM-dd'T'HH:mm:ss.SSS${getTimeZone()}`, 'en')
     this.insertEvent.starts = startDate
@@ -46,6 +48,7 @@ export class EventCreateComponent implements OnInit {
       .addEventHeader(this.insertEvent)
       .subscribe((result) => {
         this.router.navigateByUrl('/event-members');
+        this.loading = false;
       });
   }
 

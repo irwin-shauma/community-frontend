@@ -15,6 +15,7 @@ import { NgxSpinnerService } from "ngx-spinner";
 export class LoginComponent implements OnInit, OnDestroy {
   loginSubsription?: Subscription;
   loginReq: LoginReq = {} as LoginReq;
+  loading!: boolean;
   constructor(private loginService: LoginService,
     private router: Router,
     private spinner: NgxSpinnerService,
@@ -28,27 +29,18 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   onlogin(): void {
+    this.loading = true;
     this.loginSubsription = this.loginService
       .login(this.loginReq)
       .subscribe((result) => {
         this.loginService.save(result);
         console.log(result.data?.roleCode);
         if (result.data?.roleCode == Role.SUPERADMIN) {
-          this.spinner.show();
-
-          setTimeout(() => {
-            /** spinner ends after 5 seconds */
-            this.spinner.hide();
-            this.router.navigateByUrl('/home');
-          }, 1000);
+          this.router.navigateByUrl('/home');
+          this.loading = false;
         } else {
-          this.spinner.show();
-
-          setTimeout(() => {
-            /** spinner ends after 5 seconds */
-            this.spinner.hide();
-            this.router.navigateByUrl('/threads-main');
-          }, 1000);
+          this.router.navigateByUrl('/threads-main');
+          this.loading = false;
         }
       });
   }

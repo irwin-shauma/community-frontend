@@ -48,7 +48,7 @@
         </div>
 
         <div class="flex justify-content-end">
-            <button pButton label="Submit" type="submit" class="bg-red-500 border-round" [disabled]="!form.valid"></button>
+            <button pButton label="Submit" [loading]="loading" type="submit" class="bg-red-500 border-round" [disabled]="!form.valid"></button>
         </div>
     </form>
     
