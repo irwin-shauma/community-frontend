@@ -1,7 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { InsertRes } from '../dto/insert-res';
 import { MemberRevenueReportData } from '../dto/report/member-revenue-report-data';
+import { MemberRevenueReportReq } from '../dto/report/member-revenure-report-req';
 
 @Injectable({
   providedIn: 'root',
@@ -9,9 +11,10 @@ import { MemberRevenueReportData } from '../dto/report/member-revenue-report-dat
 export class ReportService {
   constructor(private http: HttpClient) {}
 
-  getMemberRevenueReport(): Observable<MemberRevenueReportData> {
-    return this.http.get<MemberRevenueReportData>(
-      'http://localhost:1234/reports/member-revenue-report'
+  getReport(id: string, startDate: string, endDate: string): void {
+    window.open(
+      `http://localhost:1234/reports/members-revenue-report?id=${id}&startDate=${startDate}&endDate=${endDate}`,
+      '_blank'
     );
   }
 }
