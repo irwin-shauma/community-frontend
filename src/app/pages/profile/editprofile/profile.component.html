@@ -7,12 +7,12 @@
                     <div class="flex p-8 justify-content-around">
                         <div class="flex flex-column gap-2">
                             <div *ngIf="data.fileId === null">
-                                <img src="./../../../../assets/unnamed.png" alt="profile" width="400" height="400"
+                                <img src="./../../../../assets/profille.png" alt="profile" width="400" height="400"
                                     class="border-round">
                             </div>
                             <div *ngIf="data.fileId !== null">
                                 <img src="http://localhost:1234/files/{{data.fileId}}" alt="profile" width="400"
-                                    height="400" class="border-round">
+                                    height="400" class="border-round imgEvent">
                             </div>
                             <div class="glasses cursor-pointer text-center border-1">
                                 <p class="photochoose">Choose Photo</p>
@@ -28,7 +28,7 @@
                                 <input type="text" pInputText class="inputstyle" name="fullName"
                                     [(ngModel)]="data.fullName">
                             </div>
-                            <div *ngIf="login.getRole">
+                            <div>
                                 <h3>Company</h3>
                                 <input type="text" pInputText class="inputstyle" name="company"
                                     [(ngModel)]="data.company">

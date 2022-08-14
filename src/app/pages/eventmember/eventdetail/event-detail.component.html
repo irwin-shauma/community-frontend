@@ -1,6 +1,9 @@
-<div class="p-8">
-    <div class="grid">
-        <div class="p-card md:col-8 col-offset-2" id="card-article">
+
+<div class="pl-8" routerLink="/event-members">
+    <button pButton pRipple type="button" label="Back" icon="pi pi-arrow-left" class="p-button-raised text-red-500 p-button-secondary p-button-text"></button>
+</div>
+<div class="pl-8 py-3">
+    <div class="p-card col-8 col-offset-2" id="card-article">
             <div class="grid">
                 <div class="col-12">
                     <div class="flex justify-content-between">
@@ -14,6 +17,13 @@
                                 (click)="updateThread(eventData.data!.id)"></button>
                         </div>
                     </div>
+                       
+                    
+                        
+                        <h4 class="mt-8 font-medium px-8">Event yang dibeli:</h4>
+                        <div class="flex gap-5  w-full justify-content-center col-6">
+                            <div>
+                                <img src="http://localhost:1234/files/{{eventData.data!.fileId}}" alt="event" width="300" height="200" class="imgEvent border-round mt-4">
 
 
                     <!-- <h4 class="mt-4 font-medium px-2">Event / Course yang dibeli:</h4> -->
@@ -98,6 +108,5 @@
 
                 </div>
             </div>
-        </div>
     </div>
 </div>
