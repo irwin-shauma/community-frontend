@@ -21,10 +21,9 @@
     <div class="w-15rem h-15rem glasses flex flex-column justify-content-center align-items-center text-red-500"
         *ngFor="let premium of dataPremium.data">
         <i class="pi pi-star-fill"></i>
-        <h3>{{premium.price}} / {{premium.duration}} Month</h3>
+        <h4>{{premium.price | customCurrency}} / {{premium.duration | secondToMonth}} </h4>
     </div>
 </div>
-
 
 <div class="p-8">
     <div class="card">
@@ -33,8 +32,24 @@
                <form (ngSubmit)="onchoosesubmit()">
                 <div class="flex flex-column justify-content-start w-full">
                     <h4>Premium choose</h4>
-                    <p-dropdown [options]="dataPremium.data!"  placeholder="premium type"
-                        optionLabel='duration' optionValue="id" [(ngModel)]="insertPayment.premiumTypeId" name="duration" class="wdrop mt-3">
+
+                    <p-dropdown 
+                        [options]="dataPremium.data!" 
+                        placeholder="Select premium type"
+                        optionLabel='duration' 
+                        optionValue="id" 
+                        [(ngModel)]="insertPayment.premiumTypeId" 
+                        name="duration" 
+                        class="wdrop mt-3">
+
+                        <ng-template let-item pTemplate="item">
+                            {{item.price | customCurrency}} - {{item.duration | secondToMonth}}
+                        </ng-template>
+                    
+                        <ng-template let-item pTemplate="selectedItem">
+                            {{item.price | customCurrency}} - {{item.duration | secondToMonth}}
+                        </ng-template>
+                    
                     </p-dropdown>
 
                 </div>

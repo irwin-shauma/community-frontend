@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { ArticleRouting } from './article.routing';
-import { ArticleHeaderListComponent} from './listarticle/list-article.component';
+import { ArticleHeaderListComponent } from './listarticle/list-article.component';
 import { ToolbarModule } from 'primeng/toolbar';
 import { ToastModule } from 'primeng/toast';
 import { FileUploadModule } from 'primeng/fileupload';
@@ -22,7 +22,7 @@ import { EditArticleComponent } from './editarticle/edit-article.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   imports: [
@@ -53,7 +53,7 @@ import {HttpClientModule} from '@angular/common/http';
     CreateArticleComponent,
     EditArticleComponent,
   ],
-  exports: [ArticleHeaderListComponent , CreateArticleComponent, EditArticleComponent],
+  exports: [ArticleHeaderListComponent, CreateArticleComponent, EditArticleComponent],
   providers: [ConfirmationService],
 })
-export class ArticleModule {}
+export class ArticleModule { }
